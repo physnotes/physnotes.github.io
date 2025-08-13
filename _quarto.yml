@@ -1,0 +1,28 @@
+project:
+  type: book
+
+book:
+  title: "Physics Notes"
+  author: "Andrew Binder, Eric Du"
+  date: "2025-08-12"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+
+
+website:
+  title: "My book"
+  page-navigation: true
