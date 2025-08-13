@@ -1,50 +1,57 @@
+% boxed-theorems.tex  (robust: define-or-wrap)
 \usepackage[most]{tcolorbox}
 \usepackage{xcolor}
 \usepackage{amsthm}
 
-% Colors match HTML hex
+% ---- Colors (match your HTML palette) ----
 \definecolor{thm}{HTML}{2F6FFF}
 \definecolor{lem}{HTML}{2CA25F}
 \definecolor{cor}{HTML}{C51B8A}
 \definecolor{prop}{HTML}{E6550D}
-\definecolor{defc}{HTML}{6B5FB5} % 'def' reserved, so use defc
+\definecolor{defc}{HTML}{6B5FB5} % 'def' is special in TeX; use 'defc'
 \definecolor{ex}{HTML}{3182BD}
 \definecolor{rem}{HTML}{6B6B6B}
 
+% ---- Shared box style ----
 \tcbset{
-  enhanced,
-  breakable,
-  boxrule=0.6pt,
-  arc=2mm,
+  enhanced, breakable,
+  boxrule=0.6pt, arc=2mm,
   coltitle=black,
-  left=8pt,right=8pt,top=8pt,bottom=8pt
+  left=8pt, right=8pt, top=8pt, bottom=8pt
 }
 
-% Number within section
-\newtcbtheorem[number within=section]{theorem}{Theorem}{
-  colframe=thm!90!black, colback=thm!5, fonttitle=\bfseries
-}{thm}
+% ---- Helper: ensure a boxed theorem named #1 with title #2 and color #3 ----
+\makeatletter
+\newcommand{\EnsureBoxedTheorem}[4]{%
+  % #1 = env name   (theorem)
+  % #2 = print name (Theorem)
+  % #3 = color name (thm)
+  % #4 = label prefix (thm)
+  \@ifundefined{#1}{%
+    % Environment doesn't exist yet -> define it via tcolorbox
+    \newtcbtheorem[number within=section]{#1}{#2}{%
+      colframe=#3!90!black, colback=#3!5, fonttitle=\bfseries
+    }{#4}%
+  }{%
+    % Environment already exists -> wrap it in a tcolorbox
+    \expandafter\let\csname old#1\endcsname=\csname #1\endcsname
+    \expandafter\let\csname endold#1\endcsname=\csname end#1\endcsname
+    \expandafter\renewenvironment\csname #1\endcsname{%
+      \begin{tcolorbox}[colframe=#3!90!black, colback=#3!5]%
+      \csname old#1\endcsname
+    }{%
+      \csname endold#1\endcsname
+      \end{tcolorbox}%
+    }%
+  }%
+}
+\makeatother
 
-\newtcbtheorem[number within=section]{lemma}{Lemma}{
-  colframe=lem!90!black, colback=lem!5, fonttitle=\bfseries
-}{lem}
-
-\newtcbtheorem[number within=section]{corollary}{Corollary}{
-  colframe=cor!90!black, colback=cor!5, fonttitle=\bfseries
-}{cor}
-
-\newtcbtheorem[number within=section]{proposition}{Proposition}{
-  colframe=prop!90!black, colback=prop!5, fonttitle=\bfseries
-}{prop}
-
-\newtcbtheorem[number within=section]{definition}{Definition}{
-  colframe=defc!90!black, colback=defc!5, fonttitle=\bfseries
-}{defn}
-
-\newtcbtheorem[number within=section]{example}{Example}{
-  colframe=ex!90!black, colback=ex!5, fonttitle=\bfseries
-}{ex}
-
-\newtcbtheorem[number within=section]{remark}{Remark}{
-  colframe=rem!90!black, colback=rem!5, fonttitle=\bfseries
-}{rem}
+% ---- Apply to your environments ----
+\EnsureBoxedTheorem{theorem}{Theorem}{thm}{thm}
+\EnsureBoxedTheorem{lemma}{Lemma}{lem}{lem}
+\EnsureBoxedTheorem{corollary}{Corollary}{cor}{cor}
+\EnsureBoxedTheorem{proposition}{Proposition}{prop}{prop}
+\EnsureBoxedTheorem{definition}{Definition}{defc}{defn}
+\EnsureBoxedTheorem{example}{Example}{ex}{ex}
+\EnsureBoxedTheorem{remark}{Remark}{rem}{rem}
