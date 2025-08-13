@@ -7,7 +7,7 @@ format: html
 
 Welcome! Choose a topic to explore:
 
-- [Classical Mechanics](/classical/)
-- [Electromagnetism](/em/)
+<!-- - [Classical Mechanics](/classical/) -->
+<!-- - [Electromagnetism](/em/) -->
 - [Quantum Mechanics](/qm/)
-- [Thermal & Statistical Physics](/thermal/)
+<!-- - [Thermal & Statistical Physics](/thermal/) -->
