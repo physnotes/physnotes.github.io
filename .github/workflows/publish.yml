@@ -26,8 +26,8 @@ jobs:
 
       - name: Render Quantum
         run: |
-          cd ../qm
-          quarto render --output-dir /_deploy/qm
+          cd /qm
+          quarto render --output-dir ../_deploy/qm
 
       # - name: Render EM
       #   run: |
