@@ -19,25 +19,25 @@ jobs:
           sudo apt-get install -y ghostscript libx11-dev
           quarto install tinytex
 
-      - name: Render Classical
-        run: |
-          cd classical
-          quarto render --output-dir ../_deploy/classical
+      # - name: Render Classical
+      #   run: |
+      #     cd classical
+      #     quarto render --output-dir ../_deploy/classical
 
       - name: Render Quantum
         run: |
           cd ../qm
           quarto render --output-dir ../_deploy/qm
 
-      - name: Render EM
-        run: |
-          cd ../em
-          quarto render --output-dir ../_deploy/em
+      # - name: Render EM
+      #   run: |
+      #     cd ../em
+      #     quarto render --output-dir ../_deploy/em
 
-      - name: Render Thermal
-        run: |
-          cd ../thermal
-          quarto render --output-dir ../_deploy/thermal
+      # - name: Render Thermal
+      #   run: |
+      #     cd ../thermal
+      #     quarto render --output-dir ../_deploy/thermal
 
       - name: Render Landing Page
         run: |
