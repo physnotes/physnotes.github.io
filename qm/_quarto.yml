@@ -2,14 +2,18 @@ project:
   type: book
 
 book:
-  title: "qm"
-  author: "Norah Jones"
+  title: "Quantum Mechanics"
+  author: "Andrew Binder, Eric Du"
   date: "8/13/2025"
+
   chapters:
     - index.qmd
     - intro.qmd
     - summary.qmd
     - references.qmd
+
+  page-footer: "[Home](../landing/index.qmd)"
+
 
 bibliography: references.bib
 
@@ -18,8 +22,10 @@ format:
     theme:
       - cosmo
       - brand
+      - styles.scss
   pdf:
     documentclass: scrreprt
+    include-in-header: boxed-theorems.tex
 
 
 

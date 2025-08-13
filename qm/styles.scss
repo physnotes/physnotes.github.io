@@ -1,0 +1,59 @@
+/*-- scss:defaults --*/
+:root {
+  --thm:  #2F6FFF;   /* Theorem (blue) */
+  --lem:  #2CA25F;   /* Lemma (green) */
+  --cor:  #C51B8A;   /* Corollary (magenta) */
+  --prop: #E6550D;   /* Proposition (orange) */
+  --def:  #6B5FB5;   /* Definition (purple) */
+  --ex:   #3182BD;   /* Example (steel blue) */
+  --rem:  #6B6B6B;   /* Remark (gray) */
+}
+
+/*-- scss:rules --*/
+
+/* Shared base */
+.theorem, .lemma, .corollary, .proposition, .definition, .example, .remark {
+  border: 1px solid var(--quarto-border-color);
+  border-left-width: 6px;
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  margin: 1rem 0;
+}
+
+/* Titles */
+.theorem-title, .lemma-title, .corollary-title,
+.proposition-title, .definition-title, .example-title, .remark-title {
+  font-weight: 600;
+  margin-bottom: .35rem;
+  display: block;
+}
+
+/* Individual colors + subtle fill */
+.theorem {
+  border-left-color: var(--thm);
+  background-color: rgba(47, 111, 255, 0.05);  /* ~5% tint */
+}
+.lemma {
+  border-left-color: var(--lem);
+  background-color: rgba(44, 162, 95, 0.05);
+}
+.corollary {
+  border-left-color: var(--cor);
+  background-color: rgba(197, 27, 138, 0.05);
+}
+.proposition {
+  border-left-color: var(--prop);
+  background-color: rgba(230, 85, 13, 0.05);
+}
+.definition {
+  border-left-color: var(--def);
+  background-color: rgba(107, 95, 181, 0.05);
+}
+.example {
+  border-left-color: var(--ex);
+  background-color: rgba(49, 130, 189, 0.05);
+}
+.remark {
+  border-left-color: var(--rem);
+  background-color: rgba(107, 107, 107, 0.05);
+}

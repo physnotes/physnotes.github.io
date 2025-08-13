@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "qm",
+    "title": "Quantum Mechanics",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\nTheorem 1 (Quantum States) The following is a quantum state \\(\\ket{x}\\).",
     "crumbs": [
       "Preface"
     ]
@@ -37,6 +37,46 @@
     "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
     "crumbs": [
       "References"
+    ]
+  },
+  {
+    "objectID": "index.html#pay-attention",
+    "href": "index.html#pay-attention",
+    "title": "qm",
+    "section": "Pay Attention",
+    "text": "Pay Attention\nUsing callouts is an effective way to highlight content that your reader give special consideration or attention.\n:::",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#hello",
+    "href": "index.html#hello",
+    "title": "qm",
+    "section": "hello",
+    "text": "hello\ntesting the theorem env.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#what",
+    "href": "index.html#what",
+    "title": "qm",
+    "section": "what",
+    "text": "what\ntesting the theorem env.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "../landing/index.html",
+    "href": "../landing/index.html",
+    "title": "1  Physics Notes",
+    "section": "",
+    "text": "Welcome! This website is a joint project dedicated to keeping a consolidated catalogue of all undergraduate (and some graduate) physics content. As is pretty obvious right now, this site is in its infancy and heavily under construction, so don’t expect anything to be final right now!\n\n\nQuantum Mechanics",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Home</span>"
     ]
   }
 ]
