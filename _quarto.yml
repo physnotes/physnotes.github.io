@@ -1,6 +1,8 @@
 project:
   type: book
 
+output-dir: _site
+
 book:
   title: "Physics Notes"
   author: "Andrew Binder, Eric Du"
@@ -21,6 +23,8 @@ format:
   pdf:
     documentclass: scrreprt
 
+execute:
+  freeze: auto
 
 
 website:
