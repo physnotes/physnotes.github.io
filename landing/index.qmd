@@ -1,0 +1,13 @@
+---
+title: "Physics Notes"
+format: html
+---
+
+# Physics Notes
+
+Welcome! Choose a topic to explore:
+
+- [Classical Mechanics](/classical/)
+- [Electromagnetism](/em/)
+- [Quantum Mechanics](/qm/)
+- [Thermal & Statistical Physics](/thermal/)
