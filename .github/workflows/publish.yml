@@ -19,8 +19,10 @@ jobs:
           sudo apt-get install -y ghostscript libx11-dev
           quarto install tinytex
 
-      - name: Render Quantum
-        run: quarto render qm --output-dir _deploy/qm
+      - name: Render Quantum Mechanics Book
+        run: |
+          cd qm
+          quarto render --output-dir ../_deploy/qm
 
       - name: Render Landing Page
         run: |
