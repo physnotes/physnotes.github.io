@@ -1,8 +1,8 @@
+name: Publish Quarto Book
+
 on:
   push:
     branches: [main]
-
-name: Publish Quarto Book
 
 jobs:
   build-deploy:
@@ -13,7 +13,10 @@ jobs:
 
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
-          version: 1.5.47  # or whatever version you're using
+          version: 1.5.47  # adjust if needed
+
+      - name: Install Pandoc (required for some extensions)
+        uses: r-lib/actions/setup-pandoc@v2
 
       - name: Render site
         run: quarto render
@@ -22,5 +25,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+          publish_dir: ./_book
 
