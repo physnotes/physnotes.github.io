@@ -19,30 +19,12 @@ jobs:
           sudo apt-get install -y ghostscript libx11-dev
           quarto install tinytex
 
-      # - name: Render Classical
-      #   run: |
-      #     cd classical
-      #     quarto render --output-dir ../_deploy/classical
-
+      # Now rendered from the root dir
       - name: Render Quantum
-        run: |
-          cd qm
-          quarto render --output-dir ../_deploy/qm
-
-      # - name: Render EM
-      #   run: |
-      #     cd ../em
-      #     quarto render --output-dir ../_deploy/em
-
-      # - name: Render Thermal
-      #   run: |
-      #     cd ../thermal
-      #     quarto render --output-dir ../_deploy/thermal
+        run: quarto render qm --output-dir _deploy/qm
 
       - name: Render Landing Page
-        run: |
-          cd landing
-          quarto render --output-dir ../_deploy
+        run: quarto render landing --output-dir _deploy
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
