@@ -1,12 +1,10 @@
 project:
   type: book
 
-output-dir: _site
-
 book:
-  title: "Physics Notes"
-  author: "Andrew Binder, Eric Du"
-  date: "2025-08-12"
+  title: "qm"
+  author: "Norah Jones"
+  date: "8/13/2025"
   chapters:
     - index.qmd
     - intro.qmd
@@ -23,10 +21,5 @@ format:
   pdf:
     documentclass: scrreprt
 
-execute:
-  freeze: auto
 
 
-website:
-  title: "My book"
-  page-navigation: true

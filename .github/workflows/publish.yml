@@ -1,31 +1,46 @@
-on:
-  workflow_dispatch:
-  push:
-    branches: main
+name: Deploy Multiple Quarto Books to gh-pages
 
-name: Quarto Publish
+on:
+  push:
+    branches: [main]
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
+      - uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Install TinyTeX
+      - name: Install TinyTeX (optional)
         run: |
           sudo apt-get update
           sudo apt-get install -y ghostscript libx11-dev
           quarto install tinytex
 
-      - name: Render and Publish
-        uses: quarto-dev/quarto-actions/publish@v2
+      - name: Render Classical
+        run: |
+          cd classical
+          quarto render --output-dir ../_deploy/classical
+
+      - name: Render Quantum
+        run: |
+          cd ../qm
+          quarto render --output-dir ../_deploy/qm
+
+      - name: Render EM
+        run: |
+          cd ../em
+          quarto render --output-dir ../_deploy/em
+
+      - name: Render Thermal
+        run: |
+          cd ../thermal
+          quarto render --output-dir ../_deploy/thermal
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_deploy
