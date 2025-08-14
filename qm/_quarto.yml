@@ -12,7 +12,7 @@ book:
     - summary.qmd
     - references.qmd
 
-  page-footer: "[Home](../landing/index.qmd)"
+  page-footer: "[Home](../)"
 
 
 bibliography: references.bib
