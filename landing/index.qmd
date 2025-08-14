@@ -4,6 +4,7 @@ author:
     - Eric Du
     - Andrew Binder
 format: html
+numbered: false
 ---
 
 Welcome! This website is a joint project dedicated to keeping a consolidated catalogue of all 

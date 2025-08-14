@@ -1,57 +1,46 @@
-% boxed-theorems.tex  (robust: define-or-wrap)
+% boxed-theorems.tex — wrap-only + per-environment colors + light fill
 \usepackage[most]{tcolorbox}
 \usepackage{xcolor}
-\usepackage{amsthm}
+\usepackage{etoolbox} % \AtBeginEnvironment
 
-% ---- Colors (match your HTML palette) ----
-\definecolor{thm}{HTML}{2F6FFF}
-\definecolor{lem}{HTML}{2CA25F}
-\definecolor{cor}{HTML}{C51B8A}
-\definecolor{prop}{HTML}{E6550D}
-\definecolor{defc}{HTML}{6B5FB5} % 'def' is special in TeX; use 'defc'
-\definecolor{ex}{HTML}{3182BD}
-\definecolor{rem}{HTML}{6B6B6B}
+% --- Match your HTML/SCSS palette ---
+\definecolor{thm}{HTML}{2F6FFF}   % Theorem (blue)
+\definecolor{lem}{HTML}{2CA25F}   % Lemma (green)
+\definecolor{cor}{HTML}{C51B8A}   % Corollary (magenta)
+\definecolor{prop}{HTML}{E6550D}  % Proposition (orange)
+\definecolor{defc}{HTML}{6B5FB5}  % Definition (purple)  ('def' reserved in TeX)
+\definecolor{ex}{HTML}{3182BD}    % Example (steel blue)
+\definecolor{rem}{HTML}{6B6B6B}   % Remark (gray)
 
-% ---- Shared box style ----
+% --- Base style: rounded corners, padding ---
 \tcbset{
   enhanced, breakable,
-  boxrule=0.6pt, arc=2mm,
+  boxrule=0.5pt,
+  arc=2mm,
   coltitle=black,
   left=8pt, right=8pt, top=8pt, bottom=8pt
 }
 
-% ---- Helper: ensure a boxed theorem named #1 with title #2 and color #3 ----
-\makeatletter
-\newcommand{\EnsureBoxedTheorem}[4]{%
-  % #1 = env name   (theorem)
-  % #2 = print name (Theorem)
-  % #3 = color name (thm)
-  % #4 = label prefix (thm)
-  \@ifundefined{#1}{%
-    % Environment doesn't exist yet -> define it via tcolorbox
-    \newtcbtheorem[number within=section]{#1}{#2}{%
-      colframe=#3!90!black, colback=#3!5, fonttitle=\bfseries
-    }{#4}%
-  }{%
-    % Environment already exists -> wrap it in a tcolorbox
-    \expandafter\let\csname old#1\endcsname=\csname #1\endcsname
-    \expandafter\let\csname endold#1\endcsname=\csname end#1\endcsname
-    \expandafter\renewenvironment\csname #1\endcsname{%
-      \begin{tcolorbox}[colframe=#3!90!black, colback=#3!5]%
-      \csname old#1\endcsname
-    }{%
-      \csname endold#1\endcsname
-      \end{tcolorbox}%
-    }%
-  }%
-}
-\makeatother
+% Defer wrapping until all theorem-like envs are defined by the template
+\AtBeginDocument{%
+  \AtBeginEnvironment{theorem}{\begin{tcolorbox}[colframe=thm, colback=thm!5]}%
+  \AtEndEnvironment{theorem}{\end{tcolorbox}}%
 
-% ---- Apply to your environments ----
-\EnsureBoxedTheorem{theorem}{Theorem}{thm}{thm}
-\EnsureBoxedTheorem{lemma}{Lemma}{lem}{lem}
-\EnsureBoxedTheorem{corollary}{Corollary}{cor}{cor}
-\EnsureBoxedTheorem{proposition}{Proposition}{prop}{prop}
-\EnsureBoxedTheorem{definition}{Definition}{defc}{defn}
-\EnsureBoxedTheorem{example}{Example}{ex}{ex}
-\EnsureBoxedTheorem{remark}{Remark}{rem}{rem}
+  \AtBeginEnvironment{lemma}{\begin{tcolorbox}[colframe=lem, colback=lem!5]}%
+  \AtEndEnvironment{lemma}{\end{tcolorbox}}%
+
+  \AtBeginEnvironment{corollary}{\begin{tcolorbox}[colframe=cor, colback=cor!5]}%
+  \AtEndEnvironment{corollary}{\end{tcolorbox}}%
+
+  \AtBeginEnvironment{proposition}{\begin{tcolorbox}[colframe=prop, colback=prop!5]}%
+  \AtEndEnvironment{proposition}{\end{tcolorbox}}%
+
+  \AtBeginEnvironment{definition}{\begin{tcolorbox}[colframe=defc, colback=defc!5]}%
+  \AtEndEnvironment{definition}{\end{tcolorbox}}%
+
+  \AtBeginEnvironment{example}{\begin{tcolorbox}[colframe=ex, colback=ex!5]}%
+  \AtEndEnvironment{example}{\end{tcolorbox}}%
+
+  \AtBeginEnvironment{remark}{\begin{tcolorbox}[colframe=rem, colback=rem!5]}%
+  \AtEndEnvironment{remark}{\end{tcolorbox}}%
+}
