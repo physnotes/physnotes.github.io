@@ -7,6 +7,5 @@ To learn more about Quarto books visit <https://quarto.org/docs/books>.
 
 :::{.theorem #thm-state}
 # Quantum States
-
-The following is a quantum state $x$.
+The following is a quantum state $\ket{\frac{1}{2}}$.
 :::
