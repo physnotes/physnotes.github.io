@@ -43,12 +43,12 @@ test example
 test note
 :::
 
-:::{.callout-tweet}
-# Test Tweet
+:::{.callout-theorem}
+# Test Theorem
 test tweet
 :::
 
-:::{.callout-tweet .callout-note icon=false collapse="true"}
-# Test Collapsible Tweet
-test collapsible tweet
+:::{.callout-theorem .callout-note icon=false collapse="true"}
+# Test Collapsible Theorem
+test collapsible theorem
 :::
