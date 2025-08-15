@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-79167ab8ce5d485ca07d1b5a396ffc56.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-06caae7ac1879919ed98042c81cb88db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -211,16 +211,107 @@ window.Quarto = {
 
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1>
-<p>This is a Quarto book.</p>
-<p>To learn more about Quarto books visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
+<p>Welcome to our Quantum Mechanics book!</p>
+<p>This book is meant for you to</p>
 <div id="thm-state" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 1 (Quantum States)</strong></span> The following is a quantum state <span class="math inline">\(\ket{\frac{1}{2}}\)</span>.</p>
+<p><span class="theorem-title"><strong>Theorem 1 (Quantum States)</strong></span> given a b c <span class="math display">\[x^2\]</span> something else.</p>
+<p>Paragraph 2 paragraph 2</p>
+<p>paragraph 4</p>
+</div>
+<div id="lem-something" class="lemma theorem">
+<p><span class="theorem-title"><strong>Lemma 1 (some lemma)</strong></span> lemmaaa</p>
+</div>
+<div id="exm-something" class="example theorem">
+<p><span class="theorem-title"><strong>Example 1 (some problem)</strong></span> lemmaaa</p>
+</div>
+<p>see <a href="#exm-something" class="quarto-xref">Example&nbsp;<span>1</span></a></p>
+<div id="rem-something" class="proof remark">
+<p><span class="proof-title"><em>Remark 1</em>. </span>remark</p>
 </div>
 
 
 </section>
 
 </main> <!-- /main -->
+<script>
+(() => {
+  const KINDS = ["example","remark"]; // only these become collapsible
+
+  function findTitleNode(box, kind) {
+    // Prefer exact "<kind>-title"
+    let t = box.querySelector(`.${kind}-title`);
+    if (t) return t;
+
+    // Any "*-title"
+    t = box.querySelector('[class$="-title"]');
+    if (t) return t;
+
+    // Fallbacks: first heading, then strong/span at the top
+    const first = box.firstElementChild;
+    if (first && /^H[1-6]$/i.test(first.tagName)) return first;
+    return box.querySelector("strong, h1, h2, h3, h4, h5, h6, span");
+  }
+
+  function convertBox(box, kind) {
+    if (box.dataset.detailsConverted) return;
+
+    const title = findTitleNode(box, kind);
+    if (!title) return;
+
+    // Build <details> skeleton and carry over id/classes
+    const det = document.createElement("details");
+    det.open = true; // default open; set to false if you want collapsed by default
+    det.className = box.className; // keeps .example/.remark and any other classes
+    if (box.id) det.id = box.id;
+
+    const sum = document.createElement("summary");
+    // Ensure a consistent class so CSS can target it
+    sum.classList.add(`${kind}-title`);
+
+    // Move title content into <summary>; remove the old node (but keep its siblings)
+    sum.innerHTML = title.innerHTML;
+    title.remove();
+
+    // Move all remaining child nodes into a body container
+    const body = document.createElement("div");
+    body.className = "details-body";
+    while (box.firstChild) body.appendChild(box.firstChild);
+
+    det.appendChild(sum);
+    det.appendChild(body);
+
+    // Replace the original box in the DOM
+    box.replaceWith(det);
+
+    // Mark done
+    det.dataset.detailsConverted = "1";
+  }
+
+  function processAll(root = document) {
+    KINDS.forEach(kind => {
+      root.querySelectorAll(`.${kind}`).forEach(box => convertBox(box, kind));
+    });
+  }
+
+  // Initial pass
+  document.addEventListener("DOMContentLoaded", () => processAll());
+
+  // Safety pass after everything (e.g., math typesetting)
+  window.addEventListener("load", () => processAll());
+
+  // Watch for late-added boxes (rare but safe)
+  const obs = new MutationObserver(muts => {
+    muts.forEach(m => {
+      m.addedNodes.forEach(node => {
+        if (!(node instanceof Element)) return;
+        if (KINDS.some(k => node.classList?.contains(k))) processAll(node);
+        else node.querySelectorAll?.(".example, .remark").forEach(el => processAll(el));
+      });
+    });
+  });
+  obs.observe(document.body, { childList: true, subtree: true });
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

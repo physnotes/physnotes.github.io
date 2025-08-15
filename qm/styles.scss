@@ -15,8 +15,8 @@
 .theorem, .lemma, .corollary, .proposition, .definition, .example, .remark {
   border: 1px solid var(--quarto-border-color);
   border-left-width: 6px;
-  border-radius: 8px;
-  padding: 0.85rem 1rem;
+  border-radius: 5px;
+  padding: 0.5rem 0.5rem;
   margin: 1rem 0;
 }
 
@@ -57,3 +57,119 @@
   border-left-color: var(--rem);
   background-color: rgba(107, 107, 107, 0.05);
 }
+
+/* Ensure titles are block-level so the chevron positions correctly */
+.example-title, .remark-title { display: block; }
+
+/* We only show chevrons on collapsible kinds */
+.collapsible .example-title,
+.collapsible .remark-title {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.collapsible .example-title::after,
+.collapsible .remark-title::after {
+  content: "▾";
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height: 1;
+  transform: translateY(20%);
+  opacity: 0.7;
+}
+.collapsible.collapsed .example-title::after,
+.collapsible.collapsed .remark-title::after { content: "▸"; }
+
+
+/* Style <details> the same as your .example/.remark boxes */
+details.example, details.remark {
+  /* your existing box style already applies because we copy classes,
+     but ensure summary behaves like your title line */
+}
+
+summary.example-title, summary.remark-title {
+  display: block;        /* so we can position the chevron */
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: .35rem; /* matches your title spacing */
+  list-style: none;      /* remove default marker in some browsers */
+}
+
+/* Remove default triangle marker in WebKit/Blink/Firefox */
+summary::-webkit-details-marker { display: none; }
+summary::marker { content: ""; }
+
+/* Chevron indicator (matches your previous look) */
+summary.example-title::after,
+summary.remark-title::after {
+  content: "▾";
+  position: absolute;
+  right: 0;
+  top: 0;
+  line-height: 1;
+  transform: translateY(20%);
+  opacity: 0.7;
+}
+
+/* Flip chevron when closed */
+details:not([open]) summary.example-title::after,
+details:not([open]) summary.remark-title::after {
+  content: "▸";
+}
+
+/* Tighten spacing when closed: remove the gap under the title */
+details:not([open]) summary.example-title,
+details:not([open]) summary.remark-title {
+  margin-bottom: 0;
+}
+
+/* Optional: body container (not strictly required, but handy) */
+.details-body { /* nothing special by default */ }
+
+/* ===== Equalize vertical spacing on ALL theorem-like boxes ===== */
+
+/* 1) Non-collapsible boxes (theorem/lemma/corollary/proposition/definition) */
+.theorem, .lemma, .corollary, .proposition, .definition {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;   /* make top/bottom symmetric */
+}
+
+/* Remove the stray top margin from the first content block under the title */
+.theorem      > .theorem-title      + *,
+.lemma        > .lemma-title        + *,
+.corollary    > .corollary-title    + *,
+.proposition  > .proposition-title  + *,
+.definition   > .definition-title   + * {
+  margin-top: 0;
+}
+
+/* Remove the stray bottom margin on the last child */
+.theorem      > :last-child,
+.lemma        > :last-child,
+.corollary    > :last-child,
+.proposition  > :last-child,
+.definition   > :last-child {
+  margin-bottom: 0;
+}
+
+/* 2) Collapsible boxes we converted to <details> (example/remark) */
+details.example, details.remark {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;  /* symmetric with non-collapsible boxes */
+}
+
+/* Keep a controlled gap under the title when open */
+summary.example-title,
+summary.remark-title {
+  margin-bottom: .35rem;
+}
+
+/* Kill extra margins at the top/bottom of the body when open */
+details.example[open] .details-body > :first-child,
+details.remark[open]  .details-body > :first-child { margin-top: 0; }
+
+details.example[open] .details-body > :last-child,
+details.remark[open]  .details-body > :last-child  { margin-bottom: 0; }

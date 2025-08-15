@@ -23,6 +23,8 @@ format:
       - cosmo
       - brand
       - styles.scss
+    include-after-body:
+      - theorem-collapse.html
   pdf:
     documentclass: scrreprt
     include-in-header: boxed-theorems.tex

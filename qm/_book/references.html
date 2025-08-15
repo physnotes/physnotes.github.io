@@ -59,7 +59,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-79167ab8ce5d485ca07d1b5a396ffc56.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-f4ea6a32150d3f7a68d9b659785cc3f5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -189,6 +189,107 @@ J.</em> 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https
 
 
 </main> <!-- /main -->
+<script>
+(() => {
+  const KINDS = ["example","remark"]; // only these are collapsible
+
+  function findTitle(box, kind) {
+    // prefer "<kind>-title"
+    let t = box.querySelector(`.${kind}-title`);
+    if (t) return t;
+    // otherwise any "*-title"
+    t = box.querySelector('[class$="-title"]');
+    if (t) return t;
+    // last resort: first heading or strong as a fallback
+    const first = box.firstElementChild;
+    if (first && /^H[1-6]$/i.test(first.tagName)) return first;
+    return box.querySelector("strong, h1, h2, h3, h4, h5, h6");
+  }
+
+  function wrapBox(box, kind) {
+    if (box.dataset.collapsibleProcessed) return;
+    const title = findTitle(box, kind);
+    if (!title) return;
+
+    // Ensure the title is a direct child
+    let topTitle = title;
+    if (title.parentElement !== box) {
+      const cloned = document.createElement("div");
+      cloned.className = title.className || `${kind}-title`;
+      cloned.innerHTML = title.innerHTML;
+      box.insertBefore(cloned, box.firstChild);
+      title.remove();
+      topTitle = cloned;
+    }
+
+    // Create body wrapper and move everything after the title into it
+    const body = document.createElement("div");
+    body.className = "collapsible-body";
+    while (topTitle.nextSibling) body.appendChild(topTitle.nextSibling);
+    box.appendChild(body);
+
+    // Mark as collapsible + a11y
+    box.classList.add("collapsible");
+    topTitle.setAttribute("role", "button");
+    topTitle.setAttribute("tabindex", "0");
+    const update = () => {
+      topTitle.setAttribute("aria-expanded", String(!box.classList.contains("collapsed")));
+    };
+    const toggle = () => { box.classList.toggle("collapsed"); update(); };
+
+    topTitle.addEventListener("click", toggle);
+    topTitle.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+    });
+    update();
+
+    // MutationObserver: if anything else gets appended later (e.g., MathJax),
+    // move it into .collapsible-body so it collapses too.
+    const obs = new MutationObserver((muts) => {
+      muts.forEach(m => {
+        m.addedNodes.forEach(node => {
+          if (!(node instanceof Element)) return;
+          // ignore if it's already the body or the header
+          if (node === topTitle || node === body) return;
+          body.appendChild(node);
+        });
+      });
+    });
+    obs.observe(box, { childList: true });
+
+    box.dataset.collapsibleProcessed = "1";
+  }
+
+  function init() {
+    // Process all current example/remark boxes
+    document.querySelectorAll(KINDS.map(k => "." + k).join(",")).forEach(box => {
+      const kind = KINDS.find(k => box.classList.contains(k));
+      if (kind) wrapBox(box, kind);
+    });
+
+    // Also watch the document for boxes that appear later (unlikely, but safe)
+    const docObs = new MutationObserver((muts) => {
+      muts.forEach(m => {
+        m.addedNodes.forEach(node => {
+          if (!(node instanceof Element)) return;
+          if (KINDS.some(k => node.classList && node.classList.contains(k))) {
+            const kind = KINDS.find(k => node.classList.contains(k));
+            wrapBox(node, kind);
+          } else {
+            // look for nested boxes inside the added subtree
+            node.querySelectorAll && node.querySelectorAll(KINDS.map(k => "."+k).join(","))
+              .forEach(b => wrapBox(b, KINDS.find(k => b.classList.contains(k))));
+          }
+        });
+      });
+    });
+    docObs.observe(document.body, { childList: true, subtree: true });
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+  window.addEventListener("load", init); // run again after typeset
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

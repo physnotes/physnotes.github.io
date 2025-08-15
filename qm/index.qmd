@@ -1,11 +1,35 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
+Welcome to our Quantum Mechanics book!
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+This book is meant for you to 
 
 
 :::{.theorem #thm-state}
 # Quantum States
-The following is a quantum state $\ket{\frac{1}{2}}$.
+given a b c 
+$$x^2$$
+something else.
+
+Paragraph 2
+paragraph 2
+
+
+paragraph 4
 :::
+
+:::{.lemma #lem-something}
+# some lemma
+lemmaaa
+:::
+
+:::{.example #exm-something}
+# some problem
+lemmaaa
+:::
+see @exm-something
+
+:::{.remark #rem-something}
+remark
+:::
+
