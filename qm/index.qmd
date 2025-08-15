@@ -33,7 +33,7 @@ see @exm-something
 remark
 :::
 
-:::{.callout-note}
-# test note
+:::{.callout-note collapse="true" icon="false"}
+# Test Note
 test note
 :::
