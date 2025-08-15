@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Quantum Mechanics",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\nTheorem 1 (Quantum States) The following is a quantum state \\(x\\).",
+    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\nTheorem 1 (Quantum States) The following is a quantum state \\(\\ket{\\frac{1}{2}}\\).",
     "crumbs": [
       "Preface"
     ]
