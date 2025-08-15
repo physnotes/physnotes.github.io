@@ -22,23 +22,10 @@ div.callout-tweet.callout-style-default>.callout-header {
   background-color: $background-color;
 }
 
-.callout-tweet.icon .callout-icon {
-  display: unset !important;
-}
-
-div.callout-tweet.icon.callout-captioned .callout-icon::before {
-  background-image: $icon;
-}
-
-.callout-tweet.icon.callout-style-default div.callout-icon-container {
-  padding-top: 0.1em;
-  padding-right: 0.35em;
-}
-
 /* Shared base */
 .theorem, .lemma, .corollary, .proposition, .definition, .example, .remark {
   border: 1px solid var(--quarto-border-color);
-  border-left-width: 4px;
+  border-left-width: 5px;
   border-radius: 5px;
   padding: 0.5rem 0.5rem;
   margin: 1rem 0;
