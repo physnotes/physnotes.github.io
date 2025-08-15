@@ -35,6 +35,7 @@ remark
 
 :::{.example #exm-test}
 # Test Example
+test example
 :::
 
 :::{.callout-note collapse="true" icon="false"}
