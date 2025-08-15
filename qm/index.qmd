@@ -33,6 +33,10 @@ see @exm-something
 remark
 :::
 
+:::{.example #exm-test}
+# Test Example
+:::
+
 :::{.callout-note collapse="true" icon="false"}
 # Test Note
 test note
