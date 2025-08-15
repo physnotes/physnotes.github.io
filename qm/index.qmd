@@ -42,3 +42,13 @@ test example
 # Test Note
 test note
 :::
+
+:::{.callout-tweet}
+# Test Tweet
+test tweet
+:::
+
+:::{.callout-tweet .callout-note collapse="true"}
+# Test Collapsible Tweet
+test collapsible tweet
+:::
