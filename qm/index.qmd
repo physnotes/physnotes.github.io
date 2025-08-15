@@ -48,7 +48,7 @@ test note
 test tweet
 :::
 
-:::{.callout-tweet .icon .callout-note collapse="true"}
+:::{.callout-tweet .callout-note icon=false collapse="true"}
 # Test Collapsible Tweet
 test collapsible tweet
 :::
