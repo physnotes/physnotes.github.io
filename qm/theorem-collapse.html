@@ -1,7 +1,7 @@
 <script>
 (() => {
   const KINDS = ["example","remark"];   // only these are collapsible
-  const DURATION = 150;                  // ms
+  const DURATION = 200;                  // ms
   const EASING = "ease";                 // timing
   const REDUCE_MOTION = window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -82,7 +82,7 @@
 
     // Build <details>/<summary>
     const det = document.createElement("details");
-    det.open = true;                 // set false if you prefer default-collapsed
+    // det.open = true;                 // set false if you prefer default-collapsed
     det.className = box.className;   // keep .example/.remark etc.
     if (box.id) det.id = box.id;
 

@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-246441f0fa356403ebd307258d5d8470.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-bd5c1ed6700b944371bc7ffac89eb015.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -276,7 +276,7 @@ Test Collapsible Theorem
 <script>
 (() => {
   const KINDS = ["example","remark"];   // only these are collapsible
-  const DURATION = 150;                  // ms
+  const DURATION = 200;                  // ms
   const EASING = "ease";                 // timing
   const REDUCE_MOTION = window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -357,7 +357,7 @@ Test Collapsible Theorem
 
     // Build <details>/<summary>
     const det = document.createElement("details");
-    det.open = true;                 // set false if you prefer default-collapsed
+    // det.open = true;                 // set false if you prefer default-collapsed
     det.className = box.className;   // keep .example/.remark etc.
     if (box.id) det.id = box.id;
 
