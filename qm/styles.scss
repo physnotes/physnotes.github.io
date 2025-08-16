@@ -19,6 +19,7 @@
   border-radius: 5px;
   padding: 0.25rem 0.5rem; /* tighter vertical padding */
   margin: 1rem 0;
+  font-size: 15.3px;
 }
 
 /* Titles */
@@ -28,6 +29,7 @@
   font-weight: 600;
   margin-bottom: .35rem;
   display: block;
+  font-size: 15.3px;
 }
 
 /* Colors + subtle fills */
@@ -70,9 +72,10 @@ summary.example-title, summary.remark-title {
   position: relative;
   cursor: pointer;
   user-select: none;
-  margin-bottom: .35rem;
+  margin-bottom: 0rem;
+  margin-right: 0px;
   list-style: none;  /* remove default disclosure marker */
-  padding-right: 1.25rem; /* room for chevron */
+  // padding-right: 1.25rem; /* room for chevron */
 }
 
 /* remove browser default marker */
@@ -87,12 +90,13 @@ summary.remark-title::before {
   width: 1em;
   height: 1em;
   position: absolute;
-  right: .25rem;
+  right: 0rem;
   top: 50%;
   transform: translateY(-50%) rotate(0deg); /* closed look */
   transform-origin: 50% 50%;
   transition: transform 200ms ease;
   opacity: 0.85;
+  margin-left: 5px;
 
   background-image: url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'>\
