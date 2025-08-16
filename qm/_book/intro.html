@@ -61,7 +61,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9e95a0d41f6e1a870bc13fc28c1f92f1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-246441f0fa356403ebd307258d5d8470.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -193,61 +193,118 @@ Knuth, Donald E. 1984. <span>“Literate Programming.”</span> <em>Comput. J.</
 
 </main> <!-- /main -->
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const kinds = ["theorem","lemma","corollary","proposition","definition","example","remark"];
+(() => {
+  const KINDS = ["example","remark"]; // only these are collapsible
+  const DURATION = 200;               // ms; tweak if you want slower/faster
+  const EASING = "ease";              // animation timing
 
-  function findTitle(box, kind) {
+  function findTitleNode(box, kind) {
     let t = box.querySelector(`.${kind}-title`);
     if (t) return t;
     t = box.querySelector('[class$="-title"]');
     if (t) return t;
-    // last resort: first heading or strong at top
     const first = box.firstElementChild;
     if (first && /^H[1-6]$/i.test(first.tagName)) return first;
-    return box.querySelector("strong, h1, h2, h3, h4, h5, h6");
+    return box.querySelector("strong, h1, h2, h3, h4, h5, h6, span");
   }
 
-  kinds.forEach(kind => {
-    document.querySelectorAll(`.${kind}`).forEach(box => {
-      const title = findTitle(box, kind);
-      if (!title) return;
-
-      // Wrap all siblings after the title in a .collapsible-body div
-      let body = document.createElement("div");
-      body.className = "collapsible-body";
-      // move all nodes after title into body
-      let n = title.nextSibling;
-      let movedAny = false;
-      while (n) {
-        const next = n.nextSibling;
-        body.appendChild(n);
-        movedAny = true;
-        n = next;
-      }
-      if (movedAny) box.appendChild(body);
-
-      box.classList.add("collapsible");
-
-      // default expanded; to start collapsed, uncomment:
-      // box.classList.add("collapsed");
-
-      // a11y
-      title.setAttribute("role", "button");
-      title.setAttribute("tabindex", "0");
-      const update = () => {
-        const expanded = !box.classList.contains("collapsed");
-        title.setAttribute("aria-expanded", String(expanded));
+  function animateOpen(det, body) {
+    // prepare
+    body.style.overflow = "hidden";
+    body.style.height = "0px";
+    body.style.transition = `height ${DURATION}ms ${EASING}`;
+    // set open now so content is measurable/accessible
+    det.open = true;
+    // next frame -> expand to content height
+    requestAnimationFrame(() => {
+      const h = body.scrollHeight;
+      body.style.height = h + "px";
+      // cleanup after animation
+      const done = () => {
+        body.style.transition = "";
+        body.style.height = "";
+        body.style.overflow = "";
+        body.removeEventListener("transitionend", done);
       };
-      update();
-
-      const toggle = () => { box.classList.toggle("collapsed"); update(); };
-      title.addEventListener("click", toggle);
-      title.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
-      });
+      body.addEventListener("transitionend", done);
     });
-  });
-});
+  }
+
+  function animateClose(det, body) {
+    // set fixed height to current, then transition to 0
+    const h = body.scrollHeight;
+    body.style.overflow = "hidden";
+    body.style.height = h + "px";
+    body.style.transition = `height ${DURATION}ms ${EASING}`;
+    // next frame -> go to 0
+    requestAnimationFrame(() => {
+      body.style.height = "0px";
+      const done = () => {
+        det.open = false; // actually close after animation
+        body.style.transition = "";
+        body.style.height = "";
+        body.style.overflow = "";
+        body.removeEventListener("transitionend", done);
+      };
+      body.addEventListener("transitionend", done);
+    });
+  }
+
+  function convertBox(box, kind) {
+    if (box.dataset.detailsConverted) return;
+
+    const title = findTitleNode(box, kind);
+    if (!title) return;
+
+    // Build <details>/<summary>
+    const det = document.createElement("details");
+    det.open = true;               // default expanded; change to false to default collapsed
+    det.className = box.className; // preserve .example/.remark + any other classes/ids
+    if (box.id) det.id = box.id;
+
+    const sum = document.createElement("summary");
+    sum.classList.add(`${kind}-title`);
+    sum.innerHTML = title.innerHTML;
+    title.remove();
+
+    const body = document.createElement("div");
+    body.className = "details-body";
+    while (box.firstChild) body.appendChild(box.firstChild);
+
+    det.appendChild(sum);
+    det.appendChild(body);
+    box.replaceWith(det);
+
+    // Override native toggle -> we animate ourselves
+    const toggle = (e) => {
+      e.preventDefault(); // stop native instant toggle
+      const isOpen = det.open;
+      if (isOpen) animateClose(det, body);
+      else        animateOpen(det, body);
+      // chevron state is CSS-driven by [open], so it's updated in animateOpen/Close
+    };
+
+    sum.addEventListener("click", toggle);
+    sum.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(e); }
+    });
+
+    // accessibility
+    sum.setAttribute("role", "button");
+    sum.setAttribute("tabindex", "0");
+
+    det.dataset.detailsConverted = "1";
+  }
+
+  function processAll(root = document) {
+    KINDS.forEach(kind => {
+      root.querySelectorAll(`.${kind}`).forEach(box => convertBox(box, kind));
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => processAll());
+  window.addEventListener("load", () => processAll());
+})();
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
