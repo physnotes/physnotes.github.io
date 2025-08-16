@@ -1,20 +1,59 @@
 <script>
 (() => {
-  const KINDS = ["example","remark"]; // only these become collapsible
+  const KINDS = ["example","remark"]; // only these are collapsible
+  const DURATION = 200;               // ms; tweak if you want slower/faster
+  const EASING = "ease";              // animation timing
 
   function findTitleNode(box, kind) {
-    // Prefer exact "<kind>-title"
     let t = box.querySelector(`.${kind}-title`);
     if (t) return t;
-
-    // Any "*-title"
     t = box.querySelector('[class$="-title"]');
     if (t) return t;
-
-    // Fallbacks: first heading, then strong/span at the top
     const first = box.firstElementChild;
     if (first && /^H[1-6]$/i.test(first.tagName)) return first;
     return box.querySelector("strong, h1, h2, h3, h4, h5, h6, span");
+  }
+
+  function animateOpen(det, body) {
+    // prepare
+    body.style.overflow = "hidden";
+    body.style.height = "0px";
+    body.style.transition = `height ${DURATION}ms ${EASING}`;
+    // set open now so content is measurable/accessible
+    det.open = true;
+    // next frame -> expand to content height
+    requestAnimationFrame(() => {
+      const h = body.scrollHeight;
+      body.style.height = h + "px";
+      // cleanup after animation
+      const done = () => {
+        body.style.transition = "";
+        body.style.height = "";
+        body.style.overflow = "";
+        body.removeEventListener("transitionend", done);
+      };
+      body.addEventListener("transitionend", done);
+    });
+  }
+
+  function animateClose(det, body) {
+    // set fixed height to current, then transition to 0
+    const h = body.scrollHeight;
+    body.style.overflow = "hidden";
+    body.style.height = h + "px";
+    body.style.transition = `height ${DURATION}ms ${EASING}`;
+    // next frame -> go to 0
+    requestAnimationFrame(() => {
+      body.style.height = "0px";
+      const done = () => {
+        det.open = false; // actually close after animation
+        body.style.transition = "";
+        body.style.height = "";
+        body.style.overflow = "";
+        body.removeEventListener("transitionend", done);
+      };
+      body.addEventListener("transitionend", done);
+    });
   }
 
   function convertBox(box, kind) {
@@ -23,32 +62,43 @@
     const title = findTitleNode(box, kind);
     if (!title) return;
 
-    // Build <details> skeleton and carry over id/classes
+    // Build <details>/<summary>
     const det = document.createElement("details");
-    det.open = true; // default open; set to false if you want collapsed by default
-    det.className = box.className; // keeps .example/.remark and any other classes
+    det.open = true;               // default expanded; change to false to default collapsed
+    det.className = box.className; // preserve .example/.remark + any other classes/ids
     if (box.id) det.id = box.id;
 
     const sum = document.createElement("summary");
-    // Ensure a consistent class so CSS can target it
     sum.classList.add(`${kind}-title`);
-
-    // Move title content into <summary>; remove the old node (but keep its siblings)
     sum.innerHTML = title.innerHTML;
     title.remove();
 
-    // Move all remaining child nodes into a body container
     const body = document.createElement("div");
     body.className = "details-body";
     while (box.firstChild) body.appendChild(box.firstChild);
 
     det.appendChild(sum);
     det.appendChild(body);
-
-    // Replace the original box in the DOM
     box.replaceWith(det);
 
-    // Mark done
+    // Override native toggle -> we animate ourselves
+    const toggle = (e) => {
+      e.preventDefault(); // stop native instant toggle
+      const isOpen = det.open;
+      if (isOpen) animateClose(det, body);
+      else        animateOpen(det, body);
+      // chevron state is CSS-driven by [open], so it's updated in animateOpen/Close
+    };
+
+    sum.addEventListener("click", toggle);
+    sum.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(e); }
+    });
+
+    // accessibility
+    sum.setAttribute("role", "button");
+    sum.setAttribute("tabindex", "0");
+
     det.dataset.detailsConverted = "1";
   }
 
@@ -58,22 +108,7 @@
     });
   }
 
-  // Initial pass
   document.addEventListener("DOMContentLoaded", () => processAll());
-
-  // Safety pass after everything (e.g., math typesetting)
   window.addEventListener("load", () => processAll());
-
-  // Watch for late-added boxes (rare but safe)
-  const obs = new MutationObserver(muts => {
-    muts.forEach(m => {
-      m.addedNodes.forEach(node => {
-        if (!(node instanceof Element)) return;
-        if (KINDS.some(k => node.classList?.contains(k))) processAll(node);
-        else node.querySelectorAll?.(".example, .remark").forEach(el => processAll(el));
-      });
-    });
-  });
-  obs.observe(document.body, { childList: true, subtree: true });
 })();
 </script>

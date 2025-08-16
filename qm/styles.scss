@@ -138,47 +138,32 @@ details:not([open]) summary.remark-title {
 /* Optional: body container (not strictly required, but handy) */
 .details-body { /* nothing special by default */ }
 
-/* ===== Equalize vertical spacing on ALL theorem-like boxes ===== */
+/* details-body animates height; JS sets inline height + transition */
+.details-body { overflow: hidden; }
 
-/* 1) Non-collapsible boxes (theorem/lemma/corollary/proposition/definition) */
-.theorem, .lemma, .corollary, .proposition, .definition {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;   /* make top/bottom symmetric */
+/* Chevron already set up; add a gentle rotation if you like */
+summary.example-title::after,
+summary.remark-title::after {
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+details[open] summary.example-title::after,
+details[open] summary.remark-title::after {
+  transform: translateY(20%) rotate(0deg);
+}
+details:not([open]) summary.example-title::after,
+details:not([open]) summary.remark-title::after {
+  transform: translateY(20%) rotate(-90deg); /* ▾ ➜ ▸ look */
 }
 
-/* Remove the stray top margin from the first content block under the title */
-.theorem      > .theorem-title      + *,
-.lemma        > .lemma-title        + *,
-.corollary    > .corollary-title    + *,
-.proposition  > .proposition-title  + *,
-.definition   > .definition-title   + * {
-  margin-top: 0;
-}
-
-/* Remove the stray bottom margin on the last child */
-.theorem      > :last-child,
-.lemma        > :last-child,
-.corollary    > :last-child,
-.proposition  > :last-child,
-.definition   > :last-child {
-  margin-bottom: 0;
-}
-
-/* 2) Collapsible boxes we converted to <details> (example/remark) */
-details.example, details.remark {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;  /* symmetric with non-collapsible boxes */
-}
-
-/* Keep a controlled gap under the title when open */
-summary.example-title,
-summary.remark-title {
-  margin-bottom: .35rem;
-}
-
-/* Kill extra margins at the top/bottom of the body when open */
+/* Keep margins tight so top/bottom look even (expanded state) */
 details.example[open] .details-body > :first-child,
 details.remark[open]  .details-body > :first-child { margin-top: 0; }
-
 details.example[open] .details-body > :last-child,
 details.remark[open]  .details-body > :last-child  { margin-bottom: 0; }
+
+/* Symmetric container padding for all boxes (non-collapsible included) */
+.theorem, .lemma, .corollary, .proposition, .definition,
+details.example, details.remark {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
