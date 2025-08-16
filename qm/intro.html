@@ -61,7 +61,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f7463477dc91c8d34a3e74f431b0d61e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3fede1394fb3f447ff4a75d6dd44bfd2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -195,7 +195,7 @@ Knuth, Donald E. 1984. <span>“Literate Programming.”</span> <em>Comput. J.</
 <script>
 (() => {
   const KINDS = ["example","remark"];   // only these are collapsible
-  const DURATION = 150;                  // ms
+  const DURATION = 200;                  // ms
   const EASING = "ease";                 // timing
   const REDUCE_MOTION = window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -276,7 +276,7 @@ Knuth, Donald E. 1984. <span>“Literate Programming.”</span> <em>Comput. J.</
 
     // Build <details>/<summary>
     const det = document.createElement("details");
-    det.open = true;                 // set false if you prefer default-collapsed
+    // det.open = true;                 // set false if you prefer default-collapsed
     det.className = box.className;   // keep .example/.remark etc.
     if (box.id) det.id = box.id;
 
