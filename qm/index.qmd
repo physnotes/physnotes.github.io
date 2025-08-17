@@ -33,9 +33,12 @@ see @exm-something
 remark
 :::
 
-:::{.example #exm-test}
-# Test Example
+:::{.warning}
 test example
+
+$$ x^2$$ 
+
+test break
 :::
 
 :::{.callout-note collapse="true" icon="false"}

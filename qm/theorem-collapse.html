@@ -131,3 +131,21 @@
   window.addEventListener("load", () => processAll());
 })();
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Select all .warning boxes
+  document.querySelectorAll(".warning").forEach(box => {
+    // Skip if it already has a title
+    if (box.querySelector(".warning-title")) return;
+
+    // Create the title element
+    const title = document.createElement("div");
+    title.className = "warning-title";
+    title.textContent = "Warning!";
+
+    // Insert at the top of the box
+    box.insertBefore(title, box.firstChild);
+  });
+});
+</script>

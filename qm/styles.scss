@@ -7,13 +7,14 @@
   --def:  #6B5FB5;   /* Definition (purple) */
   --ex:   #3182BD;   /* Example (steel blue) */
   --rem:  #6B6B6B;   /* Remark (gray) */
+  --warn: rgb(229, 37, 43);   /* Warning (red) */
 }
 
 /*-- scss:rules --*/
 
 /* Shared base for all boxes */
 .theorem, .lemma, .corollary, .proposition, .definition,
-.example, .remark {
+.example, .remark, .warning {
   border: 1px solid var(--quarto-border-color);
   border-left-width: 5px;
   border-radius: 5px;
@@ -25,12 +26,18 @@
 /* Titles */
 .theorem-title, .lemma-title, .corollary-title,
 .proposition-title, .definition-title,
-.example-title, .remark-title {
+.example-title, .remark-title, .warning-title{
   font-weight: 600;
   margin-bottom: .35rem;
   display: block;
   font-size: 15.3px;
 }
+
+.theorem > :last-child {margin-bottom: 0}
+.lemma > :last-child {margin-bottom: 0}
+.corollary > :last-child {margin-bottom: 0}
+.definition > :last-child {margin-bottom: 0}
+.warning > :last-child {margin-bottom: 0}
 
 /* Colors + subtle fills */
 .theorem {
@@ -61,10 +68,9 @@
   border-left-color: var(--rem);
   background-color: rgba(107, 107, 107, 0.05);
 }
-
-/* --- Collapsible (Example + Remark only) --- */
-details.example, details.remark {
-  /* inherits the same box styles */
+.warning {
+  border-left-color: var(--warn);
+  background-color: rgba(299, 37, 43, 0.05);
 }
 
 summary.example-title, summary.remark-title {
@@ -75,7 +81,6 @@ summary.example-title, summary.remark-title {
   margin-bottom: 0rem;
   margin-right: 0px;
   list-style: none;  /* remove default disclosure marker */
-  // padding-right: 1.25rem; /* room for chevron */
 }
 
 /* remove browser default marker */
@@ -118,6 +123,14 @@ details.example[open] .details-body > :first-child,
 details.remark[open]  .details-body > :first-child { margin-top: 0; }
 details.example[open] .details-body > :last-child,
 details.remark[open]  .details-body > :last-child  { margin-bottom: 0; }
+
+
+/* Body wrapper (used by all kinds) */
+.box-body, .details-body {
+  margin-top: 0;
+  margin-bottom: 0
+}
+
 
 /* Animate the collapsing body (JS sets height inline) */
 .details-body { overflow: hidden; }
