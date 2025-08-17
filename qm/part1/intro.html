@@ -61,7 +61,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-00e11f511d4020fcc2d13bdd3a67086e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-7567c6c5d55e5d7cb7da112bdb51774e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -365,6 +365,24 @@ Knuth, Donald E. 1984. <span>“Literate Programming.”</span> <em>Comput. J.</
   document.addEventListener("DOMContentLoaded", () => processAll());
   window.addEventListener("load", () => processAll());
 })();
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Select all .warning boxes
+  document.querySelectorAll(".warning").forEach(box => {
+    // Skip if it already has a title
+    if (box.querySelector(".warning-title")) return;
+
+    // Create the title element
+    const title = document.createElement("div");
+    title.className = "warning-title";
+    title.textContent = "Warning!";
+
+    // Insert at the top of the box
+    box.insertBefore(title, box.firstChild);
+  });
+});
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
