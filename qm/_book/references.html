@@ -49,7 +49,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="prev">
+<link href="./part1/summary.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -59,7 +59,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-246441f0fa356403ebd307258d5d8470.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-de74f3e3e52487401c375b62f3a702d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -88,6 +88,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -131,18 +160,29 @@ div.csl-indent {
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./part1/part1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">I: Fundamental Theory</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+  <a href="./part1/intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+  <a href="./part1/summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link active">
@@ -188,12 +228,15 @@ J.</em> 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https
 
 
 
+
 </main> <!-- /main -->
 <script>
 (() => {
-  const KINDS = ["example","remark"]; // only these are collapsible
-  const DURATION = 200;               // ms; tweak if you want slower/faster
-  const EASING = "ease";              // animation timing
+  const KINDS = ["example","remark"];   // only these are collapsible
+  const DURATION = 200;                  // ms
+  const EASING = "ease";                 // timing
+  const REDUCE_MOTION = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function findTitleNode(box, kind) {
     let t = box.querySelector(`.${kind}-title`);
@@ -205,46 +248,62 @@ J.</em> 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https
     return box.querySelector("strong, h1, h2, h3, h4, h5, h6, span");
   }
 
+  function clearBodyStyles(body) {
+    body.style.transition = "";
+    body.style.height = "";
+    body.style.overflow = "";
+  }
+
   function animateOpen(det, body) {
-    // prepare
+    if (REDUCE_MOTION) { det.open = true; clearBodyStyles(body); return; }
+
+    // Open first so Firefox can compute a real scrollHeight
+    det.open = true;
+
+    // Prep for animation
     body.style.overflow = "hidden";
     body.style.height = "0px";
     body.style.transition = `height ${DURATION}ms ${EASING}`;
-    // set open now so content is measurable/accessible
-    det.open = true;
-    // next frame -> expand to content height
+
+    // Reflow so the browser registers height:0
+    void body.offsetHeight;
+
+    // Firefox sometimes needs one more frame before scrollHeight is valid
     requestAnimationFrame(() => {
-      const h = body.scrollHeight;
-      body.style.height = h + "px";
-      // cleanup after animation
-      const done = () => {
-        body.style.transition = "";
-        body.style.height = "";
-        body.style.overflow = "";
-        body.removeEventListener("transitionend", done);
-      };
-      body.addEventListener("transitionend", done);
+      requestAnimationFrame(() => {
+        const target = body.scrollHeight + "px";
+        body.style.height = target;
+
+        const done = () => { clearBodyStyles(body); body.removeEventListener("transitionend", done); };
+        body.addEventListener("transitionend", done);
+        // Fallback in case transitionend is missed
+        setTimeout(done, DURATION + 60);
+      });
     });
   }
 
   function animateClose(det, body) {
-    // set fixed height to current, then transition to 0
-    const h = body.scrollHeight;
+    if (REDUCE_MOTION) { det.open = false; clearBodyStyles(body); return; }
+
+    // Fix current height as start value
+    const start = body.scrollHeight + "px";
     body.style.overflow = "hidden";
-    body.style.height = h + "px";
+    body.style.height = start;
     body.style.transition = `height ${DURATION}ms ${EASING}`;
-    // next frame -> go to 0
-    requestAnimationFrame(() => {
-      body.style.height = "0px";
-      const done = () => {
-        det.open = false; // actually close after animation
-        body.style.transition = "";
-        body.style.height = "";
-        body.style.overflow = "";
-        body.removeEventListener("transitionend", done);
-      };
-      body.addEventListener("transitionend", done);
-    });
+
+    // Reflow so the start height is committed
+    void body.offsetHeight;
+
+    // Then collapse to 0
+    body.style.height = "0px";
+
+    const done = () => {
+      det.open = false; // actually close after animation finishes
+      clearBodyStyles(body);
+      body.removeEventListener("transitionend", done);
+    };
+    body.addEventListener("transitionend", done);
+    setTimeout(done, DURATION + 60);
   }
 
   function convertBox(box, kind) {
@@ -255,8 +314,8 @@ J.</em> 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https
 
     // Build <details>/<summary>
     const det = document.createElement("details");
-    det.open = true;               // default expanded; change to false to default collapsed
-    det.className = box.className; // preserve .example/.remark + any other classes/ids
+    // det.open = true;                 // set false if you prefer default-collapsed
+    det.className = box.className;   // keep .example/.remark etc.
     if (box.id) det.id = box.id;
 
     const sum = document.createElement("summary");
@@ -268,17 +327,18 @@ J.</em> 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https
     body.className = "details-body";
     while (box.firstChild) body.appendChild(box.firstChild);
 
+    // Prevent flash of content if starting collapsed
+    if (!det.open) { body.style.height = "0px"; body.style.overflow = "hidden"; }
+
     det.appendChild(sum);
     det.appendChild(body);
     box.replaceWith(det);
 
-    // Override native toggle -> we animate ourselves
+    // Override native toggle so we can animate
     const toggle = (e) => {
-      e.preventDefault(); // stop native instant toggle
-      const isOpen = det.open;
-      if (isOpen) animateClose(det, body);
-      else        animateOpen(det, body);
-      // chevron state is CSS-driven by [open], so it's updated in animateOpen/Close
+      e.preventDefault();               // stop instant UA toggle
+      if (det.open) animateClose(det, body);
+      else          animateOpen(det, body);
     };
 
     sum.addEventListener("click", toggle);
@@ -286,7 +346,7 @@ J.</em> 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(e); }
     });
 
-    // accessibility
+    // a11y
     sum.setAttribute("role", "button");
     sum.setAttribute("tabindex", "0");
 
@@ -704,7 +764,7 @@ J.</em> 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
+      <a href="./part1/summary.html" class="pagination-link" aria-label="Summary">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span>
       </a>          
   </div>

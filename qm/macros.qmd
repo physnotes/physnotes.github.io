@@ -1,0 +1,7 @@
+::: {.hidden}
+$$
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\vect}[1]{\mathbf{#1}}
+$$
+:::
+

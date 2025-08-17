@@ -8,8 +8,10 @@ book:
 
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
+    - part: part1/part1.qmd
+      chapters: 
+        - part1/intro.qmd
+        - part1/summary.qmd
     - references.qmd
 
   page-footer: "[Home](../)"
@@ -19,15 +21,23 @@ bibliography: references.bib
 
 format:
   html:
+    html-math-method: mathjax
     theme:
       - cosmo
       - brand
       - styles.scss
     include-after-body:
       - theorem-collapse.html
+    math:
+      macros:
+        "\\RR": "\\mathbb{R}"
+
   pdf:
     documentclass: scrreprt
-    include-in-header: boxed-theorems.tex
+    include-in-header: 
+      - boxed-theorems.tex
+      - macros.tex
 
 
-
+editor:
+  render-on-save: true
