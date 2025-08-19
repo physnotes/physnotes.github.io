@@ -3,8 +3,13 @@ project:
 
 book:
   title: "Quantum Mechanics"
-  author: "Andrew Binder, Eric Du"
-  date: "8/13/2025"
+  author: 
+  - name: Eric Du
+    email: eric.du03@berkeley.edu
+    affiliation: UC Berkeley
+  - name: Andrew Binder
+    email: abinder@berkeley.edu
+    affiliation: UC Berkeley, Stony Brook University
 
   chapters:
     - index.qmd

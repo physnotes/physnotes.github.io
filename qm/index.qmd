@@ -2,71 +2,50 @@
 
 Welcome to our Quantum Mechanics book!
 
-This book is meant for you to 
+Here, we will attempt to cover all of undergraduate quantum mechanics,
+with some graduate content as well (to the extent that we've encountered with some topics). With this book,
+our objective is to provide intuitive approach to learning quantum mechanics, and share with you the tips and
+tricks we learned while we were studying this topic. Whether you're just getting started with QM, or are
+already familiar with the content in this book, we hope that there is something you can learn nonetheless.     
 
+Before we get started with the content, let's go over some basic elements you will see throughout this book.
+First, this book is separated into three sections: the first section focuses on the fundamental theory of QM,
+the second on approximation methods, and the third on some graduate-level topics. Within each section are
+chapters, which contain individual topics. Clicking on any chapter will navigate to its content page. 
+Second, we use a variety of colored boxes to denote important content, which we list below. 
 
-:::{.theorem #thm-state}
-# Quantum States
-given a b c 
-$$x^2$$
-something else.
-
-Paragraph 2
-paragraph 2
-
-
-paragraph 4
+:::{.theorem #thm-sample}
+This is what a theorem box looks like. 
 :::
 
-:::{.lemma #lem-something}
-# some lemma
-lemmaaa
-:::
-
-:::{.example #exm-something}
-# some problem
-lemmaaa
-:::
-see @exm-something
-
-:::{.remark #rem-something}
-remark
-:::
-
-:::{.warning}
-test example
-
-$$ x^2$$ 
-
-test break
-:::
-
-:::{.callout-note collapse="true" icon="false"}
-# Test Note
-test note
-:::
-
-:::{.definition #def-something}
-# Test Definition
-testing the definition environment teehee
-:::
-
-:::{.corollary #cor-something}
-# Test Corollary 
-testing the corollary environment teehee
-:::
-
-:::{.proposition #prp-something}
-# Test Proposition 
-testing the proposition environment teehee
-:::
-
-:::{.conjecture #cnj-something}
-# Something
-testing the conjecture environment teehee
+:::{.definition #def-sample}
+Important definitions will go here.
 :::
 
 :::{.notation}
-
-some notation here
+These boxes are dedicated to highlighting specific mathematical notation that we may use.
 :::
+
+:::{.remark}
+Any small remarks we have will go here. 
+:::
+
+:::{.example #exm-sample}
+Example problems will go here.
+:::
+
+:::{.warning}
+Read these! These contain common mistakes and things to be careful.
+:::
+
+We will also try our best to keep theorems and important results cross-referenceable, for instance clicking
+@thm-sample will take you to the corresponding theorem.
+Finally, this book combines elements from various books that we've encountered over our own journey through
+quantum mechanics, a full list of which can be found in the [references](references.qmd) page.
+
+One last thing: there is a lot of content in this book. If you find that there are any errors, or you wish to
+make any suggestions, please reach out via email and let us know! We both want this book to be as approachable as it
+can be, and are always looking for ways to improve it. You can find our emails in the author list at the top
+of the page. 
+ 
+ 
