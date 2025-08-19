@@ -1,5 +1,9 @@
-# I: Fundamental Theory
+# Introduction
 
-This chapter aims to...
+This is a book created from markdown and executable code.
 
+See @knuth84 for additional discussion of literate programming.
 
+:::{.theorem #thm-something}
+testing the numbering
+:::

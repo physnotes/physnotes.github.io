@@ -15,8 +15,9 @@ book:
     - index.qmd
     - part: part1/part1.qmd
       chapters: 
-        - part1/intro.qmd
-        - part1/summary.qmd
+        - part1/part1.qmd
+        - part1/origins.qmd
+        - part1/formalism.qmd
     - references.qmd
 
   page-footer: "[Home](../)"
