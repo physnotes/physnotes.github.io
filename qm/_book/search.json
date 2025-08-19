@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Quantum Mechanics",
     "section": "",
-    "text": "Preface\nWelcome to our Quantum Mechanics book!\nHere, we will attempt to cover all of undergraduate quantum mechanics, with some graduate content as well (to the extent that we’ve encountered with some topics). With this book, our objective is to provide intuitive approach to learning quantum mechanics, and share with you the tips and tricks we learned while we were studying this topic. Whether you’re just getting started with QM, or are already familiar with the content in this book, we hope that there is something you can learn nonetheless.\nBefore we get started with the content, let’s go over some basic elements you will see throughout this book. First, this book is separated into three sections: the first section focuses on the fundamental theory of QM, the second on approximation methods, and the third on some graduate-level topics. Within each section are chapters, which contain individual topics. Clicking on any chapter will navigate to its content page. Second, we use a variety of colored boxes to denote important content, which we list below.\n\nTheorem 1 This is what a theorem box looks like.\n\n\nDefinition 1 Important definitions will go here.\n\n\nThese boxes are dedicated to highlighting specific mathematical notation that we may use.\n\n\nRemark. Any small remarks we have will go here.\n\n\nExample 1 Example problems will go here.\n\n\nRead these! These contain common mistakes and things to be careful.\n\nWe will also try our best to keep theorems and important results cross-referenceable, for instance clicking Theorem 1 will take you to the corresponding theorem. Finally, this book combines elements from various books that we’ve encountered over our own journey through quantum mechanics, a full list of which can be found in the references page.\nOne last thing: there is a lot of content in this book. If you find that there are any errors, or you wish to make any suggestions, please reach out via email and let us know! We both want this book to be as approachable as it can be, and are always looking for ways to improve it. You can find our emails in the author list at the top of the page.",
+    "text": "Preface\nWelcome to our Quantum Mechanics book!",
     "crumbs": [
       "Preface"
     ]
@@ -49,6 +49,26 @@
     "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
     "crumbs": [
       "References"
+    ]
+  },
+  {
+    "objectID": "index.html#what-is-this",
+    "href": "index.html#what-is-this",
+    "title": "Quantum Mechanics",
+    "section": "What is This?",
+    "text": "What is This?\nThis book contains a comprehensive catalog of the fundamentals of quantum mechanics (QM), to the extent that the authors have encountered the topics and the material. With this book, our objective is to provide an intuitive approach to learning quantum mechanics, and share with you the tips and tricks we learned while we were studying the field. Whether you’re just getting started with QM or are already familiar with some of the content covered, we hope there is something here for you to learn!\n\nFundamental Structure\nWe have divided this book into three major parts, in an attempt to effectively compartmentalize the vast amount of material we aim to cover. The first part covers fundamental theory; specifically, it details the basic building blocks of quantum mechanics and helps us transition from the classical frame to the quantum one. The second part shifts focus to approximation methods. As we will learn, solving quantum systems exactly is nigh-impossible, which necessitates the need to approximate in order to effectively study physical systems. The final part will explore some more advanced special topics and extend beyond quantum mechanics into the relativistic frame.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#some-notational-logistics",
+    "href": "index.html#some-notational-logistics",
+    "title": "Quantum Mechanics",
+    "section": "Some Notational Logistics",
+    "text": "Some Notational Logistics\nBefore we get started with the content, let’s go over some basic elements you will see throughout this book.\n\nDefinition 1 (A Thing) Whenever we come across a new term, we will define it like so.\n\n\nWe will also occasionally highlight specific mathematical notation like so.\n\n\nLemma 1 (Auxiliary Trick) If there’s a relevant fact that services a larger result, we will encode it as a lemma.\n\n\nTheorem 1 (Major Result) When we arrive at a major result, we will encode it as a theorem.\n\n\nProof. We will take care to prove theorems as soon as possible.\n\n\nCorollary 1 (Consequence) If a theorem has an important consequence, we’ll label it as a corollary.\n\n\nRemark. If there’s an important side note we wish to highlight, we’ll place those here.\n\n\nExample 1 (What Just Happened) Examples will help us illustrate what just happened.\n\n\nRead these! These contain common mistakes and things to be careful.\n\nWe will try to keep such remarks and warnings to a minimum. We will also try our best to keep theorems and important results cross-referenceable; for instance, clicking Theorem 1 will take you to the corresponding theorem (or hovering over it will give you a summary). Finally, this book combines elements from various books that we’ve encountered over our own journey through quantum mechanics, a full list of which can be found in the references page.\nOne last thing: there is a lot of content in this book, and there are only two of us actively maintaining it. If you find that there are any errors, or you wish to make any suggestions, please reach out via email and let us know! We both want this book to be as approachable as it can be, and are always looking for ways to improve it. You can find our emails in the author list at the top of the page.\nHappy reading!",
+    "crumbs": [
+      "Preface"
     ]
   }
 ]

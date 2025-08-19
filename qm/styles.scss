@@ -21,7 +21,7 @@
   border-radius: 5px;
   padding: 0.25rem 0.5rem; /* tighter vertical padding */
   margin: 1rem 0;
-  font-size: 15.3px;
+  /*font-size: 15.3px;*/
 }
 
 /* Styling for all theorem-like classes (Theorem, Lemma, Definition, Corollary, Proposition, Conjecture) */ 
@@ -29,7 +29,7 @@
   font-weight: 600;
   margin-bottom: .35rem;
   display: block;
-  font-size: 15.3px;
+  /*font-size: 15.3px;*/
 }
 .theorem.theorem .theorem-title {
   color: var(--tbf);
