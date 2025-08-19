@@ -149,3 +149,21 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Select all .warning boxes
+  document.querySelectorAll(".notation").forEach(box => {
+    // Skip if it already has a title
+    if (box.querySelector(".notation-title")) return;
+
+    // Create the title element
+    const title = document.createElement("div");
+    title.className = "notation-title";
+    title.textContent = "Notation";
+
+    // Insert at the top of the box
+    box.insertBefore(title, box.firstChild);
+  });
+});
+</script>

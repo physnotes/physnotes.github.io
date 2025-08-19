@@ -15,7 +15,7 @@
 /*-- scss:rules --*/
 
 /* Shared base for all boxes */
-.theorem, .remark, .warning {
+.theorem, .remark, .warning, .notation {
   border: 1px solid var(--quarto-border-color);
   border-left-width: 5px;
   border-radius: 5px;
@@ -25,7 +25,7 @@
 }
 
 /* Styling for all theorem-like classes (Theorem, Lemma, Definition, Corollary, Proposition, Conjecture) */ 
-.theorem-title {
+.theorem-title, .remark-title, .warning-title {
   font-weight: 600;
   margin-bottom: .35rem;
   display: block;
@@ -38,30 +38,24 @@
   color: var(--dgf);
 }
 .remark-title {
-  font-weight: 600;
-  margin-bottom: .35rem;
-  display: block;
-  font-size: 15.3px;
   color: var(--ryf);
-  font-style: normal; // i tried this but doesn't work
 }
-
-
-.warning-title{
-  font-weight: 600;
-  margin-bottom: .35rem;
-  display: block;
-  font-size: 15.3px;
+.warning-title {
   color: var(--wrf);
 }
+.notation-title {
+  color: var(--dgf);
+}
 
+/* Padding fix */
 .theorem > :last-child {margin-bottom: 0}
 .lemma > :last-child {margin-bottom: 0}
 .corollary > :last-child {margin-bottom: 0}
 .definition > :last-child {margin-bottom: 0}
 .warning > :last-child {margin-bottom: 0}
+.notation > :last-child {margin-bottom: 0}
 
-/* Colors + subtle fills */
+/* Border and Background Color */
 .theorem {
   border-left-color: var(--tbf);
   background-color: var(--tbb);
@@ -81,6 +75,10 @@
 .warning {
   border-left-color: var(--wrf);
   background-color: var(--wrb);
+}
+.notation {
+  border-left-color: var(--dgf);
+  background-color: var(--dgb);
 }
 
 summary.example-title, summary.remark-title {

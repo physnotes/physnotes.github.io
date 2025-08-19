@@ -62,5 +62,11 @@ testing the proposition environment teehee
 :::
 
 :::{.conjecture #cnj-something}
+# Something
 testing the conjecture environment teehee
+:::
+
+:::{.notation}
+
+some notation here
 :::
