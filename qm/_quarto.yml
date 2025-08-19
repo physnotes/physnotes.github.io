@@ -15,7 +15,6 @@ book:
     - index.qmd
     - part: part1/part1.qmd
       chapters: 
-        - part1/part1.qmd
         - part1/origins.qmd
         - part1/formalism.qmd
     - references.qmd

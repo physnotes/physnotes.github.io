@@ -1,9 +1,4 @@
-# Introduction
+# I: Fundamental Theory {.unnumbered}
 
-This is a book created from markdown and executable code.
+Blank for now. 
 
-See @knuth84 for additional discussion of literate programming.
-
-:::{.theorem #thm-something}
-testing the numbering
-:::
