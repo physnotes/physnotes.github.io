@@ -32,32 +32,21 @@
   {
     "objectID": "part1/part1.html",
     "href": "part1/part1.html",
-    "title": "I: Fundamental Theory",
+    "title": "Introduction",
     "section": "",
-    "text": "This chapter aims to…",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\nTheorem 1 testing the numbering\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
     "crumbs": [
-      "I: Fundamental Theory"
+      "Introduction"
     ]
   },
   {
-    "objectID": "part1/intro.html",
-    "href": "part1/intro.html",
-    "title": "1  Introduction",
-    "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\nTheorem 1.1 testing the numbering\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
-    "crumbs": [
-      "I: Fundamental Theory",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "part1/summary.html",
-    "href": "part1/summary.html",
+    "objectID": "part1/origins.html",
+    "href": "part1/origins.html",
     "title": "2  Summary",
     "section": "",
     "text": "In summary, this book has no content whatsoever.\n\nTheorem 2.1 testing",
     "crumbs": [
-      "I: Fundamental Theory",
+      "Introduction",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
     ]
   },
