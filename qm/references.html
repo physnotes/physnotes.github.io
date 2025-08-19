@@ -59,7 +59,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5e9d7a42d9ac4f4591a93e37d6d4bb96.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-4e82aa9dbf189b5a5fed222125f11875.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -375,6 +375,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const title = document.createElement("div");
     title.className = "warning-title";
     title.textContent = "Warning!";
+
+    // Insert at the top of the box
+    box.insertBefore(title, box.firstChild);
+  });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Select all .warning boxes
+  document.querySelectorAll(".notation").forEach(box => {
+    // Skip if it already has a title
+    if (box.querySelector(".notation-title")) return;
+
+    // Create the title element
+    const title = document.createElement("div");
+    title.className = "notation-title";
+    title.textContent = "Notation";
 
     // Insert at the top of the box
     box.insertBefore(title, box.firstChild);
