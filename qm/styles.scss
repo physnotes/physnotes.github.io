@@ -15,8 +15,7 @@
 /*-- scss:rules --*/
 
 /* Shared base for all boxes */
-.theorem, .lemma, .corollary, .proposition, .definition,
-.example, .remark, .warning {
+.theorem, .remark, .warning {
   border: 1px solid var(--quarto-border-color);
   border-left-width: 5px;
   border-radius: 5px;
@@ -25,75 +24,35 @@
   font-size: 15.3px;
 }
 
-/* Titles */
-.theorem-title{
+/* Styling for all theorem-like classes (Theorem, Lemma, Definition, Corollary, Proposition, Conjecture) */ 
+.theorem-title {
   font-weight: 600;
   margin-bottom: .35rem;
   display: block;
   font-size: 15.3px;
 }
-.lemma-title{
-  font-weight: 600;
-  margin-bottom: .35rem;
-  display: block;
-  font-size: 15.3px;
-}
-.corollary-title{
-  font-weight: 600;
-  margin-bottom: .35rem;
-  display: block;
-  font-size: 15.3px;
-}
-.proposition-title{
-  font-weight: 600;
-  margin-bottom: .35rem;
-  display: block;
-  font-size: 15.3px;
-}
-.definition-title{
-  font-weight: 600;
-  margin-bottom: .35rem;
-  display: block;
-  font-size: 15.3px;
-}
-.example-title{
-  font-weight: 600;
-  margin-bottom: .35rem;
-  display: block;
-  font-size: 15.3px;
-}
-.remark-title{
-  font-weight: 600;
-  margin-bottom: .35rem;
-  display: block;
-  font-size: 15.3px;
-}
-.warning-title{
-  font-weight: 600;
-  margin-bottom: .35rem;
-  display: block;
-  font-size: 15.3px;
-}
-
-.definition-title{
-  color: var(--dgf);
-}
-
-.lemma-title, .theorem-title, .corollary-title, .proposition-title{
+.theorem.theorem .theorem-title {
   color: var(--tbf);
 }
+.theorem.definition .theorem-title {
+  color: var(--dgf);
+}
+.remark-title {
+  font-weight: 600;
+  margin-bottom: .35rem;
+  display: block;
+  font-size: 15.3px;
+  color: var(--ryf);
+  font-style: normal; // i tried this but doesn't work
+}
+
 
 .warning-title{
+  font-weight: 600;
+  margin-bottom: .35rem;
+  display: block;
+  font-size: 15.3px;
   color: var(--wrf);
-}
-
-.example-title{
-  color: var(--egf);
-}
-
-.remark-title{
-  color: var(--ryf);
-  text-orientation: upright;
 }
 
 .theorem > :last-child {margin-bottom: 0}
@@ -104,18 +63,6 @@
 
 /* Colors + subtle fills */
 .theorem {
-  border-left-color: var(--tbf);
-  background-color: var(--tbb);
-}
-.lemma {
-  border-left-color: var(--tbf);
-  background-color: var(--tbb);
-}
-.corollary {
-  border-left-color: var(--tbf);
-  background-color: var(--tbb);
-}
-.proposition {
   border-left-color: var(--tbf);
   background-color: var(--tbb);
 }
