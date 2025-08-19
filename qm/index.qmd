@@ -17,6 +17,15 @@ is nigh-impossible, which necessitates the need to approximate in order to effec
 systems. The final part will explore some more advanced special topics and extend beyond quantum mechanics
 into the relativistic frame. 
 
+### How to Use This Book
+The purpose of this book is to provide the reader with the foundations for a basic understanding of quantum
+mechanics. We will attempt to be as rigorous as possible when appropriate, but we stress intuitive
+understanding above anything else. With that said, this book is not an adequate substitute for any other
+reading materials or a university course. This, first and foremost, should be a springboard for further
+discovery. After reading a chapter, the hope is the reader has a general understanding of what was covered,
+to the extent that they can venture out on their own and supplement their knowledge with additional
+resources.
+
 ## Some Notational Logistics
 Before we get started with the content, let's go over some basic elements you will see throughout this book.
 
