@@ -128,7 +128,7 @@ details[open] summary.remark-title::before {
 
 /* Tighten spacing inside expanded content */
 details.example[open] .details-body > :first-child,
-details.remark[open]  .details-body > :first-child { margin-top: 0; }
+details.remark[open]  .details-body > :first-child { margin-top: 0.25rem; }
 details.example[open] .details-body > :last-child,
 details.remark[open]  .details-body > :last-child  { margin-bottom: 0; }
 
