@@ -1,5 +1,4 @@
-# I: Fundamental Theory
+# I: Fundamental Theory {.unnumbered}
 
-This chapter aims to...
-
+Blank for now. 
 

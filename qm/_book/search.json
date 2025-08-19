@@ -14,7 +14,7 @@
     "href": "part1/part1.html",
     "title": "I: Fundamental Theory",
     "section": "",
-    "text": "This chapter aims to…",
+    "text": "Blank for now.",
     "crumbs": [
       "I: Fundamental Theory"
     ]
@@ -69,6 +69,28 @@
     "text": "Some Notational Logistics\nBefore we get started with the content, let’s go over some basic elements you will see throughout this book.\n\nDefinition 1 (A Thing) Whenever we come across a new term, we will define it like so.\n\n\nWe will also occasionally highlight specific mathematical notation like so.\n\n\nLemma 1 (Auxiliary Trick) If there’s a relevant fact that services a larger result, we will encode it as a lemma.\n\n\nTheorem 1 (Major Result) When we arrive at a major result, we will encode it as a theorem.\n\n\nProof. We will take care to prove theorems as soon as possible.\n\n\nCorollary 1 (Consequence) If a theorem has an important consequence, we’ll label it as a corollary.\n\n\nRemark. If there’s an important side note we wish to highlight, we’ll place those here.\n\n\nExample 1 (What Just Happened) Examples will help us illustrate what just happened.\n\n\nRead these! These contain common mistakes and things to be careful.\n\nWe will try to keep such remarks and warnings to a minimum. We will also try our best to keep theorems and important results cross-referenceable; for instance, clicking Theorem 1 will take you to the corresponding theorem (or hovering over it will give you a summary). Finally, this book combines elements from various books that we’ve encountered over our own journey through quantum mechanics, a full list of which can be found in the references page.\nOne last thing: there is a lot of content in this book, and there are only two of us actively maintaining it. If you find that there are any errors, or you wish to make any suggestions, please reach out via email and let us know! We both want this book to be as approachable as it can be, and are always looking for ways to improve it. You can find our emails in the author list at the top of the page.\nHappy reading!",
     "crumbs": [
       "Preface"
+    ]
+  },
+  {
+    "objectID": "part1/origins.html",
+    "href": "part1/origins.html",
+    "title": "1  History of Quantum",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.\n\nTheorem 1.1 testing :::k",
+    "crumbs": [
+      "I: Fundamental Theory",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>History of Quantum</span>"
+    ]
+  },
+  {
+    "objectID": "part1/formalism.html",
+    "href": "part1/formalism.html",
+    "title": "2  Postulates and Formalism",
+    "section": "",
+    "text": "content",
+    "crumbs": [
+      "I: Fundamental Theory",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Postulates and Formalism</span>"
     ]
   }
 ]
