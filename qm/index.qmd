@@ -54,4 +54,6 @@ test tweet
 :::{.callout-theorem .callout-note icon=false collapse="true"}
 # Test Collapsible Theorem
 test collapsible theorem
+
+test 2
 :::
