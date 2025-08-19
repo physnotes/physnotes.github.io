@@ -46,12 +46,21 @@ test break
 test note
 :::
 
-:::{.callout-theorem}
-# Test Theorem
-test tweet
+:::{.definition #def-something}
+# Test Definition
+testing the definition environment teehee
 :::
 
-:::{.callout-theorem .callout-note icon=false collapse="true"}
-# Test Collapsible Theorem
-test collapsible theorem
+:::{.corollary #cor-something}
+# Test Corollary 
+testing the corollary environment teehee
+:::
+
+:::{.proposition #prp-something}
+# Test Proposition 
+testing the proposition environment teehee
+:::
+
+:::{.conjecture #cnj-something}
+testing the conjecture environment teehee
 :::

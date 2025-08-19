@@ -1,13 +1,15 @@
 /*-- scss:defaults --*/
 :root {
-  --thm:  #2F6FFF;   /* Theorem (blue) */
-  --lem:  #2CA25F;   /* Lemma (green) */
-  --cor:  #C51B8A;   /* Corollary (magenta) */
-  --prop: #E6550D;   /* Proposition (orange) */
-  --def:  #6B5FB5;   /* Definition (purple) */
-  --ex:   #3182BD;   /* Example (steel blue) */
-  --rem:  #6B6B6B;   /* Remark (gray) */
-  --warn: rgb(229, 37, 43);   /* Warning (red) */
+  --dgb: #d9f7e94d;
+  --dgf: #3d9981;
+  --ryb: #fff3c64d;
+  --ryf: #cda819;
+  --tbb: #e0f2ff4d;
+  --tbf: #44689c;
+  --egb: #f1f1f14d;
+  --egf: #646464;
+  --wrb: #fbd6d64d;
+  --wrf: #b94040;
 }
 
 /*-- scss:rules --*/
@@ -24,13 +26,74 @@
 }
 
 /* Titles */
-.theorem-title, .lemma-title, .corollary-title,
-.proposition-title, .definition-title,
-.example-title, .remark-title, .warning-title{
+.theorem-title{
   font-weight: 600;
   margin-bottom: .35rem;
   display: block;
   font-size: 15.3px;
+}
+.lemma-title{
+  font-weight: 600;
+  margin-bottom: .35rem;
+  display: block;
+  font-size: 15.3px;
+}
+.corollary-title{
+  font-weight: 600;
+  margin-bottom: .35rem;
+  display: block;
+  font-size: 15.3px;
+}
+.proposition-title{
+  font-weight: 600;
+  margin-bottom: .35rem;
+  display: block;
+  font-size: 15.3px;
+}
+.definition-title{
+  font-weight: 600;
+  margin-bottom: .35rem;
+  display: block;
+  font-size: 15.3px;
+}
+.example-title{
+  font-weight: 600;
+  margin-bottom: .35rem;
+  display: block;
+  font-size: 15.3px;
+}
+.remark-title{
+  font-weight: 600;
+  margin-bottom: .35rem;
+  display: block;
+  font-size: 15.3px;
+}
+.warning-title{
+  font-weight: 600;
+  margin-bottom: .35rem;
+  display: block;
+  font-size: 15.3px;
+}
+
+.definition-title{
+  color: var(--dgf);
+}
+
+.lemma-title, .theorem-title, .corollary-title, .proposition-title{
+  color: var(--tbf);
+}
+
+.warning-title{
+  color: var(--wrf);
+}
+
+.example-title{
+  color: var(--egf);
+}
+
+.remark-title{
+  color: var(--ryf);
+  text-orientation: upright;
 }
 
 .theorem > :last-child {margin-bottom: 0}
@@ -41,36 +104,36 @@
 
 /* Colors + subtle fills */
 .theorem {
-  border-left-color: var(--thm);
-  background-color: rgba(47, 111, 255, 0.05);
+  border-left-color: var(--tbf);
+  background-color: var(--tbb);
 }
 .lemma {
-  border-left-color: var(--lem);
-  background-color: rgba(44, 162, 95, 0.05);
+  border-left-color: var(--tbf);
+  background-color: var(--tbb);
 }
 .corollary {
-  border-left-color: var(--cor);
-  background-color: rgba(197, 27, 138, 0.05);
+  border-left-color: var(--tbf);
+  background-color: var(--tbb);
 }
 .proposition {
-  border-left-color: var(--prop);
-  background-color: rgba(230, 85, 13, 0.05);
+  border-left-color: var(--tbf);
+  background-color: var(--tbb);
 }
 .definition {
-  border-left-color: var(--def);
-  background-color: rgba(107, 95, 181, 0.05);
+  border-left-color: var(--dgf);
+  background-color: var(--dgb);
 }
 .example {
-  border-left-color: var(--ex);
-  background-color: rgba(49, 130, 189, 0.05);
+  border-left-color: var(--egf);
+  background-color: var(--egb);
 }
 .remark {
-  border-left-color: var(--rem);
-  background-color: rgba(107, 107, 107, 0.05);
+  border-left-color: var(--ryf);
+  background-color: var(--ryb);
 }
 .warning {
-  border-left-color: var(--warn);
-  background-color: rgba(299, 37, 43, 0.05);
+  border-left-color: var(--wrf);
+  background-color: var(--wrb);
 }
 
 summary.example-title, summary.remark-title {

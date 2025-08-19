@@ -5,43 +5,52 @@
 \usepackage{physics-patch}
 
 % --- Match your HTML/SCSS palette ---
-\definecolor{thm}{HTML}{2F6FFF}   % Theorem (blue)
-\definecolor{lem}{HTML}{2CA25F}   % Lemma (green)
-\definecolor{cor}{HTML}{C51B8A}   % Corollary (magenta)
-\definecolor{prop}{HTML}{E6550D}  % Proposition (orange)
-\definecolor{defc}{HTML}{6B5FB5}  % Definition (purple)  ('def' reserved in TeX)
-\definecolor{ex}{HTML}{3182BD}    % Example (steel blue)
-\definecolor{rem}{HTML}{6B6B6B}   % Remark (gray)
 
+% Green (Definition, Notation)
+\definecolor{dgf}{RGB}{217,247,233}
+\definecolor{dgb}{RGB}{61,153,120}
+% Yellow (Remark, Insight, Aside)
+\definecolor{ryb}{RGB}{255,243,198}
+\definecolor{ryf}{RGB}{205,168,25}
+% Blue (Lemma, Corollary, Theorem)
+\definecolor{tbb}{RGB}{68,104,156}
+\definecolor{tbf}{RGB}{224,242,255}
+% Gray (Example, Non-Example, Exercise)
+\definecolor{egb}{RGB}{241,241,241}
+\definecolor{egf}{RGB}{100,100,100}
+% Red (Warning, Caution)
+\definecolor{wrf}{RGB}{253,214,214}
+\definecolor{wrb}{RGB}{185,64,64}
 % --- Base style: rounded corners, padding ---
 \tcbset{
   enhanced, breakable,
   boxrule=0.5pt,
   arc=2mm,
   coltitle=black,
-  left=8pt, right=8pt, top=8pt, bottom=8pt
+  left=0pt, right=0pt, top=0pt, bottom=0pt,
+  boxsep=2mm, leftrule=1mm, parbox=false
 }
 
 % Defer wrapping until all theorem-like envs are defined by the template
 \AtBeginDocument{%
-  \AtBeginEnvironment{theorem}{\begin{tcolorbox}[colframe=thm, colback=thm!5]}%
+  \AtBeginEnvironment{theorem}{\begin{tcolorbox}[colframe=tbb, colback=tbf!50, fonttitle={\color{tbb}\bfseries}]}%
   \AtEndEnvironment{theorem}{\end{tcolorbox}}%
 
-  \AtBeginEnvironment{lemma}{\begin{tcolorbox}[colframe=lem, colback=lem!5]}%
+  \AtBeginEnvironment{lemma}{\begin{tcolorbox}[colframe=tbb, colback=tbf!50, fonttitle={\color{tbb}\bfseries}]}%
   \AtEndEnvironment{lemma}{\end{tcolorbox}}%
 
-  \AtBeginEnvironment{corollary}{\begin{tcolorbox}[colframe=cor, colback=cor!5]}%
+  \AtBeginEnvironment{corollary}{\begin{tcolorbox}[colframe=tbb, colback=tbf!50, fonttitle={\color{tbb}\bfseries}]}%
   \AtEndEnvironment{corollary}{\end{tcolorbox}}%
 
-  \AtBeginEnvironment{proposition}{\begin{tcolorbox}[colframe=prop, colback=prop!5]}%
+  \AtBeginEnvironment{proposition}{\begin{tcolorbox}[colframe=tbb, colback=tbf!50, fonttitle={\color{tbb}\bfseries}]}%
   \AtEndEnvironment{proposition}{\end{tcolorbox}}%
 
-  \AtBeginEnvironment{definition}{\begin{tcolorbox}[colframe=defc, colback=defc!5]}%
+  \AtBeginEnvironment{definition}{\begin{tcolorbox}[colframe=dgb, colback=dgf!50, fonttitle={\color{dgb}\bfseries}]}%
   \AtEndEnvironment{definition}{\end{tcolorbox}}%
 
-  \AtBeginEnvironment{example}{\begin{tcolorbox}[colframe=ex, colback=ex!5]}%
+  \AtBeginEnvironment{example}{\begin{tcolorbox}[colframe=egf, colback=egb!50, fonttitle={\color{egf}\bfseries}]}%
   \AtEndEnvironment{example}{\end{tcolorbox}}%
 
-  \AtBeginEnvironment{remark}{\begin{tcolorbox}[colframe=rem, colback=rem!5]}%
+  \AtBeginEnvironment{remark}{\begin{tcolorbox}[colframe=ryf, colback=ryb!50, fonttitle={\color{ryf}\bfseries}]}%
   \AtEndEnvironment{remark}{\end{tcolorbox}}%
 }
