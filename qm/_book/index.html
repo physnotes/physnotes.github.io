@@ -70,36 +70,15 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
+<script>
+window.MathJax = {
+  loader: { load:['[tex]/physics']},
+  tex:    { packages: {'[+]': ['physics'] } }
 };
 </script>
+<link rel="stylesheet" href="https://tikzjax.com/v1/fonts.css">
+<script src="https://tikzjax.com/v1/tikzjax.js"></script>
+
 
 </head>
 
@@ -154,14 +133,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./part1/part1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">I: Fundamental Theory</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./part1/origins.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">History of Quantum</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">History of Quantum Mechanics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -291,7 +264,6 @@ window.Quarto = {
 <p>We will try to keep such remarks and warnings to a minimum. We will also try our best to keep theorems and important results cross-referenceable; for instance, clicking <a href="#thm-sample" class="quarto-xref">Theorem&nbsp;<span>1</span></a> will take you to the corresponding theorem (or hovering over it will give you a summary). Finally, this book combines elements from various books that we’ve encountered over our own journey through quantum mechanics, a full list of which can be found in the <a href="./references.html">references</a> page.</p>
 <p>One last thing: there is a lot of content in this book, and there are only two of us actively maintaining it. If you find that there are any errors, or you wish to make any suggestions, please reach out via email and let us know! We both want this book to be as approachable as it can be, and are always looking for ways to improve it. You can find our emails in the author list at the top of the page.</p>
 <p>Happy reading!</p>
-
 
 
 </section>

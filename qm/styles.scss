@@ -142,3 +142,9 @@ details.remark[open]  .details-body > :last-child  { margin-bottom: 0; }
 
 /* Animate the collapsing body (JS sets height inline) */
 .details-body { overflow: hidden; }
+
+
+div:has(> script[type="display flex"]) {
+  // display: flex;
+  justify-content: center;
+}

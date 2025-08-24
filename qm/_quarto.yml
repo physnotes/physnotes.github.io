@@ -26,16 +26,24 @@ bibliography: references.bib
 
 format:
   html:
-    html-math-method: mathjax
     theme:
       - cosmo
       - brand
       - styles.scss
     include-after-body:
       - theorem-collapse.html
-    math:
-      macros:
-        "\\RR": "\\mathbb{R}"
+    html-math-method: mathjax
+    include-in-header:
+      - text: |
+          <script>
+          window.MathJax = {
+            loader: { load:['[tex]/physics']},
+            tex:    { packages: {'[+]': ['physics'] } }
+          };
+          </script>
+          <link rel="stylesheet" href="https://tikzjax.com/v1/fonts.css">
+          <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+
 
   pdf:
     documentclass: scrreprt

@@ -1,8 +1,188 @@
-# History of Quantum 
+# History of Quantum Mechanics
 
-In summary, this book has no content whatsoever.
+In order to dive into the world of quantum properly, it pays to spend some time looking at its history. In
+this chapter, we will give a brief overview of how quantum mechanics came to be. This way, you will
+appreciate not only the beauty of quantum mechanics, but also understand why it is necessary to understanding
+the mechanics of our world. 
+
+The content in this section is heavily inspired by Prof. Siddiqi's notes for the introductory lecture in
+Physics 137A (Introductory Quantum Mechanics) at UC Berkeley. 
+
+## Blackbody Radiation
+To begin our story, we start in the mid 19th century. Around this time, Gustav Kirchoff (yes, the one from your
+circuits classes) was studying the physics of black bodies --- an idealized object that absorbs *all*
+electromagnetic radiation, hence the term "blackbody". Even though perfect blackbodies do not exist in the
+real world, their theory turns out to be a very good approximation to describe the emission spectra of
+celestial bodies like planets and stars. 
+
+Kirchoff's contribution to blackbody radiation was his insight that the emissive power $R$ of black bodies is
+determined by two factors only: the emitted wavelength, and its temperature. At around the same time, Josef Stefan
+empirically determines that the total radiation emitted by a black body is proportional to $T^{4}$, meaning
+the total power across all wavelengths as a function of temperature may be written as 
+$$
+	R(T) = \int_{0}^{\infty} R(\lambda, T) \ d\lambda = \sigma T^{4}
+$$
+The constant $\sigma \approx 5.68 \times 10^{-8}$ is the **Stefan-Boltzmann constant**. While this was known
+at the time, the functional form for $R(\lambda, T)$ was not known at the time. In the early 20th century,
+Lord Rayleigh and Sir James Jeans use a purely classical approach and derive the *Rayleigh-Jeans law*, which is
+given as follows:
+$$
+	R(\lambda, T) = \frac{8 \pi k_B T}{\lambda^{4}}
+$$
+Here, $R(\lambda, T)$ denotes the power emitted per unit area. But, there is a problem with this formula!
+This formula predicts that at smaller and smaller $\lambda$, objects should emit an enormous amount of
+energy, due to the $\lambda^{4}$ scaling in the denominator. Based on this formula, the total radiative power
+that you would calculate would be infinite! Clearly this is not physically true, and this discrepancy is
+what is known as the **ultraviolet catastrophe**.
+
+## The Quantization of Energy
+<!-- NOTE: I did go through the full derviation here; if you think it's too long, feel free to cut some of
+this out.  -->
+So how do we fix our theory of black bodies? The key lies in how the Rayleigh-Jeans law is derived, and to
+fully appreciate why quantum mechanics is necessary to explain this phenomenon, we need to take a small
+detour. To begin, consider a square box of length $L$, and we want to calculate
+the number of **standing waves** inside the cavity. These waves must satisfy the wave equation:
+$$
+	\nabla^2 \Psi(r, t) = \frac{1}{c^2} \pdv[2]{t} \psi(r, t)
+$$
+Because it is a standing wave, we enforce that $\psi = 0$ on the walls of the box. Combining this with the
+solutions, which are of the form:
+$$
+	\psi(r, t) = A(t) \sin(k_x x) \sin (k_y y)\sin (k_z z)
+$$
+Our boundary conditions then require that 
+$$
+	k_i = \frac{n_i \pi}{L}
+$$
+Now, to solve for $A(t)$, we plug this back into the wave equation, which gives us a solution of the form:
+$$
+	A(t) = A_0 \cos (\omega t) + \phi
+$$
+The $\phi$ factor here is not very important here; what's more important is $\omega$, which satisfies the
+equation:
+$$
+	\omega^2 = \frac{c^2 \pi^2}{L^2}\left( n_x^2 + n_y^2 + n_z^2 \right)
+$${#eq-num-modes-precursor}
+From this equation, you can then see that the number of ways $n_x, n_y$ and $n_z$ can be chosen increases
+with increasing $\omega$. 
+
+### Number of Modes
+Now that we have the full form for $\psi(r, t)$, let's actually figure out how many modes there are
+for a given $\omega$ --- in other words, for a given energy $\omega$, what is the number of allowed 
+modes $N(\omega)$ we can have inside the box? To do this, we first define a *density of states* function
+$g(\omega)$, which is defined as:
+$$
+	g(\omega) = \dv{N(\omega)}{\omega}
+$$
+This way, we have 
+$$
+	N(\omega) = \int_{0}^{\omega} g(\omega) \ d \omega
+$$
+For a fixed $\omega$, the number of modes is given by @eq-num-modes-precursor: it is equal to the number of ways we can
+choose $n_x, n_y$ and $n_z$. Since $N(\omega)$ integrates from 0 to the maximum allowed $\omega$, this
+integral essentially asks us to find the number of ways that the following equality is satisfied is given by
+the following inequality:
+$$
+	n_x^2 + n_y^2 + n_z^2 \leq \frac{\omega^2 L^2}{c^2 \pi^2}
+$$
+This equation simply defines the volume of a sphere of radius $\frac{\omega L}{c \pi}$. Then, since $n_i$
+must be positive, we must only consider the first octant (where $n_i > 0$), which contributes to $1 / 8$-th
+of the volume of the sphere. As such, $N(\omega)$ is:
+$$
+	N(\omega) = \frac{1}{8}\left( \frac{4}{3} \pi \frac{\omega^3 L^3}{c^3 \pi^3} \right)  = \frac{\omega^3
+	V}{6 c^3\pi^2}
+$$
+Here, $V = L^3$ denotes the volume of the box. Converting this to linear frequency using $\omega = 2\pi f$, we get:
+$$
+	N(f) = \frac{8 \pi^3 f^3 V}{6 c^3 \pi} \implies g(f) = \dv{N(f)}{f} = \frac{4\pi f^2V}{c^3}
+$$
+Now one final subtlety: each mode has two polarization directions (you can think of this as linearly and
+circularly polarized light), so we have to multiply this $g(f)$ by 2 to get the full relation:
+$$
+	g(f) = \frac{8 \pi f^2}{c^3} V
+$$
+So far, we haven't used made any assumptions from either classical or quantum mechanics --- we have made only
+mathematical arguments up to this point. As we will see, this is where the differences end. 
+
+### Finding Energy Density
+When Rayleigh and Jeans derived their formula, they assumed classically that all modes exist and have energy
+$k_BT$; this is a property given to us by the equipartition theorem.[^1] Using this assumption, we then know
+that the number of modes between $f$ and $f + d f$ is given by 
+$$
+	g(f) k_BT \ d f = \frac{8\pi}{c^3} f^2 V k_BT  \ d f
+$$
+Now, you get purely the energy density by dividing by the volume:
+$$
+	\rho(f) = \frac{8 \pi}{c^3} f^2 k_BT \ d f
+$$
+Changing this into an expression involving $\lambda$ gives:
+$$
+	\rho(\lambda) = \frac{8\pi}{c^3} \frac{c^2}{\lambda^2} \frac{c}{\lambda^2} k_BT = \frac{8 \pi
+	k_BT}{\lambda^{4}}
+$$
+which is precisely the energy density given by the Rayleigh-Jeans law, giving us the ultraviolet catastrophe.
+However, if we instead assume that not *all* modes exist but that energy is **quantized**, a different result
+appears. This is the assumption that Max Planck made, and it is what allows us to arrive at the Planck
+radiation formula. In particular, Planck assumed that energy may only be gained and lost in units of $hf$
+(called *quanta*) where $h$ is Planck's constant. This is what we nowadays call **quantizing the energy**,
+and using this assumption to calculate the density of states gives us the following formula for the energy
+density:
+$$
+	\rho(\lambda, T) = \frac{8 \pi h c}{\lambda^{5}} \frac{1}{\exp(\frac{h c}{\lambda k_BT}) - 1}
+$$
+This is the **Planck Radiation formula**, and unlike the Rayleigh-Jeans law, it does agree very well with
+experimental data.   
+
+So what's the takeaway from all this? In this derivation, we had to use the assumption that energy was
+quantized to arrive at the correct formula for the energy density, as our classical methods failed. Hopefully
+through this example you can see why we need to study quantum mechanics: without it, our picture of the world
+would be incomplete!
+
+## The Photoelectric Effect
+
+Like the Planck radiation formula, the explanation of the photoelectric effect is also one that requires the
+assumption that energy is quantized. Famously, it was Einstein who proposed the correct mechanism for this
+phenomenon, which was ultimately the contribution that won him the Nobel prize, not his contributions of
+special and general relativity. 
+
+The photoelectric effect can be described as follows: when you shine light onto a metal surface, the light
+transfers energy onto the electrons trapped inside the metal, eventually transferring enough energy to allow
+them to "escape" the metal, resulting in a phenomenon called *photoemission*. Naturally, if light were to
+gradually transfer energy to these electrons, you should expect that even if the light were dim and low
+energy (e.g. microwave wavelength), the electrons would accumulate energy and eventually reach an energy
+which allows photoemission to occur. In reality however, not all wavelengths of light generates
+photoemission, no matter the intensity and duration of exposure.  
+
+So how do we explain this phenomenon? Einstein put forward the postulate that instead of treating light as a
+continuous beam of energy but instead **quantizing** it, this phenomenon can be explained. Specifically, we
+can imagine light as a stream of particles (called **quanta**), each carrying an energy $E = hf$ which it can
+impart to the electrons in the metal. He then theorized that there must be a minimum amount of energy
+required to remove an electron from the metal, called the *work function* $\phi$. Since a photon can only
+deliver energy $hf$ to the electron, this solves the frequency-dependent effect we couldn't explain from
+earlier. This also explains why changing the intensity nor duration matter: the energy of the light quanta is
+only frequency dependent, hence varying things like the intensity or duration have no bearing on
+photoemission.  
+
+## Conclusion
+Hopefully through these two examples you can now see how important quantum mechanics is to our modern
+understanding of the world: without it, many phenomena we see around us simply cannot be explained. The
+photoelectric effect cannot be explained without accepting that light is quantized, and likewise the emission
+spectra of black bodies is impossible to account for without allowing for energy to be quantized.  
+
+Now that you've gotten an appreciation for the importance of quantum mechanics, let's now move on to
+develop the formal mathematics of quantum mechanics.    
+
+<script type="text/tikz">
+\begin{tikzpicture}
+  \draw (0,0) circle (1in);
+\end{tikzpicture}
+</script>
+
+[^1]: The equipartition theorem says that the average of any quadratic degree of freedom is $\frac{1}{2}
+	k_BT$. In short, the reason why each mode contributes $k_BT$ is because harmonic oscillators have two
+	quadratic degrees of freedom --- one in position, the other in momentum. Each contributes $\frac{1}{2}
+	k_BT$, so in total each mode contributes $k_BT$. For a more detailed explanation, consult a statistical
+	mechanics book.    
 
 
-:::{.theorem #thm-box2}
-testing
-:::k
+
