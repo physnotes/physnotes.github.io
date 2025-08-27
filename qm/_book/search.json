@@ -76,8 +76,8 @@
     "objectID": "part1/origins.html#conclusion",
     "href": "part1/origins.html#conclusion",
     "title": "1  History of Quantum Mechanics",
-    "section": "1.4 Conclusion",
-    "text": "1.4 Conclusion\nHopefully through these two examples you can now see how important quantum mechanics is to our modern understanding of the world: without it, many phenomena we see around us simply cannot be explained. The photoelectric effect cannot be explained without accepting that light is quantized, and likewise the emission spectra of black bodies is impossible to account for without allowing for energy to be quantized.\nNow that you’ve gotten an appreciation for the importance of quantum mechanics, let’s now move on to develop the formal mathematics of quantum mechanics.",
+    "section": "1.5 Conclusion",
+    "text": "1.5 Conclusion\nHopefully through these examples you can see how inadequate our classical theories fail to explain the phenomena in the real world. Both the photoelectric effect and the ultraviolet catastrophe cannot be explained without introducing the quantization of energy, and phenomena like the double-slit experiment challenge our intuition, forcing us to accept that there are particles that can be both a wave and a particle at the same time.\nNow that you’ve gotten an appreciation for the importance of quantum mechanics, let’s now move on to develop the formal mathematics of quantum mechanics.\ntikz pic below for andrew to figure out how to center the tikz lol.",
     "crumbs": [
       "I: Fundamental Theory",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>History of Quantum Mechanics</span>"
@@ -113,6 +113,17 @@
     "text": "Siddiqi, Irfan. 2022. “Physics 137A Lecture Notes.”",
     "crumbs": [
       "References"
+    ]
+  },
+  {
+    "objectID": "part1/origins.html#the-double-slit-experiment",
+    "href": "part1/origins.html#the-double-slit-experiment",
+    "title": "1  History of Quantum Mechanics",
+    "section": "1.4 The Double Slit Experiment",
+    "text": "1.4 The Double Slit Experiment\nThe double slit experiment is another famous phenomenon discovered in the early 19th century that challenged our classical view of light. The experiment is as follows: it involves taking a beam of light (usually a laser beam) shining upon a plate that has two parallel slits cut into them. Then, the light passing through the slits is captured on a screen behind the plate.\nIf light were to behave purely classically, you would expect to see two bright spots that trace out the shape of the slits on the screen. However, what is actually observed is an interference pattern: patches of light and dark spots spread across the screen that that gradually get fainter toward the edges. Now, if we are to assume that light is a beam of particles like we did with the photoelectric effect, this result makes no sense – only particles that fly through the slit make it onto the screen, and there is no force that allows them to change momentum so an interference pattern does not make sense.\nHowever, this phenomenon can be explained if we take a different approach, and assume that light consists of waves instead of particles. This way, as waves travel through the slit, they experience a phenomenon known as diffraction, where light passing through the slits generate wavefronts that interfere with each other. This way, light going through one slit can interfere with the other, producing the interference pattern we see on the screen.\nThe double slit phenomenon, combined with the photoelectric effect, showcase a concept in quantum physics called the wave-particle duality. Specifically, it refers to the fact that light behaves both as a wave and a particle, depending on the appropriate circumstance. In the double slit experiment, light behaves as a wave, whereas it behaves like a particle in the photoelectric effect.\n\nThe wave-particle duality is often misunderstood: it’s not so much that light somehow “chooses” to either be a wave or a particle depending on the experiment, but rather that light is simultaneously a wave and a particle – doing the experiment simply allows us to see the expression of one form of light.",
+    "crumbs": [
+      "I: Fundamental Theory",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>History of Quantum Mechanics</span>"
     ]
   }
 ]
