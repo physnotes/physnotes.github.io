@@ -1,3 +1,877 @@
 # 1D Wave Mechanics 
-placeholder text for now.
 
+Now that we have a solid foundation of the formalism of quantum mechanics, we can begin our exploration of
+where these formalisms lead us. In this section, we will introduce the wavefunction, see how it is used in
+the time independent Schrodinger equation to extract the allowed states in our system, and explore some
+classical problems studied in most quantum mechanics books. Finally, we will look at how to incorporate time
+dependence and transform a time-independent solution $\psi(x)$ into a time-dependent $\Psi(x, t)$. 
+
+## The Wavefunction
+As mentioned in [REF formalisms], the fundamental object in our study of quantum mechanics is the
+**wavefunction**, denoted $\psi(x, t)$ or $\Psi(x, t)$, which is a vector in our Hilbert space $\mathcal{H}$. 
+This is also sometimes denoted as the **state** of our system, and is represented in bra-ket
+notation by $\ket{\psi}$. To begin our discussion, we will focus on 1D wave functions; that is, wavefunctions
+of the form $\psi(x, t)$ (so only having one position coordinate), and then later generalize this notion 
+to multiple dimensions. This is summarized in the box below:
+
+:::{.notation}
+The state of a quantum system is denoted by its wavefunction $\psi$, which lives in a Hilbert space
+$\mathcal{H}$, and is represented in functional form by $\psi(x)$ or in its vector form by $\ket{\psi}$. 
+:::
+
+Recall that $\psi$ itself isn't something that can be directly observed, but it contains all the information
+about the quantum system. What we do observe is $|\psi|^2$, which represents the probability density of
+measuring a particular observable (assuming of course, that $\psi$ is expressed in the basis of the
+corresponding observable). As $|\psi|^2$ is a probability density, it must follow the law of total
+probability, which is written as:
+$$
+	\int_{-\infty}^{\infty} |\psi(x, t)|^2 \ dx = \int_{-\infty}^{\infty} \psi(x) \psi^{*}(x) \ dx = 1 
+$$
+at all $t$, with the $\psi^{*}$ being the complex conjugate of $\psi$. Intuitively, this should also make sense: 
+this is essentially saying that the probability you measure *some* value of your observable is guaranteed. 
+
+:::{.warning}
+Note that this does NOT imply that $\psi$ is necessarily integrable, and that's perfectly fine! Remember that
+what we physically observe is the probability $|\psi|^2$ and not $\psi$, so there is no requirement on what
+$\psi$ needs to be. Formally, $\psi$ belongs to a class of functions which are considered
+*square-integrable*, namely the property that $|\psi|^2$ must be integrable.  
+:::
+
+## Time Independent Schrodinger Equation
+Now, we will take a look at how we actually write down the wavefunction $\psi$. To begin, recall that from
+[REF formalisms] that $\psi$ can be expressed in many different ways, depending on the basis we choose.
+One particular basis of interest to us is the *energy* basis, which are eigenstates of the Hamiltonian
+operator $\hat{H}$. These are of particular interest to us since at a high level, one primary property we
+care about in our quantum system is the energy of our particles. Now, since $\psi$ is written as a linear 
+combination of these eigenstates, the next logical step is to solve the eigenvalue equation for $H$ to find them. 
+This equation is known as the **time-independent Schrodinger equation (TISE)**, which we
+introduce below: 
+
+:::{.theorem #thm-tise}
+# Time-Independent Schrodinger Equation
+Given a Hamiltonian $\hat{H}$, its energy eigenstates are given by the eigenvalue equation:
+$$
+	\hat{H} \ket{\psi} = E \ket{\psi}
+$$
+:::
+This equation is at the heart of quantum mechanics -- everything we do from here on out is all in the name of
+solving this equation. As it turns out, this equation is surprisingly complex, and we shall see that in this
+chapter. 
+
+In light of this, there are still some things we can do. To begin, we should unpack the Hamiltonian 
+operator $\hat{H}$, and write it down in a "nicer" form. First, we go back to the classical (non-quantum) definition
+of the Hamiltonian as the sum of kinetic and potential energies of a system: 
+<!-- perhaps we should include a citation to the classical mechanics part of the book, when possible -->   
+$$
+	H = T + V
+$$
+The kinetic energy, written in terms of the momentum $p$, is: 
+$$
+	T = \frac{p^2}{2m}
+$$
+So the Hamiltonian can be written as:
+$$
+	H = \frac{p^2}{2m} + V(x)
+$$
+For now (and for most of this book), we will consider time-independent potentials $V(x)$. 
+To transform this Hamiltonian into the quantum language, we promote all observables to operators (motivated by our
+postulate), so this means we promote $p$ to $\hat{p}$, and $x$ to $\hat{x}$.    
+The position operator is $\hat{X} = x$, and the momentum operator 
+is $\hat{p} = -i \hbar \frac{\partial}{\partial x}$.[^momentum-operator] 
+So, the time-independent Schrodinger equation now reads:
+$$
+	\left(-\frac{i\hbar}{2m} \pdv[2]{x} + V(x)\right) \ket{\psi} = E \ket{\psi}
+$$
+and now the path forward is clear: for different systems, we substitute in the appropriate potential $V(x)$,
+and solve the differential equation for $\psi$, and out comes the energy eigenstates! 
+
+## Fundamental Problems
+
+Armed with the time-independent Schrodinger equation, let's go ahead and see some simple but illustrative
+examples of $V(x)$ for which $\psi$ is analytically solvable. We first begin with the simplest case for $V$,
+and work our way to more complicated potentials.  
+
+### The Free Particle {#sec-free-particle}
+
+What's the simplest form of $V(x)$? Well, $V(x) = 0$ of course! This case is known as the *free particle*,
+which we will study below. In this case, the time-independent Schrodinger equation reads:    
+$$
+	-\frac{i\hbar}{2m} \frac{\partial^2}{\partial x^2} \psi = E \psi
+$$
+this is a simple second order ODE, whose solutions are complex exponentials. To solve this, let $k$ be
+defined as:
+$$
+	k = \frac{\sqrt{2mE}}{\hbar}
+$$
+so the differential equation now reads:
+$$
+	\frac{\partial^2}{\partial x^2} \psi = -k^2 \psi
+$$
+which has a well-known solution of the form:
+$$
+	\psi(x) = Ae^{ikx} + Be^{-ikx}
+$$
+which makes sense -- these are just plane waves travelling through space unimpeded, which you'd expect if you
+don't have a potential $V(x)$. In particular, this solution is a superposition of a wave travelling to the
+right with positive $k$ and one to the left with negative $k$.  
+However, this solution has a problem: it violates normalizability! If we try to check the
+normalization:
+$$
+	\int_{-\infty}^{\infty}\left( Ae^{ikx} + Be^{-ikx} \right)\left(
+	A^{*}e^{-ikx} + B^{*}e^{ikx}\right) = \int_{-\infty}^{\infty} |A|^2 + |B|^2 + AB^{*}e^{2ikx} + A^{*}B
+	e^{-2ikx} \ dx = \infty
+$$
+which diverges to infinity. So what does this mean? Well, the only natural conclusion is that such a
+wavefunction is inadmissible, and therefore a free particle with a definite energy $E$ cannot exist. Instead,
+the solution is to consider a linear combination of a *range* of energies, represented as an integral:
+$$
+	\psi(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty}\phi(k) e^{ikx} \ dk
+$${#eq-free-particle}
+where $\phi(k)$ essentially represents the "weight", or contribution that the wave with momentum $k$
+conributes to the overall $\psi(x)$. Those that are familiar with Fourier analysis will recognize this equation 
+immediately, and point out that $\psi(x)$ and $\phi(k)$ are related by the Fourier transform:
+$$
+	\phi(k) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty}\psi(x) e^{-ikx} \ d x
+$$
+And because of this fact, this means that $\psi(x)$ and $\phi(k)$ are actully equivalent descriptions of the
+same state! 
+This doesn't resolve our initial problem though: how do we find $\phi(k)$? The trick lies in the fact that
+$\phi(k)$ has no explicit time-dependence, so we can pick a time which we know the form of $\psi(x)$ (which
+must be normalized), and solve for $\phi(k)$ there. Generally, this time is chosen to be at $t = 0$, so:
+$$
+	\phi(k) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} \psi(x, 0) e^{-ikx} \ dx
+$$
+which you can then plug into @eq-free-particle to get $\psi(x)$. In essence, because the Fourier transform
+doesn't touch the normalization condition at all (it just provides a means to transform from position to
+frequency space), once you start with a normalized wavefunction, it will always be normalized.   
+
+### The Infinite Square Well
+
+With $V(x) = 0$ solved, let's move forward and look at our first non-trivial $V(x)$, defined by the piecewise
+function:
+$$
+	V(x) = 
+	\begin{cases}
+	0 & 0 \leq x \leq a\\
+	\infty & \text{otherwise}
+	\end{cases}
+$$
+this is called the *infinite-square-well*, appropriately named since the graphical representation of the
+potential is a well whose walls are infinitely tall:   
+ 
+[INSERT TIKZ HERE]
+
+To solve this differential equation, we will consider $V(x)$ in the interval $[0, a]$ separately from
+everywhere else, then tie the solutions together. Luckily for us, both solutions are relatively simple.
+between $[0, a]$, since $V(x) = 0$, then we revert back to the above case of the free particle, where our
+solution is just travelling plane waves. For reasons that will be apparent later, we will choose the
+trigonometric representation of a travelling wave:
+$$
+	\psi(x) = A \sin (kx) + B \cos (kx)
+$$
+This is an equivalent way to representing a travelling wave, and the conversion is given to us by Euler's
+formula:
+$$
+	e^{ikx} = \cos(kx) + i \sin(kx)
+$$
+Now, outside of $[0, a]$, the potential is infinite, so the only sensible solution for $\psi$ is $\psi = 0$. 
+
+Okay, so we have the solutions in these separate regimes, how do we tie them together? The key is to realize
+that $\psi(x)$ must be *continuous*, since $x$ (the position) is a continuous variable and $|\psi(x)|^2$ must
+represent the probability density in position. So, since the wavefunction is identically zero outside the
+well, it must approach zero from inside the well toward the boundaries:  
+$$
+	\lim_{x \to 0} \psi(x) = \lim_{x \to a} \psi(x) = 0
+$$
+First, we handle the $x = 0$ case since that's easy:
+$$
+	\psi(0) = A \sin(0) + B \cos(0) \implies B = 0
+$$
+Now for the $x = a$ case:
+$$
+	0 = \psi(a) = A \sin(ka)
+$$
+so then $ka$ must be an integer multiple of $\pi$, hence $ka = n\pi$ or generally written as $k_n =
+\frac{n\pi}{a}$, the subscript $n$-th solution. And here we see a very intriguing property
+fall out of the mathematics: the simple restriction of our wavefunction in space *forces* our wavefunction to
+belong to a discrete family of functions, parametrized by the integer $n$. As a consequence, this also
+quantizes the allowable energies:  
+$$
+	E_n = \frac{p^2}{2m} = \frac{\hbar^2 k_n^2}{2m}
+$$
+This is the first result that fundamentally differs from classical notions of thinking, as energy is always
+thought to be a continuum in classical physics. Finally, all we have to do now is to find the normalization
+constant $A$, which we do by enforcing the law of total probability:
+$$
+	\int_{-\infty}^{\infty} |A|^2 \sin^2 kx \ dx =  |A|^2 \frac{a}{2} \implies |A| = \sqrt{\frac{2}{a}}
+$$
+Therefore, the full solution to the infinite square well is the set of wavefunctions $\psi_n$:
+$$
+	\psi_n(x) = \sqrt{\frac{2}{a}} \sin\left( \frac{n\pi}{a}x \right)
+$$
+Hopefully through this example you can start to see how the idea of quantization falls out very naturally
+from the simple restriction that $\psi$ must be continuous: it's an example of how quantum mechanics is
+fundamentally different from classical mechanics, and yet it makes extremely accurate descriptions of the
+phenomena around us.  
+
+### Delta Function Potentials
+
+In this section, we will consider $V(x)$ of a very particular form:
+$$
+	V(x) = -a\delta(x)
+$$
+Here, $\delta(x)$ refers to the Dirac delta function, which is quite a funny object. It's not a "function" in
+the traditional sense, and instead defined as a function whose value is zero everywhere but integrates to
+1 over the entire real line. In this sense, it's possible to represent the delta function as: 
+$$
+	\delta(x) = \begin{cases}
+	\infty & x = 0\\ 
+	0 & \text{elsewhere}
+	\end{cases}
+$$
+while also satisfying:
+$$
+	\int_{-\infty}^{\infty} \delta(x) \ d x = 1
+$$
+there is no true function that simultaneously satisfies these properties, hence the delta function isn't
+really considered a function.[^delta-function] However, it often makes an appearance in theoretical and experimental
+physics since many phenomena around us can be modeled approximately as delta functions. 
+
+Just like all of the potentials we've seen so far, let's throw this $V(x)$ into the differential equation:
+$$
+	-\frac{\hbar^2}{2m} \pdv[2]{\psi}{x} - a \delta(x) \psi = E \psi 
+$$
+Now, let's consider two separate cases: when $x < 0$ and $x > 0$. In both these cases, $\delta(x) = 0$, so
+therefore our differential equation reduces to:
+$$
+	-\frac{\hbar^2}{2m} \pdv[2]{\psi}{x} = E \psi \implies \pdv[2]{\psi}{x} = -\frac{2mE}{\hbar^2} \psi
+$$
+Now it's time to mention a detail we haven't really talked about until now: and that is the sign of $E$ that
+we're dealing with. As you'll notice from the differential equation above, the sign of $E$ determines whether
+the sign of the prefactor, which impacts the kind of solutions our differential equation yields. In
+particular, when $E > 0$, then we admit *scattering* solutions, and when $E < 0$ we admit *decaying*
+solutions.[^3]
+
+The decaying solutions are slightly easier to deal with, so let's tackle those first. In this case, $E < 0$
+so the prefactor on $\psi$ is positive, hence we can write:
+$$
+	\pdv[2]{\psi}{x} = -\frac{2mE}{\hbar^2} = \kappa^2 \psi
+$$
+where:
+$$
+	\kappa = \frac{\sqrt{-2mE}}{\hbar}
+$${#eq-3-energy}
+remember, $\kappa$ is still positive here since $E$ is negative. Just like the free particle solution, both
+the positive and negative exponential are valid solutions to the differential equation:
+$$
+	\psi = Ae^{\kappa x} + Be^{-\kappa x}
+$$
+and here's where our physical boundary conditions come into play. First, let's consider the $x < 0$ case.
+Here, we require that $\psi$ doesn't blow up as $x \to -\infty$, which is only possible if the negative
+exponential vanishes. Likewise, when $x > 0$ we don't want $\psi$ to blow up as $x \to \infty$, hence the 
+positive exponential term vanishes. Put put together, we have the following "pieces" of our wavefunction:
+$$
+	\psi_L = Ae^{\kappa x} \quad \psi_R = Be^{-\kappa x}
+$$
+Now, we need to join the two together to get one complete wavefunction. To do this, we enforce our notion of
+continuity, which is to say that $\psi_L$ and $\psi_R$ must attain the same value at $x = 0$. This is easy;
+since they both have the same exponential, this is just telling us that $A = B$. So, the wavefunction looks
+like:
+$$
+	\psi = \begin{cases}
+	A e^{\kappa x} & x < 0\\
+	A e^{-\kappa x} & x > 0\\
+	\end{cases}
+$$
+To find $A$, we enforce normalization. To do this, notice that $\psi$ is symmetric about $x = 0$, so we can
+write the integral as: 
+$$
+	1 = \int_{-\infty}^{\infty}|\psi|^2 \ d x = 2 \int_{0}^{\infty} |A|^2 e^{-2\kappa x} \ d x =
+	\frac{|A|^2}{\kappa} 
+$$
+So the solution is $|A|^2 = \kappa$, or $A = \sqrt{\kappa}$, and our wavefunction is then:
+$$
+	\psi = \sqrt{\kappa} e^{-\kappa |x|}
+$$
+Note that I combined the piecewise expression into a single one with the use of the absolute value on $x$. 
+But what would be the energy of such a wavefunction? To find it, we have to look more closely at the behavior
+of $\psi$ around $x = 0$. To find the energy, we need to impose an additional condition that we haven't
+encountered yet: continuity of $\psi'$. 
+
+First off, we should try and understand the reason why continuity in $\psi'$ is needed, of which there are two. 
+The first comes directly from our time-independent Schrodinger equation. Recall that the equation reads:
+$$
+	\left(-\frac{i\hbar}{2m} \pdv[2]{x} + V(x)\right) \ket{\psi} = E \ket{\psi}
+$$
+isolating the term on the left, we have:
+$$
+	-\frac{i\hbar}{2m} \pdv[2]{\psi}{x} = (E - V(x)) \psi
+$$
+since $\psi$ is continuous then the right side is continuous, 
+which means the left must be also. If $\psi''$ is continuous, then this implies that 
+$\psi'$ must be differentiable, hence it must be continuous. 
+
+But what if $V(x)$ is not continuous? We've seen two examples already where $V(x)$ is not continuous, so what
+then? As it turns out, even when $V(x)$ is discontinuous, as long as $V(x)$ is not *infinite*, then
+continuity in $d\psi / dx$ is still guaranteed, the proof of which we outline below:
+
+:::{.theorem #thm-continuity}
+For a given potential $V(x)$, as long as $V(x)$ is finite, the wavefunction $\psi$ and its derivative
+$\psi'$ is always continuous. 
+
+<!-- I threw the proof inside the theorem box, do we want to do this?--> 
+
+:::{.proof}
+Consider an arbitrary $V(x)$. Then, Schrodinger's equation reads:
+$$
+	- \frac{\hbar^2}{2m} \pdv[2]{\psi}{x} + V(x) \psi(x) = E \psi(x)
+$$
+we can now integrate this equation around an arbitrary point $[a - \epsilon, a + \epsilon]$:
+$$
+	-\frac{\hbar^2}{2m}\int_{a - \epsilon}^{a + \epsilon} \pdv[2]{\psi}{x} \ dx + \int_{a - \epsilon}^{a + \epsilon} V(x)
+	\psi(x) \ d x = E \int_{a - \epsilon}^{a + \epsilon} \psi(x) \ d x
+$$
+The first term is just the derivative $\psi'(a + \epsilon) - \psi'(a - \epsilon)$, and the term on the right
+hand side vanishes as $\epsilon \to 0$. So that leaves us with the equation:
+$$
+	\psi'(a + \epsilon) - \psi'(a - \epsilon) = \frac{2m}{\hbar^2} \int_{a - \epsilon}^{a + \epsilon} V(x)
+	\psi(x) \ d x
+$$
+and now we come to the heart of the argument: if $V(x)$ is finite, then the integral on the right vanishes,
+and we get:
+$$
+	\psi'(a + \epsilon) - \psi'(a - \epsilon) = 0
+$$ 
+as $\epsilon \to 0$, which is the definition of continuity in $\psi'$. However, if $V(x)$ is infinite, then
+this equality fails. Hence, we've proven that $\psi'$ is always continuous, as long as $V(x)$ is not
+infinite. 
+:::
+:::
+This is also why we didn't have to consider continuity in $\psi'$ when dealing with the infinite square well. 
+Now we return to the delta function. In this case, since $V(x)$ is not finite, a discontinuity in $\psi'$ is
+allowed, but the discontinuity at $x = 0$ will tell us more about the allowed energy:
+$$
+	\psi'(\epsilon) - \psi'(-\epsilon) = -\frac{2m}{\hbar^2} \int_{-\epsilon}^{\epsilon} a \delta(x) \psi(x) =
+	-\frac{2ma}{\hbar^2} \psi(0) = -\frac{2ma}{\hbar^2}A
+$${#eq-delta-function-integral}
+The derivative of $\psi$ is:
+$$
+	\psi' = \begin{cases}
+		A \kappa e^{\kappa x} & x < 0\\
+		-A \kappa e^{-\kappa x} & x > 0
+	\end{cases}
+$$
+and as $x \to 0$, then $\psi' \to A \kappa$ for $x < 0$ and $A\kappa$ for $x > 0$. Substituting these values
+into @eq-delta-function-integral gives us:
+$$
+	-2 A \kappa = -\frac{2ma}{\hbar^2}A \implies \kappa = \frac{ma}{\hbar^2}
+$${#eq-3-kappa-second-definition}
+which means we can finally solve for $E$! Recall all the way back (@eq-3-energy) that we defined $E$ in terms
+of $\kappa$. But now since we know $\kappa$ in terms of other constants, we can finally back out $E$:
+$$
+	E = -\frac{ma^2}{2 \hbar^2}
+$$
+
+and so finally, we have the full solution for the delta function potential, for $E < 0$:
+$$
+	\psi(x) = \frac{\sqrt{ma}}{\hbar} e^{-ma |x|/\hbar^2}, \quad E = - \frac{ma^2}{2\hbar^2}
+$$
+Now, we have to deal with the scattering states $E > 0$. In this case, the solutions at $x < 0$ and $x > 0$
+both admit plane wave solutions, one traveling to the left and another to the right:
+$$
+	\psi(x) = Ae^{-ikx} + Be^{ikx}, \quad k = \frac{2mE}{\hbar}
+$$
+The coefficients at this moment are undetermined, so we have four constants to deal with:
+$$
+	\psi_L(x) = Ae^{-ikx}+ Be^{ikx} \quad \psi_R(x) = Ce^{-ikx} + De^{ikx}
+$$
+We now know how to combine them into one big equation: we first enforce continuity at $x = 0$, which gives us
+the equation $A + B = C + D$. Now, we enforce continuity in the derivatives. They are:
+$$
+	\begin{align*}
+		\psi_L'(0) &=  ik(B - A) \\ 
+		\psi_R'(0) &= ik (D - C) 
+	\end{align*}
+$$
+Employing the same trick as @eq-delta-function-integral, we get:
+$$
+	\psi'(\epsilon) - \psi'(-\epsilon) = ik(D - C) - ik(B - A) = \frac{2ma}{\hbar^2}\psi(0) = \frac{2ma}{\hbar^2}(A + B)
+$$
+We choose to use $\psi_L(0) = A + B$ for the last equality; the logic works the same if you use $\psi_R$.
+There is a more compact way to write this equality, if you let $\beta = \frac{ma}{\hbar^2 k}$ then you have:
+$$
+	C - D = A(2 i \beta + 1) + B (2 i \beta - 1)
+$$
+So we have the following two equations for $A, B, C$ and $D$:
+$$
+\begin{align*}
+	A + B &=  C + D \\
+	D - C &=  B(1 - 2 i \beta) - A(1 + 2i \beta) 
+\end{align*}
+$$
+But this is a big problem! We have 4 constants but only two equations, so we'll never be able to fully solve
+for all constants. There is a solution though -- and the key is to appeal to our intuition about what system
+we're trying to describe. Say we're sending in a wave from the left. Then, it would not make sense to
+consider a left-traveling wave in $\psi_R$, so that means that $C = 0$, and from here we solve for $A$
+and $D$ in terms of $B$. If you work out the algebra, you get the following:
+$$
+	A = -B \frac{i \beta }{1 + i \beta}, \quad D = \frac{B}{1 + i \beta}
+$$
+So what do we make of these solutions? By solving for the coefficients $A$ and $D$, they tell you the
+amplitude of the reflected and transmitted wave when you send in a wave with amplitude $B$ from the left. In
+particular, we can now calculate quantities such as the reflection coefficient, which gives you the
+probability that a wave is reflected:
+$$
+	R = \frac{|A|^2}{|B|^2} = \frac{\left| -B \frac{i \beta}{1 + i \beta} \right|^2}{|B|^2} =
+	\frac{\beta^2}{1 + \beta^2}
+$$
+and similarly, we can calculate a transmission coefficient: 
+$$
+	T = \frac{|D|^2}{|B|^2} = \frac{\left| \frac{B}{1 + i \beta} \right|^2}{|B|^2} = \frac{1}{1 + \beta^2}	
+$$
+what's nice is that we can verify that the reflection and transmission add up to 1:
+$$
+	R + T = \frac{\beta^2}{1 + \beta^2} + \frac{1}{1 + \beta^2} = 1
+$$
+which makes sense -- the wave is either transmitted or reflected, without loss. If you now bring back the
+substitution for $\beta$ that we did earlier, we can write these in terms of the energy itself:
+$$
+	R = \frac{1}{1 + (2\hbar^2 E / ma^2)}, \quad T = \frac{1}{1 + (ma^2 / 2\hbar^2 E)}
+$$
+and that's the full solution to the delta barrier! Firstly, you can already see that this derivation is
+*very* non-classical: it predicts that a potential well has the chance to scatter a particle      
+
+
+At this point, let's talk briefly about the delta
+potential *barrier*, which is basically the same potential but positive: $V(x) = a \delta(x)$. While
+it may seem like we need to do the math all over again, we actually don't since switching the sign only
+changes the behavior at $x = 0$, so our scattering state remains the same. What does change though is the
+bound state. To see why, recall that for the bound state, $\kappa$ was defined as (@eq-3-energy):
+$$
+	\kappa = \frac{\sqrt{-2 m E}}{\hbar}
+$$
+which was guaranteed to be *real* and *positive*, since $E < 0$. However, if we look at our other definition
+of $\kappa$ in terms of $a$ and $m$ (@eq-3-kappa-second-definition):
+$$
+	\kappa = \frac{ma}{\hbar^2}
+$$
+and so if $a < 0$, this solution for $\kappa$ becomes inconsistent with the first, and hence such a bound
+state cannot exist. However, the scattering solutions are fine because we don't have an equivalent
+restriction on $k$.  
+
+
+:::{.remark}
+It is interesting to note that because the transmission and reflection are dependent on $a^2$, these
+quantities remain the same regardless of a well or a barrier! This is quite striking -- for one, just the
+mere fact that two different potentials give you the same reflection and transmission is fascinating.
+Moreover, the fact that a potential well can induce a reflection is also fascinating. Classically, this would
+be the equivalent of throwing a ball over a well and it having a chance to bounce right back at you, but in
+quantum mechanics, such a phenomenon is totally allowed! 
+:::
+
+### The Potential Step {#sec-potential-step}
+Here, we will consider a potential represented by a wall of finite height:
+$$
+	V(x) = \begin{cases}
+	0 & x < 0\\
+	V_0 & x > 0
+	\end{cases}
+$$
+There are two different kind of states to consider, $0 < E < V_0$ and $E > V_0$, and the $E < 0$ state does
+not exist. Let's consider the $E < V_0$ state first. To the left of the barrier, we have a scattering state,
+but to the right we have a *decaying* state, since $E - V_0$ is negative. This is because inside the barrier,
+Schrodinger's equation reads:
+$$
+	\pdv[2]{\psi}{x} = (E - V_0)\psi
+$$
+so following the same substitution for $k$ as in @sec-free-particle, you get:
+$$
+	k = \frac{\sqrt{2m(E - V_0)}}{\hbar} = \frac{i\sqrt{2m (V_0 - E)}}{\hbar}
+$$
+since $k$ is purely imaginary, this turns the oscillatory $e^{ikx}$ into a decaying exponential. Combining
+this with the oscillatory solution to the left of the barrier gives you the following solution for $\psi$: 
+$$
+	\psi\left( x \right) = \begin{cases}
+	Ae^{ikx} + Be^{-ikx} & x < 0\\
+	Ce^{\kappa x} + De^{-\kappa x} & x > 0
+	\end{cases}
+$$
+with $k$ and $\kappa$ being defined as:
+$$
+	k = \frac{\sqrt{2mE}}{\hbar}\quad \kappa = \frac{\sqrt{2m(V_0 - E)}}{\hbar^2}
+$$
+Again, we're faced with a situation where continuity alone doesn't give us enough equations to fully solve,
+and have to be more specific about the problem to eliminate some variables. Firstly, let's say that our wave
+is coming in from the left. This would mean that inside the barrier, an exponentially *growing* solution
+would not make sense, and therefore we can set $C = 0$. Now, we have enough equations to solve for $B$ and
+$D$ in terms of $A$. In particular, at $x = 0$, the continuity constraints in $\psi$ and $\psi'$ gives us the
+following system of equations:
+$$
+	\begin{align*}
+	A + B &=  D \\ 
+	ik(A - B) &= -\kappa D 
+	\end{align*}
+$$
+Now, expressing $B$ and $D$ in terms of $A$ (remember, $A$ is our incident wave amplitude, so it makes sense
+to solve in terms of $A$) just requires some algebra, and ultimately gets you the relations:
+$$
+	B = \frac{ik + \kappa}{ik - \kappa}A, \quad D = \frac{2ik}{ik - \kappa} A
+$$
+Here, we can calculate the reflection coefficient:
+$$
+	R = \frac{|B|^2}{|A|^2} = \left| \frac{ik + \kappa}{ik - \kappa} \right|^2 = 1
+$$
+so this tells us that the entire amplitude of the wave is reflected, which makes sense since the barrier is
+infinitely thick, so any wave will be fully reflected back. As we'll see in @sec-potential-barrier, when the
+barrier is only finitely thick you will get a transmitted wave, called *tunnelling*. 
+
+:::{.warning}
+You may be wondering: if the entire wave is reflected, then why is the wavefunction nonzero inside the
+barrier? Doesn't this imply that there is a nonzero probability for the particle to *be* inside the barrier,
+and thus not be reflected? 
+
+The answer to this question is quite subtle. Firstly, decaying solutions don't carry any energy, as their
+probability current turns out to be zero. Hence, all the energy must be reflected back. But, perhaps this
+isn't a satisfying answer, in which case there another solution. Suppose you *were* able to
+measure the particle inside the barrier. Well, the decaying solution has a characteristic length of
+$\frac{1}{\kappa}$, so your variance in position is $\Delta x \sim \frac{1}{\kappa}$. But, by the uncertainty
+relation, you find that: 
+$$
+	\Delta p_x \geq \frac{\hbar}{\Delta x} = \hbar \kappa = \sqrt{2m(V_0 - E)}
+$$
+and plugging this into the energy:
+$$
+	\Delta E = \frac{(\Delta p_x)^2}{2m} \geq V_0 - E
+$$
+and this tells us that by measuring your particle inside the barrier, you've inadvertently *scattered* your
+particle, and it's no longer in the barrier! So, it's physically impossible to measure your particle to be
+inside the barrier, no matter how careful you are.    
+:::
+
+Now we consider the second solution, the $E > V_0$ case. In this case, both $x < 0$ and $x > 0$ admit
+scattering solutions, but with different wavenumbers:
+$$
+	\psi(x) = \begin{cases}
+	Ae^{ikx} + Be^{-ikx} & x < 0\\
+	C e^{ikx} + De^{-ikx} & x > 0
+	\end{cases}, \quad \quad k = \frac{\sqrt{2mE}}{\hbar}, \quad k' = \frac{\sqrt{2m (E - V_0)}}{\hbar}
+$$
+again, we impose a physical constraint, of considering a particle incident from the left. This kills the left
+travelling wave in $x > 0$, so $D = 0$. Using the continuity constraints again, we get the following
+relation:
+$$
+	B = \frac{k k'}{k + k'}A \quad C = \frac{2k}{k + k'}A 
+$$
+This algebra follows very similarly from the previous examples, so we'll skip showing it here. With this, we
+can now calculate the reflection and transmission:
+$$
+	R = \frac{|B|^2}{|A|^2} = \frac{\left[ 1 - \left( 1 - \frac{V_0}{E} \right)^{1 / 2} \right]^2}{\left[ 1 +
+	\left( 1 - \frac{V_0}{E} \right)^{1 / 2}\right]^2} \quad T = \frac{4\left( 1 - \frac{V_0}{E} \right)^{1 /
+	2}}{\left[ 1 + \left( 1 - \frac{V_0}{E} \right)^{1 / 2} \right]^2}
+$$
+and you should verify on your own that $R + T = 1$. Just like the delta potential well, we find that even
+though the energy of your particle can be higher than the step, you *still* get a reflection regardless,
+which is a fundamentally non-classical result.   
+
+### The Potential Barrier {#sec-potential-barrier}
+This potential is similar to that of the potential step, but this time it's a finitely long wall:
+$$
+	V(x) = \begin{cases}
+	0 & x < 0\\
+	V_0 & 0 < x < a\\
+	0 & x > a
+	\end{cases}
+$$
+visually, it looks like this:
+
+[INSERT TIKZ HERE]
+
+Here, there are two cases we need to consider: $E > V_0$ and $0 < E < V_0$. For $E < 0$, we get an infinitely
+decaying solution, which is to say that $\psi = 0$ in that case. Let's start with the $0 < E < V_0$ case,
+which as we mentioned before, will lead to a tunnelling situation. We'll split up the wavefunctions into
+three regions:
+
+1. To the left of the wall: $x < 0$ 
+2. Above the wall: $0 < x < a$
+3. To the right of the wall: $x > a$
+
+So the respective wavefunctions we solve for will be labeled $\psi_1$, $\psi_2$ and $\psi_3$ according to
+the above numbering. Starting off with $x < 0$, we have the same plane wave solution as before: 
+$$
+	\psi_1(x) = Ae^{ikx} + Be^{-ikx}
+$$
+with $k = \frac{\sqrt{2mE}}{\hbar}$ as before. The same goes for the right:
+$$
+	\psi_3(x) = Ce^{ikx} + De^{-ikx}
+$$
+Now let's look at the Schrodinger equation for $0 < x < a$:
+$$
+	-\frac{\hbar^2}{2m}\pdv[2]{x} \psi + V_0 \psi = E\psi
+$$
+Moving the $V_0$ to the right gives:
+$$
+	-\frac{\hbar^2}{2m}\pdv[2]{x}\psi = (E - V_0)\psi
+$$
+And since $E < V_0$ here, then we have exponentially decaying solutions inside the wall:
+$$
+	\psi_2(x) = Fe^{\kappa x} + Ge^{-\kappa x}
+$$
+with $\kappa = \sqrt{2m(V_0 - E)}/\hbar$. Unlike the potential step though, we can't simply eliminate the
+exponentially growing solution by setting $F = 0$. Because the barrier isn't infinitely long, the
+exponentially growing solution is allowed. However, we can still eliminate $D$, by considering a particle
+incident from the left. 
+
+Now, because we have split $\psi$ into three wavefunctions, we need to stitch them together by enforcing
+continuity in $\psi$ and $\psi'$ at $x = 0$ *and* $x = a$. The $x = 0$ conditions are:
+$$
+	\begin{align*}
+		A + B &=  F + G \\ 
+		ik(A - B) &=  \kappa (F - G) 
+	\end{align*}
+$$
+and similarly, the $x =a$ ones are:
+$$
+	\begin{align*}
+		Ce^{ika} &= Fe^{\kappa a} + Ge^{-\kappa a}\\
+		ik e^{ika} &= \kappa (Fe^{\kappa a} - Ge^{-\kappa a})
+	\end{align*}
+$$
+From here, we can then solve for $\frac{B}{A}$ and $\frac{C}{A}$, which will give us the reflection and
+transmission coefficients. At this point, the algebra also gets quite long so we won't go into too much
+detail, but there is a relatively "nice" solution involving hyperbolic sine and cosine:
+$$
+	R = \left[ 1 + \frac{4 E(V_0 - E)}{V_0^2 \sinh(ka)} \right], \quad T = \left[ 1 + \frac{V_0^2
+	\sinh^2(\kappa a)}{4E(V_0 - E)} \right]
+$$
+
+Now, we turn our attention to the $E > V_0$ case. Here, all three regions have scattering solutions, but $k$
+is different above the barrier because of $V_0$:
+$$
+	\psi = \begin{cases}
+	Ae^{ikx }+ Be^{-ikx} & x < 0\\
+	Fe^{ik'x} + Ge^{-ik'x} & 0 < x < a\\
+	Ce^{ikx} + De^{-ikx} & x> a
+	\end{cases}
+$$
+Again, follow the same algebra and you'll get:
+$$
+	R = \left[ 1 + \frac{4E(E - V_0)}{V_0^2 \sin^2(k' a)} \right]^{-1} \quad T = \left[ 1 + \frac{V_0^2
+	\sin^2(k'a)}{4E(E - V_0)} \right]^{-1}
+$$
+Here, we want you to focus on the physics and not the algebra so we won't go into detail, but it really does
+work in the same way we've always been doing it: consider a left-incident wave, set $D = 0$, then 
+eliminate $F$ and $G$ and solve for $\frac{B}{A}$ and $\frac{C}{A}$. Finally, square these and you get your
+reflection and transmission coefficient. 
+
+Speaking of focusing on the physics, notice that because the transmission term has a $\sin^2(k'a)$ term, it
+means that there are some configurations where the $T = 1$ and $R = 0$, hence you get perfect transmission! 
+ 
+### Finite Square Well 
+Finally, the last potential we will look at in this chapter is the finite square well. This is similar to the
+infinite square well, but this time our walls are finitely tall. As we'll see, this gives us a first glimpse
+into why the Schrodinger equation is difficult to solve analytically. Mathematically, we will express this
+potential as:
+$$
+	V(x) = \begin{cases}
+	-V_0 & -a < x < a\\
+	0 & \text{otherwise}
+	\end{cases}
+$$
+and here's a visual picture of what the well looks like:
+
+[INSERT TIKZ HERE]
+
+There are two cases we have to consider: the $-V_0 < E < 0$ bound state, and $E > 0$, the scattering state.  
+Starting with the first case, let's again break up $\psi$ into two parts: inside and outside the well. Inside
+the well, the Schrodinger equation is written as:
+$$
+	\pdv[2]{\psi}{x} + \alpha^2 \psi = 0
+$$
+with $\alpha$ defined as:
+$$
+	\alpha = \left[ -\frac{2m}{\hbar^2} (V_0 + E) \right]^{1 / 2}
+$$
+This is a scattering solution, since the energy of the particle is larger than $-V_0$, so it will give us
+oscillatory solutions. For reasons that will become clear in a moment, we will write $\psi$ in this region in
+terms of sines and cosines:
+$$
+	\psi = A\cos(\alpha x) + B \sin(\alpha x), |x| < a
+$$
+Outside the well, we have decaying solutions since $E < 0$. The Schrodinger equation in this region reads as:
+$$
+	\pdv[2]{\psi}{x} - \beta \psi(x) = 0
+$$
+and $\beta$ is:
+$$
+	\beta = \left( -\frac{2mE}{\hbar^2} \right)^{1 / 2}
+$$
+Now, we will leverage the following theorem to make our lives easier:
+
+:::{.theorem #thm-1d-symmetric-potential}
+# Wavefunction for Symmetric Potentials
+If the potential $V(x)$ satisfies $V(x) = V(-x)$, then its wavefunction also satisfies $\psi(x) = \psi(-x)$.   
+
+:::{.proof}
+Suppose first that $\psi(x)$ satisfies the Schrodinger equation for $V(x)$. That is, $\psi(x)$ is a solution
+to:
+$$
+	-\frac{\hbar^2}{2m} \pdv[2]{\psi(x)}{x} + V(x) \psi(x) = E \psi(x) 
+$${#eq-symmetry-proof-1}
+Now, consider $\psi(-x)$:
+$$
+	-\frac{\hbar^2}{2m} \pdv[2]{\psi(-x)}{x} + V(-x)\psi(-x) = E\psi(-x)
+$$
+since $V(-x) = V(x)$, then:
+$$
+	-\frac{\hbar^2}{2m}\pdv[2]{\psi(-x)}{x} + V(x) \psi(-x) = E\psi(-x)
+$$
+and since this differential equation is the same as the original equation (@eq-symmetry-proof-1), then
+$\psi(-x)$ is also a solution. Since this is the case, then any even and odd linear combination of these will
+also be a solution. That is, the functions:
+$$
+	\begin{align*}
+		\phi(x) &= \psi(x) + \psi(-x)\\
+		\phi'(x) &= \psi(x) - \psi(-x) 
+	\end{align*}
+$$
+are also solutions. Therefore, we can always take $\psi$ to be even or odd.
+:::
+:::
+In our case, the finite square well indeed does satisfy this property, and so we can focus on looking for
+even and odd solutions. This makes our lives much easier, since it means that we only need to consider one
+set of boundary conditions at $x = a$, instead of two. 
+
+Let's start by considering $\psi$ even. Then, the wavefunction is:
+$$
+	\psi(x) = \begin{cases}
+		B \cos(\alpha x) & 0 < x < a\\
+		Ce^{-\beta x} & |x| > a
+	\end{cases}
+$$
+now, imposing boundary conditions at $x = a$ gives:
+$$
+	\begin{align*}
+	\psi: \ A \cos(\alpha x) &= Ce^{-\beta a}\\
+	\psi': \ -\alpha A \sin(\alpha a) &= -\beta Ce^{-\beta a}
+	\end{align*}
+$$
+dividing one equation by the other gives:
+$$
+	\alpha \tan (\alpha a) = \beta
+$$
+similarly, for the odd solutions, we kill the $B \cos(\alpha x)$ term in $0 < x < a$ and the decaying
+solution remains the same. Applying the same boundary conditions gives you the equation:
+$$
+	\alpha \cot(\alpha a) = -\beta
+$$
+both of these equations represent the condition for the allowed energies of the system. That is, for a given
+$a$ and $V_0$, these equations tell you which energies $E$ are allowed. Once you figure that out, you can
+then normalize by enforcing that it integrates to 1. What's interesting about these equations is that they're
+not analytically solvable, so you can only solve this numerically. 
+
+:::{.remark}
+Hopefully, by working out the these bound states you can get a better appreciation for why the Schrodinger
+equation is typically a very difficult equation to solve analytically. The potential we're dealing with here
+is hardly anything complicated -- it's just a simple square well of finite depth, yet we're already
+having to resort to numerical methods to get the allowed energies. 
+
+As you can guess, this becomes a general trend as we move toward more complicated potentials. Rarely are any
+of these potentials analytically solvable, so we have to resort to numerical methods or find a way to
+approximate the solutions. This latter idea is the central idea of the second part of this book, [INSERT PART
+2 REFERENCE].
+:::
+
+Now let's deal with the scattering solution. This ends up working out similarly to the delta potential
+barrier and well, in that the math actually works out the same way. For the left incident particle, we have:
+$$
+	\psi(x) = \begin{cases}
+	Ae^{ikx} + Be^{-ikx} & x < -a\\
+	Fe^{ik'x} + Ge^{-ik'x} -a < x < a\\
+	Ce^{ikx} & x > a
+	\end{cases}
+$$
+there is no left travelling wave at $x > a$ since we are considering a left-incident wave. Notice that this
+is exactly the same situation as the finite potential barrier, except $k'$ is *slightly* different, in that
+we make the swap $V_0 \to -V_0$. All the algebra remains the same, so we can just copy over the reflection
+and transmission coefficient we got from there and make this simple edit to $V_0$:[^finite-square-well]
+$$
+	R = \left[ 1 + \frac{4E(E + V_0)}{V_0^2 \sin^2(2k'a)} \right]^{-1} \quad T = \left[ 1 + \frac{V_0^2
+	\sin^2(2k'a)}{4E(V_0 + E)} \right]^{-1}
+$$
+
+## Time-Dependent Schrodinger Equation
+So far, we've been dealing with the time *independent* Schrodinger equation, which as its name suggests, does
+not include time as a parameter. In this section, we will look at how we transform a solution to the
+time-independent solution into one that satisfies time dependence. While this may seem complicated at first,
+the trick actually turns out to be very simple. 
+   
+### Separable solutions
+To begin, let's take a look at the time-dependent Schrodinger equation:
+$$
+	i\hbar \pdv{\Psi}{t} = -\frac{\hbar^2}{2m} \pdv[2]{\Psi}{x} + V\Psi
+$$
+Because we deal with time-independent potentials, it means that we can actually solve this equation by method
+of *separation of variables*. That is, we look for solutions of the form:  
+$$
+	\Psi(x, t) = \psi(x) \phi(t)
+$$
+solving for $\psi(x)$ was pretty much all that we've been doing in this chapter so far. Now, given a
+$\psi(x)$, what is the appropriate $\phi(t)$ to tack on so that $\Psi(x, t)$ is a solution to the
+time-dependent equation? Let's first plug this separable solution back into the Schrodinger equation:
+$$
+	i\hbar \psi \dv{\phi}{t} = -\frac{\hbar^2}{2m} \dv[2]{\psi}{x} \phi + V \psi \phi
+$$
+dividing through by $\psi \phi$:
+$$
+	i\hbar \frac{1}{\phi} \dv{\phi}{t} = -\frac{\hbar^2}{2m} \frac{1}{\psi} \dv[2]{\psi}{x} + V
+$${#eq-separable-equation}
+now comes a crucial argument: the left hand side is a function of $t$, while the right side is a function of
+$x$. Therefore, in order for this equation to hold both sides **must** be constant. Otherwise, you could
+change one side of this equation without changing the other, violating the equality. Therefore, we can set
+both sides to be constant:
+$$
+	i\hbar \frac{1}{\phi} \dv{\phi}{t} = E \implies \dv{\phi}{t} = -\frac{iE}{\hbar}\phi
+$$
+this is now a simple differential equation for $\phi$, which gives solutions:
+$$
+	\phi(t) = e^{-iEt / \hbar}
+$$
+and that's our time dependence! All you have to do now is throw this onto every solution to the spatial
+$\psi(x)$, and you've got your general solution $\Psi(x, t)$. As a side note, setting the right hand side of
+@eq-separable-equation to $E$ gives you the time-independent Schrodinger equation!
+ 
+At this point, you may also be wondering if we've covered *all* possible solutions this way. After all, the
+condition that $\Psi(x, t)$ be separable is a fairly restrictive one. As it turns out, whenever the
+Hamiltonian is time-independent and $\hat{H}$ admits a complete set of energy eigenfunctions, then the
+separable solutions are enough to describe any general solution. Here, completeness refers to the condition
+that any square-integrable function (i.e. any function in our Hilbert space $\mathcal{H}$) 
+can be written as a linear combination of these eigenfunctions. Since every solution $\Psi(x, t)$ must be
+square-integrable, then this completeness condition is all we need to guarantee that we've covered all
+solutions.  
+
+:::{.remark}
+This completeness condition is actually not as restrictive as you might think -- all the
+Hamiltonians we will deal with in this book satisfy this completeness, even though we'll be looking at some
+pretty complicated potentials later on!   
+:::
+
+  
+
+
+[^delta-function]: Formally, $\delta(x)$ is called a *distribution* rather than a function, but we won't
+	worry too much about this distinction. It's good enough for our purposes to treat $\delta(x)$ as a
+	function that is zero everywhere except at $x = 0$ where it equals infinity, and that its integral over all
+	space is equal to one. 
+
+[^momentum-operator]: See [INSERT NOTE HERE] for a more in-depth explanation as to why the momentum and 
+	position operator are expressed in this way. For now, we will accept this as fact.
+
+[^3]: In case you're wondering why we haven't dealt with the sign of $E$ until now, it's because we didn't
+	need to. In the free particle example, a particle with negative energy and admits a decaying solution
+	would blow up at either $\infty$ or $-\infty$, which are not normalizable and thus inadmissible. A
+	negative energy state isn't admissible in the infinite square well potential either, since there's no way
+	for an exponentially decaying function to be identically zero as is required to match the boundary
+	condition on either side of the well.  
+
+[^finite-square-well]: we also have to make the change $a \to 2a$ compared to the square barrier since $a$
+	was the width of the barrier, but $a$ as defined in the finite well is only half the width of the well.       
