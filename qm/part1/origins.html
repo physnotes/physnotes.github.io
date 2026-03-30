@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; History of Quantum – Quantum Mechanics</title>
+<title>1&nbsp; History of Quantum Mechanics – Quantum Mechanics</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -38,10 +41,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e6fac7831b000b473fec4351c0047b43.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-20ded6fafc8acc47a438b35554cde852.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -69,9 +72,17 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+window.MathJax = {
+  loader: { load:['[tex]/physics']},
+  tex:    { packages: {'[+]': ['physics'] } }
+};
+</script>
+<link rel="stylesheet" href="https://tikzjax.com/v1/fonts.css">
+<script src="https://tikzjax.com/v1/tikzjax.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -84,7 +95,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -111,7 +122,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/part1.html">I: Fundamental Theory</a></li><li class="breadcrumb-item"><a href="../part1/origins.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">History of Quantum</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/part1.html">I: Fundamental Theory</a></li><li class="breadcrumb-item"><a href="../part1/origins.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">History of Quantum Mechanics</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -154,13 +165,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part1/origins.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">History of Quantum</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">History of Quantum Mechanics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part1/formalism.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Postulates and Formalism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part1/1d-wave-mechanics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">1D Wave Mechanics</span></span></a>
   </div>
 </li>
       </ul>
@@ -176,15 +193,29 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#blackbody-radiation" id="toc-blackbody-radiation" class="nav-link active" data-scroll-target="#blackbody-radiation"><span class="header-section-number">1.1</span> Blackbody Radiation</a></li>
+  <li><a href="#the-quantization-of-energy" id="toc-the-quantization-of-energy" class="nav-link" data-scroll-target="#the-quantization-of-energy"><span class="header-section-number">1.2</span> The Quantization of Energy</a>
+  <ul class="collapse">
+  <li><a href="#number-of-modes" id="toc-number-of-modes" class="nav-link" data-scroll-target="#number-of-modes"><span class="header-section-number">1.2.1</span> Number of Modes</a></li>
+  <li><a href="#finding-the-energy-density" id="toc-finding-the-energy-density" class="nav-link" data-scroll-target="#finding-the-energy-density"><span class="header-section-number">1.2.2</span> Finding the Energy Density</a></li>
+  </ul></li>
+  <li><a href="#the-photoelectric-effect" id="toc-the-photoelectric-effect" class="nav-link" data-scroll-target="#the-photoelectric-effect"><span class="header-section-number">1.3</span> The Photoelectric Effect</a></li>
+  <li><a href="#the-double-slit-experiment" id="toc-the-double-slit-experiment" class="nav-link" data-scroll-target="#the-double-slit-experiment"><span class="header-section-number">1.4</span> The Double Slit Experiment</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">1.5</span> Conclusion</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/part1.html">I: Fundamental Theory</a></li><li class="breadcrumb-item"><a href="../part1/origins.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">History of Quantum</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/part1.html">I: Fundamental Theory</a></li><li class="breadcrumb-item"><a href="../part1/origins.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">History of Quantum Mechanics</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">History of Quantum</span></h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">History of Quantum Mechanics</span></h1>
 </div>
 
 
@@ -201,13 +232,100 @@ window.Quarto = {
 </header>
 
 
-<p>In summary, this book has no content whatsoever.</p>
-<div id="thm-box2" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 1.1</strong></span> testing :::k</p>
-
-
-
+<p>In order to dive into the world of quantum properly, it pays to spend some time looking at its history. In this chapter, we will give a brief overview of how quantum mechanics came to be. This way, you will appreciate not only the beauty of quantum mechanics, but also understand why it is necessary to understanding the mechanics of our world.</p>
+<p>The content in this section is heavily inspired by Prof.&nbsp;Siddiqi’s notes for the introductory lecture in Physics 137A (Introductory Quantum Mechanics) at UC Berkeley.</p>
+<section id="blackbody-radiation" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="blackbody-radiation"><span class="header-section-number">1.1</span> Blackbody Radiation</h2>
+<p>To begin our story, we start in the mid 19th century. Around this time, Gustav Kirchoff (yes, the one from your circuits classes) was studying the physics of black bodies — an idealized object that absorbs <em>all</em> electromagnetic radiation, hence the term “blackbody”. Even though perfect blackbodies do not exist in the real world, this theory turns out to be a very good model for celestial bodies like planets and stars.</p>
+<p>Kirchoff’s crucial insight on blackbodies was that their emissive power <span class="math inline">\(R\)</span> was only determined by two factors: the emitted wavelength <span class="math inline">\(\lambda\)</span>, and its temperature <span class="math inline">\(T\)</span>. At around the same time, Josef Stefan empirically determined that the total radiation emitted by a blackbody is proportional to <span class="math inline">\(T^{4}\)</span>, meaning that the total power across all wavelengths, as a function of temperature, may be written as: <span id="eq-radiative-power"><span class="math display">\[
+    R(T) = \int_{0}^{\infty} R(\lambda, T) \ d\lambda = \sigma T^{4}
+\tag{1.1}\]</span></span> The constant <span class="math inline">\(\sigma \approx 5.68 \times 10^{-8}\)</span> is the <strong>Stefan-Boltzmann constant</strong>. While this relation was known, the functional form of <span class="math inline">\(R(\lambda, T)\)</span> eluded physicists at the time. In the early 20th century, Lord Rayleigh and Sir James Jeans used a purely classical approach and arrived at the <em>Rayleigh-Jeans law</em>, given as:<br>
+<span class="math display">\[
+    R(\lambda, T) = \frac{8 \pi k_B T}{\lambda^{4}}
+\]</span> Here, <span class="math inline">\(R(\lambda, T)\)</span> denotes the power emitted per unit area. But, there is a problem with this formula! This formula predicts that at smaller and smaller <span class="math inline">\(\lambda\)</span>, objects should emit an enormous amount of energy, due to the <span class="math inline">\(\lambda^{4}\)</span> scaling in the denominator. Putting this into <a href="#eq-radiative-power" class="quarto-xref">Equation&nbsp;<span>1.1</span></a> would result in an infinite amount of radiated energy, as the integral diverges at <span class="math inline">\(\lambda \to 0\)</span>. This is clearly not physically true (the sun is at finite temperature, and does not radiate infinite energy), and this discrepancy is what is known as the <strong>ultraviolet catastrophe</strong>. This is the first indication that classical physics was incomplete.</p>
+</section>
+<section id="the-quantization-of-energy" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="the-quantization-of-energy"><span class="header-section-number">1.2</span> The Quantization of Energy</h2>
+<!-- NOTE: I did go through the full derviation here; if you think it's too long, feel free to cut some of
+this out.  -->
+<p>The resolution, as it turns out, is to introduce the idea of <strong>quantization</strong>. To fully appreciate why this is needed, let’s take a small detour. First, consider a square box of length <span class="math inline">\(L\)</span>, and we want to calculate the number of standing modes in the cavity. These waves must satisfy the wave equation:<br>
+<span class="math display">\[
+    \nabla^2 \Psi(r, t) = \frac{1}{c^2} \pdv[2]{t} \psi(r, t)
+\]</span> The solutions to this differential equation are sine waves, which in three dimensions are functions of the form: <span class="math display">\[
+    \psi(r, t) = A(t) \sin(k_x x) \sin (k_y y)\sin (k_z z)
+\]</span> Then, since we require that the wave is zero outside the cavity, we enforce <span class="math inline">\(\psi = 0\)</span> outside the cavity. We express this constraint mathematically as requiring that: <span class="math display">\[
+    k_i = \frac{n_i \pi}{L}
+\]</span> Now, to solve for <span class="math inline">\(A(t)\)</span>, we plug this back into the wave equation, which gives us a solution of the form: <span class="math display">\[
+    A(t) = A_0 \cos (\omega t) + \phi
+\]</span> The <span class="math inline">\(\phi\)</span> factor is simply a phase which we don’t care that much about — we can always zero this out for simplicity. What’s more important here is <span class="math inline">\(\omega\)</span>, which from our earlier condition on <span class="math inline">\(k\)</span> satisfies the equation:<br>
+<span id="eq-num-modes-precursor"><span class="math display">\[
+    \omega^2 = \frac{c^2 \pi^2}{L^2}\left( n_x^2 + n_y^2 + n_z^2 \right)
+\tag{1.2}\]</span></span> From this equation, you can then see that the number of ways <span class="math inline">\(n_x, n_y\)</span> and <span class="math inline">\(n_z\)</span> can be chosen increases with increasing <span class="math inline">\(\omega\)</span>, which we will explore in the next section.</p>
+<section id="number-of-modes" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="number-of-modes"><span class="header-section-number">1.2.1</span> Number of Modes</h3>
+<p>Now that we have the full form for <span class="math inline">\(\psi(r, t)\)</span>, let’s actually figure out how many modes there are for a given <span class="math inline">\(\omega\)</span> — in other words, for a given wave energy <span class="math inline">\(\omega\)</span>, what is the number of allowed modes <span class="math inline">\(N(\omega)\)</span> inside the box? To do this, we first define a <em>density of states</em> function <span class="math inline">\(g(\omega)\)</span>, defined as: <span class="math display">\[
+    g(\omega) = \dv{N(\omega)}{\omega}
+\]</span> This way, we have <span class="math display">\[
+    N(\omega) = \int_{0}^{\omega} g(\omega) \ d \omega
+\]</span> For a fixed <span class="math inline">\(\omega\)</span>, <span class="math inline">\(g(\omega)\)</span> is implicitly given by <a href="#eq-num-modes-precursor" class="quarto-xref">Equation&nbsp;<span>1.2</span></a>: it is equal to the number of ways to choose <span class="math inline">\(n_x, n_y, n_z\)</span> such that the left and right maintain equality. Since <span class="math inline">\(N(\omega)\)</span> integrates from 0 to the maximum allowed <span class="math inline">\(\omega\)</span>, then we are essentially looking for the number of ways to choose the <span class="math inline">\(n_i\)</span> such that the right hand side of <a href="#eq-num-modes-precursor" class="quarto-xref">Equation&nbsp;<span>1.2</span></a> doesn’t exceed the left. Written explicitly as an inequality, we are basically looking for: <span class="math display">\[
+    n_x^2 + n_y^2 + n_z^2 \leq \frac{\omega^2 L^2}{c^2 \pi^2}
+\]</span> This equation happens to be relatively easy to solve: the right hand side defines a sphere of radius <span class="math inline">\(\frac{\omega L}{c \pi}\)</span>, and since <span class="math inline">\(n_i\)</span> must be positive, we must only consider the octant where each <span class="math inline">\(n_i &gt; 0\)</span>, which is <span class="math inline">\(\frac{1}{8}\)</span>-th of the volume of the sphere. As such, <span class="math inline">\(N(\omega)\)</span> is given by: <span class="math display">\[
+    N(\omega) = \frac{1}{8}\left( \frac{4}{3} \pi \frac{\omega^3 L^3}{c^3 \pi^3} \right)  = \frac{\omega^3
+    V}{6 c^3\pi^2}
+\]</span> Here, <span class="math inline">\(V = L^3\)</span> denotes the volume of the box. Converting this to linear frequency using <span class="math inline">\(\omega = 2\pi f\)</span>, we get: <span class="math display">\[
+    N(f) = \frac{8 \pi^3 f^3 V}{6 c^3 \pi} \implies g(f) = \dv{N(f)}{f} = \frac{4\pi f^2V}{c^3}
+\]</span> Since each mode contains two different polarizations (you can loosely think of this as linearly and circularly polarized light), we have to multiply <span class="math inline">\(g(f)\)</span> by 2 to get the full expression:<br>
+<span class="math display">\[
+    g(f) = \frac{8 \pi f^2}{c^3} V
+\]</span> So far, this derivation is purely classical, and it is motivated purely by the mathematics. As we will see, this is where the similarities in the classical and quantum treatment end.</p>
+</section>
+<section id="finding-the-energy-density" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="finding-the-energy-density"><span class="header-section-number">1.2.2</span> Finding the Energy Density</h3>
+<p>When Rayleigh and Jeans derived their formula, they assumed that all modes exist and have energy <span class="math inline">\(k_BT\)</span>, a property given by the equipartition theorem.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Using this assumption, we then know that the number of modes between <span class="math inline">\(f\)</span> and <span class="math inline">\(f + d f\)</span> is given by <span class="math display">\[
+    g(f) k_BT \ d f = \frac{8\pi}{c^3} f^2 V k_BT  \ d f
+\]</span> The energy density is given by dividing out the volume <span class="math inline">\(V\)</span>: <span class="math display">\[
+    \rho(f) = \frac{8 \pi}{c^3} f^2 k_BT \ d f
+\]</span> Changing this into an expression involving <span class="math inline">\(\lambda\)</span> gives: <span class="math display">\[
+    \rho(\lambda) = \frac{8\pi}{c^3} \frac{c^2}{\lambda^2} \frac{c}{\lambda^2} k_BT = \frac{8 \pi
+    k_BT}{\lambda^{4}}
+\]</span> which is precisely the energy density given by the Rayleigh-Jeans law, giving us the ultraviolet catastrophe. However, if we instead assume that not <em>all</em> modes exist but that energy is <strong>quantized</strong>, we get a different result. This is the assumption that Max Planck made, and it is what allows us to arrive at the Planck radiation formula. In particular, Planck assumed that energy may only be gained and lost in units of <span class="math inline">\(hf\)</span> (called <em>quanta</em>) where <span class="math inline">\(h\)</span> is Planck’s constant. With this assumption, it is possible to come up with a different energy density equation, now known as the <strong>Planck radiation formula</strong>: <span class="math display">\[
+    \rho(\lambda, T) = \frac{8 \pi h c}{\lambda^{5}} \frac{1}{\exp(\frac{h c}{\lambda k_BT}) - 1}
+\]</span> The derivation for this equation is rather complicated, and involves the heavy use of statistical mechanics, so we will skip it here. What’s important is that this theory, unlike the Rayleigh-Jeans law, agrees very well with experimental data.</p>
+<p>So what’s the takeaway from all this? That we <em>had</em> to take quantum effects into account in order to come up with the correct relation for <span class="math inline">\(\rho(\lambda, T)\)</span>.<br>
+Hopefully through this example you can see why we need to study quantum mechanics; without it, our picture of the world would be incomplete!</p>
+</section>
+</section>
+<section id="the-photoelectric-effect" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="the-photoelectric-effect"><span class="header-section-number">1.3</span> The Photoelectric Effect</h2>
+<p>Like the Planck radiation formula, the explanation of the photoelectric effect is also one that requires the assumption that energy is quantized. Famously, it was Einstein who proposed the correct mechanism for this phenomenon, which was ultimately the contribution that won him the Nobel prize, not his contributions of special and general relativity.</p>
+<p>The photoelectric effect can be described as follows: when you shine light onto a metal surface, the light transfers energy onto the electrons trapped inside the metal, eventually transferring enough energy to allow them to “escape” the metal, resulting in a phenomenon called <em>photoemission</em>. Naturally, if light were to gradually transfer energy to these electrons, you should expect that even if the light were dim and low energy (e.g.&nbsp;microwaves or radio waves), the electrons would eventually accumulate enough energy to escape the metal, but in reality it does not — not all wavelengths of light generate photoemission, no matter the intensity and duration of exposure. By contrast, it seems that when the light reaches a certain frequency, photoemission <em>does</em> occur, even at low intensities and exposures. This frequency dependence is difficult to explain classically, under the assumption that any kind of light would transfer energy to the electrons.</p>
+<p>So how do we explain this phenomenon? Einstein put forward the postulate that instead of treating light as a continuous beam of energy but instead <strong>quantizing</strong> it, this phenomenon can be explained. Specifically, we can imagine light as a stream of particles (called <strong>quanta</strong>), each carrying an energy <span class="math inline">\(E = hf\)</span> which it can impart to the electrons in the metal. He then theorized that there must be a minimum amount of energy required to remove an electron from the metal, called the <em>work function</em> <span class="math inline">\(\phi\)</span>. Since a photon can only deliver energy <span class="math inline">\(hf\)</span> to the electron, this solves the frequency-dependent effect we couldn’t explain from earlier. This also explains why changing the intensity nor duration matter: the energy of the light quanta is only frequency dependent, hence varying things like the intensity or duration have no bearing on photoemission.</p>
+</section>
+<section id="the-double-slit-experiment" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="the-double-slit-experiment"><span class="header-section-number">1.4</span> The Double Slit Experiment</h2>
+<p>The double slit experiment is another famous phenomenon discovered in the early 19th century that challenged our classical view of light. The experiment is as follows: it involves taking a beam of light (usually a laser beam) shining upon a plate that has two parallel slits cut into them. Then, the light passing through the slits is captured on a screen behind the plate.</p>
+<p>If light were to behave purely classically, you would expect to see two bright spots that trace out the shape of the slits on the screen. However, what is actually observed is an <em>interference pattern</em>: patches of light and dark spots spread across the screen that that gradually get fainter toward the edges. Now, if we are to assume that light is a beam of particles like we did with the photoelectric effect, this result makes no sense – only particles that fly through the slit make it onto the screen, and there is no force that allows them to change momentum so an interference pattern does not make sense.</p>
+<p>However, this phenomenon can be explained if we take a different approach, and assume that light consists of waves instead of particles. This way, as waves travel through the slit, they experience a phenomenon known as <em>diffraction</em>, where light passing through the slits generate wavefronts that interfere with each other. This way, light going through one slit can interfere with the other, producing the interference pattern we see on the screen.</p>
+<p>The double slit phenomenon, combined with the photoelectric effect, showcase a concept in quantum physics called the <em>wave-particle duality</em>. Specifically, it refers to the fact that light behaves both as a wave and a particle, depending on the context. In the double slit experiment, light behaves as a wave, whereas it behaves like a particle in the photoelectric effect.</p>
+<div class="warning">
+<p>It is often misunderstood that light somehow “chooses” to either be a wave or a particle depending on the experiment, but in reality wave-particle duality is better understood as light <em>simultaneously</em> behaving as a wave and a particle – doing the experiment simply allows us to see one of these two expressions.</p>
 </div>
+</section>
+<section id="conclusion" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">1.5</span> Conclusion</h2>
+<p>Hopefully through these examples you can see how inadequate our classical theories fail to explain the phenomena in the real world. Both the photoelectric effect and the ultraviolet catastrophe cannot be explained without introducing the quantization of energy, and phenomena like the double-slit experiment challenge our intuition, forcing us to accept that there are particles that can be both a wave and a particle at the same time. While this doesn’t immediately motivate quantum behavior, it does illustrate that objects we once thought of as particles have wave-like properties as well.</p>
+<p>Now that you’ve gotten an appreciation for the importance of quantum mechanics, let’s now move on to develop the formal mathematics of quantum mechanics.</p>
+<p>tikz pic below for andrew to figure out how to center the tikz lol.</p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>The equipartition theorem says that the average of any quadratic degree of freedom is <span class="math inline">\(\frac{1}{2}
+k_BT\)</span>. In short, the reason why each mode contributes <span class="math inline">\(k_BT\)</span> is because the Hamiltonian for harmonic oscillators have two quadratic degrees of freedom: one in position and another in momentum. Each contributes <span class="math inline">\(\frac{1}{2} k_BT\)</span>, so in total each mode contributes <span class="math inline">\(k_BT\)</span>. For a more detailed explanation, consult a statistical mechanics book.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script>
@@ -430,13 +548,14 @@ document.addEventListener("DOMContentLoaded", () => {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
