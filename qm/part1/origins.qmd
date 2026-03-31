@@ -9,7 +9,7 @@ The content in this section is heavily inspired by Prof. Siddiqi's notes for the
 Physics 137A (Introductory Quantum Mechanics) at UC Berkeley. 
 
 ## Blackbody Radiation
-To begin our story, we start in the mid 19th century. Around this time, Gustav Kirchoff (yes, the one from your
+To begin our story, we start in the mid 19th century. Around this time, Gustav Kirchhoff (yes, the one from your
 circuits classes) was studying the physics of black bodies --- an idealized object that absorbs *all*
 electromagnetic radiation, hence the term "blackbody". Even though perfect blackbodies do not exist in the
 real world, this theory turns out to be a very good model for celestial bodies like planets and stars.   

@@ -786,7 +786,7 @@ barrier and well, in that the math actually works out the same way. For the left
 $$
 	\psi(x) = \begin{cases}
 	Ae^{ikx} + Be^{-ikx} & x < -a\\
-	Fe^{ik'x} + Ge^{-ik'x} -a < x < a\\
+	Fe^{ik'x} + Ge^{-ik'x} & -a < x < a\\
 	Ce^{ikx} & x > a
 	\end{cases}
 $$
