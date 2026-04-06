@@ -855,6 +855,7 @@ Hamiltonians we will deal with in this book satisfy this completeness, even thou
 pretty complicated potentials later on!   
 :::
 
+
   
 
 
@@ -873,5 +874,5 @@ pretty complicated potentials later on!
 	for an exponentially decaying function to be identically zero as is required to match the boundary
 	condition on either side of the well.  
 
-[^finite-square-well]: we also have to make the change $a \to 2a$ compared to the square barrier since $a$
+[^finite-square-well]: We also have to make the change $a \to 2a$ compared to the square barrier since $a$
 	was the width of the barrier, but $a$ as defined in the finite well is only half the width of the well.       
