@@ -159,7 +159,14 @@ $$
 this is called the *infinite-square-well*, appropriately named since the graphical representation of the
 potential is a well whose walls are infinitely tall:   
  
-[INSERT TIKZ HERE]
+<center>
+<script type = "text/tikz">
+\begin{tikzpicture}[scale=1.5]
+	\draw [semithick, stealth-stealth] (-1, 3) node[left] {$\infty$} -- (-1, 0) node[left] {$0$} 
+	-- (1, 0) node[right] {$a$} -- (1, 3) node[right] {$V(x)$};
+\end{tikzpicture}
+</script>
+<center>
 
 To solve this differential equation, we will consider $V(x)$ in the interval $[0, a]$ separately from
 everywhere else, then tie the solutions together. Luckily for us, both solutions are relatively simple.
@@ -250,7 +257,7 @@ Now it's time to mention a detail we haven't really talked about until now: and 
 we're dealing with. As you'll notice from the differential equation above, the sign of $E$ determines whether
 the sign of the prefactor, which impacts the kind of solutions our differential equation yields. In
 particular, when $E > 0$, then we admit *scattering* solutions, and when $E < 0$ we admit *decaying*
-solutions.[^3]
+solutions.[^scatter-decay]
 
 The decaying solutions are slightly easier to deal with, so let's tackle those first. In this case, $E < 0$
 so the prefactor on $\psi$ is positive, hence we can write:
@@ -584,7 +591,13 @@ $$
 $$
 visually, it looks like this:
 
-[INSERT TIKZ HERE]
+<center >
+	<script type = "text/tikz">
+		\begin{tikzpicture}[scale=2]
+			\draw (-1, 0) -- (0, 0) node[below] {$0$} -- (0, 1) node[left] {$V_0$} -- (1, 1) -- (1, 0) node[below] {$a$} -- (2, 0);
+		\end{tikzpicture}
+	</script>
+</center>
 
 Here, there are two cases we need to consider: $E > V_0$ and $0 < E < V_0$. For $E < 0$, we get an infinitely
 decaying solution, which is to say that $\psi = 0$ in that case. Let's start with the $0 < E < V_0$ case,
@@ -679,7 +692,13 @@ $$
 $$
 and here's a visual picture of what the well looks like:
 
-[INSERT TIKZ HERE]
+<center>
+	<script type = "text/tikz">
+		\begin{tikzpicture}[scale=1.5]
+			\draw (-2, 2) node[left] {$0$} -- (-1, 2) -- (-1, 0) node[below] {$-a$} -- (1, 0) node[below] {$a$} node[right] {$V_0$} -- (1, 2) -- (2, 2);
+		\end{tikzpicture}
+	</script>
+</center>
 
 There are two cases we have to consider: the $-V_0 < E < 0$ bound state, and $E > 0$, the scattering state.  
 Starting with the first case, let's again break up $\psi$ into two parts: inside and outside the well. Inside
@@ -867,7 +886,7 @@ pretty complicated potentials later on!
 [^momentum-operator]: See [INSERT NOTE HERE] for a more in-depth explanation as to why the momentum and 
 	position operator are expressed in this way. For now, we will accept this as fact.
 
-[^3]: In case you're wondering why we haven't dealt with the sign of $E$ until now, it's because we didn't
+[^scatter-decay]: In case you're wondering why we haven't dealt with the sign of $E$ until now, it's because we didn't
 	need to. In the free particle example, a particle with negative energy and admits a decaying solution
 	would blow up at either $\infty$ or $-\infty$, which are not normalizable and thus inadmissible. A
 	negative energy state isn't admissible in the infinite square well potential either, since there's no way
