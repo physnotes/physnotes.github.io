@@ -758,7 +758,7 @@ We start with the first meaningful simplification:
 Hermitian operators possess real eigenvalues.
 :::
 :::{.proof}
-Let's begin with our Hermitian operator $A$ and one of its eigenkets $\ket{u} and associated eigenvalue $a$:
+Let's begin with our Hermitian operator $A$ and one of its eigenkets $\ket{u}$ and associated eigenvalue $a$:
 $$A\ket{u} = a\ket{u}$$
 If we multiply both sides by $\bra{u}$, we get:
 $$\langle u|A|u\rangle = \langle u|a|u\rangle = a\langle u|u\rangle$$
