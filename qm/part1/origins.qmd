@@ -1,8 +1,225 @@
-# History of Quantum 
+# History of Quantum Mechanics
 
-In summary, this book has no content whatsoever.
+In order to dive into the world of quantum properly, it pays to spend some time looking at its history. In
+this chapter, we will give a brief overview of how quantum mechanics came to be. This way, you will
+appreciate not only the beauty of quantum mechanics, but also understand why it is necessary to understanding
+the mechanics of our world. 
+
+The content in this section is heavily inspired by Prof. Siddiqi's notes for the introductory lecture in
+Physics 137A (Introductory Quantum Mechanics) at UC Berkeley. 
+
+## Blackbody Radiation
+To begin our story, we start in the mid 19th century. Around this time, Gustav Kirchoff (yes, the one from your
+circuits classes) was studying the physics of black bodies --- an idealized object that absorbs *all*
+electromagnetic radiation, hence the term "blackbody". Even though perfect blackbodies do not exist in the
+real world, this theory turns out to be a very good model for celestial bodies like planets and stars.   
+
+Kirchoff's crucial insight on blackbodies was that their emissive power $R$ was only determined by two
+factors: the emitted wavelength $\lambda$, and its temperature $T$. At around the same time, Josef Stefan
+empirically determined that the total radiation emitted by a blackbody is proportional to $T^{4}$, meaning
+that the total power across all wavelengths, as a function of temperature, may be written as: 
+$$
+	R(T) = \int_{0}^{\infty} R(\lambda, T) \ d\lambda = \sigma T^{4}
+$${#eq-radiative-power}
+The constant $\sigma \approx 5.68 \times 10^{-8}$ is the **Stefan-Boltzmann constant**. While this relation
+was known, the functional form of $R(\lambda, T)$ eluded physicists at the time. In the early 20th century,
+Lord Rayleigh and Sir James Jeans used a purely classical approach and arrived at the *Rayleigh-Jeans law*,
+given as:   
+$$
+	R(\lambda, T) = \frac{8 \pi k_B T}{\lambda^{4}}
+$$
+Here, $R(\lambda, T)$ denotes the power emitted per unit area. But, there is a problem with this formula!
+This formula predicts that at smaller and smaller $\lambda$, objects should emit an enormous amount of
+energy, due to the $\lambda^{4}$ scaling in the denominator. Putting this into @eq-radiative-power would result
+in an infinite amount of radiated energy, as the integral diverges at $\lambda \to 0$. This is clearly not
+physically true (the sun is at finite temperature, and does not radiate infinite energy), and this
+discrepancy is what is known as the **ultraviolet catastrophe**. This is the first indication that classical
+physics was incomplete.
+ 
+
+## The Quantization of Energy
+<!-- NOTE: I did go through the full derviation here; if you think it's too long, feel free to cut some of
+this out.  -->
+The resolution, as it turns out, is to introduce the idea of **quantization**. To fully appreciate why this
+is needed, let's take a small detour. First, consider a square box of length $L$, and we want to calculate
+the number of standing modes in the cavity. These waves must satisfy the wave equation:   
+$$
+	\nabla^2 \Psi(r, t) = \frac{1}{c^2} \pdv[2]{t} \psi(r, t)
+$$
+The solutions to this differential equation are sine waves, which in three dimensions are functions of the
+form:
+$$
+	\psi(r, t) = A(t) \sin(k_x x) \sin (k_y y)\sin (k_z z)
+$$
+Then, since we require that the wave is zero outside the cavity, we enforce $\psi = 0$ outside the cavity. We
+express this constraint mathematically as requiring that:
+$$
+	k_i = \frac{n_i \pi}{L}
+$$
+Now, to solve for $A(t)$, we plug this back into the wave equation, which gives us a solution of the form:
+$$
+	A(t) = A_0 \cos (\omega t) + \phi
+$$
+The $\phi$ factor is simply a phase which we don't care that much about --- we can always zero this out for
+simplicity. What's more important here is $\omega$, which from our earlier condition on $k$
+satisfies the equation:      
+$$
+	\omega^2 = \frac{c^2 \pi^2}{L^2}\left( n_x^2 + n_y^2 + n_z^2 \right)
+$${#eq-num-modes-precursor}
+From this equation, you can then see that the number of ways $n_x, n_y$ and $n_z$ can be chosen increases
+with increasing $\omega$, which we will explore in the next section. 
+
+### Number of Modes
+Now that we have the full form for $\psi(r, t)$, let's actually figure out how many modes there are
+for a given $\omega$ --- in other words, for a given wave energy $\omega$, what is the number of allowed
+modes $N(\omega)$ inside the box? To do this, we first define a *density of states* function $g(\omega)$,
+defined as: 
+$$
+	g(\omega) = \dv{N(\omega)}{\omega}
+$$
+This way, we have 
+$$
+	N(\omega) = \int_{0}^{\omega} g(\omega) \ d \omega
+$$
+For a fixed $\omega$, $g(\omega)$ is implicitly given by @eq-num-modes-precursor: it is equal to the number
+of ways to choose $n_x, n_y, n_z$ such that the left and right maintain equality. 
+Since $N(\omega)$ integrates from 0 to the maximum allowed $\omega$, then we are essentially looking for the
+number of ways to choose the $n_i$ such that the right hand side of @eq-num-modes-precursor doesn't exceed
+the left. Written explicitly as an inequality, we are basically looking for:
+$$
+	n_x^2 + n_y^2 + n_z^2 \leq \frac{\omega^2 L^2}{c^2 \pi^2}
+$$
+This equation happens to be relatively easy to solve: the right hand side defines a sphere of radius
+$\frac{\omega L}{c \pi}$, and since $n_i$ must be positive, we must only consider the octant where each 
+$n_i > 0$, which is $\frac{1}{8}$-th of the volume of the sphere. As such, $N(\omega)$ is given by:
+$$
+	N(\omega) = \frac{1}{8}\left( \frac{4}{3} \pi \frac{\omega^3 L^3}{c^3 \pi^3} \right)  = \frac{\omega^3
+	V}{6 c^3\pi^2}
+$$
+Here, $V = L^3$ denotes the volume of the box. Converting this to linear frequency using $\omega = 2\pi f$, we get:
+$$
+	N(f) = \frac{8 \pi^3 f^3 V}{6 c^3 \pi} \implies g(f) = \dv{N(f)}{f} = \frac{4\pi f^2V}{c^3}
+$$
+Since each mode contains two different polarizations (you can loosely think of this as linearly and
+circularly polarized light), we have to multiply $g(f)$ by 2 to get the full expression:   
+$$
+	g(f) = \frac{8 \pi f^2}{c^3} V
+$$
+So far, this derivation is purely classical, and it is motivated purely by the mathematics. As we will see,
+this is where the similarities in the classical and quantum treatment end. 
+
+### Finding the Energy Density
+When Rayleigh and Jeans derived their formula, they assumed that all modes exist and have energy
+$k_BT$, a property given by the equipartition theorem.[^1] Using this assumption, we then know
+that the number of modes between $f$ and $f + d f$ is given by 
+$$
+	g(f) k_BT \ d f = \frac{8\pi}{c^3} f^2 V k_BT  \ d f
+$$
+The energy density is given by dividing out the volume $V$: 
+$$
+	\rho(f) = \frac{8 \pi}{c^3} f^2 k_BT \ d f
+$$
+Changing this into an expression involving $\lambda$ gives:
+$$
+	\rho(\lambda) = \frac{8\pi}{c^3} \frac{c^2}{\lambda^2} \frac{c}{\lambda^2} k_BT = \frac{8 \pi
+	k_BT}{\lambda^{4}}
+$$
+which is precisely the energy density given by the Rayleigh-Jeans law, giving us the ultraviolet catastrophe.
+However, if we instead assume that not *all* modes exist but that energy is **quantized**, we get a different
+result. This is the assumption that Max Planck made, and it is what allows us to arrive at the Planck
+radiation formula. In particular, Planck assumed that energy may only be gained and lost in units of $hf$
+(called *quanta*) where $h$ is Planck's constant. With this assumption, it is possible to come up with a
+different energy density equation, now known as the **Planck radiation formula**:
+$$
+	\rho(\lambda, T) = \frac{8 \pi h c}{\lambda^{5}} \frac{1}{\exp(\frac{h c}{\lambda k_BT}) - 1}
+$$
+The derivation for this equation is rather complicated, and involves the heavy use of
+statistical mechanics, so we will skip it here. What's important is that this theory, unlike the
+Rayleigh-Jeans law, agrees very well with experimental data. 
+
+So what's the takeaway from all this? That we *had* to take quantum effects into account in order to come up
+with the correct relation for $\rho(\lambda, T)$.  
+Hopefully
+through this example you can see why we need to study quantum mechanics; without it, our picture of the world
+would be incomplete!
+
+## The Photoelectric Effect
+
+Like the Planck radiation formula, the explanation of the photoelectric effect is also one that requires the
+assumption that energy is quantized. Famously, it was Einstein who proposed the correct mechanism for this
+phenomenon, which was ultimately the contribution that won him the Nobel prize, not his contributions of
+special and general relativity. 
+
+The photoelectric effect can be described as follows: when you shine light onto a metal surface, the light
+transfers energy onto the electrons trapped inside the metal, eventually transferring enough energy to allow
+them to "escape" the metal, resulting in a phenomenon called *photoemission*. Naturally, if light were to
+gradually transfer energy to these electrons, you should expect that even if the light were dim and low
+energy (e.g. microwaves or radio waves), the electrons would eventually accumulate enough energy to escape the
+metal, but in reality it does not --- not all wavelengths of light generate photoemission, no matter the
+intensity and duration of exposure. By contrast, it seems that when the light reaches a certain frequency,
+photoemission *does* occur, even at low intensities and exposures. This frequency dependence is difficult to
+explain classically, under the assumption that any kind of light would transfer energy to the electrons.  
+
+So how do we explain this phenomenon? Einstein put forward the postulate that instead of treating light as a
+continuous beam of energy but instead **quantizing** it, this phenomenon can be explained. Specifically, we
+can imagine light as a stream of particles (called **quanta**), each carrying an energy $E = hf$ which it can
+impart to the electrons in the metal. He then theorized that there must be a minimum amount of energy
+required to remove an electron from the metal, called the *work function* $\phi$. Since a photon can only
+deliver energy $hf$ to the electron, this solves the frequency-dependent effect we couldn't explain from
+earlier. This also explains why changing the intensity nor duration matter: the energy of the light quanta is
+only frequency dependent, hence varying things like the intensity or duration have no bearing on
+photoemission.  
+
+## The Double Slit Experiment
+The double slit experiment is another famous phenomenon discovered in the early 19th century that challenged
+our classical view of light. The experiment is as follows: it involves taking a beam of light (usually a
+laser beam) shining upon a plate that has two parallel slits cut into them. Then, the light passing through
+the slits is captured on a screen behind the plate. 
+
+If light were to behave purely classically, you would expect to see two bright spots that trace out the shape
+of the slits on the screen. However, what is actually observed is an *interference pattern*: patches of light
+and dark spots spread across the screen that that gradually get fainter toward the edges. Now, if we are to
+assume that light is a beam of particles like we did with the photoelectric effect, this result makes no
+sense -- only particles that fly through the slit make it onto the screen, and there is no force that allows
+them to change momentum so an interference pattern does not make sense. 
+
+However, this phenomenon can be explained if we take a different approach, and assume that light consists of
+waves instead of particles. This way, as waves travel through the slit, they experience a phenomenon known as
+*diffraction*, where light passing through the slits generate wavefronts that interfere with each other. This
+way, light going through one slit can interfere with the other, producing the interference pattern we see on
+the screen. 
+
+The double slit phenomenon, combined with the photoelectric effect, showcase a concept in quantum physics
+called the *wave-particle duality*. Specifically, it refers to the fact that light behaves both as a wave and
+a particle, depending on the context. In the double slit experiment, light behaves as a
+wave, whereas it behaves like a particle in the photoelectric effect. 
+
+:::{.warning}
+It is often misunderstood that light somehow "chooses" to either be a wave or a particle depending on the
+experiment, but in reality wave-particle duality is better understood as light *simultaneously* behaving as a
+wave and a particle -- doing the experiment simply allows us to see one of these two expressions.  
+:::
+
+## Conclusion
+Hopefully through these examples you can see how inadequate our classical theories fail to explain the
+phenomena in the real world. Both the photoelectric effect and the ultraviolet catastrophe cannot be
+explained without introducing the quantization of energy, and phenomena like the double-slit experiment
+challenge our intuition, forcing us to accept that there are particles that can be both a wave and a particle
+at the same time. While this doesn't immediately motivate quantum behavior, it does illustrate that objects
+we once thought of as particles have wave-like properties as well.    
+
+Now that you've gotten an appreciation for the importance of quantum mechanics, let's now move on to
+develop the formal mathematics of quantum mechanics.    
+
+tikz pic below for andrew to figure out how to center the tikz lol.
 
 
-:::{.theorem #thm-box2}
-testing
-:::k
+[^1]: The equipartition theorem says that the average of any quadratic degree of freedom is $\frac{1}{2}
+	k_BT$. In short, the reason why each mode contributes $k_BT$ is because the Hamiltonian for harmonic
+	oscillators have two quadratic degrees of freedom: one in position and another in momentum. Each 
+	contributes $\frac{1}{2} k_BT$, so in total each mode contributes $k_BT$. 
+	For a more detailed explanation, consult a statistical
+	mechanics book.    
+
+
+
