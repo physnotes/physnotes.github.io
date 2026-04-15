@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Eric Du">
-<meta name="author" content="Andrew Binder">
 
-<title>Physics Notes</title>
+<title>3&nbsp; The Postulates of Quantum Mechanics – Quantum Mechanics</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -28,22 +26,25 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-4897d45d2f75ed4f519693be625836c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../part1/1d-wave-mechanics.html" rel="next">
+<link href="../part1/formalism.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-bfac0873c4381f1c6f64e3de4401b7ad.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -71,37 +72,130 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+window.MathJax = {
+  loader: { load:['[tex]/physics']},
+  tex:    { packages: {'[+]': ['physics'] } }
+};
+</script>
+<link rel="stylesheet" href="https://tikzjax.com/v1/fonts.css">
+<script src="https://tikzjax.com/v1/tikzjax.js"></script>
 
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/part1.html">I: Fundamental Theory</a></li><li class="breadcrumb-item"><a href="../part1/postulates.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Postulates of Quantum Mechanics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Quantum Mechanics</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../part1/part1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">I: Fundamental Theory</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part1/origins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">History of Quantum Mechanics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part1/formalism.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Mathematical Formalism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part1/postulates.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Postulates of Quantum Mechanics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part1/1d-wave-mechanics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">1D Wave Mechanics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-incomplete-postulates" id="toc-the-incomplete-postulates" class="nav-link active" data-scroll-target="#the-incomplete-postulates"><span class="header-section-number">3.1</span> The (Incomplete) Postulates</a>
+  <ul class="collapse">
+  <li><a href="#an-application-the-stern-gerlach-experiment" id="toc-an-application-the-stern-gerlach-experiment" class="nav-link" data-scroll-target="#an-application-the-stern-gerlach-experiment"><span class="header-section-number">3.1.1</span> An Application: The Stern-Gerlach Experiment</a></li>
+  <li><a href="#commuting-observables" id="toc-commuting-observables" class="nav-link" data-scroll-target="#commuting-observables"><span class="header-section-number">3.1.2</span> Commuting Observables</a></li>
+  </ul></li>
+  <li><a href="#quantum-mechanics-from-classical" id="toc-quantum-mechanics-from-classical" class="nav-link" data-scroll-target="#quantum-mechanics-from-classical"><span class="header-section-number">3.2</span> Quantum Mechanics from Classical</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/part1.html">I: Fundamental Theory</a></li><li class="breadcrumb-item"><a href="../part1/postulates.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Postulates of Quantum Mechanics</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Physics Notes</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Postulates of Quantum Mechanics</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-contents">
-             <p>Eric Du </p>
-             <p>Andrew Binder </p>
-          </div>
-  </div>
     
   
     
@@ -112,14 +206,191 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Welcome! This website is a joint project dedicated to keeping a consolidated catalogue of all undergraduate (and some graduate) physics content. As is pretty obvious right now, this site is in its infancy and heavily under construction, so don’t expect anything to be final right now!</p>
-<!-- - [Classical Mechanics](/classical/) -->
-<!-- - [Electromagnetism](/em/) -->
-<p><a href="./qm/">Quantum Mechanics</a> <!-- - [Thermal & Statistical Physics](/thermal/) --></p>
+<section id="the-incomplete-postulates" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="the-incomplete-postulates"><span class="header-section-number">3.1</span> The (Incomplete) Postulates</h2>
+<section id="an-application-the-stern-gerlach-experiment" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="an-application-the-stern-gerlach-experiment"><span class="header-section-number">3.1.1</span> An Application: The Stern-Gerlach Experiment</h3>
+</section>
+<section id="commuting-observables" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="commuting-observables"><span class="header-section-number">3.1.2</span> Commuting Observables</h3>
+</section>
+</section>
+<section id="quantum-mechanics-from-classical" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="quantum-mechanics-from-classical"><span class="header-section-number">3.2</span> Quantum Mechanics from Classical</h2>
 
 
+</section>
 
 </main> <!-- /main -->
+<script>
+(() => {
+  const KINDS = ["example","remark"];   // only these are collapsible
+  const DURATION = 200;                  // ms
+  const EASING = "ease";                 // timing
+  const REDUCE_MOTION = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function findTitleNode(box, kind) {
+    let t = box.querySelector(`.${kind}-title`);
+    if (t) return t;
+    t = box.querySelector('[class$="-title"]');
+    if (t) return t;
+    const first = box.firstElementChild;
+    if (first && /^H[1-6]$/i.test(first.tagName)) return first;
+    return box.querySelector("strong, h1, h2, h3, h4, h5, h6, span");
+  }
+
+  function clearBodyStyles(body) {
+    body.style.transition = "";
+    body.style.height = "";
+    body.style.overflow = "";
+  }
+
+  function animateOpen(det, body) {
+    if (REDUCE_MOTION) { det.open = true; clearBodyStyles(body); return; }
+
+    // Open first so Firefox can compute a real scrollHeight
+    det.open = true;
+
+    // Prep for animation
+    body.style.overflow = "hidden";
+    body.style.height = "0px";
+    body.style.transition = `height ${DURATION}ms ${EASING}`;
+
+    // Reflow so the browser registers height:0
+    void body.offsetHeight;
+
+    // Firefox sometimes needs one more frame before scrollHeight is valid
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const target = body.scrollHeight + "px";
+        body.style.height = target;
+
+        const done = () => { clearBodyStyles(body); body.removeEventListener("transitionend", done); };
+        body.addEventListener("transitionend", done);
+        // Fallback in case transitionend is missed
+        setTimeout(done, DURATION + 60);
+      });
+    });
+  }
+
+  function animateClose(det, body) {
+    if (REDUCE_MOTION) { det.open = false; clearBodyStyles(body); return; }
+
+    // Fix current height as start value
+    const start = body.scrollHeight + "px";
+    body.style.overflow = "hidden";
+    body.style.height = start;
+    body.style.transition = `height ${DURATION}ms ${EASING}`;
+
+    // Reflow so the start height is committed
+    void body.offsetHeight;
+
+    // Then collapse to 0
+    body.style.height = "0px";
+
+    const done = () => {
+      det.open = false; // actually close after animation finishes
+      clearBodyStyles(body);
+      body.removeEventListener("transitionend", done);
+    };
+    body.addEventListener("transitionend", done);
+    setTimeout(done, DURATION + 60);
+  }
+
+  function convertBox(box, kind) {
+    if (box.dataset.detailsConverted) return;
+
+    const title = findTitleNode(box, kind);
+    if (!title) return;
+
+    // Build <details>/<summary>
+    const det = document.createElement("details");
+    // det.open = true;                 // set false if you prefer default-collapsed
+    det.className = box.className;   // keep .example/.remark etc.
+    if (box.id) det.id = box.id;
+
+    const sum = document.createElement("summary");
+    sum.classList.add(`${kind}-title`);
+    sum.innerHTML = title.innerHTML;
+    title.remove();
+
+    const body = document.createElement("div");
+    body.className = "details-body";
+    while (box.firstChild) body.appendChild(box.firstChild);
+
+    // Prevent flash of content if starting collapsed
+    if (!det.open) { body.style.height = "0px"; body.style.overflow = "hidden"; }
+
+    det.appendChild(sum);
+    det.appendChild(body);
+    box.replaceWith(det);
+
+    // Override native toggle so we can animate
+    const toggle = (e) => {
+      e.preventDefault();               // stop instant UA toggle
+      if (det.open) animateClose(det, body);
+      else          animateOpen(det, body);
+    };
+
+    sum.addEventListener("click", toggle);
+    sum.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(e); }
+    });
+
+    // a11y
+    sum.setAttribute("role", "button");
+    sum.setAttribute("tabindex", "0");
+
+    det.dataset.detailsConverted = "1";
+  }
+
+  function processAll(root = document) {
+    KINDS.forEach(kind => {
+      root.querySelectorAll(`.${kind}`).forEach(box => convertBox(box, kind));
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => processAll());
+  window.addEventListener("load", () => processAll());
+})();
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Select all .warning boxes
+  document.querySelectorAll(".warning").forEach(box => {
+    // Skip if it already has a title
+    if (box.querySelector(".warning-title")) return;
+
+    // Create the title element
+    const title = document.createElement("div");
+    title.className = "warning-title";
+    title.textContent = "Warning!";
+
+    // Insert at the top of the box
+    box.insertBefore(title, box.firstChild);
+  });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Select all .warning boxes
+  document.querySelectorAll(".notation").forEach(box => {
+    // Skip if it already has a title
+    if (box.querySelector(".notation-title")) return;
+
+    // Create the title element
+    const title = document.createElement("div");
+    title.className = "notation-title";
+    title.textContent = "Notation";
+
+    // Insert at the top of the box
+    box.insertBefore(title, box.firstChild);
+  });
+});
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -520,7 +791,32 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../part1/formalism.html" class="pagination-link" aria-label="Mathematical Formalism">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Mathematical Formalism</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../part1/1d-wave-mechanics.html" class="pagination-link" aria-label="1D Wave Mechanics">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">1D Wave Mechanics</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><a href="../">Home</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

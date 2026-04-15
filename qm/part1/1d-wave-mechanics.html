@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; 1D Wave Mechanics – Quantum Mechanics</title>
+<title>4&nbsp; 1D Wave Mechanics – Quantum Mechanics</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -34,17 +34,17 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../references.html" rel="next">
-<link href="../part1/formalism.html" rel="prev">
+<link href="../part1/postulates.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-20ded6fafc8acc47a438b35554cde852.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-bfac0873c4381f1c6f64e3de4401b7ad.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -122,7 +122,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/part1.html">I: Fundamental Theory</a></li><li class="breadcrumb-item"><a href="../part1/1d-wave-mechanics.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">1D Wave Mechanics</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/part1.html">I: Fundamental Theory</a></li><li class="breadcrumb-item"><a href="../part1/1d-wave-mechanics.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">1D Wave Mechanics</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -171,13 +171,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part1/formalism.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Postulates and Formalism</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Mathematical Formalism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part1/postulates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Postulates of Quantum Mechanics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part1/1d-wave-mechanics.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">1D Wave Mechanics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">1D Wave Mechanics</span></span></a>
   </div>
 </li>
       </ul>
@@ -198,20 +204,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-wavefunction" id="toc-the-wavefunction" class="nav-link active" data-scroll-target="#the-wavefunction"><span class="header-section-number">3.1</span> The Wavefunction</a></li>
-  <li><a href="#time-independent-schrodinger-equation" id="toc-time-independent-schrodinger-equation" class="nav-link" data-scroll-target="#time-independent-schrodinger-equation"><span class="header-section-number">3.2</span> Time Independent Schrodinger Equation</a></li>
-  <li><a href="#fundamental-problems" id="toc-fundamental-problems" class="nav-link" data-scroll-target="#fundamental-problems"><span class="header-section-number">3.3</span> Fundamental Problems</a>
+  <li><a href="#the-wavefunction" id="toc-the-wavefunction" class="nav-link active" data-scroll-target="#the-wavefunction"><span class="header-section-number">4.1</span> The Wavefunction</a></li>
+  <li><a href="#time-independent-schrodinger-equation" id="toc-time-independent-schrodinger-equation" class="nav-link" data-scroll-target="#time-independent-schrodinger-equation"><span class="header-section-number">4.2</span> Time Independent Schrodinger Equation</a></li>
+  <li><a href="#fundamental-problems" id="toc-fundamental-problems" class="nav-link" data-scroll-target="#fundamental-problems"><span class="header-section-number">4.3</span> Fundamental Problems</a>
   <ul class="collapse">
-  <li><a href="#sec-free-particle" id="toc-sec-free-particle" class="nav-link" data-scroll-target="#sec-free-particle"><span class="header-section-number">3.3.1</span> The Free Particle</a></li>
-  <li><a href="#the-infinite-square-well" id="toc-the-infinite-square-well" class="nav-link" data-scroll-target="#the-infinite-square-well"><span class="header-section-number">3.3.2</span> The Infinite Square Well</a></li>
-  <li><a href="#delta-function-potentials" id="toc-delta-function-potentials" class="nav-link" data-scroll-target="#delta-function-potentials"><span class="header-section-number">3.3.3</span> Delta Function Potentials</a></li>
-  <li><a href="#sec-potential-step" id="toc-sec-potential-step" class="nav-link" data-scroll-target="#sec-potential-step"><span class="header-section-number">3.3.4</span> The Potential Step</a></li>
-  <li><a href="#sec-potential-barrier" id="toc-sec-potential-barrier" class="nav-link" data-scroll-target="#sec-potential-barrier"><span class="header-section-number">3.3.5</span> The Potential Barrier</a></li>
-  <li><a href="#finite-square-well" id="toc-finite-square-well" class="nav-link" data-scroll-target="#finite-square-well"><span class="header-section-number">3.3.6</span> Finite Square Well</a></li>
+  <li><a href="#sec-free-particle" id="toc-sec-free-particle" class="nav-link" data-scroll-target="#sec-free-particle"><span class="header-section-number">4.3.1</span> The Free Particle</a></li>
+  <li><a href="#the-infinite-square-well" id="toc-the-infinite-square-well" class="nav-link" data-scroll-target="#the-infinite-square-well"><span class="header-section-number">4.3.2</span> The Infinite Square Well</a></li>
+  <li><a href="#delta-function-potentials" id="toc-delta-function-potentials" class="nav-link" data-scroll-target="#delta-function-potentials"><span class="header-section-number">4.3.3</span> Delta Function Potentials</a></li>
+  <li><a href="#sec-potential-step" id="toc-sec-potential-step" class="nav-link" data-scroll-target="#sec-potential-step"><span class="header-section-number">4.3.4</span> The Potential Step</a></li>
+  <li><a href="#sec-potential-barrier" id="toc-sec-potential-barrier" class="nav-link" data-scroll-target="#sec-potential-barrier"><span class="header-section-number">4.3.5</span> The Potential Barrier</a></li>
+  <li><a href="#finite-square-well" id="toc-finite-square-well" class="nav-link" data-scroll-target="#finite-square-well"><span class="header-section-number">4.3.6</span> Finite Square Well</a></li>
   </ul></li>
-  <li><a href="#time-dependent-schrodinger-equation" id="toc-time-dependent-schrodinger-equation" class="nav-link" data-scroll-target="#time-dependent-schrodinger-equation"><span class="header-section-number">3.4</span> Time-Dependent Schrodinger Equation</a>
+  <li><a href="#time-dependent-schrodinger-equation" id="toc-time-dependent-schrodinger-equation" class="nav-link" data-scroll-target="#time-dependent-schrodinger-equation"><span class="header-section-number">4.4</span> Time-Dependent Schrodinger Equation</a>
   <ul class="collapse">
-  <li><a href="#separable-solutions" id="toc-separable-solutions" class="nav-link" data-scroll-target="#separable-solutions"><span class="header-section-number">3.4.1</span> Separable solutions</a></li>
+  <li><a href="#separable-solutions" id="toc-separable-solutions" class="nav-link" data-scroll-target="#separable-solutions"><span class="header-section-number">4.4.1</span> Separable solutions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -219,9 +225,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/part1.html">I: Fundamental Theory</a></li><li class="breadcrumb-item"><a href="../part1/1d-wave-mechanics.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">1D Wave Mechanics</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/part1.html">I: Fundamental Theory</a></li><li class="breadcrumb-item"><a href="../part1/1d-wave-mechanics.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">1D Wave Mechanics</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">1D Wave Mechanics</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">1D Wave Mechanics</span></h1>
 </div>
 
 
@@ -239,8 +245,8 @@ window.Quarto = {
 
 
 <p>Now that we have a solid foundation of the formalism of quantum mechanics, we can begin our exploration of where these formalisms lead us. In this section, we will introduce the wavefunction, see how it is used in the time independent Schrodinger equation to extract the allowed states in our system, and explore some classical problems studied in most quantum mechanics books. Finally, we will look at how to incorporate time dependence and transform a time-independent solution <span class="math inline">\(\psi(x)\)</span> into a time-dependent <span class="math inline">\(\Psi(x, t)\)</span>.</p>
-<section id="the-wavefunction" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="the-wavefunction"><span class="header-section-number">3.1</span> The Wavefunction</h2>
+<section id="the-wavefunction" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="the-wavefunction"><span class="header-section-number">4.1</span> The Wavefunction</h2>
 <p>As mentioned in [REF formalisms], the fundamental object in our study of quantum mechanics is the <strong>wavefunction</strong>, denoted <span class="math inline">\(\psi(x, t)\)</span> or <span class="math inline">\(\Psi(x, t)\)</span>, which is a vector in our Hilbert space <span class="math inline">\(\mathcal{H}\)</span>. This is also sometimes denoted as the <strong>state</strong> of our system, and is represented in bra-ket notation by <span class="math inline">\(\ket{\psi}\)</span>. To begin our discussion, we will focus on 1D wave functions; that is, wavefunctions of the form <span class="math inline">\(\psi(x, t)\)</span> (so only having one position coordinate), and then later generalize this notion to multiple dimensions. This is summarized in the box below:</p>
 <div class="notation">
 <p>The state of a quantum system is denoted by its wavefunction <span class="math inline">\(\psi\)</span>, which lives in a Hilbert space <span class="math inline">\(\mathcal{H}\)</span>, and is represented in functional form by <span class="math inline">\(\psi(x)\)</span> or in its vector form by <span class="math inline">\(\ket{\psi}\)</span>.</p>
@@ -252,11 +258,11 @@ window.Quarto = {
 <p>Note that this does NOT imply that <span class="math inline">\(\psi\)</span> is necessarily integrable, and that’s perfectly fine! Remember that what we physically observe is the probability <span class="math inline">\(|\psi|^2\)</span> and not <span class="math inline">\(\psi\)</span>, so there is no requirement on what <span class="math inline">\(\psi\)</span> needs to be. Formally, <span class="math inline">\(\psi\)</span> belongs to a class of functions which are considered <em>square-integrable</em>, namely the property that <span class="math inline">\(|\psi|^2\)</span> must be integrable.</p>
 </div>
 </section>
-<section id="time-independent-schrodinger-equation" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="time-independent-schrodinger-equation"><span class="header-section-number">3.2</span> Time Independent Schrodinger Equation</h2>
+<section id="time-independent-schrodinger-equation" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="time-independent-schrodinger-equation"><span class="header-section-number">4.2</span> Time Independent Schrodinger Equation</h2>
 <p>Now, we will take a look at how we actually write down the wavefunction <span class="math inline">\(\psi\)</span>. To begin, recall that from [REF formalisms] that <span class="math inline">\(\psi\)</span> can be expressed in many different ways, depending on the basis we choose. One particular basis of interest to us is the <em>energy</em> basis, which are eigenstates of the Hamiltonian operator <span class="math inline">\(\hat{H}\)</span>. These are of particular interest to us since at a high level, one primary property we care about in our quantum system is the energy of our particles. Now, since <span class="math inline">\(\psi\)</span> is written as a linear combination of these eigenstates, the next logical step is to solve the eigenvalue equation for <span class="math inline">\(H\)</span> to find them. This equation is known as the <strong>time-independent Schrodinger equation (TISE)</strong>, which we introduce below:</p>
 <div id="thm-tise" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 3.1 (Time-Independent Schrodinger Equation)</strong></span> Given a Hamiltonian <span class="math inline">\(\hat{H}\)</span>, its energy eigenstates are given by the eigenvalue equation: <span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 4.1 (Time-Independent Schrodinger Equation)</strong></span> Given a Hamiltonian <span class="math inline">\(\hat{H}\)</span>, its energy eigenstates are given by the eigenvalue equation: <span class="math display">\[
     \hat{H} \ket{\psi} = E \ket{\psi}
 \]</span></p>
 </div>
@@ -273,11 +279,11 @@ The position operator is <span class="math inline">\(\hat{X} = x\)</span>, and t
     \left(-\frac{i\hbar}{2m} \pdv[2]{x} + V(x)\right) \ket{\psi} = E \ket{\psi}
 \]</span> and now the path forward is clear: for different systems, we substitute in the appropriate potential <span class="math inline">\(V(x)\)</span>, and solve the differential equation for <span class="math inline">\(\psi\)</span>, and out comes the energy eigenstates!</p>
 </section>
-<section id="fundamental-problems" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="fundamental-problems"><span class="header-section-number">3.3</span> Fundamental Problems</h2>
+<section id="fundamental-problems" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="fundamental-problems"><span class="header-section-number">4.3</span> Fundamental Problems</h2>
 <p>Armed with the time-independent Schrodinger equation, let’s go ahead and see some simple but illustrative examples of <span class="math inline">\(V(x)\)</span> for which <span class="math inline">\(\psi\)</span> is analytically solvable. We first begin with the simplest case for <span class="math inline">\(V\)</span>, and work our way to more complicated potentials.</p>
-<section id="sec-free-particle" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="sec-free-particle"><span class="header-section-number">3.3.1</span> The Free Particle</h3>
+<section id="sec-free-particle" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="sec-free-particle"><span class="header-section-number">4.3.1</span> The Free Particle</h3>
 <p>What’s the simplest form of <span class="math inline">\(V(x)\)</span>? Well, <span class="math inline">\(V(x) = 0\)</span> of course! This case is known as the <em>free particle</em>, which we will study below. In this case, the time-independent Schrodinger equation reads:<br>
 <span class="math display">\[
     -\frac{i\hbar}{2m} \frac{\partial^2}{\partial x^2} \psi = E \psi
@@ -294,14 +300,14 @@ However, this solution has a problem: it violates normalizability! If we try to 
     e^{-2ikx} \ dx = \infty
 \]</span> which diverges to infinity. So what does this mean? Well, the only natural conclusion is that such a wavefunction is inadmissible, and therefore a free particle with a definite energy <span class="math inline">\(E\)</span> cannot exist. Instead, the solution is to consider a linear combination of a <em>range</em> of energies, represented as an integral: <span id="eq-free-particle"><span class="math display">\[
     \psi(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty}\phi(k) e^{ikx} \ dk
-\tag{3.1}\]</span></span> where <span class="math inline">\(\phi(k)\)</span> essentially represents the “weight”, or contribution that the wave with momentum <span class="math inline">\(k\)</span> conributes to the overall <span class="math inline">\(\psi(x)\)</span>. Those that are familiar with Fourier analysis will recognize this equation immediately, and point out that <span class="math inline">\(\psi(x)\)</span> and <span class="math inline">\(\phi(k)\)</span> are related by the Fourier transform: <span class="math display">\[
+\tag{4.1}\]</span></span> where <span class="math inline">\(\phi(k)\)</span> essentially represents the “weight”, or contribution that the wave with momentum <span class="math inline">\(k\)</span> conributes to the overall <span class="math inline">\(\psi(x)\)</span>. Those that are familiar with Fourier analysis will recognize this equation immediately, and point out that <span class="math inline">\(\psi(x)\)</span> and <span class="math inline">\(\phi(k)\)</span> are related by the Fourier transform: <span class="math display">\[
     \phi(k) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty}\psi(x) e^{-ikx} \ d x
 \]</span> And because of this fact, this means that <span class="math inline">\(\psi(x)\)</span> and <span class="math inline">\(\phi(k)\)</span> are actully equivalent descriptions of the same state! This doesn’t resolve our initial problem though: how do we find <span class="math inline">\(\phi(k)\)</span>? The trick lies in the fact that <span class="math inline">\(\phi(k)\)</span> has no explicit time-dependence, so we can pick a time which we know the form of <span class="math inline">\(\psi(x)\)</span> (which must be normalized), and solve for <span class="math inline">\(\phi(k)\)</span> there. Generally, this time is chosen to be at <span class="math inline">\(t = 0\)</span>, so: <span class="math display">\[
     \phi(k) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} \psi(x, 0) e^{-ikx} \ dx
-\]</span> which you can then plug into <a href="#eq-free-particle" class="quarto-xref">Equation&nbsp;<span>3.1</span></a> to get <span class="math inline">\(\psi(x)\)</span>. In essence, because the Fourier transform doesn’t touch the normalization condition at all (it just provides a means to transform from position to frequency space), once you start with a normalized wavefunction, it will always be normalized.</p>
+\]</span> which you can then plug into <a href="#eq-free-particle" class="quarto-xref">Equation&nbsp;<span>4.1</span></a> to get <span class="math inline">\(\psi(x)\)</span>. In essence, because the Fourier transform doesn’t touch the normalization condition at all (it just provides a means to transform from position to frequency space), once you start with a normalized wavefunction, it will always be normalized.</p>
 </section>
-<section id="the-infinite-square-well" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="the-infinite-square-well"><span class="header-section-number">3.3.2</span> The Infinite Square Well</h3>
+<section id="the-infinite-square-well" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="the-infinite-square-well"><span class="header-section-number">4.3.2</span> The Infinite Square Well</h3>
 <p>With <span class="math inline">\(V(x) = 0\)</span> solved, let’s move forward and look at our first non-trivial <span class="math inline">\(V(x)\)</span>, defined by the piecewise function: <span class="math display">\[
     V(x) =
     \begin{cases}
@@ -332,8 +338,8 @@ However, this solution has a problem: it violates normalizability! If we try to 
     \psi_n(x) = \sqrt{\frac{2}{a}} \sin\left( \frac{n\pi}{a}x \right)
 \]</span> Hopefully through this example you can start to see how the idea of quantization falls out very naturally from the simple restriction that <span class="math inline">\(\psi\)</span> must be continuous: it’s an example of how quantum mechanics is fundamentally different from classical mechanics, and yet it makes extremely accurate descriptions of the phenomena around us.</p>
 </section>
-<section id="delta-function-potentials" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="delta-function-potentials"><span class="header-section-number">3.3.3</span> Delta Function Potentials</h3>
+<section id="delta-function-potentials" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="delta-function-potentials"><span class="header-section-number">4.3.3</span> Delta Function Potentials</h3>
 <p>In this section, we will consider <span class="math inline">\(V(x)\)</span> of a very particular form: <span class="math display">\[
     V(x) = -a\delta(x)
 \]</span> Here, <span class="math inline">\(\delta(x)\)</span> refers to the Dirac delta function, which is quite a funny object. It’s not a “function” in the traditional sense, and instead defined as a function whose value is zero everywhere but integrates to 1 over the entire real line. In this sense, it’s possible to represent the delta function as: <span class="math display">\[
@@ -353,7 +359,7 @@ However, this solution has a problem: it violates normalizability! If we try to 
     \pdv[2]{\psi}{x} = -\frac{2mE}{\hbar^2} = \kappa^2 \psi
 \]</span> where: <span id="eq-3-energy"><span class="math display">\[
     \kappa = \frac{\sqrt{-2mE}}{\hbar}
-\tag{3.2}\]</span></span> remember, <span class="math inline">\(\kappa\)</span> is still positive here since <span class="math inline">\(E\)</span> is negative. Just like the free particle solution, both the positive and negative exponential are valid solutions to the differential equation: <span class="math display">\[
+\tag{4.2}\]</span></span> remember, <span class="math inline">\(\kappa\)</span> is still positive here since <span class="math inline">\(E\)</span> is negative. Just like the free particle solution, both the positive and negative exponential are valid solutions to the differential equation: <span class="math display">\[
     \psi = Ae^{\kappa x} + Be^{-\kappa x}
 \]</span> and here’s where our physical boundary conditions come into play. First, let’s consider the <span class="math inline">\(x &lt; 0\)</span> case. Here, we require that <span class="math inline">\(\psi\)</span> doesn’t blow up as <span class="math inline">\(x \to -\infty\)</span>, which is only possible if the negative exponential vanishes. Likewise, when <span class="math inline">\(x &gt; 0\)</span> we don’t want <span class="math inline">\(\psi\)</span> to blow up as <span class="math inline">\(x \to \infty\)</span>, hence the positive exponential term vanishes. Put put together, we have the following “pieces” of our wavefunction: <span class="math display">\[
     \psi_L = Ae^{\kappa x} \quad \psi_R = Be^{-\kappa x}
@@ -375,7 +381,7 @@ However, this solution has a problem: it violates normalizability! If we try to 
 \]</span> since <span class="math inline">\(\psi\)</span> is continuous then the right side is continuous, which means the left must be also. If <span class="math inline">\(\psi''\)</span> is continuous, then this implies that <span class="math inline">\(\psi'\)</span> must be differentiable, hence it must be continuous.</p>
 <p>But what if <span class="math inline">\(V(x)\)</span> is not continuous? We’ve seen two examples already where <span class="math inline">\(V(x)\)</span> is not continuous, so what then? As it turns out, even when <span class="math inline">\(V(x)\)</span> is discontinuous, as long as <span class="math inline">\(V(x)\)</span> is not <em>infinite</em>, then continuity in <span class="math inline">\(d\psi / dx\)</span> is still guaranteed, the proof of which we outline below:</p>
 <div id="thm-continuity" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 3.2</strong></span> For a given potential <span class="math inline">\(V(x)\)</span>, as long as <span class="math inline">\(V(x)\)</span> is finite, the wavefunction <span class="math inline">\(\psi\)</span> and its derivative <span class="math inline">\(\psi'\)</span> is always continuous.</p>
+<p><span class="theorem-title"><strong>Theorem 4.2</strong></span> For a given potential <span class="math inline">\(V(x)\)</span>, as long as <span class="math inline">\(V(x)\)</span> is finite, the wavefunction <span class="math inline">\(\psi\)</span> and its derivative <span class="math inline">\(\psi'\)</span> is always continuous.</p>
 <!-- I threw the proof inside the theorem box, do we want to do this?-->
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span>Consider an arbitrary <span class="math inline">\(V(x)\)</span>. Then, Schrodinger’s equation reads: <span class="math display">\[
@@ -394,14 +400,14 @@ However, this solution has a problem: it violates normalizability! If we try to 
 <p>This is also why we didn’t have to consider continuity in <span class="math inline">\(\psi'\)</span> when dealing with the infinite square well. Now we return to the delta function. In this case, since <span class="math inline">\(V(x)\)</span> is not finite, a discontinuity in <span class="math inline">\(\psi'\)</span> is allowed, but the discontinuity at <span class="math inline">\(x = 0\)</span> will tell us more about the allowed energy: <span id="eq-delta-function-integral"><span class="math display">\[
     \psi'(\epsilon) - \psi'(-\epsilon) = -\frac{2m}{\hbar^2} \int_{-\epsilon}^{\epsilon} a \delta(x) \psi(x) =
     -\frac{2ma}{\hbar^2} \psi(0) = -\frac{2ma}{\hbar^2}A
-\tag{3.3}\]</span></span> The derivative of <span class="math inline">\(\psi\)</span> is: <span class="math display">\[
+\tag{4.3}\]</span></span> The derivative of <span class="math inline">\(\psi\)</span> is: <span class="math display">\[
     \psi' = \begin{cases}
         A \kappa e^{\kappa x} &amp; x &lt; 0\\
         -A \kappa e^{-\kappa x} &amp; x &gt; 0
     \end{cases}
-\]</span> and as <span class="math inline">\(x \to 0\)</span>, then <span class="math inline">\(\psi' \to A \kappa\)</span> for <span class="math inline">\(x &lt; 0\)</span> and <span class="math inline">\(A\kappa\)</span> for <span class="math inline">\(x &gt; 0\)</span>. Substituting these values into <a href="#eq-delta-function-integral" class="quarto-xref">Equation&nbsp;<span>3.3</span></a> gives us: <span id="eq-3-kappa-second-definition"><span class="math display">\[
+\]</span> and as <span class="math inline">\(x \to 0\)</span>, then <span class="math inline">\(\psi' \to A \kappa\)</span> for <span class="math inline">\(x &lt; 0\)</span> and <span class="math inline">\(A\kappa\)</span> for <span class="math inline">\(x &gt; 0\)</span>. Substituting these values into <a href="#eq-delta-function-integral" class="quarto-xref">Equation&nbsp;<span>4.3</span></a> gives us: <span id="eq-3-kappa-second-definition"><span class="math display">\[
     -2 A \kappa = -\frac{2ma}{\hbar^2}A \implies \kappa = \frac{ma}{\hbar^2}
-\tag{3.4}\]</span></span> which means we can finally solve for <span class="math inline">\(E\)</span>! Recall all the way back (<a href="#eq-3-energy" class="quarto-xref">Equation&nbsp;<span>3.2</span></a>) that we defined <span class="math inline">\(E\)</span> in terms of <span class="math inline">\(\kappa\)</span>. But now since we know <span class="math inline">\(\kappa\)</span> in terms of other constants, we can finally back out <span class="math inline">\(E\)</span>: <span class="math display">\[
+\tag{4.4}\]</span></span> which means we can finally solve for <span class="math inline">\(E\)</span>! Recall all the way back (<a href="#eq-3-energy" class="quarto-xref">Equation&nbsp;<span>4.2</span></a>) that we defined <span class="math inline">\(E\)</span> in terms of <span class="math inline">\(\kappa\)</span>. But now since we know <span class="math inline">\(\kappa\)</span> in terms of other constants, we can finally back out <span class="math inline">\(E\)</span>: <span class="math display">\[
     E = -\frac{ma^2}{2 \hbar^2}
 \]</span></p>
 <p>and so finally, we have the full solution for the delta function potential, for <span class="math inline">\(E &lt; 0\)</span>: <span class="math display">\[
@@ -415,7 +421,7 @@ However, this solution has a problem: it violates normalizability! If we try to 
         \psi_L'(0) &amp;=  ik(B - A) \\
         \psi_R'(0) &amp;= ik (D - C)
     \end{align*}
-\]</span> Employing the same trick as <a href="#eq-delta-function-integral" class="quarto-xref">Equation&nbsp;<span>3.3</span></a>, we get: <span class="math display">\[
+\]</span> Employing the same trick as <a href="#eq-delta-function-integral" class="quarto-xref">Equation&nbsp;<span>4.3</span></a>, we get: <span class="math display">\[
     \psi'(\epsilon) - \psi'(-\epsilon) = ik(D - C) - ik(B - A) = \frac{2ma}{\hbar^2}\psi(0) = \frac{2ma}{\hbar^2}(A + B)
 \]</span> We choose to use <span class="math inline">\(\psi_L(0) = A + B\)</span> for the last equality; the logic works the same if you use <span class="math inline">\(\psi_R\)</span>. There is a more compact way to write this equality, if you let <span class="math inline">\(\beta = \frac{ma}{\hbar^2 k}\)</span> then you have: <span class="math display">\[
     C - D = A(2 i \beta + 1) + B (2 i \beta - 1)
@@ -436,17 +442,17 @@ However, this solution has a problem: it violates normalizability! If we try to 
 \]</span> which makes sense – the wave is either transmitted or reflected, without loss. If you now bring back the substitution for <span class="math inline">\(\beta\)</span> that we did earlier, we can write these in terms of the energy itself: <span class="math display">\[
     R = \frac{1}{1 + (2\hbar^2 E / ma^2)}, \quad T = \frac{1}{1 + (ma^2 / 2\hbar^2 E)}
 \]</span> and that’s the full solution to the delta barrier! Firstly, you can already see that this derivation is <em>very</em> non-classical: it predicts that a potential well has the chance to scatter a particle</p>
-<p>At this point, let’s talk briefly about the delta potential <em>barrier</em>, which is basically the same potential but positive: <span class="math inline">\(V(x) = a \delta(x)\)</span>. While it may seem like we need to do the math all over again, we actually don’t since switching the sign only changes the behavior at <span class="math inline">\(x = 0\)</span>, so our scattering state remains the same. What does change though is the bound state. To see why, recall that for the bound state, <span class="math inline">\(\kappa\)</span> was defined as (<a href="#eq-3-energy" class="quarto-xref">Equation&nbsp;<span>3.2</span></a>): <span class="math display">\[
+<p>At this point, let’s talk briefly about the delta potential <em>barrier</em>, which is basically the same potential but positive: <span class="math inline">\(V(x) = a \delta(x)\)</span>. While it may seem like we need to do the math all over again, we actually don’t since switching the sign only changes the behavior at <span class="math inline">\(x = 0\)</span>, so our scattering state remains the same. What does change though is the bound state. To see why, recall that for the bound state, <span class="math inline">\(\kappa\)</span> was defined as (<a href="#eq-3-energy" class="quarto-xref">Equation&nbsp;<span>4.2</span></a>): <span class="math display">\[
     \kappa = \frac{\sqrt{-2 m E}}{\hbar}
-\]</span> which was guaranteed to be <em>real</em> and <em>positive</em>, since <span class="math inline">\(E &lt; 0\)</span>. However, if we look at our other definition of <span class="math inline">\(\kappa\)</span> in terms of <span class="math inline">\(a\)</span> and <span class="math inline">\(m\)</span> (<a href="#eq-3-kappa-second-definition" class="quarto-xref">Equation&nbsp;<span>3.4</span></a>): <span class="math display">\[
+\]</span> which was guaranteed to be <em>real</em> and <em>positive</em>, since <span class="math inline">\(E &lt; 0\)</span>. However, if we look at our other definition of <span class="math inline">\(\kappa\)</span> in terms of <span class="math inline">\(a\)</span> and <span class="math inline">\(m\)</span> (<a href="#eq-3-kappa-second-definition" class="quarto-xref">Equation&nbsp;<span>4.4</span></a>): <span class="math display">\[
     \kappa = \frac{ma}{\hbar^2}
 \]</span> and so if <span class="math inline">\(a &lt; 0\)</span>, this solution for <span class="math inline">\(\kappa\)</span> becomes inconsistent with the first, and hence such a bound state cannot exist. However, the scattering solutions are fine because we don’t have an equivalent restriction on <span class="math inline">\(k\)</span>.</p>
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>It is interesting to note that because the transmission and reflection are dependent on <span class="math inline">\(a^2\)</span>, these quantities remain the same regardless of a well or a barrier! This is quite striking – for one, just the mere fact that two different potentials give you the same reflection and transmission is fascinating. Moreover, the fact that a potential well can induce a reflection is also fascinating. Classically, this would be the equivalent of throwing a ball over a well and it having a chance to bounce right back at you, but in quantum mechanics, such a phenomenon is totally allowed!</p>
 </div>
 </section>
-<section id="sec-potential-step" class="level3" data-number="3.3.4">
-<h3 data-number="3.3.4" class="anchored" data-anchor-id="sec-potential-step"><span class="header-section-number">3.3.4</span> The Potential Step</h3>
+<section id="sec-potential-step" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="sec-potential-step"><span class="header-section-number">4.3.4</span> The Potential Step</h3>
 <p>Here, we will consider a potential represented by a wall of finite height: <span class="math display">\[
     V(x) = \begin{cases}
     0 &amp; x &lt; 0\\
@@ -454,7 +460,7 @@ However, this solution has a problem: it violates normalizability! If we try to 
     \end{cases}
 \]</span> There are two different kind of states to consider, <span class="math inline">\(0 &lt; E &lt; V_0\)</span> and <span class="math inline">\(E &gt; V_0\)</span>, and the <span class="math inline">\(E &lt; 0\)</span> state does not exist. Let’s consider the <span class="math inline">\(E &lt; V_0\)</span> state first. To the left of the barrier, we have a scattering state, but to the right we have a <em>decaying</em> state, since <span class="math inline">\(E - V_0\)</span> is negative. This is because inside the barrier, Schrodinger’s equation reads: <span class="math display">\[
     \pdv[2]{\psi}{x} = (E - V_0)\psi
-\]</span> so following the same substitution for <span class="math inline">\(k\)</span> as in <a href="#sec-free-particle" class="quarto-xref"><span>Section 3.3.1</span></a>, you get: <span class="math display">\[
+\]</span> so following the same substitution for <span class="math inline">\(k\)</span> as in <a href="#sec-free-particle" class="quarto-xref"><span>Section 4.3.1</span></a>, you get: <span class="math display">\[
     k = \frac{\sqrt{2m(E - V_0)}}{\hbar} = \frac{i\sqrt{2m (V_0 - E)}}{\hbar}
 \]</span> since <span class="math inline">\(k\)</span> is purely imaginary, this turns the oscillatory <span class="math inline">\(e^{ikx}\)</span> into a decaying exponential. Combining this with the oscillatory solution to the left of the barrier gives you the following solution for <span class="math inline">\(\psi\)</span>: <span class="math display">\[
     \psi\left( x \right) = \begin{cases}
@@ -472,7 +478,7 @@ However, this solution has a problem: it violates normalizability! If we try to 
     B = \frac{ik + \kappa}{ik - \kappa}A, \quad D = \frac{2ik}{ik - \kappa} A
 \]</span> Here, we can calculate the reflection coefficient: <span class="math display">\[
     R = \frac{|B|^2}{|A|^2} = \left| \frac{ik + \kappa}{ik - \kappa} \right|^2 = 1
-\]</span> so this tells us that the entire amplitude of the wave is reflected, which makes sense since the barrier is infinitely thick, so any wave will be fully reflected back. As we’ll see in <a href="#sec-potential-barrier" class="quarto-xref"><span>Section 3.3.5</span></a>, when the barrier is only finitely thick you will get a transmitted wave, called <em>tunnelling</em>.</p>
+\]</span> so this tells us that the entire amplitude of the wave is reflected, which makes sense since the barrier is infinitely thick, so any wave will be fully reflected back. As we’ll see in <a href="#sec-potential-barrier" class="quarto-xref"><span>Section 4.3.5</span></a>, when the barrier is only finitely thick you will get a transmitted wave, called <em>tunnelling</em>.</p>
 <div class="warning">
 <p>You may be wondering: if the entire wave is reflected, then why is the wavefunction nonzero inside the barrier? Doesn’t this imply that there is a nonzero probability for the particle to <em>be</em> inside the barrier, and thus not be reflected?</p>
 <p>The answer to this question is quite subtle. Firstly, decaying solutions don’t carry any energy, as their probability current turns out to be zero. Hence, all the energy must be reflected back. But, perhaps this isn’t a satisfying answer, in which case there another solution. Suppose you <em>were</em> able to measure the particle inside the barrier. Well, the decaying solution has a characteristic length of <span class="math inline">\(\frac{1}{\kappa}\)</span>, so your variance in position is <span class="math inline">\(\Delta x \sim \frac{1}{\kappa}\)</span>. But, by the uncertainty relation, you find that: <span class="math display">\[
@@ -494,8 +500,8 @@ However, this solution has a problem: it violates normalizability! If we try to 
     2}}{\left[ 1 + \left( 1 - \frac{V_0}{E} \right)^{1 / 2} \right]^2}
 \]</span> and you should verify on your own that <span class="math inline">\(R + T = 1\)</span>. Just like the delta potential well, we find that even though the energy of your particle can be higher than the step, you <em>still</em> get a reflection regardless, which is a fundamentally non-classical result.</p>
 </section>
-<section id="sec-potential-barrier" class="level3" data-number="3.3.5">
-<h3 data-number="3.3.5" class="anchored" data-anchor-id="sec-potential-barrier"><span class="header-section-number">3.3.5</span> The Potential Barrier</h3>
+<section id="sec-potential-barrier" class="level3" data-number="4.3.5">
+<h3 data-number="4.3.5" class="anchored" data-anchor-id="sec-potential-barrier"><span class="header-section-number">4.3.5</span> The Potential Barrier</h3>
 <p>This potential is similar to that of the potential step, but this time it’s a finitely long wall: <span class="math display">\[
     V(x) = \begin{cases}
     0 &amp; x &lt; 0\\
@@ -547,8 +553,8 @@ However, this solution has a problem: it violates normalizability! If we try to 
 \]</span> Here, we want you to focus on the physics and not the algebra so we won’t go into detail, but it really does work in the same way we’ve always been doing it: consider a left-incident wave, set <span class="math inline">\(D = 0\)</span>, then eliminate <span class="math inline">\(F\)</span> and <span class="math inline">\(G\)</span> and solve for <span class="math inline">\(\frac{B}{A}\)</span> and <span class="math inline">\(\frac{C}{A}\)</span>. Finally, square these and you get your reflection and transmission coefficient.</p>
 <p>Speaking of focusing on the physics, notice that because the transmission term has a <span class="math inline">\(\sin^2(k'a)\)</span> term, it means that there are some configurations where the <span class="math inline">\(T = 1\)</span> and <span class="math inline">\(R = 0\)</span>, hence you get perfect transmission!</p>
 </section>
-<section id="finite-square-well" class="level3" data-number="3.3.6">
-<h3 data-number="3.3.6" class="anchored" data-anchor-id="finite-square-well"><span class="header-section-number">3.3.6</span> Finite Square Well</h3>
+<section id="finite-square-well" class="level3" data-number="4.3.6">
+<h3 data-number="4.3.6" class="anchored" data-anchor-id="finite-square-well"><span class="header-section-number">4.3.6</span> Finite Square Well</h3>
 <p>Finally, the last potential we will look at in this chapter is the finite square well. This is similar to the infinite square well, but this time our walls are finitely tall. As we’ll see, this gives us a first glimpse into why the Schrodinger equation is difficult to solve analytically. Mathematically, we will express this potential as: <span class="math display">\[
     V(x) = \begin{cases}
     -V_0 &amp; -a &lt; x &lt; a\\
@@ -569,15 +575,15 @@ Starting with the first case, let’s again break up <span class="math inline">\
     \beta = \left( -\frac{2mE}{\hbar^2} \right)^{1 / 2}
 \]</span> Now, we will leverage the following theorem to make our lives easier:</p>
 <div id="thm-1d-symmetric-potential" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 3.3 (Wavefunction for Symmetric Potentials)</strong></span> If the potential <span class="math inline">\(V(x)\)</span> satisfies <span class="math inline">\(V(x) = V(-x)\)</span>, then its wavefunction also satisfies <span class="math inline">\(\psi(x) = \psi(-x)\)</span>.</p>
+<p><span class="theorem-title"><strong>Theorem 4.3 (Wavefunction for Symmetric Potentials)</strong></span> If the potential <span class="math inline">\(V(x)\)</span> satisfies <span class="math inline">\(V(x) = V(-x)\)</span>, then its wavefunction also satisfies <span class="math inline">\(\psi(x) = \psi(-x)\)</span>.</p>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span>Suppose first that <span class="math inline">\(\psi(x)\)</span> satisfies the Schrodinger equation for <span class="math inline">\(V(x)\)</span>. That is, <span class="math inline">\(\psi(x)\)</span> is a solution to: <span id="eq-symmetry-proof-1"><span class="math display">\[
     -\frac{\hbar^2}{2m} \pdv[2]{\psi(x)}{x} + V(x) \psi(x) = E \psi(x)
-\tag{3.5}\]</span></span> Now, consider <span class="math inline">\(\psi(-x)\)</span>: <span class="math display">\[
+\tag{4.5}\]</span></span> Now, consider <span class="math inline">\(\psi(-x)\)</span>: <span class="math display">\[
     -\frac{\hbar^2}{2m} \pdv[2]{\psi(-x)}{x} + V(-x)\psi(-x) = E\psi(-x)
 \]</span> since <span class="math inline">\(V(-x) = V(x)\)</span>, then: <span class="math display">\[
     -\frac{\hbar^2}{2m}\pdv[2]{\psi(-x)}{x} + V(x) \psi(-x) = E\psi(-x)
-\]</span> and since this differential equation is the same as the original equation (<a href="#eq-symmetry-proof-1" class="quarto-xref">Equation&nbsp;<span>3.5</span></a>), then <span class="math inline">\(\psi(-x)\)</span> is also a solution. Since this is the case, then any even and odd linear combination of these will also be a solution. That is, the functions: <span class="math display">\[
+\]</span> and since this differential equation is the same as the original equation (<a href="#eq-symmetry-proof-1" class="quarto-xref">Equation&nbsp;<span>4.5</span></a>), then <span class="math inline">\(\psi(-x)\)</span> is also a solution. Since this is the case, then any even and odd linear combination of these will also be a solution. That is, the functions: <span class="math display">\[
     \begin{align*}
         \phi(x) &amp;= \psi(x) + \psi(-x)\\
         \phi'(x) &amp;= \psi(x) - \psi(-x)
@@ -617,11 +623,11 @@ Starting with the first case, let’s again break up <span class="math inline">\
 \]</span></p>
 </section>
 </section>
-<section id="time-dependent-schrodinger-equation" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="time-dependent-schrodinger-equation"><span class="header-section-number">3.4</span> Time-Dependent Schrodinger Equation</h2>
+<section id="time-dependent-schrodinger-equation" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="time-dependent-schrodinger-equation"><span class="header-section-number">4.4</span> Time-Dependent Schrodinger Equation</h2>
 <p>So far, we’ve been dealing with the time <em>independent</em> Schrodinger equation, which as its name suggests, does not include time as a parameter. In this section, we will look at how we transform a solution to the time-independent solution into one that satisfies time dependence. While this may seem complicated at first, the trick actually turns out to be very simple.</p>
-<section id="separable-solutions" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="separable-solutions"><span class="header-section-number">3.4.1</span> Separable solutions</h3>
+<section id="separable-solutions" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="separable-solutions"><span class="header-section-number">4.4.1</span> Separable solutions</h3>
 <p>To begin, let’s take a look at the time-dependent Schrodinger equation: <span class="math display">\[
     i\hbar \pdv{\Psi}{t} = -\frac{\hbar^2}{2m} \pdv[2]{\Psi}{x} + V\Psi
 \]</span> Because we deal with time-independent potentials, it means that we can actually solve this equation by method of <em>separation of variables</em>. That is, we look for solutions of the form:<br>
@@ -631,11 +637,11 @@ Starting with the first case, let’s again break up <span class="math inline">\
     i\hbar \psi \dv{\phi}{t} = -\frac{\hbar^2}{2m} \dv[2]{\psi}{x} \phi + V \psi \phi
 \]</span> dividing through by <span class="math inline">\(\psi \phi\)</span>: <span id="eq-separable-equation"><span class="math display">\[
     i\hbar \frac{1}{\phi} \dv{\phi}{t} = -\frac{\hbar^2}{2m} \frac{1}{\psi} \dv[2]{\psi}{x} + V
-\tag{3.6}\]</span></span> now comes a crucial argument: the left hand side is a function of <span class="math inline">\(t\)</span>, while the right side is a function of <span class="math inline">\(x\)</span>. Therefore, in order for this equation to hold both sides <strong>must</strong> be constant. Otherwise, you could change one side of this equation without changing the other, violating the equality. Therefore, we can set both sides to be constant: <span class="math display">\[
+\tag{4.6}\]</span></span> now comes a crucial argument: the left hand side is a function of <span class="math inline">\(t\)</span>, while the right side is a function of <span class="math inline">\(x\)</span>. Therefore, in order for this equation to hold both sides <strong>must</strong> be constant. Otherwise, you could change one side of this equation without changing the other, violating the equality. Therefore, we can set both sides to be constant: <span class="math display">\[
     i\hbar \frac{1}{\phi} \dv{\phi}{t} = E \implies \dv{\phi}{t} = -\frac{iE}{\hbar}\phi
 \]</span> this is now a simple differential equation for <span class="math inline">\(\phi\)</span>, which gives solutions: <span class="math display">\[
     \phi(t) = e^{-iEt / \hbar}
-\]</span> and that’s our time dependence! All you have to do now is throw this onto every solution to the spatial <span class="math inline">\(\psi(x)\)</span>, and you’ve got your general solution <span class="math inline">\(\Psi(x, t)\)</span>. As a side note, setting the right hand side of <a href="#eq-separable-equation" class="quarto-xref">Equation&nbsp;<span>3.6</span></a> to <span class="math inline">\(E\)</span> gives you the time-independent Schrodinger equation!</p>
+\]</span> and that’s our time dependence! All you have to do now is throw this onto every solution to the spatial <span class="math inline">\(\psi(x)\)</span>, and you’ve got your general solution <span class="math inline">\(\Psi(x, t)\)</span>. As a side note, setting the right hand side of <a href="#eq-separable-equation" class="quarto-xref">Equation&nbsp;<span>4.6</span></a> to <span class="math inline">\(E\)</span> gives you the time-independent Schrodinger equation!</p>
 <p>At this point, you may also be wondering if we’ve covered <em>all</em> possible solutions this way. After all, the condition that <span class="math inline">\(\Psi(x, t)\)</span> be separable is a fairly restrictive one. As it turns out, whenever the Hamiltonian is time-independent and <span class="math inline">\(\hat{H}\)</span> admits a complete set of energy eigenfunctions, then the separable solutions are enough to describe any general solution. Here, completeness refers to the condition that any square-integrable function (i.e.&nbsp;any function in our Hilbert space <span class="math inline">\(\mathcal{H}\)</span>) can be written as a linear combination of these eigenfunctions. Since every solution <span class="math inline">\(\Psi(x, t)\)</span> must be square-integrable, then this completeness condition is all we need to guarantee that we’ve covered all solutions.</p>
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>This completeness condition is actually not as restrictive as you might think – all the Hamiltonians we will deal with in this book satisfy this completeness, even though we’ll be looking at some pretty complicated potentials later on!</p>
@@ -1226,8 +1232,8 @@ document.addEventListener("DOMContentLoaded", () => {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../part1/formalism.html" class="pagination-link" aria-label="Postulates and Formalism">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Postulates and Formalism</span></span>
+      <a href="../part1/postulates.html" class="pagination-link" aria-label="The Postulates of Quantum Mechanics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Postulates of Quantum Mechanics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
