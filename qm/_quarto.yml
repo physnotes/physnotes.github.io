@@ -17,6 +17,7 @@ book:
       chapters: 
         - part1/origins.qmd
         - part1/formalism.qmd
+        - part1/postulates.qmd 
     - references.qmd
 
   page-footer: "[Home](../)"
