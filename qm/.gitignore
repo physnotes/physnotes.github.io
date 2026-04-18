@@ -1,1 +1,7 @@
 /.quarto/
+
+_book/
+
+*_files/
+
+_quarto_internal_error.scss

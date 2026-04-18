@@ -17,10 +17,11 @@ all of the math we're about to explain with the utmost rigor; rather, the goal i
 so the math we'll use to develop the remaining theory of quantum mechanics will make sense.
 :::
 
-Let's now begin with the formalism. It should be noted that we will assume some prior familiarity with
-concepts in linear algebra, such as linear maps, vectors, vector spaces, and operators. We will still aim to
-be as comprehensive as we can, but if you have further questions about linear algebra, feel free to consult
-some linear algebra textbooks (such as Axler's *Linear Algebra Done Right*)[^linear-algebra].
+Let's now begin with the formalism. For the time being, we will assume some prior familiarity working with
+linear algebra objects like vector spaces and linear maps, and a bit of knowledge about complex numbers, such as the
+definition of a complex conjugate. If you're interested in learning more about these, feel
+free to check out the appendices at the end of this book, or consult some linear algebra textbooks such as
+Axler's *Linear Algebra Done Right*.[^linear-algebra].
 <!--
 :::{.notation}
 One brief notational remark. For brevity, we will use *quantifiers* to shorten notation:
@@ -33,35 +34,54 @@ One brief notational remark. For brevity, we will use *quantifiers* to shorten n
 Now, on with the show!
 
 ## The Wavefunction
-The central focus of our analysis is the *wavefunction* of a system, which we'll denote with a capital or lowercase $\psi$. As the name suggests, this is a function that will take certain inputs (such as position, momentum, etc) and can be used to ascertain other properties (such as energy). Solving for the wavefunction of a system is the central focus of quantum mechanics, since the wavefunction itself fully represents a system/state.
+The central focus of our analysis is the *wavefunction* of a system, which we'll denote with a capital 
+or lowercase $\psi$. As the name suggests, this is a function that will take certain inputs (such as 
+position, momentum, etc) and can be used to ascertain other properties (such as energy). 
+Solving for the wavefunction of a system is the central focus of quantum mechanics, 
+since the wavefunction itself fully represents a system/state; this will be expanded on further in
+[POSTULATES REF].  
 
 Now, since the wavefunction has to represent physically realizable states (eg, an electron or a Hydrogen
 atom), there are certain restrictions we must enforce on what type of function this can be. What restriction
 can we put on a function describing some sort of physical system? Answering this question involves
 understanding what the wavefunction is meant to encode in the first place. The key insight is recognizing
 that we can make use of *probability* for this. In other words, when measuring a particle's position, we know
-that it **must** exsist *somewhere* in space. Translating this mathematically means that the probability of
-finding the particle represented by a certain wavefunction across all of space must be $1$:
+that it **must** exist *somewhere* in space. Mathematically, this means that the probability of finding the
+wavefunction across all of space must be 1: 
 $$
-  \int |\psi(x)|^2dx = 1
+   \int_{-\infty}^{\infty} |\psi(x)|^2 \ dx = 1
 $$
-When $\psi$ satisfies this property, we say that it is *normalized*. To make our lives a little bit simpler for now, we can loosen the restriction a little bit in this original discussion and only enforce that the function is *normalizable*:
+When $\psi$ satisfies this property, we say that it is *normalized*. 
+To make our lives a little bit simpler for now, we can loosen this restriction and only enforce that the
+function is *normalizable*:
 $$
-  \int |\psi(x)|^2dx < \infty
+  \int_{-\infty}^{\infty} |\psi(x)|^2 \ dx < \infty
 $$
-While this doesn't guarantee that the probability is exactly $1$, it does make it possible to adjust $\psi$
-to be properly normalized (usually through a normalization coefficient).
+This condition ends up being sufficient for our discussion, since any wavefunction satisfying this can be
+normalized by multiplying $\psi$ by the reciprocal of the square root of the integral: 
+$$
+	\int_{-\infty}^{\infty} |\psi(x)|^2 \ d x = A \implies \int_{-\infty}^{\infty} \left|\frac{1}{\sqrt{A}} \psi(x)\right|^2 \ d x
+	= 1
+$$
 
 :::{.remark}
   The interpretation that the squared norm of the wavefunction encodes probability was a nontrivial leap that
-took physicists years to uncover. We applaud Max Born's discovery, but will make no attempt to naturally
-arrive at this conclusion ourselves.
+  took physicists years to uncover. We applaud Max Born's discovery, but will make no attempt to naturally
+  arrive at this conclusion ourselves.
 :::
-
-So, now that we've established what valid wavefunctions can look like, we can consider the space of all
-possible wavefunctions[^complex-function] as one unit. The space of all complex, normalizable functions will
-itself form what is known as a *complex vector space*.
-
+The requirement that $|\psi|^2$ is normalizable (not necessarily $\psi$!) and it being complex valued are the
+only restrictions on the kinds of $\psi$ we are allowed to consider. The collection of such $\psi$ forms a
+vector space, and since $\psi$ is complex-valued, we call this a *complex vector space*. 
+We can then take this space, and attach an operation called the *inner product* to produce a *Hilbert space*.[^hilbert-space]
+Specifically, the inner product we use is:
+$$
+	\langle \psi(x), \phi(x) \rangle = \int_{-\infty}^{\infty} \psi^{*}(x)\phi(x) \ d x
+$$
+where $\psi, \phi$ are two wavefunctions and the $*$ represents the complex conjugate. Combining this inner
+product with the set of $\psi$'s defines our Hilbert space. The reason we do this is because, as we will see, 
+this framework ends up being a very natural (and elegant) way to talk about wavefunctions and the relationships 
+between them. 
+ 
 <!-- I think this should go in a linear algebra appendix-- have Carl write? -->
 <!--:::{.definition #def-vector-space}
 # Vector Space
@@ -78,34 +98,38 @@ satisfies a few general properties:
 To avoid losing generality, we represent a general field $\mathbb{F}$. Of course, scalar multiplication
 depends on what scalars (numbers) we're allowed to choose. When the coefficients are real, this field will be $\mathbb{R}$ and we say that we have a **real vector space**, and when the field is $\mathbb{C}$, we have a **complex vector space**.
 :::-->
-
-From linear algebra, we know that if two vectors $v_1, v_2$ are part of the same vector space, then any *lienar
-combination* $av_1 + bv_2$ of the two will also be part of that vector space (provided the coefficients are
-part of the correct field). Similarly, if we have two normalizable wavefunctions (alternatively called
+<!--
+From linear algebra, we know that if two vectors $v_1, v_2$ are part of the same vector space, then any
+*linear combination* $av_1 + bv_2$ where $a, b \in \mathbb{R}$ of the two will also be part of that vector space. 
+Similarly, if we have two normalizable wavefunctions (alternatively called
 *square-integrable*) $\psi_1(x)$ and $\psi_2(x)$, then any combination $c_1\psi_1(x) + c_2\psi_2(x)$ will
-also be normalizable.
+also be normalizable (see if you can prove this for yourself!). 
+-->
 
-The space of all complex square-integrable functions along with an additional operation called the *inner
-product* is called a *Hilbert space*[^hilbert-space]. This Hilbert space is where all of our wavefunctions
-will live. We mainly considered wavefunctions defined as functions of position $\psi(x)$, but it's entirely
-possible we could also care about wavefunctions as functions of momentum. In this case, we can convert
-between the two using a variant of what's known as the *Fourier transform*:
-$$
-\phi(p) = \frac{1}{\sqrt{2\pi\hbar}}\int dx e^{-ipx/\hbar}\psi(x)
-$$
+### Different Types of Wavefunctions  
 
+So far, we mainly considered wavefunctions defined as functions of position $\psi(x)$, but it's entirely
+possible we could also care about wavefunctions as functions of momentum (or any other variable). In the
+particular case of momentum, we can convert between the two using what's known as a *Fourier transform*: 
+$$
+	\phi(p) = \frac{1}{\sqrt{2\pi\hbar}}\int \psi(x) e^{-ipx/\hbar} \ dx
+$$
 Unlike the positional wavefunctions $\psi(x)$, which live in what we call *configuration space*, the
 Fourier-transformed momentum wavefunctions $\phi(p)$ live in *momentum space*. You may question (and
 rightfully so) whether these wavefunctions are similar enough to be comparable. Fortunately, their norms in
 their respective spaces are equal (thanks to the *Parseval identity*, which we will not prove):
 $$
-\int dx|\psi(x)|^2 = \int dp|\phi(p)|^2
+	\int_{-\infty}^{\infty} |\psi(x)|^2 \ d x= \int_{-\infty}^{\infty} |\phi(p)|^2 \ dp
 $$
-Thus, these wavefunctions in momentum space form their own separate Hilbert space. Whichever is more
-appropriate to use will depend on the problem one is attempting to solve. Configuration space wavefunctions
-are connected to physical position measurements (ie, measuring $|\psi(x)|^2$ will give a probability density
-for a particle's position), whereas momentum space wavefunctions are connected to momentum measurements. So,
-which should we use to represent a state?
+Thus, these wavefunctions in momentum space form their own separate Hilbert space (in terms of the momentum
+$p$, instead of the position $x$). It should be stressed that there is no one *correct* wavefunction: 
+$\psi(x)$ is just as valid of a wavefunction as $\psi(p)$, and the choice of which one to use will 
+depend on the problem at hand. Given that we have these choices though, this is a good point to take a step
+back and develop some general notation that is agnostic to the variable we ultimately choose.     
+
+<!--So, which should we use to represent a state? -->
+
+<!-- NOTE: I don't like this transition, think about this more. -->   
 
 ## Dirac Notation (Bras, Kets, etc.)
 Most of our study will revolve around analyzing quantum states, which begs an important question: which
@@ -123,13 +147,22 @@ our state as a wavefunction of a particular variable, like $\psi(x)$, we will ab
 state $\ket{\psi}$.
 
 :::{.remark}
+		
+1. something
+2. something else 
+
 When solving physical problems, we will often need to decide on a space and revisit the
-traditional wavefunction as a function of a variable, but in the most general case, we will use ket vectors. In fact, we use this more abstract representation to later derive the more traditional wavefunctions.
+traditional wavefunction as a function of a variable, but in the most general case, we will use ket vectors.
+In fact, we use this more abstract representation to later derive the more traditional wavefunctions.
 :::
 
-Since these are vectors, we expect them to behave as such, meaning we can commute scalars and kets:
-$$c\ket{\psi} = \ket{\psi}c$$
-These ket vectors live in a complex vector space which we'll denote $\mathcal{E}$.
+To motivate why we want to do this: recall that in the last section we defined the set of allowed $\psi$ as a
+vector space. So, it's only natural that we think of each $\psi$ as a vector and represent it using
+$\ket{\psi}$. Since these are vectors, we expect them to behave as such, satisfying properties like:
+$$
+	c \ket{\psi} = \ket{\psi} c
+$$
+for any scalar $c$. The complex vector space in which these $\ket{\psi}$ live we will denote as $\mathcal{E}$. 
 
 ### Dual Spaces
 
@@ -137,13 +170,17 @@ Linear algebra also tells us that vectors and their accompanying vector space ha
 vectors* that live in the *dual space*. These are our *bras* $\bra{}$, which live in $\mathcal{E}^{*}$. Put
 very simply, these dual vectors (otherwise known as *covectors* or *forms*), describe linear operators that
 act on vectors that live in $\mathcal{E}$:
-$$\bra{\psi}: \mathcal{E} \to \mathbb{C}$$
-In other words, a linear operation that takes ket vectors as an input and spits out a complex number will
+$$
+	\bra{\psi}: \mathcal{E} \to \mathbb{C}
+$$
+In other words, any linear operation that takes ket vectors as an input and spits out a complex number will
 belong to our dual space. So, we can act a bra on a corresponding ket:
 <!-- Rest of Dirac notation beyond \bra and \ket doesn't render, using this as a workaround for now -->
-$$\bra{\alpha}(\ket{\beta}) = \langle\alpha|\beta\rangle$$
+$$
+	\bra{\alpha}(\ket{\beta}) = \braket*{\alpha}{\beta}
+$$
 For simplicity, we can drop the parentheses in these products. Given how the dual vector is defined,
-we then know that this quantity $\langle\alpha|\beta\rangle$ will be a complex number.
+we then know that this quantity $\braket*{\alpha}{\beta}$ will be a complex number.
 
 :::{.notation}
 When we want to emphasize that a bra is a complex-valued operator that takes in a ket as an input, we may
@@ -152,11 +189,14 @@ reintroduce parentheses to accentuate this. Otherwise, we will drop it.
 
 Bras are defined as linear operators, meaning we naturally expect them to satisfy the relevant *linearity*
 and *homogeneity* conditions:
-$$\bra{\alpha}(c_1\ket{\psi_1}+c_2\ket{\psi_2}) = c_1\langle\alpha|\psi_1\rangle + c_2\langle\alpha|\psi_2\rangle$$
+$$
+	\bra{\alpha}(c_1\ket{\psi_1}+c_2\ket{\psi_2}) = c_1\langle\alpha|\psi_1\rangle + c_2\langle\alpha|\psi_2\rangle
+$$
 Additionally, scalar products and sums work exactly as we would expect:
-
-$$(c\bra{\alpha})(\ket{\psi}) = c\langle\alpha|\psi\rangle, \quad (\bra{\alpha_1} +
-\bra{\alpha_2})(\ket{\psi}) = \langle\alpha_1|\psi\rangle + \langle\alpha_2|\psi\rangle$$
+$$
+	(c\bra{\alpha})(\ket{\psi}) = c\langle\alpha|\psi\rangle, \quad (\bra{\alpha_1} +
+	\bra{\alpha_2})(\ket{\psi}) = \langle\alpha_1|\psi\rangle + \langle\alpha_2|\psi\rangle
+$$
 
 :::{.remark}
 If you're struggling to remember which name refers to which state, think about bras and kets coming in pairs,
@@ -169,7 +209,9 @@ whereas the "ket" comes second and points right, representing the traditional ve
 Even though we established what bras and kets are and the correspondence between the two may seem obvious,
 that's not good enough for us mathematically: we need an explicit way to convert between bras and kets. For
 this, let's consider some function $g$ that takes in two kets and spits out a complex number:
-$$g: \mathcal{E}\times\mathcal{E}\to\mathbb{C}$$
+$$
+	g: \mathcal{E}\times\mathcal{E}\to\mathbb{C}
+$$
 This function is called a *metric* (or *scalar product*) on $\mathcal{E}$. We want this function $g$ to
 satisfy a few key properties:
 
@@ -181,7 +223,9 @@ satisfy a few key properties:
 4. **Positive-Definite**: $g(\ket{\psi},\ket{\psi})\geq 0$; equal only when $\ket{\psi}=0$
 
 Here, the * refers to the *complex conjugate* of the number:
-$$c = a+bi \implies c^{*} = a-bi$$
+$$
+	c = a+bi \implies c^{*} = a-bi
+$$
 With that metric established, we are able to properly define the *dual correspondence* that will convert
 between kets and bras. We'll denote this correspondence $D:\mathcal{E}\to\mathcal{E}^{*}$. This way, when we
 write a ket $\ket{\psi}$, we know that the associated bra under this dual correspondence will be denoted
@@ -238,15 +282,17 @@ We know by definition that this has to be positive-definite, with equality only 
 
 Skipping the trivially true case when $\ket{\phi}=0$, let's address the case when $\ket{\phi}\neq0$. Since
 the inequality we wrote out above holds for all $\ket{\psi}$, $\ket{\phi}$, and $\lambda$, let's set
-$\lambda=-\frac{\langle\phi|\psi\rangle}{\langle\phi|\phi\rangle}$:
-$\begin{multline*}
+$\lambda=-\frac{\braket*{\phi}{\psi}}{\braket*{\phi}{\phi}}$:
+$$
+\begin{multline*}
 \therefore \langle\psi|\psi\rangle -
 \frac{\langle\phi|\psi\rangle\langle\psi|\phi\rangle}{\langle\phi|\phi\rangle} -
 \frac{\langle\psi|\phi\rangle\langle\phi|\psi\rangle}{\langle\phi|\phi\rangle} +
 \frac{\langle\psi|\phi\rangle\langle\phi|\psi\rangle\langle\phi|\phi\rangle}{\langle\phi|\phi\rangle^2} = \\
 = \langle\psi|\psi\rangle - 2\frac{\langle\psi|\phi\rangle\langle\phi|\psi\rangle}{\langle\phi|\phi\rangle} + \frac{\langle\psi|\phi\rangle\langle\phi|\psi\rangle}{\langle\phi|\phi\rangle} = \langle\psi|\psi\rangle - \frac{\langle\psi|\phi\rangle\langle\phi|\psi\rangle}{\langle\phi|\phi\rangle} = \\
 = \langle\psi|\psi\rangle - \frac{|\langle\psi|\phi\rangle|^2}{\langle\phi|\phi\rangle} \geq 0
-\end{multline*}$
+\end{multline*}
+$$
 Moving the second term to the right and multiplying by $\langle\phi|\phi\rangle$ gives us our original
 inequality, as desired. $\blacksquare$
 :::
@@ -287,22 +333,25 @@ strong.
 Let's now pivot our attention to *operators*, which are how we'll extract meaningful information from our
 wavefunctions. For our purposes in nonrelativistic quantum mechanics, we will primarily be interested in two types of
 operators: *linear* operators and *antilinear* operators. These are both mappings from a ket space
-$\mathcal{E}$ onto itself, but that behave slightly differently on linear combinations of kets:
+$\mathcal{E}$ onto itself (i.e. $L: \mathcal{E} \to \mathcal{E}$), but they behave slightly differently on 
+linear combinations of kets:
 
-$$\begin{align*}
-L(c_1\ket{\psi_1}+c_2\ket{\psi_2}) &= c_1L\ket{\psi_1} + c_2L\ket{\psi_2} &&\text{(linear)}\\
-A(c_1\ket{\psi_1}+c_2\ket{\psi_2}) &= c_1^{*}A\ket{\psi_1} + c_2^{*}A\ket{\psi_2}
-&&\text{(antilinear)}
-\end{align*}$$
+$$
+	\begin{align*}
+		L(c_1\ket{\psi_1}+c_2\ket{\psi_2}) &= c_1L\ket{\psi_1} + c_2L\ket{\psi_2} &&\text{(linear)}\\
+		A(c_1\ket{\psi_1}+c_2\ket{\psi_2}) &= c_1^{*}A\ket{\psi_1} + c_2^{*}A\ket{\psi_2}
+		&&\text{(antilinear)}
+	\end{align*}
+$$
 
-In the spirit of total transparency, we will almost exclusively death with *linear* operators, but
+In the spirit of total transparency, we will almost exclusively deal with *linear* operators, but
 mention antilinear operators as well because we will analyze one such case much later on.
 
 :::{.remark}
+<!-- I don't love the way this reads, change. --> 
 The keen among you may recognize this one antilinear operator of interest as the *time reversal*
-operator, which will not concern us for a long while. Of course, we will see more antilinear operators once
-we make the transition to relativistic quantum mechanics and quantum field theory, but we will not concern
-ourselves with that for now.
+operator. Antilinear operators will appear more frequently when we transition to relativistic quantum
+mechanics and quantum field theory, but we won't do that for a very long time.  
 :::
 
 Given how operators are defined as a mapping from a ket space onto itself, we know that these operators
@@ -325,6 +374,15 @@ Imagine you are navigating some space and start out facing east. If you walk for
 end up further east than when you started, facing north. What would happen if you instead turned left first,
 then walked forward? Turning left when facing east would make you now face north, meaning that you'd end up
 north of where you started, facing north. Despite only performing two steps, the order clearly matters.
+
+<center>
+	<script type = "text/tikz">
+		\begin{tikzpicture}[scale=1.5]
+			\draw[-stealth, red] (0, 0) -- (1, 0);
+			\draw[-stealth, blue] (0, 0) -- (0, 1);
+			\end{tikzpicture}
+	</script>
+</center>
 <!-- TikZ picture diagramming these two walking paths should go here-->
 If you think of operators acting on ket vectors as instructions we give someone to perform, we see that
 swapping the order of the operators is equivalent to giving instructions in a different order, which can
@@ -924,11 +982,13 @@ This concludes our development of the fundamental formalism, but not our develop
 That said, we will not require nearly as much math development in as dense a space moving forward. Let's
 finally get into quantum mechanics...
 
-[^linear-algebra]: We will also attempt to supplement some fundamental linear algebra content in
-appendices that can be found at the end of the notes (though these are still not meant to replace a
-traditional, rigorous course studying the relevant mathematics).
-[^complex-function]: It should be noted that, generally, the wavefunction $\psi$ will be taken to be
-*complex*, meaning we allow for imaginary coefficients and aren't limited to exclusively real numbers.
+[^linear-algebra]: We highly encourage you to give this book a read! It covers all the formalism with 
+	a focus on rigor (we will also be rigorous, but only to the degree that it serves to make our point), 
+	and while it is not an explicitly physics-centric text, is a foundational text that will be expected of you in higher level theoretical
+	physics.
+  
+<!-- [^complex-function]: It should be noted that, generally, the wavefunction $\psi$ will be taken to be
+*complex*, meaning we allow for imaginary coefficients and aren't limited to exclusively real numbers. -->
 [^hilbert-space]: A vector space equipped with a properly-defined inner product is called an *inner product
 space*. For a Hilbert space specifically, we enforce extra conditions on this inner product, but these won't
 concern us for a while.
