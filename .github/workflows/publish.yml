@@ -19,11 +19,13 @@ jobs:
         with:
           tinytex: true
 
-      - name: Install TikZ/diagram dependencies
+      - name: Install system dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y inkscape ghostscript libx11-dev
 
+      - name: Install TeX packages
+        run: |
           tlmgr install standalone pgf xcolor preview
 
       - name: Check diagram dependencies
