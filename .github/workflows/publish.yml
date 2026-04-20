@@ -14,38 +14,41 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Quarto with TinyTeX
+      - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tinytex: true
 
-      - name: Install system dependencies
+      - name: Install TikZ/diagram dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y inkscape ghostscript libx11-dev
-
-      - name: Add TinyTeX to PATH
-        run: |
-          echo "Searching for tlmgr..."
-          find "$HOME" -name tlmgr -type f
-
-          TLMGR_DIR="$(dirname "$(find "$HOME" -name tlmgr -type f | head -n 1)")"
-          echo "Found tlmgr in: $TLMGR_DIR"
-          echo "$TLMGR_DIR" >> "$GITHUB_PATH"
-
-      - name: Install TeX packages
-        run: |
-          tlmgr install standalone pgf xcolor preview
+          sudo apt-get install -y \
+            inkscape \
+            ghostscript \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-pictures
 
       - name: Check diagram dependencies
         run: |
-          which tlmgr
-          tlmgr --version
           which pdflatex
           pdflatex --version
-          kpsewhich standalone.cls
           kpsewhich tikz.sty
+          kpsewhich standalone.cls
           which inkscape
           inkscape --version
+
+      - name: Render Quantum Mechanics Book
+        run: |
+          cd qm
+          quarto render --to html --output-dir ../_deploy/qm
+
+      - name: Render Landing Page
+        run: |
+          cd landing
+          quarto render --to html --output-dir ../_deploy
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_deploy
