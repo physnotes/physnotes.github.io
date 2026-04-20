@@ -4,33 +4,49 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: quarto-dev/quarto-actions/setup@v2
+      - name: Set up Quarto with TinyTeX
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: true
 
-      - name: Install TinyTeX (optional)
+      - name: Install TikZ/diagram dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y ghostscript libx11-dev
-          quarto install tinytex
+          sudo apt-get install -y inkscape ghostscript libx11-dev
+
+          tlmgr install standalone pgf xcolor preview
+
+      - name: Check diagram dependencies
+        run: |
+          which pdflatex
+          pdflatex --version
+          kpsewhich standalone.cls
+          kpsewhich tikz.sty
+          which inkscape
+          inkscape --version
 
       - name: Render Quantum Mechanics Book
         run: |
           cd qm
-          quarto render --output-dir ../_deploy/qm
+          quarto render --to html --output-dir ../_deploy/qm
 
       - name: Render Landing Page
         run: |
           cd landing
-          quarto render --output-dir ../_deploy
+          quarto render --to html --output-dir ../_deploy
 
       - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_deploy
