@@ -69,7 +69,7 @@ $$
   took physicists years to uncover. We applaud Max Born's discovery, but will make no attempt to naturally
   arrive at this conclusion ourselves.
 :::
-The requirement that $|\psi|^2$ is normalizable (not necessarily $\psi$!) and it being complex valued are the
+The requirement that $\psi$ is normalizable and it being complex valued are the
 only restrictions on the kinds of $\psi$ we are allowed to consider. The collection of such $\psi$ forms a
 vector space, and since $\psi$ is complex-valued, we call this a *complex vector space*. 
 We can then take this space, and attach an operation called the *inner product* to produce a *Hilbert space*.[^hilbert-space]
@@ -123,7 +123,7 @@ $$
 $$
 Thus, these wavefunctions in momentum space form their own separate Hilbert space (in terms of the momentum
 $p$, instead of the position $x$). It should be stressed that there is no one *correct* wavefunction: 
-$\psi(x)$ is just as valid of a wavefunction as $\psi(p)$, and the choice of which one to use will 
+$\psi(x)$ is just as valid of a wavefunction as $\phi(p)$, and the choice of which one to use will 
 depend on the problem at hand. Given that we have these choices though, this is a good point to take a step
 back and develop some general notation that is agnostic to the variable we ultimately choose.     
 
@@ -147,10 +147,6 @@ our state as a wavefunction of a particular variable, like $\psi(x)$, we will ab
 state $\ket{\psi}$.
 
 :::{.remark}
-		
-1. something
-2. something else 
-
 When solving physical problems, we will often need to decide on a space and revisit the
 traditional wavefunction as a function of a variable, but in the most general case, we will use ket vectors.
 In fact, we use this more abstract representation to later derive the more traditional wavefunctions.
@@ -190,12 +186,12 @@ reintroduce parentheses to accentuate this. Otherwise, we will drop it.
 Bras are defined as linear operators, meaning we naturally expect them to satisfy the relevant *linearity*
 and *homogeneity* conditions:
 $$
-	\bra{\alpha}(c_1\ket{\psi_1}+c_2\ket{\psi_2}) = c_1\langle\alpha|\psi_1\rangle + c_2\langle\alpha|\psi_2\rangle
+	\bra{\alpha}(c_1\ket{\psi_1}+c_2\ket{\psi_2}) = c_1 \braket*{\alpha}{\psi_1}+ c_2\braket*{\alpha}{\psi_2}
 $$
 Additionally, scalar products and sums work exactly as we would expect:
 $$
-	(c\bra{\alpha})(\ket{\psi}) = c\langle\alpha|\psi\rangle, \quad (\bra{\alpha_1} +
-	\bra{\alpha_2})(\ket{\psi}) = \langle\alpha_1|\psi\rangle + \langle\alpha_2|\psi\rangle
+	(c\bra{\alpha})(\ket{\psi}) = c\braket*{\alpha}{\psi},
+	\quad (\bra{\alpha_1} + \bra{\alpha_2})(\ket{\psi}) = \braket*{\alpha_1}{\psi} + \braket*{\alpha_2}{\psi}
 $$
 
 :::{.remark}
@@ -246,13 +242,12 @@ Given how we expressed this correspondence, we naturally expect that repeating t
 returns us to the original state:
 $$(\ket{\psi})^{\dagger\dagger} = \ket{\psi}, \quad (\bra{\psi})^{\dagger\dagger} = \bra{\psi}$$
 With all of this clarified, we can proceed to simplify our notation of bra's actions on kets:
-$$\bra{\psi}(\ket{\phi}) = g(\ket{\psi},\ket{\phi}) = \langle\psi|\phi\rangle$$
+$$\bra{\psi}(\ket{\phi}) = g(\ket{\psi},\ket{\phi}) = \braket*{\psi}{\phi}$$
 This means we can also rewrite our Hermiticity and positive-definite conditions:
-$$\langle\psi|\phi\rangle = \langle\phi|\psi\rangle^{*}, \quad \langle\psi|\psi\rangle \geq 0$$
+$$\braket*{\psi}{\phi} = \braket*{\phi}{\psi}^{*}, \quad \braket*{\psi}{\psi} \geq 0$$
 This has allowed us to completely rid ourselves of the $g$-function notation, meaning we can now deal
 exclusively with bras and kets. This operation of acting a bra on a ket has another name which may be
-familiar to those who have studied linear algebra: the *inner
-product*.
+familiar to those who have studied linear algebra: the *inner product*.
 
 :::{.remark}
 You may ask why we wrote a $*$ over the combined bra-ket product above instead of a dagger. This is because
@@ -268,21 +263,38 @@ called the *Schwarz inequality*.
 
 :::{.theorem #thm-schwarz-inequality}
 # Schwarz Inequality
-$$|\langle\psi|\phi\rangle|^2 \leq \langle\psi|\psi\rangle\langle\phi|\phi\rangle\quad \forall
-\ket{\psi},\ket{\phi}$$
+$$
+	\left| \braket*{\psi}{\phi} \right|^2 \leq \braket*{\psi}{\psi} \braket*{\phi}{\phi} \quad \forall
+	\ket{\psi}, \ket{\phi}
+$$
 Equality holds iff[^iff] $\ket{\psi}$ and $\ket{\phi}$ are *linearly dependent* (ie,
 $\ket{\psi}=c\ket{\phi}$ for some scalar $c$).
 :::
 :::{.proof}
 Set some new ket $\ket{\alpha} = \ket{\psi} + \lambda\ket{\phi}$, where $\lambda\in\mathbb{C}$, and take the
 inner product with itself:
-$$\langle\alpha|\alpha\rangle = (\bra{\psi} + \lambda^{*}\bra{\phi})(\ket{\psi} + \lambda\ket{\phi}) = \langle\psi|\psi\rangle + \lambda\langle\psi|\phi\rangle + \lambda^{*}\langle\phi|\psi\rangle + |\lambda|^2\langle\phi|\phi\rangle\geq 0$$
-We know by definition that this has to be positive-definite, with equality only holding when $\ket{\alpha}=0$
-(in other words, when $\ket{\psi} = -\lambda\ket{\phi}$, which is precisely our linear dependence condition).
-
-Skipping the trivially true case when $\ket{\phi}=0$, let's address the case when $\ket{\phi}\neq0$. Since
-the inequality we wrote out above holds for all $\ket{\psi}$, $\ket{\phi}$, and $\lambda$, let's set
-$\lambda=-\frac{\braket*{\phi}{\psi}}{\braket*{\phi}{\phi}}$:
+$$
+	\braket*{\alpha}{\alpha} = (\bra{\psi} + \lambda^{*} \bra{\phi}) (\ket{\psi} + \lambda \ket{\phi}) =
+	\braket*{\psi}{\psi} + \lambda \braket*{\psi}{\phi} + \lambda^{*} \braket*{\phi}{\psi} + |\lambda|^2
+	\braket*{\phi}{\phi} \geq 0
+$$
+We know by definition that $\braket*{\alpha}{\alpha} \geq 0$ (property 4 of the metric $g$), with equality
+only when $\ket{\alpha} = 0$, or equivalently when $\ket{\psi} = -\lambda \ket{\phi}$, which is precisely our
+linear dependence condition. We'll skip the trivial case where $\ket{\phi} = 0$, and address the more
+interesting case when $\ket{\phi} \neq 0$. Since the above inequality holds for all $\ket{\psi}$,
+$\ket{\phi}$ and $\lambda$, let's set $\lambda=-\frac{\braket*{\phi}{\psi}}{\braket*{\phi}{\phi}}$:
+$$
+	\begin{multline*}
+	\braket*{\psi}{\psi} - \frac{\braket*{\phi}{\psi}\braket*{\psi}{\phi}}{\braket*{\phi}{\phi}} -
+	\frac{\braket*{\psi}{\phi} \braket*{\phi}{\psi}}{\braket*{\phi}{\phi}} +
+	\frac{\braket*{\psi}{\phi}\braket*{\phi}{\psi}\braket*{\phi}{\phi}}{\braket*{\phi}{\phi}^2} \\=
+	\braket*{\psi}{\psi} - 2 \frac{\braket*{\psi}{\phi} \braket*{\phi}{\psi}}{\braket*{\phi}{\phi}} +
+	\frac{\braket*{\psi}{\phi}\braket*{\phi}{\psi}}{\braket*{\phi}{\phi}} = \braket*{\psi}{\psi} -
+	\frac{\braket*{\psi}{\phi} \braket*{\phi}{\psi}}{\braket*{\phi}{\phi}} = \braket*{\psi}{\psi} -
+	\frac{\left| \braket*{\psi}{\phi} \right|^2}{\braket*{\phi}{\phi}} \geq 0
+	\end{multline*}
+$$
+<!--
 $$
 \begin{multline*}
 \therefore \langle\psi|\psi\rangle -
@@ -293,10 +305,12 @@ $$
 = \langle\psi|\psi\rangle - \frac{|\langle\psi|\phi\rangle|^2}{\langle\phi|\phi\rangle} \geq 0
 \end{multline*}
 $$
+-->
 Moving the second term to the right and multiplying by $\langle\phi|\phi\rangle$ gives us our original
 inequality, as desired. $\blacksquare$
 :::
-As we can see, Dirac notation is compact, consistent, and comprehensible for problem-solving.
+As we can see, Dirac notation is compact, consistent, and comprehensible for
+problem-solving.[^schwarz-inequality]
 
 :::{.remark}
 We illustrated this mathematical proof outside of an appendix to better demonstrate the power of Dirac
@@ -333,12 +347,12 @@ strong.
 Let's now pivot our attention to *operators*, which are how we'll extract meaningful information from our
 wavefunctions. For our purposes in nonrelativistic quantum mechanics, we will primarily be interested in two types of
 operators: *linear* operators and *antilinear* operators. These are both mappings from a ket space
-$\mathcal{E}$ onto itself (i.e. $L: \mathcal{E} \to \mathcal{E}$), but they behave slightly differently on 
+$\mathcal{E}$ onto itself (i.e. $A: \mathcal{E} \to \mathcal{E}$), but they behave slightly differently on 
 linear combinations of kets:
 
 $$
 	\begin{align*}
-		L(c_1\ket{\psi_1}+c_2\ket{\psi_2}) &= c_1L\ket{\psi_1} + c_2L\ket{\psi_2} &&\text{(linear)}\\
+		A(c_1\ket{\psi_1}+c_2\ket{\psi_2}) &= c_1A\ket{\psi_1} + c_2A\ket{\psi_2} &&\text{(linear)}\\
 		A(c_1\ket{\psi_1}+c_2\ket{\psi_2}) &= c_1^{*}A\ket{\psi_1} + c_2^{*}A\ket{\psi_2}
 		&&\text{(antilinear)}
 	\end{align*}
@@ -348,7 +362,6 @@ In the spirit of total transparency, we will almost exclusively deal with *linea
 mention antilinear operators as well because we will analyze one such case much later on.
 
 :::{.remark}
-<!-- I don't love the way this reads, change. --> 
 The keen among you may recognize this one antilinear operator of interest as the *time reversal*
 operator. Antilinear operators will appear more frequently when we transition to relativistic quantum
 mechanics and quantum field theory, but we won't do that for a very long time.  
@@ -375,14 +388,8 @@ end up further east than when you started, facing north. What would happen if yo
 then walked forward? Turning left when facing east would make you now face north, meaning that you'd end up
 north of where you started, facing north. Despite only performing two steps, the order clearly matters.
 
-<center>
-	<script type = "text/tikz">
-		\begin{tikzpicture}[scale=1.5]
-			\draw[-stealth, red] (0, 0) -- (1, 0);
-			\draw[-stealth, blue] (0, 0) -- (0, 1);
-			\end{tikzpicture}
-	</script>
-</center>
+[INSERT TIKZ HERE]
+
 <!-- TikZ picture diagramming these two walking paths should go here-->
 If you think of operators acting on ket vectors as instructions we give someone to perform, we see that
 swapping the order of the operators is equivalent to giving instructions in a different order, which can
@@ -412,9 +419,8 @@ The *anticommutator* of two operators is the sum of their ordered products:
 $$\{A,B\} = AB + BA$$
 :::
 
-Naturally, the operators will commute when their commutator is $0$; in that case,we can freely
+Naturally, the operators will commute when their commutator is $0$; in that case, we can freely
 interchange their order.
-
 Some operators may have an associated *inverse*, which we'll denote $A^{-1}$. This inverse "undoes" the
 action of the operator:
 
@@ -529,11 +535,13 @@ Since operators acting on kets will produce other kets, we should expect operato
 other bras:
 $$\bra{\psi}A = \bra{\phi}$$
 Given how we defined operators and how bras and kets are related, it is not inconveivable for us to extend 
-their definition to behave as such. Now, given this, we can expect to envision an operator sandwiched between
+their definition to behave as such.[^operators] Now, given this, we can expect to envision an operator sandwiched between
 a bra and a ket as either a resultant bra acting on ket or vice versa:
 $$(\bra{\psi}A)\ket{\phi} = \bra{\psi}(A\ket{\phi})$$
 This means we can drop the parentheses and treat this as one unit:
-$$(\bra{\psi}A)(\ket{\phi}) = \langle\psi|A|\phi\rangle$$
+$$
+	(\bra{\psi}A)(\ket{\phi}) = \mel{\psi}{A}{\phi}
+$$ 
 We call this combined expression the *matrix element*.
 
 :::{.remark}
@@ -548,11 +556,11 @@ element of that operator.
 We previously defined the inner product as a bra acting on a ket from the left, which would produce a scalar
 by the definitions of bras and kets, respectively. What if we instead have a bra acting on a ket from the 
 right? Let's act this new thing on a ket and see what we should expect:
-$$(\ket{\alpha}\bra{\beta})\ket{\psi} = \ket{\alpha}(\langle\beta|\psi\rangle) = \ket{\alpha}c_1 =
+$$(\ket{\alpha}\bra{\beta})\ket{\psi} = \ket{\alpha}(\braket*{\beta}{\psi}) = \ket{\alpha}c_1 =
 c_1\ket{\alpha} = \ket{\gamma_1}$$
 Thus, this new combination, which we'll call the *outer product*, should produce a resultant ket when acted
 on a ket. Similarly, when acted on a bra, we should expect a resultant bra:
-$$\bra{\psi}(\ket{\alpha}\bra{\beta}) = \langle\psi|\alpha\rangle\bra{\beta} = c_2\bra{\beta} =
+$$\bra{\psi}(\ket{\alpha}\bra{\beta}) = \braket*{\psi}{\alpha}\bra{\beta} = c_2\bra{\beta} =
 \bra{\gamma_2}$$
 Thus, this outer product must itself be a special type of linear operator. Note that the bra action is not
 the direct definition of the outer product; it is simply a consequence of the ket action, which itself is the
@@ -582,8 +590,8 @@ appropriate length, have each vector be linearly independent, and have the vecto
 it is not inconceivable to have multiple different bases generating a single vector space.
 
 Let's label some discrete basis of some ket space with numbered kets: $\{\ket{n}, n=1,2,\dots\}$. If all
-vectors in the basis are *orthogonal* (they are mutually perpendicular to each other), we call the basis an
-*orthogonal basis*. If, furthermore, all of the vectors of an orthogonal basis are normalized (each has
+vectors in the basis are *orthogonal* (i.e. $\braket*{n}{m} = 0$ when $n \neq m$), we call the basis an
+*orthogonal* basis. If, furthermore, all of the vectors of an orthogonal basis are normalized (each has
 magnitude $1$), we call the basis *orthonormal*. To properly notate, let's introduce a new function which
 we'll see a lot later on called the *Kronecker delta*[^kronecker-delta]:
 
@@ -595,7 +603,7 @@ $$\delta_{mn} = \begin{cases} 1 & m=n \\ 0 & m \neq n \end{cases}$$
 :::
 
 Thus, we can rewrite the orthonormality condition for our basis into the following really compact form:
-$$\langle n|m \rangle = \delta_{mn}$$
+$$\braket*{n}{m} = \delta_{mn}$$
 
 :::{.remark}
 We will use *index notation* like the Kronecker delta above to simplify notation often throughout quantum
@@ -608,11 +616,18 @@ Given any basis, we can represent any arbitrary ket vector $\ket{\psi}$ in that 
 of some these basis vectors:
 $$\ket{\psi} = \sum_{n}c_n\ket{n} = \sum_{n}\ket{n}c_n$$
 These expansion coefficients $c_n$ are given by the following inner product if the basis is orthonormal:
-$$c_n = \langle n|\psi\rangle$$
+$$
+	c_n = \braket*{n}{\psi}
+$$
 This is pretty straightforward to justify given the definition of orthonormal vectors:
-$$\langle n|\psi\rangle = \bra{n}(\sum_{m}\ket{m}c_m) = \delta_{nm}c_m = 0 + 0 + \dots + 1*c_n = c_n$$
+$$
+	\braket*{n}{\psi} = \bra{n}\left( \sum_m \ket{m} c_m \right) = \delta_{nm} c_m = 0 + 0 + \dots + 1 * c_n
+	= c_n
+$$
 This means we can rewrite our expression as:
-$$\ket{\psi} = \sum_{n}\ket{n}\langle n|\psi\rangle = \left(\sum_{n}\ket{n}\bra{n}\right)\ket{\psi}$$
+$$
+	\ket{\psi} = \sum_n \bra{n}\braket*{n}{\psi} = \left( \sum_n \bra{n}\ket{n} \right) \ket{\psi}
+$$
 Since $\ket{\psi}$ is an arbitrarily-chosen ket vector, we can remove it from our expression to get a
 *resolution of the identity*:
 $$\boxed{1 = \sum_{n}\ket{n}\bra{n}}$$
@@ -632,9 +647,9 @@ We have a couple of immediate consequences that result directly from this defini
 # Properties of the Hermitian Conjugate 
 The following follow from the definition of the Hermitian conjugate of an operator:
 
-1. $\langle\phi|A^{\dagger}|\psi\rangle = \langle\psi|A|\phi\rangle^{*}$
+1. $\mel{\phi}{A^{\dagger}}{\psi} = \mel{\psi}{A}{\phi}^{*}$
 2. $(A^{\dagger})^{\dagger} = A$
-3. $(c_1A_1 + c_2A_2)^{\dagger} = c_1^{*}A_1^{\dagger} + c_2^{*}A_2^{\dagger}$
+3. $(c_1 A_1 + c_2 A_2)^{\dagger} = c_1^{*}A_1^{\dagger} + c_2^{*}A_2^{\dagger}$
 4. $(AB)^{\dagger} = B^{\dagger}A^{\dagger}$
 5. $(\ket{\alpha}\bra{\beta})^{\dagger} = \ket{\beta}\bra{\alpha}$
 :::
@@ -642,15 +657,18 @@ The following follow from the definition of the Hermitian conjugate of an operat
 figure we should write them out -->
 :::{.proof}
 The proofs for each are quite straightforward, but let's illustrate them here. Starting with the first:
-$$\langle\phi|A^{\dagger}|\psi\rangle = \bra{\phi}(A^{\dagger}\ket{\psi}) =
-   \bra{\phi}(\bra{\psi}A)^{\dagger} = (\bra{\psi}A)^{\dagger}(\ket{\phi})^{\dagger} =
-\langle\psi|A|\phi\rangle^{*}\quad\checkmark$$
+$$
+	\mel{\phi}{A^{\dagger}}{\psi} = \bra{\phi} (A^{\dagger} \ket{\psi}) = \bra{\phi} (\bra{\psi}A)^{\dagger}
+	= (\bra{\psi} A)^{\dagger} (\phi)^{\dagger} = \mel{\psi}{A}{\phi}^{*}
+$$
 Now, for the second, we can apply the above property twice:
-$$\begin{align*}
-  \langle\psi|(A^{\dagger})^{\dagger}|\phi\rangle &= \langle\phi|A^{\dagger}|\psi\rangle^{*} =
-(\langle\psi|A|\phi\rangle^{*})^{*} = \langle\psi|A|\phi\rangle\\
-\therefore (A^{\dagger})^{\dagger} &= A \quad\checkmark
-\end{align*}$$
+$$
+	\begin{align*}
+		\mel{\psi}{(A^{\dagger})^{\dagger}}{\phi} &= \mel{\phi}{A^{\dagger}}{\psi}^{*} =
+		(\mel{\psi}{A}{\phi}^{*})^{*} = \mel{\psi}{A}{\phi}\\
+		\therefore (A^{\dagger})^{\dagger} = A \quad \checkmark
+	\end{align*}
+$$
 Next:
 $$\begin{align*}
 (c_1A_1 + c_2A_2)^{\dagger}\ket{\psi} &= (\bra{\psi}(c_1A_1 + c_2A_2))^{\dagger} = ((\bra{\psi}c_1A_1) + (\bra{\psi}c_2A_2))^{\dagger} = \\
@@ -661,11 +679,14 @@ A_2^{\dagger}(c_2^{*}\ket{\psi}) = \\
 \therefore (c_1A_1+c_2A_2)^{\dagger} &= c_1^{*}A_1^{\dagger}+c_2^{*}A_2^{\dagger}\quad\checkmark
 \end{align*}$$
 For the fourth, we use what we proved in the first:
-$$\begin{align*}
-\langle\phi|(AB)^{\dagger}|\psi\rangle &= \langle\psi|AB|\phi\rangle^{*} = ((\bra{\psi}A)(B\ket{\phi}))^{*} = ((\bra{\psi}A)^{\dagger}(B\ket{\phi})^{\dagger}) = \\
-&= (\bra{\phi}B^{\dagger})(A^{\dagger}\ket{\psi}) = \langle\phi|B^{\dagger}A^{\dagger}|\psi\rangle \\
-\therefore (AB)^{\dagger} &= B^{\dagger}A^{\dagger}\quad\checkmark
-\end{align*}$$
+$$
+	\begin{align*}
+		\mel{\phi}{(AB)^{\dagger}}{\psi} &= \mel{\psi}{AB}{\phi}^{*} = ((\bra{\psi}A)(B \ket{\phi}))^{*} =
+		((\bra{\psi}A)^{\dagger}(B \ket{\phi})^{\dagger}) \\ 
+		&= (\bra{\phi}B^{\dagger}) (A^{\dagger} \ket{\psi}) = \mel{\phi}{B^{\dagger}A^{\dagger}}{\psi} \\ 
+		\therefore (AB)^{\dagger}&=  B^{\dagger}A^{\dagger} 
+	\end{align*}
+$$
 Finally, for the last one, we directly invoke the previous part (as well as dual correspondence between bras and kets):
 $$(\ket{\alpha}\bra{\beta})^{\dagger} = (\bra{\beta})^{\dagger}(\ket{\alpha})^{\dagger} =
 \ket{\beta}\bra{\alpha}\quad\checkmark$$
@@ -690,7 +711,7 @@ $$A^{\dagger} = A$$
 :::
 Using the first auxiliary property we proved that followed from the definition, we can equivalently write
 this condition in terms of matrix elements:
-$$A\text{ Hermitian} \implies \langle\psi|A|\phi\rangle = \langle\phi|A|\psi\rangle^{*} \quad \forall \ket{\psi},\ket{\phi}$$
+$$A\text{ Hermitian} \implies \mel{\psi}{A}{\phi} = \mel{\phi}{A}{\psi}^{*} \quad \forall \ket{\psi},\ket{\phi}$$
 Similarly, we have *anti-Hermitian* operators:
 
 :::{.definition #def-antihermitian-operator}
@@ -723,9 +744,11 @@ Hermitian and anti-Hermitian operators, as desired. $\blacksquare$
 :::
 
 We will call a Hermitian operator $A$ *positive-definite* if the following is true for all kets $\ket{\psi}$:
-$$\langle\psi|A|\psi\rangle > 0$$
+$$
+	\mel{\psi}{A}{\psi} > 0 
+$$
 If we loosen the restriction and allow for this element to be $0$ by swapping for $\geq$ in the inequality,
-we call that type of Hermitian operator *nonnegative-definite*.
+we call that type of Hermitian operator *positive semidefinite*. 
 
 One more important theorem on Hermitian operators:
 
@@ -819,12 +842,18 @@ Hermitian operators possess real eigenvalues.
 Let's begin with our Hermitian operator $A$ and one of its eigenkets $\ket{u}$ and associated eigenvalue $a$:
 $$A\ket{u} = a\ket{u}$$
 If we multiply both sides by $\bra{u}$, we get:
-$$\langle u|A|u\rangle = \langle u|a|u\rangle = a\langle u|u\rangle$$
+$$
+	\mel{u}{A}{u} = \mel{u}{a}{u} = a \braket*{u}{u}
+$$
 Let's now also take the complex conjugate of this:
-$$\langle u|A|u\rangle^{*} = \langle u|A|u\rangle = (a\langle u|u\rangle)^{*} = a^{*}\langle u|u\rangle$$
+$$
+	\mel{u}{A}{u}^{*} = \mel{u}{A}{u} = \left( a \braket*{u}{u} \right)^{*} = a^{*}\braket*{u}{u}
+$$
 Subtracting these two from each other gives:
-$$(a-a^{*})\langle u|u\rangle = 0$$
-Since we know that $\langle u|u\rangle$ is positive-definite and can only be $0$ when
+$$
+	(a - a^{*}) \braket*{u}{u} = 0
+$$
+Since we know that $\braket*{u}{u}$ is positive-definite and can only be $0$ when
 $\ket{u}=0$ (which is not a valid eigenket), this means that $a-a^{*}=0$ for this to be true, meaning
 $a^{*}=a$. If a number equals its own complex conjugate, its imaginary part must be $0$, implying the number
 is real. Since we took an arbitrary eigenket/eigenvalue pair for an arbitrary Hermitian operator, this means that all Hermitian operators possess *exclusively* real eigenvalues, as desired. $\blacksquare$
@@ -840,7 +869,9 @@ eigenbra $\bra{u}$ and equal left-eigenvalue $a$.
 :::{.proof}
 Starting with our original eigenvalue equation, we can follow the same first step as our previous
 simplication:
-$$A\ket{u} = a\ket{u} \implies \langle u|A|u\rangle = a\langle u|u\rangle$$
+$$
+	A\ket{u} = a \ket{u} \implies \mel{u}{A}{u} = a \braket*{u}{u}
+$$
 Now, dividing out $\ket{u}$ from both sides yields:
 $$\bra{u}A = a\bra{u}$$
 as desired. $\blacksquare$
@@ -856,13 +887,16 @@ The *eigenspaces* of a Hermitian operator corresponding to distinct eigenvalues 
 Let's start with two distinct eigenvalue equations for our operator $A$:
 $$A\ket{u} = a\ket{u},\quad A\ket{u'} = a'\ket{u'}$$
 Multiplying the first equation on both sides by $\bra{u'}$ and the second by $\bra{u}$ gives:
-$$\langle u'|A|u\rangle = a\langle u'|u\rangle, \quad \langle u|A|u'\rangle = a'\langle u|u'\rangle$$
+$$
+	\mel{u'}{A}{u} = a \braket*{u'}{u}, \quad \mel{u}{A}{u'} = a' \braket*{u}{u'}
+$$
 If we now subtract the Hermitian conjugate of the second equation from the first, we get:
-$$\langle u'|A|u\rangle - \langle u'|A|u\rangle = a\langle u'|u\rangle - a'\langle u'|u\rangle =
-(a'-a)\langle u'|u\rangle = 0$$
-This therefore means that either $a'-a=0$ or $\langle u'|u\rangle=0$. If the first is true, then we have
+$$
+	\mel{u'}{A}{u} - \mel{u'}{A}{u} = a \braket*{u'}{u} - a' \braket*{u'}{u} = (a' - a) \braket*{u'}{u} = 0 
+$$
+This therefore means that either $a'-a=0$ or $\braket*{u'}{u} = 0$. If the first is true, then we have
 $a'=a$, meaning we're dealing with two eigenkets corresponding to the same eigenvalue (in which case we're in
-one single eigenspace), or else $\langle u'|u\rangle =0$, which means that eigenkets corresponding to
+one single eigenspace), or else $\braket*{u'}{u} = 0$, which means that eigenkets corresponding to
 distinct eigenvalues (otherwise belonging to different eigenspaces) are orthogonal, as desired.
 $\blacksquare$
 :::
@@ -931,9 +965,10 @@ Schrodinger equation is itself derived from the wave equation, meaning we will c
 periodic functions. A key insight made two centuries ago by Joseph Fourier was that *any* continous function
 can be decomposed into a series of periodic functions. This is accomplished through the *Fourier transform*
 that we briefly mentioned at the beginning. A proper treatment of Fourier analysis (and all of its powerful
-implications) also requires a semester-long undergraduate course at the bare minimum, which we also do not
-have time for, so we won't attempt to develop the full theory here either. That being said, there are only a
-few key insights that we care about, which we detail in an additional, shorter appendix.
+implications) also requires a semester-long undergraduate course at the bare minimum, which we
+(unsurprisingly) do not have time for, so we won't attempt to develop the full theory either. That being
+said, there are only a few insights that are immediately relevant to us, which we will detail in additional,
+shorter appendix. 
 
 ### Vector/Tensor Analysis 
 
@@ -958,15 +993,16 @@ analysis*), but what happens when we start dealing with complex-valued functions
 with them? As it turns out, we can, but the way we do it is not what we may be used to from real analysis.
 The study of how to deal with such complex functions, known as *complex analysis*, helps us understand how it
 works. We won't need to worry about this until much later onward, but when we do inevitably require some
-tools, we will devlop them as necessary. We will add another short appendix to help expand on some of the
+tools, we will develop them as necessary. We will add another short appendix to help expand on some of the
 underlying mathematics, but we strongly encourage the reader to consult a book such as Stein and Shakarchi's
 *Notes on Complex Analysis* for a deeper understanding.
 
 ### Final Note
 
 As mentioned at the very beginning of this exceedingly long chapter, there was a lot of math involved. We
-have made our best attempt to motivate our need for certain mathematical concepts, but someone who may be
-unfamiliar with linear algebra may have still struggled to keep up. We understand; we threw a lot at you and
+have made our best attempt to balance outlining the motivation to study certain mathematical concepts without
+being too technical, but someone who may be unfamiliar with linear algebra may still have struggled to keep
+up. We understand; we threw a lot at you and
 promised you that this setup will all have been worth it in the end. To an extent, we hope you will simply
 take our word for it; that being said, it is completely natural for some of this to not make sense upon first
 examination. As such, we cannot encourage independent research more. It is the responsibility of any aspiring
@@ -976,14 +1012,14 @@ feel we do not cover in sufficient detail (which there has to be by the nature o
 address and the manner in which we wish to present it), we encourage a consultation of the materials listed
 in our references. You can always come back to these notes after you feel more comfortable with the math;
 we'll wait. That being said, we hope we can sufficiently motivate the material that the mathematics won't get
-in the way of a more fundamentally intuitive understanding of what we are developing.ppart1.qmd
+in the way of a more fundamentally intuitive understanding of what we are developing.
 
 This concludes our development of the fundamental formalism, but not our development of mathematical tools.
 That said, we will not require nearly as much math development in as dense a space moving forward. Let's
 finally get into quantum mechanics...
 
 [^linear-algebra]: We highly encourage you to give this book a read! It covers all the formalism with 
-	a focus on rigor (we will also be rigorous, but only to the degree that it serves to make our point), 
+	a focus on rigor (we will also try to be rigorous, but only to the degree that it serves to make our point), 
 	and while it is not an explicitly physics-centric text, is a foundational text that will be expected of you in higher level theoretical
 	physics.
   
@@ -997,6 +1033,14 @@ concern us for a while.
 dealing with. It is more helpful to think of it as a notational convention.
 [^eigen]: The terms "eigenvalue" and "eigenvector" are built from the German *eigen*, which means "self".
 [^observables]: The reasoning behind this nomenclature will become apparent in the next chapter, when we
-start developing physical interpretations for all of this while setting up the posetulates underpinning all
+start developing physical interpretations for all of this while setting up the postulates underpinning all
 of quantum theory.
 [^coupling]: Do not worry about what this means at the moment; we will learn about it much later.
+[^schwarz-inequality]: You may think initially that this proof isn't very comprehensible, but think about the
+	alternative: if we didn't use Dirac notation, we'd have to write every inner product as an integral,
+	every $\psi$ and $\phi$ as $\psi(x)$ and $\phi(x)$, which would make the expression at least twice as
+	long, and much more intimidating.  
+[^operators]: Technically, one must distinguish between the operator that sends kets to kets from the dual operator 
+	$A'$ that sends bras to bras. However, here we can *extend* the definition of an operator to act
+	on bras as $\bra{\psi}A = \bra{\phi}$ when $A \ket{\psi} = \ket{\phi}$, without clashing with our
+	original definition of $A$, and as such we can use the same symbol $A$ for the map and its dual. 
