@@ -27,6 +27,9 @@ jobs:
             texlive-latex-recommended \
             texlive-latex-extra \
             texlive-pictures
+            texlive-fonts-recommended \
+            cm-super \
+            fonts-lmodern
 
       - name: Check diagram dependencies
         run: |
@@ -34,6 +37,9 @@ jobs:
           pdflatex --version
           kpsewhich tikz.sty
           kpsewhich standalone.cls
+          fc-cache -fv
+          fc-match "Computer Modern"
+          fc-match "Latin Modern Roman"
           which inkscape
           inkscape --version
 
