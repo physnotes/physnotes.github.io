@@ -9,12 +9,12 @@ The content in this section is heavily inspired by Prof. Siddiqi's notes for the
 Physics 137A (Introductory Quantum Mechanics) at UC Berkeley. 
 
 ## Blackbody Radiation
-To begin our story, we start in the mid 19th century. Around this time, Gustav Kirchoff (yes, the one from your
+To begin our story, we start in the mid 19th century. Around this time, Gustav Kirchhoff (yes, the one from your
 circuits classes) was studying the physics of black bodies --- an idealized object that absorbs *all*
 electromagnetic radiation, hence the term "blackbody". Even though perfect blackbodies do not exist in the
 real world, this theory turns out to be a very good model for celestial bodies like planets and stars.   
 
-Kirchoff's crucial insight on blackbodies was that their emissive power $R$ was only determined by two
+Kirchhoff's crucial insight on blackbodies was that their emissive power $R$ was only determined by two
 factors: the emitted wavelength $\lambda$, and its temperature $T$. At around the same time, Josef Stefan
 empirically determined that the total radiation emitted by a blackbody is proportional to $T^{4}$, meaning
 that the total power across all wavelengths, as a function of temperature, may be written as: 
@@ -197,22 +197,32 @@ wave, whereas it behaves like a particle in the photoelectric effect.
 :::{.warning}
 It is often misunderstood that light somehow "chooses" to either be a wave or a particle depending on the
 experiment, but in reality wave-particle duality is better understood as light *simultaneously* behaving as a
-wave and a particle -- doing the experiment simply allows us to see one of these two expressions.  
+wave and a particle -- doing the experiment simply allows us to see one of these two expressions. 
 :::
 
+## The Case of the Electron
+As a last example to motivate the need for quantum mechanics, there was a known problem with the classical
+model of the atom. In the late 19th and early 20th century, the leading model of the atom was the Bohr model,
+which depicted the nucleus with its protons and neutrons, and electrons orbiting around it. However, there
+was a problem with this model: by this point, it had already been established that moving charges radiate
+energy in the form of electromagnetic waves, and since the electron orbits around the nucleus you could
+calculate how much energy its orbit should radiate. As it turns out, if the electron really did orbit
+according to this model, then the electron would have crashed into the nucleus in $10^{-11}$ seconds! 
+
+Clearly this isn't true, and it really highlights why the classical models at the time were incomplete.
+Quantization resolves this however: by introducing *allowed* energies that the electron can exist in and
+removing the idea that the electron orbits around the nucleus, you resolve this problem immediately.  
+ 
 ## Conclusion
 Hopefully through these examples you can see how inadequate our classical theories fail to explain the
-phenomena in the real world. Both the photoelectric effect and the ultraviolet catastrophe cannot be
-explained without introducing the quantization of energy, and phenomena like the double-slit experiment
-challenge our intuition, forcing us to accept that there are particles that can be both a wave and a particle
-at the same time. While this doesn't immediately motivate quantum behavior, it does illustrate that objects
-we once thought of as particles have wave-like properties as well.    
+phenomena in the real world. Things like the photoelectric effect, the ultraviolet catastrophe and the
+electron radiation cannot be explained without introducing the quantization of energy, and phenomena like 
+the double-slit experiment challenge our intuition, forcing us to accept that there are particles that can be 
+both a wave and a particle at the same time. While this doesn't immediately motivate quantum behavior, 
+it does illustrate that objects we once thought of as particles have wave-like properties as well.    
 
 Now that you've gotten an appreciation for the importance of quantum mechanics, let's now move on to
 develop the formal mathematics of quantum mechanics.    
-
-tikz pic below for andrew to figure out how to center the tikz lol.
-
 
 [^1]: The equipartition theorem says that the average of any quadratic degree of freedom is $\frac{1}{2}
 	k_BT$. In short, the reason why each mode contributes $k_BT$ is because the Hamiltonian for harmonic
@@ -221,5 +231,5 @@ tikz pic below for andrew to figure out how to center the tikz lol.
 	For a more detailed explanation, consult a statistical
 	mechanics book.    
 
-
+[^2]: this is a fotonote inside a box.
 

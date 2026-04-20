@@ -1,6 +1,7 @@
 project:
   type: book
 
+
 book:
   title: "Quantum Mechanics"
   author: 
@@ -26,6 +27,10 @@ book:
 
 bibliography: references.bib
 
+
+filters:
+  - diagram
+
 format:
   html:
     theme:
@@ -43,7 +48,7 @@ format:
             tex:    { packages: {'[+]': ['physics'] } }
           };
           </script>
-          <link rel="stylesheet" href="https://tikzjax.com/v1/fonts.css">
+          <link rel="stylesheet" type= "text/css" href="https://tikzjax.com/v1/fonts.css">
           <script src="https://tikzjax.com/v1/tikzjax.js"></script>
     grid:
       body-width: 1000px
