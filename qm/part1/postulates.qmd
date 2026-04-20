@@ -5,14 +5,23 @@ else? -->
 Having established some mathematical formalism, we now have enough tools at our disposal to begin a proper
 treatment of quantum mechanics. The first step in our journey will be establishing a few fundamental
 postulates that will make up the foundation of quantum theory. Here, we will motivate the need for such
-postulates, discuss them in detail, and put them to the test with a real-world experiment conducted at the
-turn of the previous century to validate our postulates.
+postulates, discuss them in detail, and put them to use with the discussion of a real-world experiment
+conducted at the turn of the previous century. 
 
 ## What are Postulates?
 
 Firstly, what even are postulates? Why do we even need them? Formally, a *postulate* (sometimes called an
 *axiom*) is a statement that we take to be true without proof. In other words, we will treat a postulate as
 fact without providing rigorous mathematical justification for that fact.
+
+Why do we need these? Can't we just start writing down equations? Well, if we were to try writing down
+equations, what would they represent? Also, what rules do we go by when writing down these equations?
+Physics, at its core, aims to explain real-world phenomena through a mathematical *framework*, and as such we
+need some "ground rules" for how our theory will work. From there, we'll have a baseline from which we can
+build upwards and derive new results to explain new phenomena. These postulates will largely come from our
+observations in nature...
+ 
+
 
 Why do we need these? Can't we just start writing down equations? Well, if we were to try writing down
 equations, what would they represent? Physics, at its core, aims to explain real-world phenomena through a
@@ -135,17 +144,17 @@ $\mu_x=+\mu_0$[^bohr-magneton] into a second magnet that measures the $z$ compon
 <!-- I didn't make tikz work on my end while writing this; pls recreate the Stern-Gerlach apparatus from
 Notes 2 -->
 <center>
-  <script type="text/tikz">
-    \begin{tikzpicture}
-      \draw[thick] (-0.5,-0.5) rectangle (0.5,0.5) node[midway] {Ag};
-      \node at (0,-0.75) (o) {\text{oven}};
-      \draw[thick] (0.875,0.5) -- (0.875,-0.5);
-      \filldraw[white] (0.45,-0.1) rectangle (0.9,0.1);
-      \draw[thick,-stealth] (0.4,0) -- (2,0);
-      \draw[thick] (2,-0.5) rectangle (3,0.5) node[midway] {$\mu_x$};
-      \draw[thick] (3,0.25) node[above,right,yshift=0.15cm,scale=0.75] {$+$} -- (4.25,0.25) node[above,scale=0.75] {$|\mu_x+\rangle$};
-    \end{tikzpicture}
-  </script>
+``` tikz
+\begin{tikzpicture}
+  \draw[thick] (-0.5,-0.5) rectangle (0.5,0.5) node[midway] {Ag};
+  \node at (0,-0.75) (o) {\text{oven}};
+  \draw[thick] (0.875,0.5) -- (0.875,-0.5);
+  \filldraw[white] (0.45,-0.1) rectangle (0.9,0.1);
+  \draw[thick,-stealth] (0.4,0) -- (2,0);
+  \draw[thick] (2,-0.5) rectangle (3,0.5) node[midway] {$\mu_x$};
+  \draw[thick] (3,0.25) node[above,right,yshift=0.15cm,scale=0.75] {$+$} -- (4.25,0.25) node[above,scale=0.75] {$|\mu_x+\rangle$};
+\end{tikzpicture}
+```
 </center>
 
 As a result of this experiment, we will see two beams from the second magnet measurement, with a 50/50 split
