@@ -78,7 +78,7 @@ window.MathJax = {
   tex:    { packages: {'[+]': ['physics'] } }
 };
 </script>
-<link rel="stylesheet" href="https://tikzjax.com/v1/fonts.css">
+<link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
 <script src="https://tikzjax.com/v1/tikzjax.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
@@ -204,7 +204,10 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-wavefunction" id="toc-the-wavefunction" class="nav-link active" data-scroll-target="#the-wavefunction"><span class="header-section-number">2.1</span> The Wavefunction</a></li>
+  <li><a href="#the-wavefunction" id="toc-the-wavefunction" class="nav-link active" data-scroll-target="#the-wavefunction"><span class="header-section-number">2.1</span> The Wavefunction</a>
+  <ul class="collapse">
+  <li><a href="#different-types-of-wavefunctions" id="toc-different-types-of-wavefunctions" class="nav-link" data-scroll-target="#different-types-of-wavefunctions"><span class="header-section-number">2.1.1</span> Different Types of Wavefunctions</a></li>
+  </ul></li>
   <li><a href="#dirac-notation-bras-kets-etc." id="toc-dirac-notation-bras-kets-etc." class="nav-link" data-scroll-target="#dirac-notation-bras-kets-etc."><span class="header-section-number">2.2</span> Dirac Notation (Bras, Kets, etc.)</a>
   <ul class="collapse">
   <li><a href="#vector-representations" id="toc-vector-representations" class="nav-link" data-scroll-target="#vector-representations"><span class="header-section-number">2.2.1</span> Vector Representations</a></li>
@@ -262,7 +265,7 @@ window.Quarto = {
 <div class="warning">
 <p>There will be a <em>lot</em> of math in the following chapter. This chapter alone will introduce more math than any other individual chapter. This may feel rather overwhelming. Do not fret; the goal is not to master all of the math we’re about to explain with the utmost rigor; rather, the goal is to obtain a basic framework so the math we’ll use to develop the remaining theory of quantum mechanics will make sense.</p>
 </div>
-<p>Let’s now begin with the formalism. It should be noted that we will assume some prior familiarity with concepts in linear algebra, such as linear maps, vectors, vector spaces, and operators. We will still aim to be as comprehensive as we can, but if you have further questions about linear algebra, feel free to consult some linear algebra textbooks (such as Axler’s <em>Linear Algebra Done Right</em>)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. <!--
+<p>Let’s now begin with the formalism. For the time being, we will assume some prior familiarity working with linear algebra objects like vector spaces and linear maps, and a bit of knowledge about complex numbers, such as the definition of a complex conjugate. If you’re interested in learning more about these, feel free to check out the appendices at the end of this book, or consult some linear algebra textbooks such as Axler’s <em>Linear Algebra Done Right</em>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. <!--
 :::{.notation}
 One brief notational remark. For brevity, we will use *quantifiers* to shorten notation:
 
@@ -273,16 +276,21 @@ One brief notational remark. For brevity, we will use *quantifiers* to shorten n
 --> Now, on with the show!</p>
 <section id="the-wavefunction" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="the-wavefunction"><span class="header-section-number">2.1</span> The Wavefunction</h2>
-<p>The central focus of our analysis is the <em>wavefunction</em> of a system, which we’ll denote with a capital or lowercase <span class="math inline">\(\psi\)</span>. As the name suggests, this is a function that will take certain inputs (such as position, momentum, etc) and can be used to ascertain other properties (such as energy). Solving for the wavefunction of a system is the central focus of quantum mechanics, since the wavefunction itself fully represents a system/state.</p>
-<p>Now, since the wavefunction has to represent physically realizable states (eg, an electron or a Hydrogen atom), there are certain restrictions we must enforce on what type of function this can be. What restriction can we put on a function describing some sort of physical system? Answering this question involves understanding what the wavefunction is meant to encode in the first place. The key insight is recognizing that we can make use of <em>probability</em> for this. In other words, when measuring a particle’s position, we know that it <strong>must</strong> exsist <em>somewhere</em> in space. Translating this mathematically means that the probability of finding the particle represented by a certain wavefunction across all of space must be <span class="math inline">\(1\)</span>: <span class="math display">\[
-  \int |\psi(x)|^2dx = 1
-\]</span> When <span class="math inline">\(\psi\)</span> satisfies this property, we say that it is <em>normalized</em>. To make our lives a little bit simpler for now, we can loosen the restriction a little bit in this original discussion and only enforce that the function is <em>normalizable</em>: <span class="math display">\[
-  \int |\psi(x)|^2dx &lt; \infty
-\]</span> While this doesn’t guarantee that the probability is exactly <span class="math inline">\(1\)</span>, it does make it possible to adjust <span class="math inline">\(\psi\)</span> to be properly normalized (usually through a normalization coefficient).</p>
+<p>The central focus of our analysis is the <em>wavefunction</em> of a system, which we’ll denote with a capital or lowercase <span class="math inline">\(\psi\)</span>. As the name suggests, this is a function that will take certain inputs (such as position, momentum, etc) and can be used to ascertain other properties (such as energy). Solving for the wavefunction of a system is the central focus of quantum mechanics, since the wavefunction itself fully represents a system/state; this will be expanded on further in [POSTULATES REF].</p>
+<p>Now, since the wavefunction has to represent physically realizable states (eg, an electron or a Hydrogen atom), there are certain restrictions we must enforce on what type of function this can be. What restriction can we put on a function describing some sort of physical system? Answering this question involves understanding what the wavefunction is meant to encode in the first place. The key insight is recognizing that we can make use of <em>probability</em> for this. In other words, when measuring a particle’s position, we know that it <strong>must</strong> exist <em>somewhere</em> in space. Mathematically, this means that the probability of finding the wavefunction across all of space must be 1: <span class="math display">\[
+   \int_{-\infty}^{\infty} |\psi(x)|^2 \ dx = 1
+\]</span> When <span class="math inline">\(\psi\)</span> satisfies this property, we say that it is <em>normalized</em>. To make our lives a little bit simpler for now, we can loosen this restriction and only enforce that the function is <em>normalizable</em>: <span class="math display">\[
+  \int_{-\infty}^{\infty} |\psi(x)|^2 \ dx &lt; \infty
+\]</span> This condition ends up being sufficient for our discussion, since any wavefunction satisfying this can be normalized by multiplying <span class="math inline">\(\psi\)</span> by the reciprocal of the square root of the integral: <span class="math display">\[
+    \int_{-\infty}^{\infty} |\psi(x)|^2 \ d x = A \implies \int_{-\infty}^{\infty} \left|\frac{1}{\sqrt{A}} \psi(x)\right|^2 \ d x
+    = 1
+\]</span></p>
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>The interpretation that the squared norm of the wavefunction encodes probability was a nontrivial leap that took physicists years to uncover. We applaud Max Born’s discovery, but will make no attempt to naturally arrive at this conclusion ourselves.</p>
 </div>
-<p>So, now that we’ve established what valid wavefunctions can look like, we can consider the space of all possible wavefunctions<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> as one unit. The space of all complex, normalizable functions will itself form what is known as a <em>complex vector space</em>.</p>
+<p>The requirement that <span class="math inline">\(\psi\)</span> is normalizable and it being complex valued are the only restrictions on the kinds of <span class="math inline">\(\psi\)</span> we are allowed to consider. The collection of such <span class="math inline">\(\psi\)</span> forms a vector space, and since <span class="math inline">\(\psi\)</span> is complex-valued, we call this a <em>complex vector space</em>. We can then take this space, and attach an operation called the <em>inner product</em> to produce a <em>Hilbert space</em>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Specifically, the inner product we use is: <span class="math display">\[
+    \langle \psi(x), \phi(x) \rangle = \int_{-\infty}^{\infty} \psi^{*}(x)\phi(x) \ d x
+\]</span> where <span class="math inline">\(\psi, \phi\)</span> are two wavefunctions and the <span class="math inline">\(*\)</span> represents the complex conjugate. Combining this inner product with the set of <span class="math inline">\(\psi\)</span>’s defines our Hilbert space. The reason we do this is because, as we will see, this framework ends up being a very natural (and elegant) way to talk about wavefunctions and the relationships between them.</p>
 <!-- I think this should go in a linear algebra appendix-- have Carl write? -->
 <!--:::{.definition #def-vector-space}
 # Vector Space
@@ -299,13 +307,23 @@ satisfies a few general properties:
 To avoid losing generality, we represent a general field $\mathbb{F}$. Of course, scalar multiplication
 depends on what scalars (numbers) we're allowed to choose. When the coefficients are real, this field will be $\mathbb{R}$ and we say that we have a **real vector space**, and when the field is $\mathbb{C}$, we have a **complex vector space**.
 :::-->
-<p>From linear algebra, we know that if two vectors <span class="math inline">\(v_1, v_2\)</span> are part of the same vector space, then any <em>lienar combination</em> <span class="math inline">\(av_1 + bv_2\)</span> of the two will also be part of that vector space (provided the coefficients are part of the correct field). Similarly, if we have two normalizable wavefunctions (alternatively called <em>square-integrable</em>) <span class="math inline">\(\psi_1(x)\)</span> and <span class="math inline">\(\psi_2(x)\)</span>, then any combination <span class="math inline">\(c_1\psi_1(x) + c_2\psi_2(x)\)</span> will also be normalizable.</p>
-<p>The space of all complex square-integrable functions along with an additional operation called the <em>inner product</em> is called a <em>Hilbert space</em><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. This Hilbert space is where all of our wavefunctions will live. We mainly considered wavefunctions defined as functions of position <span class="math inline">\(\psi(x)\)</span>, but it’s entirely possible we could also care about wavefunctions as functions of momentum. In this case, we can convert between the two using a variant of what’s known as the <em>Fourier transform</em>: <span class="math display">\[
-\phi(p) = \frac{1}{\sqrt{2\pi\hbar}}\int dx e^{-ipx/\hbar}\psi(x)
-\]</span></p>
-<p>Unlike the positional wavefunctions <span class="math inline">\(\psi(x)\)</span>, which live in what we call <em>configuration space</em>, the Fourier-transformed momentum wavefunctions <span class="math inline">\(\phi(p)\)</span> live in <em>momentum space</em>. You may question (and rightfully so) whether these wavefunctions are similar enough to be comparable. Fortunately, their norms in their respective spaces are equal (thanks to the <em>Parseval identity</em>, which we will not prove): <span class="math display">\[
-\int dx|\psi(x)|^2 = \int dp|\phi(p)|^2
-\]</span> Thus, these wavefunctions in momentum space form their own separate Hilbert space. Whichever is more appropriate to use will depend on the problem one is attempting to solve. Configuration space wavefunctions are connected to physical position measurements (ie, measuring <span class="math inline">\(|\psi(x)|^2\)</span> will give a probability density for a particle’s position), whereas momentum space wavefunctions are connected to momentum measurements. So, which should we use to represent a state?</p>
+<!--
+From linear algebra, we know that if two vectors $v_1, v_2$ are part of the same vector space, then any
+*linear combination* $av_1 + bv_2$ where $a, b \in \mathbb{R}$ of the two will also be part of that vector space. 
+Similarly, if we have two normalizable wavefunctions (alternatively called
+*square-integrable*) $\psi_1(x)$ and $\psi_2(x)$, then any combination $c_1\psi_1(x) + c_2\psi_2(x)$ will
+also be normalizable (see if you can prove this for yourself!). 
+-->
+<section id="different-types-of-wavefunctions" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="different-types-of-wavefunctions"><span class="header-section-number">2.1.1</span> Different Types of Wavefunctions</h3>
+<p>So far, we mainly considered wavefunctions defined as functions of position <span class="math inline">\(\psi(x)\)</span>, but it’s entirely possible we could also care about wavefunctions as functions of momentum (or any other variable). In the particular case of momentum, we can convert between the two using what’s known as a <em>Fourier transform</em>: <span class="math display">\[
+    \phi(p) = \frac{1}{\sqrt{2\pi\hbar}}\int \psi(x) e^{-ipx/\hbar} \ dx
+\]</span> Unlike the positional wavefunctions <span class="math inline">\(\psi(x)\)</span>, which live in what we call <em>configuration space</em>, the Fourier-transformed momentum wavefunctions <span class="math inline">\(\phi(p)\)</span> live in <em>momentum space</em>. You may question (and rightfully so) whether these wavefunctions are similar enough to be comparable. Fortunately, their norms in their respective spaces are equal (thanks to the <em>Parseval identity</em>, which we will not prove): <span class="math display">\[
+    \int_{-\infty}^{\infty} |\psi(x)|^2 \ d x= \int_{-\infty}^{\infty} |\phi(p)|^2 \ dp
+\]</span> Thus, these wavefunctions in momentum space form their own separate Hilbert space (in terms of the momentum <span class="math inline">\(p\)</span>, instead of the position <span class="math inline">\(x\)</span>). It should be stressed that there is no one <em>correct</em> wavefunction: <span class="math inline">\(\psi(x)\)</span> is just as valid of a wavefunction as <span class="math inline">\(\phi(p)\)</span>, and the choice of which one to use will depend on the problem at hand. Given that we have these choices though, this is a good point to take a step back and develop some general notation that is agnostic to the variable we ultimately choose.</p>
+<!--So, which should we use to represent a state? -->
+<!-- NOTE: I don't like this transition, think about this more. -->
+</section>
 </section>
 <section id="dirac-notation-bras-kets-etc." class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="dirac-notation-bras-kets-etc."><span class="header-section-number">2.2</span> Dirac Notation (Bras, Kets, etc.)</h2>
@@ -317,24 +335,35 @@ depends on what scalars (numbers) we're allowed to choose. When the coefficients
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>When solving physical problems, we will often need to decide on a space and revisit the traditional wavefunction as a function of a variable, but in the most general case, we will use ket vectors. In fact, we use this more abstract representation to later derive the more traditional wavefunctions.</p>
 </div>
-<p>Since these are vectors, we expect them to behave as such, meaning we can commute scalars and kets: <span class="math display">\[c\ket{\psi} = \ket{\psi}c\]</span> These ket vectors live in a complex vector space which we’ll denote <span class="math inline">\(\mathcal{E}\)</span>.</p>
+<p>To motivate why we want to do this: recall that in the last section we defined the set of allowed <span class="math inline">\(\psi\)</span> as a vector space. So, it’s only natural that we think of each <span class="math inline">\(\psi\)</span> as a vector and represent it using <span class="math inline">\(\ket{\psi}\)</span>. Since these are vectors, we expect them to behave as such, satisfying properties like: <span class="math display">\[
+    c \ket{\psi} = \ket{\psi} c
+\]</span> for any scalar <span class="math inline">\(c\)</span>. The complex vector space in which these <span class="math inline">\(\ket{\psi}\)</span> live we will denote as <span class="math inline">\(\mathcal{E}\)</span>.</p>
 </section>
 <section id="dual-spaces" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="dual-spaces"><span class="header-section-number">2.2.2</span> Dual Spaces</h3>
-<p>Linear algebra also tells us that vectors and their accompanying vector space have corresponding <em>dual vectors</em> that live in the <em>dual space</em>. These are our <em>bras</em> <span class="math inline">\(\bra{}\)</span>, which live in <span class="math inline">\(\mathcal{E}^{*}\)</span>. Put very simply, these dual vectors (otherwise known as <em>covectors</em> or <em>forms</em>), describe linear operators that act on vectors that live in <span class="math inline">\(\mathcal{E}\)</span>: <span class="math display">\[\bra{\psi}: \mathcal{E} \to \mathbb{C}\]</span> In other words, a linear operation that takes ket vectors as an input and spits out a complex number will belong to our dual space. So, we can act a bra on a corresponding ket: <!-- Rest of Dirac notation beyond \bra and \ket doesn't render, using this as a workaround for now --> <span class="math display">\[\bra{\alpha}(\ket{\beta}) = \langle\alpha|\beta\rangle\]</span> For simplicity, we can drop the parentheses in these products. Given how the dual vector is defined, we then know that this quantity <span class="math inline">\(\langle\alpha|\beta\rangle\)</span> will be a complex number.</p>
+<p>Linear algebra also tells us that vectors and their accompanying vector space have corresponding <em>dual vectors</em> that live in the <em>dual space</em>. These are our <em>bras</em> <span class="math inline">\(\bra{}\)</span>, which live in <span class="math inline">\(\mathcal{E}^{*}\)</span>. Put very simply, these dual vectors (otherwise known as <em>covectors</em> or <em>forms</em>), describe linear operators that act on vectors that live in <span class="math inline">\(\mathcal{E}\)</span>: <span class="math display">\[
+    \bra{\psi}: \mathcal{E} \to \mathbb{C}
+\]</span> In other words, any linear operation that takes ket vectors as an input and spits out a complex number will belong to our dual space. So, we can act a bra on a corresponding ket: <!-- Rest of Dirac notation beyond \bra and \ket doesn't render, using this as a workaround for now --> <span class="math display">\[
+    \bra{\alpha}(\ket{\beta}) = \braket*{\alpha}{\beta}
+\]</span> For simplicity, we can drop the parentheses in these products. Given how the dual vector is defined, we then know that this quantity <span class="math inline">\(\braket*{\alpha}{\beta}\)</span> will be a complex number.</p>
 <div class="notation">
 <p>When we want to emphasize that a bra is a complex-valued operator that takes in a ket as an input, we may reintroduce parentheses to accentuate this. Otherwise, we will drop it.</p>
 </div>
-<p>Bras are defined as linear operators, meaning we naturally expect them to satisfy the relevant <em>linearity</em> and <em>homogeneity</em> conditions: <span class="math display">\[\bra{\alpha}(c_1\ket{\psi_1}+c_2\ket{\psi_2}) = c_1\langle\alpha|\psi_1\rangle + c_2\langle\alpha|\psi_2\rangle\]</span> Additionally, scalar products and sums work exactly as we would expect:</p>
-<p><span class="math display">\[(c\bra{\alpha})(\ket{\psi}) = c\langle\alpha|\psi\rangle, \quad (\bra{\alpha_1} +
-\bra{\alpha_2})(\ket{\psi}) = \langle\alpha_1|\psi\rangle + \langle\alpha_2|\psi\rangle\]</span></p>
+<p>Bras are defined as linear operators, meaning we naturally expect them to satisfy the relevant <em>linearity</em> and <em>homogeneity</em> conditions: <span class="math display">\[
+    \bra{\alpha}(c_1\ket{\psi_1}+c_2\ket{\psi_2}) = c_1 \braket*{\alpha}{\psi_1}+ c_2\braket*{\alpha}{\psi_2}
+\]</span> Additionally, scalar products and sums work exactly as we would expect: <span class="math display">\[
+    (c\bra{\alpha})(\ket{\psi}) = c\braket*{\alpha}{\psi},
+    \quad (\bra{\alpha_1} + \bra{\alpha_2})(\ket{\psi}) = \braket*{\alpha_1}{\psi} + \braket*{\alpha_2}{\psi}
+\]</span></p>
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>If you’re struggling to remember which name refers to which state, think about bras and kets coming in pairs, together forming “brackets” <span class="math inline">\(\braket{}\)</span>. the “bra” comes first and points left, thereby representing the dual, whereas the “ket” comes second and points right, representing the traditional vector.</p>
 </div>
 </section>
 <section id="connecting-bras-and-kets" class="level3" data-number="2.2.3">
 <h3 data-number="2.2.3" class="anchored" data-anchor-id="connecting-bras-and-kets"><span class="header-section-number">2.2.3</span> Connecting Bras and Kets</h3>
-<p>Even though we established what bras and kets are and the correspondence between the two may seem obvious, that’s not good enough for us mathematically: we need an explicit way to convert between bras and kets. For this, let’s consider some function <span class="math inline">\(g\)</span> that takes in two kets and spits out a complex number: <span class="math display">\[g: \mathcal{E}\times\mathcal{E}\to\mathbb{C}\]</span> This function is called a <em>metric</em> (or <em>scalar product</em>) on <span class="math inline">\(\mathcal{E}\)</span>. We want this function <span class="math inline">\(g\)</span> to satisfy a few key properties:</p>
+<p>Even though we established what bras and kets are and the correspondence between the two may seem obvious, that’s not good enough for us mathematically: we need an explicit way to convert between bras and kets. For this, let’s consider some function <span class="math inline">\(g\)</span> that takes in two kets and spits out a complex number: <span class="math display">\[
+    g: \mathcal{E}\times\mathcal{E}\to\mathbb{C}
+\]</span> This function is called a <em>metric</em> (or <em>scalar product</em>) on <span class="math inline">\(\mathcal{E}\)</span>. We want this function <span class="math inline">\(g\)</span> to satisfy a few key properties:</p>
 <ol type="1">
 <li><strong>Linearity in second operand</strong>: <span class="math inline">\(g(\ket{\psi},c_1\ket{\phi_1}+c_2\ket{\phi_2}) =
 c_1g(\ket{\psi},\ket{\phi_1}) + c_2g(\ket{\psi},\ket{\phi_2})\)</span></li>
@@ -343,11 +372,13 @@ c_1^{*}g(\ket{\psi_1},\ket{\phi}) + c_2^{*}g(\ket{\psi_2},\ket{\phi})\)</span></
 <li><strong>Symmetry</strong> (or <em>Hermiticity</em>): <span class="math inline">\(g(\ket{\psi},\ket{\phi}) = g(\ket{\phi},\ket{\psi})^{*}\)</span></li>
 <li><strong>Positive-Definite</strong>: <span class="math inline">\(g(\ket{\psi},\ket{\psi})\geq 0\)</span>; equal only when <span class="math inline">\(\ket{\psi}=0\)</span></li>
 </ol>
-<p>Here, the * refers to the <em>complex conjugate</em> of the number: <span class="math display">\[c = a+bi \implies c^{*} = a-bi\]</span> With that metric established, we are able to properly define the <em>dual correspondence</em> that will convert between kets and bras. We’ll denote this correspondence <span class="math inline">\(D:\mathcal{E}\to\mathcal{E}^{*}\)</span>. This way, when we write a ket <span class="math inline">\(\ket{\psi}\)</span>, we know that the associated bra under this dual correspondence will be denoted <span class="math inline">\(\bra{\psi}\)</span>. Given this metric, we can then explicitly define the bra <span class="math inline">\(\bra{\psi}\)</span> in terms of how it acts on any random ket <span class="math inline">\(\ket{\phi}\)</span>: <span class="math display">\[\bra{\psi}(\ket{\phi}) = g(\ket{\psi},\ket{\phi})\]</span></p>
+<p>Here, the * refers to the <em>complex conjugate</em> of the number: <span class="math display">\[
+    c = a+bi \implies c^{*} = a-bi
+\]</span> With that metric established, we are able to properly define the <em>dual correspondence</em> that will convert between kets and bras. We’ll denote this correspondence <span class="math inline">\(D:\mathcal{E}\to\mathcal{E}^{*}\)</span>. This way, when we write a ket <span class="math inline">\(\ket{\psi}\)</span>, we know that the associated bra under this dual correspondence will be denoted <span class="math inline">\(\bra{\psi}\)</span>. Given this metric, we can then explicitly define the bra <span class="math inline">\(\bra{\psi}\)</span> in terms of how it acts on any random ket <span class="math inline">\(\ket{\phi}\)</span>: <span class="math display">\[\bra{\psi}(\ket{\phi}) = g(\ket{\psi},\ket{\phi})\]</span></p>
 <div class="notation">
 <p>We’ll denote the bra we get from a ket’s dual correspondence through a <em>dagger</em> <span class="math inline">\(\dagger\)</span>: <span class="math display">\[\bra{\psi} = (\ket{\psi})^{\dagger}, \quad \ket{\psi} = (\bra{\psi})^{\dagger}\]</span> This dagger means then that <span class="math inline">\(\bra{\psi}\)</span> is the <em>Hermitian conjugate</em> of <span class="math inline">\(\ket{\psi}\)</span> (and vice-versa).</p>
 </div>
-<p>Given how we defined our scalar product to be antilinear in the first operand, we expect the dual correspondence to also be antilinear: <span class="math display">\[(c_1\ket{\psi_1} + c_2\ket{\psi_2})^{\dagger} = c_1^{*}\bra{\psi_1} + c_2^{*}\bra{\psi_2}\]</span> Given how we expressed this correspondence, we naturally expect that repeating the operation necessarily returns us to the original state: <span class="math display">\[(\ket{\psi})^{\dagger\dagger} = \ket{\psi}, \quad (\bra{\psi})^{\dagger\dagger} = \bra{\psi}\]</span> With all of this clarified, we can proceed to simplify our notation of bra’s actions on kets: <span class="math display">\[\bra{\psi}(\ket{\phi}) = g(\ket{\psi},\ket{\phi}) = \langle\psi|\phi\rangle\]</span> This means we can also rewrite our Hermiticity and positive-definite conditions: <span class="math display">\[\langle\psi|\phi\rangle = \langle\phi|\psi\rangle^{*}, \quad \langle\psi|\psi\rangle \geq 0\]</span> This has allowed us to completely rid ourselves of the <span class="math inline">\(g\)</span>-function notation, meaning we can now deal exclusively with bras and kets. This operation of acting a bra on a ket has another name which may be familiar to those who have studied linear algebra: the <em>inner product</em>.</p>
+<p>Given how we defined our scalar product to be antilinear in the first operand, we expect the dual correspondence to also be antilinear: <span class="math display">\[(c_1\ket{\psi_1} + c_2\ket{\psi_2})^{\dagger} = c_1^{*}\bra{\psi_1} + c_2^{*}\bra{\psi_2}\]</span> Given how we expressed this correspondence, we naturally expect that repeating the operation necessarily returns us to the original state: <span class="math display">\[(\ket{\psi})^{\dagger\dagger} = \ket{\psi}, \quad (\bra{\psi})^{\dagger\dagger} = \bra{\psi}\]</span> With all of this clarified, we can proceed to simplify our notation of bra’s actions on kets: <span class="math display">\[\bra{\psi}(\ket{\phi}) = g(\ket{\psi},\ket{\phi}) = \braket*{\psi}{\phi}\]</span> This means we can also rewrite our Hermiticity and positive-definite conditions: <span class="math display">\[\braket*{\psi}{\phi} = \braket*{\phi}{\psi}^{*}, \quad \braket*{\psi}{\psi} \geq 0\]</span> This has allowed us to completely rid ourselves of the <span class="math inline">\(g\)</span>-function notation, meaning we can now deal exclusively with bras and kets. This operation of acting a bra on a ket has another name which may be familiar to those who have studied linear algebra: the <em>inner product</em>.</p>
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>You may ask why we wrote a <span class="math inline">\(*\)</span> over the combined bra-ket product above instead of a dagger. This is because we will typically reserve the dagger notation for Hermitian conjugates of vectors and operators, while the star refers to the complex conjugate of a scalar (number). Since a bra acted on a ket necessarily produces a scalar, its conjugate will also necessarily be a number.</p>
 </div>
@@ -356,21 +387,40 @@ c_1^{*}g(\ket{\psi_1},\ket{\phi}) + c_2^{*}g(\ket{\psi_2},\ket{\phi})\)</span></
 <h3 data-number="2.2.4" class="anchored" data-anchor-id="some-practice-the-schwarz-inequality"><span class="header-section-number">2.2.4</span> Some Practice: The Schwarz Inequality</h3>
 <p>Let’s put our newly-developed notation to some use and prove a very important theorem in linear algebra called the <em>Schwarz inequality</em>.</p>
 <div id="thm-schwarz-inequality" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 2.1 (Schwarz Inequality)</strong></span> <span class="math display">\[|\langle\psi|\phi\rangle|^2 \leq \langle\psi|\psi\rangle\langle\phi|\phi\rangle\quad \forall
-\ket{\psi},\ket{\phi}\]</span> Equality holds iff<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> <span class="math inline">\(\ket{\psi}\)</span> and <span class="math inline">\(\ket{\phi}\)</span> are <em>linearly dependent</em> (ie, <span class="math inline">\(\ket{\psi}=c\ket{\phi}\)</span> for some scalar <span class="math inline">\(c\)</span>).</p>
+<p><span class="theorem-title"><strong>Theorem 2.1 (Schwarz Inequality)</strong></span> <span class="math display">\[
+    \left| \braket*{\psi}{\phi} \right|^2 \leq \braket*{\psi}{\psi} \braket*{\phi}{\phi} \quad \forall
+    \ket{\psi}, \ket{\phi}
+\]</span> Equality holds iff<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <span class="math inline">\(\ket{\psi}\)</span> and <span class="math inline">\(\ket{\phi}\)</span> are <em>linearly dependent</em> (ie, <span class="math inline">\(\ket{\psi}=c\ket{\phi}\)</span> for some scalar <span class="math inline">\(c\)</span>).</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span>Set some new ket <span class="math inline">\(\ket{\alpha} = \ket{\psi} + \lambda\ket{\phi}\)</span>, where <span class="math inline">\(\lambda\in\mathbb{C}\)</span>, and take the inner product with itself: <span class="math display">\[\langle\alpha|\alpha\rangle = (\bra{\psi} + \lambda^{*}\bra{\phi})(\ket{\psi} + \lambda\ket{\phi}) = \langle\psi|\psi\rangle + \lambda\langle\psi|\phi\rangle + \lambda^{*}\langle\phi|\psi\rangle + |\lambda|^2\langle\phi|\phi\rangle\geq 0\]</span> We know by definition that this has to be positive-definite, with equality only holding when <span class="math inline">\(\ket{\alpha}=0\)</span> (in other words, when <span class="math inline">\(\ket{\psi} = -\lambda\ket{\phi}\)</span>, which is precisely our linear dependence condition).</p>
-<p>Skipping the trivially true case when <span class="math inline">\(\ket{\phi}=0\)</span>, let’s address the case when <span class="math inline">\(\ket{\phi}\neq0\)</span>. Since the inequality we wrote out above holds for all <span class="math inline">\(\ket{\psi}\)</span>, <span class="math inline">\(\ket{\phi}\)</span>, and <span class="math inline">\(\lambda\)</span>, let’s set <span class="math inline">\(\lambda=-\frac{\langle\phi|\psi\rangle}{\langle\phi|\phi\rangle}\)</span>: <span class="math inline">\(\begin{multline*}
+<p><span class="proof-title"><em>Proof</em>. </span>Set some new ket <span class="math inline">\(\ket{\alpha} = \ket{\psi} + \lambda\ket{\phi}\)</span>, where <span class="math inline">\(\lambda\in\mathbb{C}\)</span>, and take the inner product with itself: <span class="math display">\[
+    \braket*{\alpha}{\alpha} = (\bra{\psi} + \lambda^{*} \bra{\phi}) (\ket{\psi} + \lambda \ket{\phi}) =
+    \braket*{\psi}{\psi} + \lambda \braket*{\psi}{\phi} + \lambda^{*} \braket*{\phi}{\psi} + |\lambda|^2
+    \braket*{\phi}{\phi} \geq 0
+\]</span> We know by definition that <span class="math inline">\(\braket*{\alpha}{\alpha} \geq 0\)</span> (property 4 of the metric <span class="math inline">\(g\)</span>), with equality only when <span class="math inline">\(\ket{\alpha} = 0\)</span>, or equivalently when <span class="math inline">\(\ket{\psi} = -\lambda \ket{\phi}\)</span>, which is precisely our linear dependence condition. We’ll skip the trivial case where <span class="math inline">\(\ket{\phi} = 0\)</span>, and address the more interesting case when <span class="math inline">\(\ket{\phi} \neq 0\)</span>. Since the above inequality holds for all <span class="math inline">\(\ket{\psi}\)</span>, <span class="math inline">\(\ket{\phi}\)</span> and <span class="math inline">\(\lambda\)</span>, let’s set <span class="math inline">\(\lambda=-\frac{\braket*{\phi}{\psi}}{\braket*{\phi}{\phi}}\)</span>: <span class="math display">\[
+    \begin{multline*}
+    \braket*{\psi}{\psi} - \frac{\braket*{\phi}{\psi}\braket*{\psi}{\phi}}{\braket*{\phi}{\phi}} -
+    \frac{\braket*{\psi}{\phi} \braket*{\phi}{\psi}}{\braket*{\phi}{\phi}} +
+    \frac{\braket*{\psi}{\phi}\braket*{\phi}{\psi}\braket*{\phi}{\phi}}{\braket*{\phi}{\phi}^2} \\=
+    \braket*{\psi}{\psi} - 2 \frac{\braket*{\psi}{\phi} \braket*{\phi}{\psi}}{\braket*{\phi}{\phi}} +
+    \frac{\braket*{\psi}{\phi}\braket*{\phi}{\psi}}{\braket*{\phi}{\phi}} = \braket*{\psi}{\psi} -
+    \frac{\braket*{\psi}{\phi} \braket*{\phi}{\psi}}{\braket*{\phi}{\phi}} = \braket*{\psi}{\psi} -
+    \frac{\left| \braket*{\psi}{\phi} \right|^2}{\braket*{\phi}{\phi}} \geq 0
+    \end{multline*}
+\]</span> <!--
+$$
+\begin{multline*}
 \therefore \langle\psi|\psi\rangle -
 \frac{\langle\phi|\psi\rangle\langle\psi|\phi\rangle}{\langle\phi|\phi\rangle} -
 \frac{\langle\psi|\phi\rangle\langle\phi|\psi\rangle}{\langle\phi|\phi\rangle} +
 \frac{\langle\psi|\phi\rangle\langle\phi|\psi\rangle\langle\phi|\phi\rangle}{\langle\phi|\phi\rangle^2} = \\
 = \langle\psi|\psi\rangle - 2\frac{\langle\psi|\phi\rangle\langle\phi|\psi\rangle}{\langle\phi|\phi\rangle} + \frac{\langle\psi|\phi\rangle\langle\phi|\psi\rangle}{\langle\phi|\phi\rangle} = \langle\psi|\psi\rangle - \frac{\langle\psi|\phi\rangle\langle\phi|\psi\rangle}{\langle\phi|\phi\rangle} = \\
 = \langle\psi|\psi\rangle - \frac{|\langle\psi|\phi\rangle|^2}{\langle\phi|\phi\rangle} \geq 0
-\end{multline*}\)</span> Moving the second term to the right and multiplying by <span class="math inline">\(\langle\phi|\phi\rangle\)</span> gives us our original inequality, as desired. <span class="math inline">\(\blacksquare\)</span></p>
+\end{multline*}
+$$
+--> Moving the second term to the right and multiplying by <span class="math inline">\(\langle\phi|\phi\rangle\)</span> gives us our original inequality, as desired. <span class="math inline">\(\blacksquare\)</span></p>
 </div>
-<p>As we can see, Dirac notation is compact, consistent, and comprehensible for problem-solving.</p>
+<p>As we can see, Dirac notation is compact, consistent, and comprehensible for problem-solving.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>We illustrated this mathematical proof outside of an appendix to better demonstrate the power of Dirac notation, as well as to illustrate an important theorem that we’ll make heavy use of later on (notably with proving the <em>Heisenberg uncertainty relations</em>).</p>
 </div>
@@ -385,22 +435,27 @@ c_1^{*}g(\ket{\psi_1},\ket{\phi}) + c_2^{*}g(\ket{\psi_2},\ket{\phi})\)</span></
 </section>
 <section id="operators-and-commutators" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="operators-and-commutators"><span class="header-section-number">2.3</span> Operators and Commutators</h2>
-<p>Let’s now pivot our attention to <em>operators</em>, which are how we’ll extract meaningful information from our wavefunctions. For our purposes in nonrelativistic quantum mechanics, we will primarily be interested in two types of operators: <em>linear</em> operators and <em>antilinear</em> operators. These are both mappings from a ket space <span class="math inline">\(\mathcal{E}\)</span> onto itself, but that behave slightly differently on linear combinations of kets:</p>
-<p><span class="math display">\[\begin{align*}
-L(c_1\ket{\psi_1}+c_2\ket{\psi_2}) &amp;= c_1L\ket{\psi_1} + c_2L\ket{\psi_2} &amp;&amp;\text{(linear)}\\
-A(c_1\ket{\psi_1}+c_2\ket{\psi_2}) &amp;= c_1^{*}A\ket{\psi_1} + c_2^{*}A\ket{\psi_2}
-&amp;&amp;\text{(antilinear)}
-\end{align*}\]</span></p>
-<p>In the spirit of total transparency, we will almost exclusively death with <em>linear</em> operators, but mention antilinear operators as well because we will analyze one such case much later on.</p>
+<p>Let’s now pivot our attention to <em>operators</em>, which are how we’ll extract meaningful information from our wavefunctions. For our purposes in nonrelativistic quantum mechanics, we will primarily be interested in two types of operators: <em>linear</em> operators and <em>antilinear</em> operators. These are both mappings from a ket space <span class="math inline">\(\mathcal{E}\)</span> onto itself (i.e.&nbsp;<span class="math inline">\(A: \mathcal{E} \to \mathcal{E}\)</span>), but they behave slightly differently on linear combinations of kets:</p>
+<p><span class="math display">\[
+    \begin{align*}
+        A(c_1\ket{\psi_1}+c_2\ket{\psi_2}) &amp;= c_1A\ket{\psi_1} + c_2A\ket{\psi_2} &amp;&amp;\text{(linear)}\\
+        A(c_1\ket{\psi_1}+c_2\ket{\psi_2}) &amp;= c_1^{*}A\ket{\psi_1} + c_2^{*}A\ket{\psi_2}
+        &amp;&amp;\text{(antilinear)}
+    \end{align*}
+\]</span></p>
+<p>In the spirit of total transparency, we will almost exclusively deal with <em>linear</em> operators, but mention antilinear operators as well because we will analyze one such case much later on.</p>
 <div class="proof remark">
-<p><span class="proof-title"><em>Remark</em>. </span>The keen among you may recognize this one antilinear operator of interest as the <em>time reversal</em> operator, which will not concern us for a long while. Of course, we will see more antilinear operators once we make the transition to relativistic quantum mechanics and quantum field theory, but we will not concern ourselves with that for now.</p>
+<p><span class="proof-title"><em>Remark</em>. </span>The keen among you may recognize this one antilinear operator of interest as the <em>time reversal</em> operator. Antilinear operators will appear more frequently when we transition to relativistic quantum mechanics and quantum field theory, but we won’t do that for a very long time.</p>
 </div>
 <p>Given how operators are defined as a mapping from a ket space onto itself, we know that these operators will take in ket vectors as an input and then spit out some other ket vector as an output.</p>
 <section id="commutators" class="level3" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="commutators"><span class="header-section-number">2.3.1</span> Commutators</h3>
 <p>From linear algebra, we know that these operators can be scaled by complex numbers and added to each other to produce new operators on the same ket spaces, meaning they also form their own vector space. What about multiplication? Well, we expect the multiplication to be associative for any combination of linear operators <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span>: <span class="math display">\[A(BC) = (AB)C\]</span> However, it won’t necessarily be commutative: <span class="math display">\[AB \neq BA\]</span> Why not? Let’s illustrate with a real-world example.</p>
 <div id="exm-commuting-operations" class="example theorem">
-<p><span class="theorem-title"><strong>Example 2.1 (Taking a Stroll)</strong></span> Imagine you are navigating some space and start out facing east. If you walk forward, then turn left, you’ll end up further east than when you started, facing north. What would happen if you instead turned left first, then walked forward? Turning left when facing east would make you now face north, meaning that you’d end up north of where you started, facing north. Despite only performing two steps, the order clearly matters. <!-- TikZ picture diagramming these two walking paths should go here--> If you think of operators acting on ket vectors as instructions we give someone to perform, we see that swapping the order of the operators is equivalent to giving instructions in a different order, which can produce completely different results: <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>Example 2.1 (Taking a Stroll)</strong></span> Imagine you are navigating some space and start out facing east. If you walk forward, then turn left, you’ll end up further east than when you started, facing north. What would happen if you instead turned left first, then walked forward? Turning left when facing east would make you now face north, meaning that you’d end up north of where you started, facing north. Despite only performing two steps, the order clearly matters.</p>
+<p>[INSERT TIKZ HERE]</p>
+<!-- TikZ picture diagramming these two walking paths should go here-->
+<p>If you think of operators acting on ket vectors as instructions we give someone to perform, we see that swapping the order of the operators is equivalent to giving instructions in a different order, which can produce completely different results: <span class="math display">\[\begin{align*}
 AB\ket{\psi} &amp;= A(B\ket{\psi}) = A(B(\ket{\psi})) = A(\ket{\phi_B}) = \ket{\alpha}\\
 BA\ket{\psi} &amp;= B(A\ket{\psi}) = B(A(\ket{\psi})) = B(\ket{\phi_A}) = \ket{\beta}
 \end{align*}\]</span> Thus, multiplication of operators will not act the same as standard scalar multiplication, meaning we’ll have to be careful when specifying order.</p>
@@ -413,8 +468,7 @@ BA\ket{\psi} &amp;= B(A\ket{\psi}) = B(A(\ket{\psi})) = B(\ket{\phi_A}) = \ket{\
 <div id="def-anticommutator" class="definition theorem">
 <p><span class="theorem-title"><strong>Definition 2.2 (Anticommutator)</strong></span> The <em>anticommutator</em> of two operators is the sum of their ordered products: <span class="math display">\[\{A,B\} = AB + BA\]</span></p>
 </div>
-<p>Naturally, the operators will commute when their commutator is <span class="math inline">\(0\)</span>; in that case,we can freely interchange their order.</p>
-<p>Some operators may have an associated <em>inverse</em>, which we’ll denote <span class="math inline">\(A^{-1}\)</span>. This inverse “undoes” the action of the operator:</p>
+<p>Naturally, the operators will commute when their commutator is <span class="math inline">\(0\)</span>; in that case, we can freely interchange their order. Some operators may have an associated <em>inverse</em>, which we’ll denote <span class="math inline">\(A^{-1}\)</span>. This inverse “undoes” the action of the operator:</p>
 <p><span class="math display">\[AA^{-1} = A^{-1}A = 1\]</span></p>
 <div class="notation">
 <p>Above, the “1” denotes the <em>identity matrix</em>, rather than a number. In some instances, we will opt to write <span class="math inline">\(I\)</span> for the identity, but <span class="math inline">\(1\)</span> is also acceptable.</p>
@@ -475,15 +529,17 @@ A[B,C] + [A,C]B \quad\checkmark
 <div class="notation">
 <p>We will use the following notation to denote the action of an operator on a bra: <span class="math display">\[\bra{\psi}A = ?\]</span> Colloquially, we will say that operators act on kets to the right and bras to the left.</p>
 </div>
-<p>Since operators acting on kets will produce other kets, we should expect operators acting on bras to produce other bras: <span class="math display">\[\bra{\psi}A = \bra{\phi}\]</span> Given how we defined operators and how bras and kets are related, it is not inconveivable for us to extend their definition to behave as such. Now, given this, we can expect to envision an operator sandwiched between a bra and a ket as either a resultant bra acting on ket or vice versa: <span class="math display">\[(\bra{\psi}A)\ket{\phi} = \bra{\psi}(A\ket{\phi})\]</span> This means we can drop the parentheses and treat this as one unit: <span class="math display">\[(\bra{\psi}A)(\ket{\phi}) = \langle\psi|A|\phi\rangle\]</span> We call this combined expression the <em>matrix element</em>.</p>
+<p>Since operators acting on kets will produce other kets, we should expect operators acting on bras to produce other bras: <span class="math display">\[\bra{\psi}A = \bra{\phi}\]</span> Given how we defined operators and how bras and kets are related, it is not inconveivable for us to extend their definition to behave as such.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Now, given this, we can expect to envision an operator sandwiched between a bra and a ket as either a resultant bra acting on ket or vice versa: <span class="math display">\[(\bra{\psi}A)\ket{\phi} = \bra{\psi}(A\ket{\phi})\]</span> This means we can drop the parentheses and treat this as one unit: <span class="math display">\[
+    (\bra{\psi}A)(\ket{\phi}) = \mel{\psi}{A}{\phi}
+\]</span> We call this combined expression the <em>matrix element</em>.</p>
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>In the context of linear algebra and linear maps, the term “matrix element” begins to make sense. Since a matrix is fundamentally a representation of a linear transformation’s action on a given vector input, sandwiching an operator between a bra and a ket can be interpreted as an extraction of the relevant matrix element of that operator.</p>
 </div>
 </section>
 <section id="outer-products" class="level3" data-number="2.3.3">
 <h3 data-number="2.3.3" class="anchored" data-anchor-id="outer-products"><span class="header-section-number">2.3.3</span> Outer Products</h3>
-<p>We previously defined the inner product as a bra acting on a ket from the left, which would produce a scalar by the definitions of bras and kets, respectively. What if we instead have a bra acting on a ket from the right? Let’s act this new thing on a ket and see what we should expect: <span class="math display">\[(\ket{\alpha}\bra{\beta})\ket{\psi} = \ket{\alpha}(\langle\beta|\psi\rangle) = \ket{\alpha}c_1 =
-c_1\ket{\alpha} = \ket{\gamma_1}\]</span> Thus, this new combination, which we’ll call the <em>outer product</em>, should produce a resultant ket when acted on a ket. Similarly, when acted on a bra, we should expect a resultant bra: <span class="math display">\[\bra{\psi}(\ket{\alpha}\bra{\beta}) = \langle\psi|\alpha\rangle\bra{\beta} = c_2\bra{\beta} =
+<p>We previously defined the inner product as a bra acting on a ket from the left, which would produce a scalar by the definitions of bras and kets, respectively. What if we instead have a bra acting on a ket from the right? Let’s act this new thing on a ket and see what we should expect: <span class="math display">\[(\ket{\alpha}\bra{\beta})\ket{\psi} = \ket{\alpha}(\braket*{\beta}{\psi}) = \ket{\alpha}c_1 =
+c_1\ket{\alpha} = \ket{\gamma_1}\]</span> Thus, this new combination, which we’ll call the <em>outer product</em>, should produce a resultant ket when acted on a ket. Similarly, when acted on a bra, we should expect a resultant bra: <span class="math display">\[\bra{\psi}(\ket{\alpha}\bra{\beta}) = \braket*{\psi}{\alpha}\bra{\beta} = c_2\bra{\beta} =
 \bra{\gamma_2}\]</span> Thus, this outer product must itself be a special type of linear operator. Note that the bra action is not the direct definition of the outer product; it is simply a consequence of the ket action, which itself is the proper definition.</p>
 </section>
 <section id="bases" class="level3" data-number="2.3.4">
@@ -493,16 +549,23 @@ c_1\ket{\alpha} = \ket{\gamma_1}\]</span> Thus, this new combination, which we�
 <p><span class="proof-title"><em>Remark</em>. </span>This is another key place where infinite-dimensional vector spaces behave differently from their finite-dimensional counterparts. We should expect such a space to also possess a basis, since we need to be able to construct it using some combination of vectors, but <em>how many</em> vectors should we have? We know from discrete mathematics that there are different <em>kinds</em> of infinities, namely <strong>countable</strong> and <strong>uncountable</strong> ones (put simply, countable infinities are ones where we can enumerate each element, and uncountable ones are those where it’s impossible to do so). Fortunately for us, one of the properties of a Hilbert space is that it possesses a countably infinite basis, which is good for our purposes and the end of our discussion of the matter.</p>
 </div>
 <p>We will often require to decompose a vector space into an appropriate basis, or use a basis to construct a relevant vector space. Since the only requirements for a set to become a basis are for it to be the appropriate length, have each vector be linearly independent, and have the vectors span the entire space, it is not inconceivable to have multiple different bases generating a single vector space.</p>
-<p>Let’s label some discrete basis of some ket space with numbered kets: <span class="math inline">\(\{\ket{n}, n=1,2,\dots\}\)</span>. If all vectors in the basis are <em>orthogonal</em> (they are mutually perpendicular to each other), we call the basis an <em>orthogonal basis</em>. If, furthermore, all of the vectors of an orthogonal basis are normalized (each has magnitude <span class="math inline">\(1\)</span>), we call the basis <em>orthonormal</em>. To properly notate, let’s introduce a new function which we’ll see a lot later on called the <em>Kronecker delta</em><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>:</p>
+<p>Let’s label some discrete basis of some ket space with numbered kets: <span class="math inline">\(\{\ket{n}, n=1,2,\dots\}\)</span>. If all vectors in the basis are <em>orthogonal</em> (i.e.&nbsp;<span class="math inline">\(\braket*{n}{m} = 0\)</span> when <span class="math inline">\(n \neq m\)</span>), we call the basis an <em>orthogonal</em> basis. If, furthermore, all of the vectors of an orthogonal basis are normalized (each has magnitude <span class="math inline">\(1\)</span>), we call the basis <em>orthonormal</em>. To properly notate, let’s introduce a new function which we’ll see a lot later on called the <em>Kronecker delta</em><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>:</p>
 <!-- maybe remove this from the definition environment and just have it sit outside? -->
 <div id="def-kronecker-delta" class="definition theorem">
 <p><span class="theorem-title"><strong>Definition 2.3 (Kronecker Delta)</strong></span> The <em>Kronecker delta</em> is defined like so: <span class="math display">\[\delta_{mn} = \begin{cases} 1 &amp; m=n \\ 0 &amp; m \neq n \end{cases}\]</span></p>
 </div>
-<p>Thus, we can rewrite the orthonormality condition for our basis into the following really compact form: <span class="math display">\[\langle n|m \rangle = \delta_{mn}\]</span></p>
+<p>Thus, we can rewrite the orthonormality condition for our basis into the following really compact form: <span class="math display">\[\braket*{n}{m} = \delta_{mn}\]</span></p>
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>We will use <em>index notation</em> like the Kronecker delta above to simplify notation often throughout quantum mechanics (and in some instances in other fields of physics as well). Index notation will be clarified a bit more in some appendices, and will come more in handy when we start dealing with tensors, which will come a little later.</p>
 </div>
-<p>Given any basis, we can represent any arbitrary ket vector <span class="math inline">\(\ket{\psi}\)</span> in that space as a linear combination of some these basis vectors: <span class="math display">\[\ket{\psi} = \sum_{n}c_n\ket{n} = \sum_{n}\ket{n}c_n\]</span> These expansion coefficients <span class="math inline">\(c_n\)</span> are given by the following inner product if the basis is orthonormal: <span class="math display">\[c_n = \langle n|\psi\rangle\]</span> This is pretty straightforward to justify given the definition of orthonormal vectors: <span class="math display">\[\langle n|\psi\rangle = \bra{n}(\sum_{m}\ket{m}c_m) = \delta_{nm}c_m = 0 + 0 + \dots + 1*c_n = c_n\]</span> This means we can rewrite our expression as: <span class="math display">\[\ket{\psi} = \sum_{n}\ket{n}\langle n|\psi\rangle = \left(\sum_{n}\ket{n}\bra{n}\right)\ket{\psi}\]</span> Since <span class="math inline">\(\ket{\psi}\)</span> is an arbitrarily-chosen ket vector, we can remove it from our expression to get a <em>resolution of the identity</em>: <span class="math display">\[\boxed{1 = \sum_{n}\ket{n}\bra{n}}\]</span></p>
+<p>Given any basis, we can represent any arbitrary ket vector <span class="math inline">\(\ket{\psi}\)</span> in that space as a linear combination of some these basis vectors: <span class="math display">\[\ket{\psi} = \sum_{n}c_n\ket{n} = \sum_{n}\ket{n}c_n\]</span> These expansion coefficients <span class="math inline">\(c_n\)</span> are given by the following inner product if the basis is orthonormal: <span class="math display">\[
+    c_n = \braket*{n}{\psi}
+\]</span> This is pretty straightforward to justify given the definition of orthonormal vectors: <span class="math display">\[
+    \braket*{n}{\psi} = \bra{n}\left( \sum_m \ket{m} c_m \right) = \delta_{nm} c_m = 0 + 0 + \dots + 1 * c_n
+    = c_n
+\]</span> This means we can rewrite our expression as: <span class="math display">\[
+    \ket{\psi} = \sum_n \bra{n}\braket*{n}{\psi} = \left( \sum_n \bra{n}\ket{n} \right) \ket{\psi}
+\]</span> Since <span class="math inline">\(\ket{\psi}\)</span> is an arbitrarily-chosen ket vector, we can remove it from our expression to get a <em>resolution of the identity</em>: <span class="math display">\[\boxed{1 = \sum_{n}\ket{n}\bra{n}}\]</span></p>
 </section>
 <section id="a-special-case-hermitian-and-unitary-operators" class="level3" data-number="2.3.5">
 <h3 data-number="2.3.5" class="anchored" data-anchor-id="a-special-case-hermitian-and-unitary-operators"><span class="header-section-number">2.3.5</span> A Special Case: Hermitian and Unitary Operators</h3>
@@ -512,9 +575,9 @@ c_1\ket{\alpha} = \ket{\gamma_1}\]</span> Thus, this new combination, which we�
 <div id="cor-conjugate-operator-properties" class="corollary theorem">
 <p><span class="theorem-title"><strong>Corollary 2.1 (Properties of the Hermitian Conjugate)</strong></span> The following follow from the definition of the Hermitian conjugate of an operator:</p>
 <ol type="1">
-<li><span class="math inline">\(\langle\phi|A^{\dagger}|\psi\rangle = \langle\psi|A|\phi\rangle^{*}\)</span></li>
+<li><span class="math inline">\(\mel{\phi}{A^{\dagger}}{\psi} = \mel{\psi}{A}{\phi}^{*}\)</span></li>
 <li><span class="math inline">\((A^{\dagger})^{\dagger} = A\)</span></li>
-<li><span class="math inline">\((c_1A_1 + c_2A_2)^{\dagger} = c_1^{*}A_1^{\dagger} + c_2^{*}A_2^{\dagger}\)</span></li>
+<li><span class="math inline">\((c_1 A_1 + c_2 A_2)^{\dagger} = c_1^{*}A_1^{\dagger} + c_2^{*}A_2^{\dagger}\)</span></li>
 <li><span class="math inline">\((AB)^{\dagger} = B^{\dagger}A^{\dagger}\)</span></li>
 <li><span class="math inline">\((\ket{\alpha}\bra{\beta})^{\dagger} = \ket{\beta}\bra{\alpha}\)</span></li>
 </ol>
@@ -522,24 +585,30 @@ c_1\ket{\alpha} = \ket{\gamma_1}\]</span> Thus, this new combination, which we�
 <!-- Littlejohn left these as exercises, but since we're tailoring this to a less advanced demographic, I
 figure we should write them out -->
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span>The proofs for each are quite straightforward, but let’s illustrate them here. Starting with the first: <span class="math display">\[\langle\phi|A^{\dagger}|\psi\rangle = \bra{\phi}(A^{\dagger}\ket{\psi}) =
-   \bra{\phi}(\bra{\psi}A)^{\dagger} = (\bra{\psi}A)^{\dagger}(\ket{\phi})^{\dagger} =
-\langle\psi|A|\phi\rangle^{*}\quad\checkmark\]</span> Now, for the second, we can apply the above property twice: <span class="math display">\[\begin{align*}
-  \langle\psi|(A^{\dagger})^{\dagger}|\phi\rangle &amp;= \langle\phi|A^{\dagger}|\psi\rangle^{*} =
-(\langle\psi|A|\phi\rangle^{*})^{*} = \langle\psi|A|\phi\rangle\\
-\therefore (A^{\dagger})^{\dagger} &amp;= A \quad\checkmark
-\end{align*}\]</span> Next: <span class="math display">\[\begin{align*}
+<p><span class="proof-title"><em>Proof</em>. </span>The proofs for each are quite straightforward, but let’s illustrate them here. Starting with the first: <span class="math display">\[
+    \mel{\phi}{A^{\dagger}}{\psi} = \bra{\phi} (A^{\dagger} \ket{\psi}) = \bra{\phi} (\bra{\psi}A)^{\dagger}
+    = (\bra{\psi} A)^{\dagger} (\phi)^{\dagger} = \mel{\psi}{A}{\phi}^{*}
+\]</span> Now, for the second, we can apply the above property twice: <span class="math display">\[
+    \begin{align*}
+        \mel{\psi}{(A^{\dagger})^{\dagger}}{\phi} &amp;= \mel{\phi}{A^{\dagger}}{\psi}^{*} =
+        (\mel{\psi}{A}{\phi}^{*})^{*} = \mel{\psi}{A}{\phi}\\
+        \therefore (A^{\dagger})^{\dagger} = A \quad \checkmark
+    \end{align*}
+\]</span> Next: <span class="math display">\[\begin{align*}
 (c_1A_1 + c_2A_2)^{\dagger}\ket{\psi} &amp;= (\bra{\psi}(c_1A_1 + c_2A_2))^{\dagger} = ((\bra{\psi}c_1A_1) + (\bra{\psi}c_2A_2))^{\dagger} = \\
 &amp;= (\bra{\psi}c_1A_1)^{\dagger} + (\bra{\psi}c_2A_2)^{\dagger} = A_1^{\dagger}(c_1^{*}\ket{\psi}) +
 A_2^{\dagger}(c_2^{*}\ket{\psi}) = \\
 &amp;= c_1^{*}A_1^{\dagger}\ket{\psi} + c_2^{*}A_2^{\dagger}\ket{\psi} =
 (c_1^{*}A_1^{\dagger}+c_2^{*}A_2^{\dagger})\ket{\psi}\\
 \therefore (c_1A_1+c_2A_2)^{\dagger} &amp;= c_1^{*}A_1^{\dagger}+c_2^{*}A_2^{\dagger}\quad\checkmark
-\end{align*}\]</span> For the fourth, we use what we proved in the first: <span class="math display">\[\begin{align*}
-\langle\phi|(AB)^{\dagger}|\psi\rangle &amp;= \langle\psi|AB|\phi\rangle^{*} = ((\bra{\psi}A)(B\ket{\phi}))^{*} = ((\bra{\psi}A)^{\dagger}(B\ket{\phi})^{\dagger}) = \\
-&amp;= (\bra{\phi}B^{\dagger})(A^{\dagger}\ket{\psi}) = \langle\phi|B^{\dagger}A^{\dagger}|\psi\rangle \\
-\therefore (AB)^{\dagger} &amp;= B^{\dagger}A^{\dagger}\quad\checkmark
-\end{align*}\]</span> Finally, for the last one, we directly invoke the previous part (as well as dual correspondence between bras and kets): <span class="math display">\[(\ket{\alpha}\bra{\beta})^{\dagger} = (\bra{\beta})^{\dagger}(\ket{\alpha})^{\dagger} =
+\end{align*}\]</span> For the fourth, we use what we proved in the first: <span class="math display">\[
+    \begin{align*}
+        \mel{\phi}{(AB)^{\dagger}}{\psi} &amp;= \mel{\psi}{AB}{\phi}^{*} = ((\bra{\psi}A)(B \ket{\phi}))^{*} =
+        ((\bra{\psi}A)^{\dagger}(B \ket{\phi})^{\dagger}) \\
+        &amp;= (\bra{\phi}B^{\dagger}) (A^{\dagger} \ket{\psi}) = \mel{\phi}{B^{\dagger}A^{\dagger}}{\psi} \\
+        \therefore (AB)^{\dagger}&amp;=  B^{\dagger}A^{\dagger}
+    \end{align*}
+\]</span> Finally, for the last one, we directly invoke the previous part (as well as dual correspondence between bras and kets): <span class="math display">\[(\ket{\alpha}\bra{\beta})^{\dagger} = (\bra{\beta})^{\dagger}(\ket{\alpha})^{\dagger} =
 \ket{\beta}\bra{\alpha}\quad\checkmark\]</span> We have shown all properties are true, as desired. <span class="math inline">\(\blacksquare\)</span></p>
 </div>
 <p>Now, we have properly defined the action of Hermitian conjugation on bras, kets, and operators. As a side note, it’s helpful to describe the action of Hermitian conjugation on scalars (numbers) as simply complex conjugation: <span class="math display">\[c^{\dagger} = c^{*}\]</span> With this in mind, we can combine all of these together and write that the Hermitian conjugate simply reverses the order of the quantities and swaps them out for their Hermitian conjugate: <span class="math display">\[\boxed{(c_1A_1\ket{\psi_1} + \bra{\psi_2}c_2A_2)^{\dagger} = \bra{\psi_1}A_1^{\dagger}c_1^{*} +
@@ -547,7 +616,7 @@ c_2^{*}A_2^{\dagger}\ket{\psi_2}}\]</span> We are now finally ready to discuss a
 <div id="def-hermitian-operator" class="definition theorem">
 <p><span class="theorem-title"><strong>Definition 2.4 (Hermitian Operator)</strong></span> An operator <span class="math inline">\(A\)</span> is <em>Hermitian</em> if it is equal to its own Hermitian conjugate: <span class="math display">\[A^{\dagger} = A\]</span></p>
 </div>
-<p>Using the first auxiliary property we proved that followed from the definition, we can equivalently write this condition in terms of matrix elements: <span class="math display">\[A\text{ Hermitian} \implies \langle\psi|A|\phi\rangle = \langle\phi|A|\psi\rangle^{*} \quad \forall \ket{\psi},\ket{\phi}\]</span> Similarly, we have <em>anti-Hermitian</em> operators:</p>
+<p>Using the first auxiliary property we proved that followed from the definition, we can equivalently write this condition in terms of matrix elements: <span class="math display">\[A\text{ Hermitian} \implies \mel{\psi}{A}{\phi} = \mel{\phi}{A}{\psi}^{*} \quad \forall \ket{\psi},\ket{\phi}\]</span> Similarly, we have <em>anti-Hermitian</em> operators:</p>
 <div id="def-antihermitian-operator" class="definition theorem">
 <p><span class="theorem-title"><strong>Definition 2.5 (Anti-Hermitian Operator)</strong></span> An operator <span class="math inline">\(A\)</span> is <em>anti-Hermitian</em> if it is the additive inverse of its Hermitian conjugate: <span class="math display">\[A^{\dagger} =-A\]</span></p>
 </div>
@@ -561,7 +630,9 @@ c_2^{*}A_2^{\dagger}\ket{\psi_2}}\]</span> We are now finally ready to discuss a
 \left(\frac{A+A^{\dagger}}{2}\right)^{\dagger} &amp;= \frac{A^{\dagger}-A^{\dagger\dagger}}{2} = \frac{A^{\dagger}-A}{2} = -\left(\frac{A-A^{\dagger}}{2}\right) &amp;&amp;\text{(anti-Hermitian)}
 \end{align*}\]</span> Thus, the first term in the decomposition is a Hermitian operator, and the second is anti-Hermitian. Since the decomposition is possible to write for any operator <span class="math inline">\(A\)</span>, we can always uniquely decompose into a sum of Hermitian and anti-Hermitian operators, as desired. <span class="math inline">\(\blacksquare\)</span></p>
 </div>
-<p>We will call a Hermitian operator <span class="math inline">\(A\)</span> <em>positive-definite</em> if the following is true for all kets <span class="math inline">\(\ket{\psi}\)</span>: <span class="math display">\[\langle\psi|A|\psi\rangle &gt; 0\]</span> If we loosen the restriction and allow for this element to be <span class="math inline">\(0\)</span> by swapping for <span class="math inline">\(\geq\)</span> in the inequality, we call that type of Hermitian operator <em>nonnegative-definite</em>.</p>
+<p>We will call a Hermitian operator <span class="math inline">\(A\)</span> <em>positive-definite</em> if the following is true for all kets <span class="math inline">\(\ket{\psi}\)</span>: <span class="math display">\[
+    \mel{\psi}{A}{\psi} &gt; 0
+\]</span> If we loosen the restriction and allow for this element to be <span class="math inline">\(0\)</span> by swapping for <span class="math inline">\(\geq\)</span> in the inequality, we call that type of Hermitian operator <em>positive semidefinite</em>.</p>
 <p>One more important theorem on Hermitian operators:</p>
 <div id="thm-hermitian-product" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 2.2 (Product of Hermitian Operators)</strong></span> The product of two Hermitian operators <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> is Hermitian if and only if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> commute.</p>
@@ -590,7 +661,7 @@ U_1U_2U_2^{-1}U_1^{-1} = \\
 </section>
 <section id="eigenvalues-and-eigenkets" class="level3" data-number="2.3.6">
 <h3 data-number="2.3.6" class="anchored" data-anchor-id="eigenvalues-and-eigenkets"><span class="header-section-number">2.3.6</span> Eigenvalues and Eigenkets</h3>
-<p>Operators will act on kets to produce other kets (and act on bras to produce other bras). In many instances, this new resultant ket will be completely new and not entirely related to the original input ket. Sometimes, however, acting an operator on a certain ket will simply scale the original ket by some factor: <span class="math display">\[A\ket{u} = a\ket{u}\]</span> Here, the ket vector <span class="math inline">\(\ket{u}\)</span> is called an <em>eigenket</em> of <span class="math inline">\(A\)</span> (or, equivalently in linear algebra, an <em>eigenvector</em> of the matrix represented by <span class="math inline">\(A\)</span>), and the complex number <span class="math inline">\(a\)</span> is the associated (right) <em>eigenvalue</em> of <span class="math inline">\(A\)</span><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
+<p>Operators will act on kets to produce other kets (and act on bras to produce other bras). In many instances, this new resultant ket will be completely new and not entirely related to the original input ket. Sometimes, however, acting an operator on a certain ket will simply scale the original ket by some factor: <span class="math display">\[A\ket{u} = a\ket{u}\]</span> Here, the ket vector <span class="math inline">\(\ket{u}\)</span> is called an <em>eigenket</em> of <span class="math inline">\(A\)</span> (or, equivalently in linear algebra, an <em>eigenvector</em> of the matrix represented by <span class="math inline">\(A\)</span>), and the complex number <span class="math inline">\(a\)</span> is the associated (right) <em>eigenvalue</em> of <span class="math inline">\(A\)</span><a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
 <p>We also expect that there may exist a special bra that will only be scaled under the operator: <span class="math display">\[\bra{\nu}A = b\bra{\nu}\]</span> In this case, we call the bra <span class="math inline">\(\bra{\nu}\)</span> an <em>eigenbra</em> of <span class="math inline">\(A\)</span> and <span class="math inline">\(b\)</span> a (left) eigenvalue.</p>
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>Notice that we labeled eigenvalues associated with eigenkets and eigenbras with the (right) and (left) prefixes, respectively. We do this, because we want to be as explicit as possible with whether the scaling factor is associated with the operator acting to the <em>right</em> on a ket or to the <em>left</em> on a bra. We will typically drop these prefixes when dealing with problems, because in finite dimensions, every right-eigenvalue will also be a left-eigenvalue (and vice versa), but this need not be the case in infinite dimensions.</p>
@@ -602,28 +673,39 @@ U_1U_2U_2^{-1}U_1^{-1} = \\
 <p><span class="theorem-title"><strong>Lemma 2.4 (Eigenvalues of Hermitian Operators)</strong></span> Hermitian operators possess real eigenvalues.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span>Let’s begin with our Hermitian operator <span class="math inline">\(A\)</span> and one of its eigenkets <span class="math inline">\(\ket{u}\)</span> and associated eigenvalue <span class="math inline">\(a\)</span>: <span class="math display">\[A\ket{u} = a\ket{u}\]</span> If we multiply both sides by <span class="math inline">\(\bra{u}\)</span>, we get: <span class="math display">\[\langle u|A|u\rangle = \langle u|a|u\rangle = a\langle u|u\rangle\]</span> Let’s now also take the complex conjugate of this: <span class="math display">\[\langle u|A|u\rangle^{*} = \langle u|A|u\rangle = (a\langle u|u\rangle)^{*} = a^{*}\langle u|u\rangle\]</span> Subtracting these two from each other gives: <span class="math display">\[(a-a^{*})\langle u|u\rangle = 0\]</span> Since we know that <span class="math inline">\(\langle u|u\rangle\)</span> is positive-definite and can only be <span class="math inline">\(0\)</span> when <span class="math inline">\(\ket{u}=0\)</span> (which is not a valid eigenket), this means that <span class="math inline">\(a-a^{*}=0\)</span> for this to be true, meaning <span class="math inline">\(a^{*}=a\)</span>. If a number equals its own complex conjugate, its imaginary part must be <span class="math inline">\(0\)</span>, implying the number is real. Since we took an arbitrary eigenket/eigenvalue pair for an arbitrary Hermitian operator, this means that all Hermitian operators possess <em>exclusively</em> real eigenvalues, as desired. <span class="math inline">\(\blacksquare\)</span></p>
+<p><span class="proof-title"><em>Proof</em>. </span>Let’s begin with our Hermitian operator <span class="math inline">\(A\)</span> and one of its eigenkets <span class="math inline">\(\ket{u}\)</span> and associated eigenvalue <span class="math inline">\(a\)</span>: <span class="math display">\[A\ket{u} = a\ket{u}\]</span> If we multiply both sides by <span class="math inline">\(\bra{u}\)</span>, we get: <span class="math display">\[
+    \mel{u}{A}{u} = \mel{u}{a}{u} = a \braket*{u}{u}
+\]</span> Let’s now also take the complex conjugate of this: <span class="math display">\[
+    \mel{u}{A}{u}^{*} = \mel{u}{A}{u} = \left( a \braket*{u}{u} \right)^{*} = a^{*}\braket*{u}{u}
+\]</span> Subtracting these two from each other gives: <span class="math display">\[
+    (a - a^{*}) \braket*{u}{u} = 0
+\]</span> Since we know that <span class="math inline">\(\braket*{u}{u}\)</span> is positive-definite and can only be <span class="math inline">\(0\)</span> when <span class="math inline">\(\ket{u}=0\)</span> (which is not a valid eigenket), this means that <span class="math inline">\(a-a^{*}=0\)</span> for this to be true, meaning <span class="math inline">\(a^{*}=a\)</span>. If a number equals its own complex conjugate, its imaginary part must be <span class="math inline">\(0\)</span>, implying the number is real. Since we took an arbitrary eigenket/eigenvalue pair for an arbitrary Hermitian operator, this means that all Hermitian operators possess <em>exclusively</em> real eigenvalues, as desired. <span class="math inline">\(\blacksquare\)</span></p>
 </div>
 <p>Next, we have a way to relate eigenbras and eigenkets:</p>
 <div id="lem-eigenvalue-equivalence" class="lemma theorem">
 <p><span class="theorem-title"><strong>Lemma 2.5 (Equivalence of Left and Right-Eigenvalues)</strong></span> If <span class="math inline">\(A\ket{u}=a\ket{u}\)</span> yields eigenket <span class="math inline">\(\ket{u}\)</span> and right-eigenvalue <span class="math inline">\(a\)</span>, then <span class="math inline">\(\bra{u}A = a\bra{u}\)</span> yields eigenbra <span class="math inline">\(\bra{u}\)</span> and equal left-eigenvalue <span class="math inline">\(a\)</span>.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span>Starting with our original eigenvalue equation, we can follow the same first step as our previous simplication: <span class="math display">\[A\ket{u} = a\ket{u} \implies \langle u|A|u\rangle = a\langle u|u\rangle\]</span> Now, dividing out <span class="math inline">\(\ket{u}\)</span> from both sides yields: <span class="math display">\[\bra{u}A = a\bra{u}\]</span> as desired. <span class="math inline">\(\blacksquare\)</span></p>
+<p><span class="proof-title"><em>Proof</em>. </span>Starting with our original eigenvalue equation, we can follow the same first step as our previous simplication: <span class="math display">\[
+    A\ket{u} = a \ket{u} \implies \mel{u}{A}{u} = a \braket*{u}{u}
+\]</span> Now, dividing out <span class="math inline">\(\ket{u}\)</span> from both sides yields: <span class="math display">\[\bra{u}A = a\bra{u}\]</span> as desired. <span class="math inline">\(\blacksquare\)</span></p>
 </div>
 <p>Our final simplification is more significant:</p>
 <div id="thm-orthogonal-eigenspaces" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 2.3 (Eigenspaces of Hermitian Operators)</strong></span> The <em>eigenspaces</em> of a Hermitian operator corresponding to distinct eigenvalues are orthogonal.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span>Let’s start with two distinct eigenvalue equations for our operator <span class="math inline">\(A\)</span>: <span class="math display">\[A\ket{u} = a\ket{u},\quad A\ket{u'} = a'\ket{u'}\]</span> Multiplying the first equation on both sides by <span class="math inline">\(\bra{u'}\)</span> and the second by <span class="math inline">\(\bra{u}\)</span> gives: <span class="math display">\[\langle u'|A|u\rangle = a\langle u'|u\rangle, \quad \langle u|A|u'\rangle = a'\langle u|u'\rangle\]</span> If we now subtract the Hermitian conjugate of the second equation from the first, we get: <span class="math display">\[\langle u'|A|u\rangle - \langle u'|A|u\rangle = a\langle u'|u\rangle - a'\langle u'|u\rangle =
-(a'-a)\langle u'|u\rangle = 0\]</span> This therefore means that either <span class="math inline">\(a'-a=0\)</span> or <span class="math inline">\(\langle u'|u\rangle=0\)</span>. If the first is true, then we have <span class="math inline">\(a'=a\)</span>, meaning we’re dealing with two eigenkets corresponding to the same eigenvalue (in which case we’re in one single eigenspace), or else <span class="math inline">\(\langle u'|u\rangle =0\)</span>, which means that eigenkets corresponding to distinct eigenvalues (otherwise belonging to different eigenspaces) are orthogonal, as desired. <span class="math inline">\(\blacksquare\)</span></p>
+<p><span class="proof-title"><em>Proof</em>. </span>Let’s start with two distinct eigenvalue equations for our operator <span class="math inline">\(A\)</span>: <span class="math display">\[A\ket{u} = a\ket{u},\quad A\ket{u'} = a'\ket{u'}\]</span> Multiplying the first equation on both sides by <span class="math inline">\(\bra{u'}\)</span> and the second by <span class="math inline">\(\bra{u}\)</span> gives: <span class="math display">\[
+    \mel{u'}{A}{u} = a \braket*{u'}{u}, \quad \mel{u}{A}{u'} = a' \braket*{u}{u'}
+\]</span> If we now subtract the Hermitian conjugate of the second equation from the first, we get: <span class="math display">\[
+    \mel{u'}{A}{u} - \mel{u'}{A}{u} = a \braket*{u'}{u} - a' \braket*{u'}{u} = (a' - a) \braket*{u'}{u} = 0
+\]</span> This therefore means that either <span class="math inline">\(a'-a=0\)</span> or <span class="math inline">\(\braket*{u'}{u} = 0\)</span>. If the first is true, then we have <span class="math inline">\(a'=a\)</span>, meaning we’re dealing with two eigenkets corresponding to the same eigenvalue (in which case we’re in one single eigenspace), or else <span class="math inline">\(\braket*{u'}{u} = 0\)</span>, which means that eigenkets corresponding to distinct eigenvalues (otherwise belonging to different eigenspaces) are orthogonal, as desired. <span class="math inline">\(\blacksquare\)</span></p>
 </div>
 </section>
 <section id="observables" class="level3" data-number="2.3.7">
 <h3 data-number="2.3.7" class="anchored" data-anchor-id="observables"><span class="header-section-number">2.3.7</span> Observables</h3>
 <p>Will the eigenspaces of an operator always “fill up” the space upon which the operator acts? In other words, can we exclusively describe every ket vector in terms of some eigenkets? Generally, no, but there will be some special cases. An operator whose eigenspaces will “fill up” the space on which the operator acts is called <em>complete</em>. This is another instance where we can make tremendous simplifications with Hermitian operators. As it turns out, in finite dimensions, every Hermitian operator is complete. In other words, the sum of the dimensions of the eigenspaces equals the diemsnion of the entire space on which the operator acts.</p>
-<p>Now, extending to infinite dimensions, we unfortunately cannot make the same generalization about Hermitian operators. However, we will be much more interested in those Hermitian operators that will be complete in infinite dimensions. We will call such complete Hermitian operators <em>observables</em><a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
+<p>Now, extending to infinite dimensions, we unfortunately cannot make the same generalization about Hermitian operators. However, we will be much more interested in those Hermitian operators that will be complete in infinite dimensions. We will call such complete Hermitian operators <em>observables</em><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>.</p>
 </section>
 <section id="projection-operators" class="level3" data-number="2.3.8">
 <h3 data-number="2.3.8" class="anchored" data-anchor-id="projection-operators"><span class="header-section-number">2.3.8</span> Projection Operators</h3>
@@ -645,11 +727,11 @@ U_1U_2U_2^{-1}U_1^{-1} = \\
 </section>
 <section id="fourier-analysis" class="level3" data-number="2.4.2">
 <h3 data-number="2.4.2" class="anchored" data-anchor-id="fourier-analysis"><span class="header-section-number">2.4.2</span> Fourier Analysis</h3>
-<p>As we will soon discover for ourselves (and as the reader may already be somewhat familiar with), quantum mechanics at its core deals with a wavefunction to describe the behavior of a system. In fact, the Schrodinger equation is itself derived from the wave equation, meaning we will come to care very deeply about periodic functions. A key insight made two centuries ago by Joseph Fourier was that <em>any</em> continous function can be decomposed into a series of periodic functions. This is accomplished through the <em>Fourier transform</em> that we briefly mentioned at the beginning. A proper treatment of Fourier analysis (and all of its powerful implications) also requires a semester-long undergraduate course at the bare minimum, which we also do not have time for, so we won’t attempt to develop the full theory here either. That being said, there are only a few key insights that we care about, which we detail in an additional, shorter appendix.</p>
+<p>As we will soon discover for ourselves (and as the reader may already be somewhat familiar with), quantum mechanics at its core deals with a wavefunction to describe the behavior of a system. In fact, the Schrodinger equation is itself derived from the wave equation, meaning we will come to care very deeply about periodic functions. A key insight made two centuries ago by Joseph Fourier was that <em>any</em> continous function can be decomposed into a series of periodic functions. This is accomplished through the <em>Fourier transform</em> that we briefly mentioned at the beginning. A proper treatment of Fourier analysis (and all of its powerful implications) also requires a semester-long undergraduate course at the bare minimum, which we (unsurprisingly) do not have time for, so we won’t attempt to develop the full theory either. That being said, there are only a few insights that are immediately relevant to us, which we will detail in additional, shorter appendix.</p>
 </section>
 <section id="vectortensor-analysis" class="level3" data-number="2.4.3">
 <h3 data-number="2.4.3" class="anchored" data-anchor-id="vectortensor-analysis"><span class="header-section-number">2.4.3</span> Vector/Tensor Analysis</h3>
-<p>As we already saw throughout the development of the formalism, our fundamental unit is a vector on which we will act some operator to yield another vector. Outer products and special chained products of operators (called <em>tensor products</em>) will also be of great use to us when we eventually wish to <em>couple</em> ket spaces<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>. Tensors are an even more abstract object than the vectors and matrices we’ve already been dealing with, which will require us to develop new notation to navigate it.</p>
+<p>As we already saw throughout the development of the formalism, our fundamental unit is a vector on which we will act some operator to yield another vector. Outer products and special chained products of operators (called <em>tensor products</em>) will also be of great use to us when we eventually wish to <em>couple</em> ket spaces<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. Tensors are an even more abstract object than the vectors and matrices we’ve already been dealing with, which will require us to develop new notation to navigate it.</p>
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>We’ve already seen glimpses of this <em>index notation</em> in the Kronecker delta!</p>
 </div>
@@ -657,12 +739,14 @@ U_1U_2U_2^{-1}U_1^{-1} = \\
 </section>
 <section id="complex-analysis" class="level3" data-number="2.4.4">
 <h3 data-number="2.4.4" class="anchored" data-anchor-id="complex-analysis"><span class="header-section-number">2.4.4</span> Complex Analysis</h3>
-<p>The reader may be familiar with some aspects of calculus (generalized formally to a field known as <em>real analysis</em>), but what happens when we start dealing with complex-valued functions? Can we perform calculus with them? As it turns out, we can, but the way we do it is not what we may be used to from real analysis. The study of how to deal with such complex functions, known as <em>complex analysis</em>, helps us understand how it works. We won’t need to worry about this until much later onward, but when we do inevitably require some tools, we will devlop them as necessary. We will add another short appendix to help expand on some of the underlying mathematics, but we strongly encourage the reader to consult a book such as Stein and Shakarchi’s <em>Notes on Complex Analysis</em> for a deeper understanding.</p>
+<p>The reader may be familiar with some aspects of calculus (generalized formally to a field known as <em>real analysis</em>), but what happens when we start dealing with complex-valued functions? Can we perform calculus with them? As it turns out, we can, but the way we do it is not what we may be used to from real analysis. The study of how to deal with such complex functions, known as <em>complex analysis</em>, helps us understand how it works. We won’t need to worry about this until much later onward, but when we do inevitably require some tools, we will develop them as necessary. We will add another short appendix to help expand on some of the underlying mathematics, but we strongly encourage the reader to consult a book such as Stein and Shakarchi’s <em>Notes on Complex Analysis</em> for a deeper understanding.</p>
 </section>
 <section id="final-note" class="level3" data-number="2.4.5">
 <h3 data-number="2.4.5" class="anchored" data-anchor-id="final-note"><span class="header-section-number">2.4.5</span> Final Note</h3>
-<p>As mentioned at the very beginning of this exceedingly long chapter, there was a lot of math involved. We have made our best attempt to motivate our need for certain mathematical concepts, but someone who may be unfamiliar with linear algebra may have still struggled to keep up. We understand; we threw a lot at you and promised you that this setup will all have been worth it in the end. To an extent, we hope you will simply take our word for it; that being said, it is completely natural for some of this to not make sense upon first examination. As such, we cannot encourage independent research more. It is the responsibility of any aspiring physicist (or scientist in general) to close any knowledge gaps they feel they may have, and it’s unrealistic to expect any singular source to be able to do that for everything there is. Thus, if there is anything you feel we do not cover in sufficient detail (which there has to be by the nature of the content we want to address and the manner in which we wish to present it), we encourage a consultation of the materials listed in our references. You can always come back to these notes after you feel more comfortable with the math; we’ll wait. That being said, we hope we can sufficiently motivate the material that the mathematics won’t get in the way of a more fundamentally intuitive understanding of what we are developing.ppart1.qmd</p>
+<p>As mentioned at the very beginning of this exceedingly long chapter, there was a lot of math involved. We have made our best attempt to balance outlining the motivation to study certain mathematical concepts without being too technical, but someone who may be unfamiliar with linear algebra may still have struggled to keep up. We understand; we threw a lot at you and promised you that this setup will all have been worth it in the end. To an extent, we hope you will simply take our word for it; that being said, it is completely natural for some of this to not make sense upon first examination. As such, we cannot encourage independent research more. It is the responsibility of any aspiring physicist (or scientist in general) to close any knowledge gaps they feel they may have, and it’s unrealistic to expect any singular source to be able to do that for everything there is. Thus, if there is anything you feel we do not cover in sufficient detail (which there has to be by the nature of the content we want to address and the manner in which we wish to present it), we encourage a consultation of the materials listed in our references. You can always come back to these notes after you feel more comfortable with the math; we’ll wait. That being said, we hope we can sufficiently motivate the material that the mathematics won’t get in the way of a more fundamentally intuitive understanding of what we are developing.</p>
 <p>This concludes our development of the fundamental formalism, but not our development of mathematical tools. That said, we will not require nearly as much math development in as dense a space moving forward. Let’s finally get into quantum mechanics…</p>
+<!-- [^complex-function]: It should be noted that, generally, the wavefunction $\psi$ will be taken to be
+*complex*, meaning we allow for imaginary coefficients and aren't limited to exclusively real numbers. -->
 
 
 </section>
@@ -670,14 +754,15 @@ U_1U_2U_2^{-1}U_1^{-1} = \\
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>We will also attempt to supplement some fundamental linear algebra content in appendices that can be found at the end of the notes (though these are still not meant to replace a traditional, rigorous course studying the relevant mathematics).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>It should be noted that, generally, the wavefunction <span class="math inline">\(\psi\)</span> will be taken to be <em>complex</em>, meaning we allow for imaginary coefficients and aren’t limited to exclusively real numbers.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>A vector space equipped with a properly-defined inner product is called an <em>inner product space</em>. For a Hilbert space specifically, we enforce extra conditions on this inner product, but these won’t concern us for a while.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>This is a notational shorthand that means “if and only if”.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>This is technically a function, but not really the type of function we are used to dealing with. It is more helpful to think of it as a notational convention.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>The terms “eigenvalue” and “eigenvector” are built from the German <em>eigen</em>, which means “self”.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>The reasoning behind this nomenclature will become apparent in the next chapter, when we start developing physical interpretations for all of this while setting up the posetulates underpinning all of quantum theory.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>Do not worry about what this means at the moment; we will learn about it much later.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>We highly encourage you to give this book a read! It covers all the formalism with a focus on rigor (we will also try to be rigorous, but only to the degree that it serves to make our point), and while it is not an explicitly physics-centric text, is a foundational text that will be expected of you in higher level theoretical physics.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>A vector space equipped with a properly-defined inner product is called an <em>inner product space</em>. For a Hilbert space specifically, we enforce extra conditions on this inner product, but these won’t concern us for a while.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>This is a notational shorthand that means “if and only if”.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>You may think initially that this proof isn’t very comprehensible, but think about the alternative: if we didn’t use Dirac notation, we’d have to write every inner product as an integral, every <span class="math inline">\(\psi\)</span> and <span class="math inline">\(\phi\)</span> as <span class="math inline">\(\psi(x)\)</span> and <span class="math inline">\(\phi(x)\)</span>, which would make the expression at least twice as long, and much more intimidating.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Technically, one must distinguish between the operator that sends kets to kets from the dual operator <span class="math inline">\(A'\)</span> that sends bras to bras. However, here we can <em>extend</em> the definition of an operator to act on bras as <span class="math inline">\(\bra{\psi}A = \bra{\phi}\)</span> when <span class="math inline">\(A \ket{\psi} = \ket{\phi}\)</span>, without clashing with our original definition of <span class="math inline">\(A\)</span>, and as such we can use the same symbol <span class="math inline">\(A\)</span> for the map and its dual.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>This is technically a function, but not really the type of function we are used to dealing with. It is more helpful to think of it as a notational convention.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>The terms “eigenvalue” and “eigenvector” are built from the German <em>eigen</em>, which means “self”.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>The reasoning behind this nomenclature will become apparent in the next chapter, when we start developing physical interpretations for all of this while setting up the postulates underpinning all of quantum theory.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Do not worry about what this means at the moment; we will learn about it much later.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -78,7 +113,7 @@ window.MathJax = {
   tex:    { packages: {'[+]': ['physics'] } }
 };
 </script>
-<link rel="stylesheet" href="https://tikzjax.com/v1/fonts.css">
+<link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
 <script src="https://tikzjax.com/v1/tikzjax.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
@@ -315,7 +350,12 @@ However, this solution has a problem: it violates normalizability! If we try to 
     \infty &amp; \text{otherwise}
     \end{cases}
 \]</span> this is called the <em>infinite-square-well</em>, appropriately named since the graphical representation of the potential is a well whose walls are infinitely tall:</p>
-<p>[INSERT TIKZ HERE]</p>
+<center>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode tikz code-with-copy"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[scale=1.5]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\draw</span> [semithick, stealth-stealth] (-1, 3) node[left] {<span class="ss">$</span><span class="sc">\infty</span><span class="ss">$</span>} -- (-1, 0) node[left] {<span class="ss">$0$</span>} </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        -- (1, 0) node[right] {<span class="ss">$a$</span>} -- (1, 3) node[right] {<span class="ss">$V(x)$</span>};</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</center>
 <p>To solve this differential equation, we will consider <span class="math inline">\(V(x)\)</span> in the interval <span class="math inline">\([0, a]\)</span> separately from everywhere else, then tie the solutions together. Luckily for us, both solutions are relatively simple. between <span class="math inline">\([0, a]\)</span>, since <span class="math inline">\(V(x) = 0\)</span>, then we revert back to the above case of the free particle, where our solution is just travelling plane waves. For reasons that will be apparent later, we will choose the trigonometric representation of a travelling wave: <span class="math display">\[
     \psi(x) = A \sin (kx) + B \cos (kx)
 \]</span> This is an equivalent way to representing a travelling wave, and the conversion is given to us by Euler’s formula: <span class="math display">\[
@@ -509,7 +549,11 @@ However, this solution has a problem: it violates normalizability! If we try to 
     0 &amp; x &gt; a
     \end{cases}
 \]</span> visually, it looks like this:</p>
-<p>[INSERT TIKZ HERE]</p>
+<center>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode tikz code-with-copy"><code class="sourceCode latex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[scale=2]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span> (-1, 0) -- (0, 0) node[below] {<span class="ss">$0$</span>} -- (0, 1) node[left] {<span class="ss">$V_0$</span>} -- (1, 1) -- (1, 0) node[below] {<span class="ss">$a$</span>} -- (2, 0);</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</center>
 <p>Here, there are two cases we need to consider: <span class="math inline">\(E &gt; V_0\)</span> and <span class="math inline">\(0 &lt; E &lt; V_0\)</span>. For <span class="math inline">\(E &lt; 0\)</span>, we get an infinitely decaying solution, which is to say that <span class="math inline">\(\psi = 0\)</span> in that case. Let’s start with the <span class="math inline">\(0 &lt; E &lt; V_0\)</span> case, which as we mentioned before, will lead to a tunnelling situation. We’ll split up the wavefunctions into three regions:</p>
 <ol type="1">
 <li>To the left of the wall: <span class="math inline">\(x &lt; 0\)</span></li>
@@ -561,7 +605,11 @@ However, this solution has a problem: it violates normalizability! If we try to 
     0 &amp; \text{otherwise}
     \end{cases}
 \]</span> and here’s a visual picture of what the well looks like:</p>
-<p>[INSERT TIKZ HERE]</p>
+<center>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode tikz code-with-copy"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[scale=1.5]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">\draw</span> (-2, 2) node[left] {<span class="ss">$0$</span>} -- (-1, 2) -- (-1, 0) node[below] {<span class="ss">$-a$</span>} -- (1, 0) node[below] {<span class="ss">$a$</span>} node[right] {<span class="ss">$V_0$</span>} -- (1, 2) -- (2, 2);</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</center>
 <p>There are two cases we have to consider: the <span class="math inline">\(-V_0 &lt; E &lt; 0\)</span> bound state, and <span class="math inline">\(E &gt; 0\)</span>, the scattering state.<br>
 Starting with the first case, let’s again break up <span class="math inline">\(\psi\)</span> into two parts: inside and outside the well. Inside the well, the Schrodinger equation is written as: <span class="math display">\[
     \pdv[2]{\psi}{x} + \alpha^2 \psi = 0
@@ -614,7 +662,7 @@ Starting with the first case, let’s again break up <span class="math inline">\
 <p>Now let’s deal with the scattering solution. This ends up working out similarly to the delta potential barrier and well, in that the math actually works out the same way. For the left incident particle, we have: <span class="math display">\[
     \psi(x) = \begin{cases}
     Ae^{ikx} + Be^{-ikx} &amp; x &lt; -a\\
-    Fe^{ik'x} + Ge^{-ik'x} -a &lt; x &lt; a\\
+    Fe^{ik'x} + Ge^{-ik'x} &amp; -a &lt; x &lt; a\\
     Ce^{ikx} &amp; x &gt; a
     \end{cases}
 \]</span> there is no left travelling wave at <span class="math inline">\(x &gt; a\)</span> since we are considering a left-incident wave. Notice that this is exactly the same situation as the finite potential barrier, except <span class="math inline">\(k'\)</span> is <em>slightly</em> different, in that we make the swap <span class="math inline">\(V_0 \to -V_0\)</span>. All the algebra remains the same, so we can just copy over the reflection and transmission coefficient we got from there and make this simple edit to <span class="math inline">\(V_0\)</span>:<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> <span class="math display">\[
@@ -656,7 +704,7 @@ Starting with the first case, let’s again break up <span class="math inline">\
 <li id="fn1"><p>See [INSERT NOTE HERE] for a more in-depth explanation as to why the momentum and position operator are expressed in this way. For now, we will accept this as fact.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Formally, <span class="math inline">\(\delta(x)\)</span> is called a <em>distribution</em> rather than a function, but we won’t worry too much about this distinction. It’s good enough for our purposes to treat <span class="math inline">\(\delta(x)\)</span> as a function that is zero everywhere except at <span class="math inline">\(x = 0\)</span> where it equals infinity, and that its integral over all space is equal to one.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>In case you’re wondering why we haven’t dealt with the sign of <span class="math inline">\(E\)</span> until now, it’s because we didn’t need to. In the free particle example, a particle with negative energy and admits a decaying solution would blow up at either <span class="math inline">\(\infty\)</span> or <span class="math inline">\(-\infty\)</span>, which are not normalizable and thus inadmissible. A negative energy state isn’t admissible in the infinite square well potential either, since there’s no way for an exponentially decaying function to be identically zero as is required to match the boundary condition on either side of the well.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>we also have to make the change <span class="math inline">\(a \to 2a\)</span> compared to the square barrier since <span class="math inline">\(a\)</span> was the width of the barrier, but <span class="math inline">\(a\)</span> as defined in the finite well is only half the width of the well.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>We also have to make the change <span class="math inline">\(a \to 2a\)</span> compared to the square barrier since <span class="math inline">\(a\)</span> was the width of the barrier, but <span class="math inline">\(a\)</span> as defined in the finite well is only half the width of the well.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
