@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -73,11 +108,16 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <script>
-window.MathJax = {
-  loader: { load:['[tex]/physics']},
-  tex:    { packages: {'[+]': ['physics'] } }
-};
-</script>
+  window.MathJax = {
+    loader: { load: ['[tex]/physics'] },
+    tex: {
+      packages: {'[+]': ['physics']},
+      physics: {
+        italicdiff: true
+      }
+    }
+  };
+  </script>         
 <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
 <script src="https://tikzjax.com/v1/tikzjax.js"></script>
 
@@ -245,10 +285,11 @@ window.Quarto = {
 
 <!-- since I cover more than just the postulates here, perhaps we should rename this chapter to something
 else? -->
-<p>Having established some mathematical formalism, we now have enough tools at our disposal to begin a proper treatment of quantum mechanics. The first step in our journey will be establishing a few fundamental postulates that will make up the foundation of quantum theory. Here, we will motivate the need for such postulates, discuss them in detail, and put them to the test with a real-world experiment conducted at the turn of the previous century to validate our postulates.</p>
+<p>Having established some mathematical formalism, we now have enough tools at our disposal to begin a proper treatment of quantum mechanics. The first step in our journey will be establishing a few fundamental postulates that will make up the foundation of quantum theory. Here, we will motivate the need for such postulates, discuss them in detail, and put them to use with the discussion of a real-world experiment conducted at the turn of the previous century.</p>
 <section id="what-are-postulates" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="what-are-postulates"><span class="header-section-number">3.1</span> What are Postulates?</h2>
 <p>Firstly, what even are postulates? Why do we even need them? Formally, a <em>postulate</em> (sometimes called an <em>axiom</em>) is a statement that we take to be true without proof. In other words, we will treat a postulate as fact without providing rigorous mathematical justification for that fact.</p>
+<p>Why do we need these? Can’t we just start writing down equations? Well, if we were to try writing down equations, what would they represent? Also, what rules do we go by when writing down these equations? Physics, at its core, aims to explain real-world phenomena through a mathematical <em>framework</em>, and as such we need some “ground rules” for how our theory will work. From there, we’ll have a baseline from which we can build upwards and derive new results to explain new phenomena. These postulates will largely come from our observations in nature…</p>
 <p>Why do we need these? Can’t we just start writing down equations? Well, if we were to try writing down equations, what would they represent? Physics, at its core, aims to explain real-world phenomena through a rigorous mathematical framework. As such, we need a bridge to translate certain physical observations to the formalism we’ll use in our theory. From there, once we have a baseline, we can build upwards and derive new reslts to explain new phenomena. That being said, we have to start somewhere, and the easiest place to start is nature. In other words, we can make certain observations of physical phenomena, and use the results of these observations to write down more formal statements that can be further experimentally tested (and ideally confirmed).</p>
 <!-- Do we assume the reader has seen these before or should we show these? -->
 <div id="exm-euclid-elements" class="example theorem">
@@ -297,17 +338,15 @@ else? -->
 Consider the setup illustrated in the figure below. Here, we send out a beam of silver atoms from an oven and measure different components of their <em>magnetic moment</em> <span class="math inline">\(\boldsymbol{\mu}\)</span>. We first measure the <span class="math inline">\(x\)</span> component of the magnetic moment, denoted <span class="math inline">\(\mu_x\)</span>, and pass the beam where the measured value is <span class="math inline">\(\mu_x=+\mu_0\)</span><a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> into a second magnet that measures the <span class="math inline">\(z\)</span> component (denoted <span class="math inline">\(\mu_z\)</span>). <!-- I didn't make tikz work on my end while writing this; pls recreate the Stern-Gerlach apparatus from
 Notes 2 -->
 <center>
-<script type="text/tikz">
-    \begin{tikzpicture}
-      \draw[thick] (-0.5,-0.5) rectangle (0.5,0.5) node[midway] {Ag};
-      \node at (0,-0.75) (o) {\text{oven}};
-      \draw[thick] (0.875,0.5) -- (0.875,-0.5);
-      \filldraw[white] (0.45,-0.1) rectangle (0.9,0.1);
-      \draw[thick,-stealth] (0.4,0) -- (2,0);
-      \draw[thick] (2,-0.5) rectangle (3,0.5) node[midway] {$\mu_x$};
-      \draw[thick] (3,0.25) node[above,right,yshift=0.15cm,scale=0.75] {$+$} -- (4.25,0.25) node[above,scale=0.75] {$|\mu_x+\rangle$};
-    \end{tikzpicture}
-  </script>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode tikz code-with-copy"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[thick] (-0.5,-0.5) rectangle (0.5,0.5) node[midway] {Ag};</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\node</span> at (0,-0.75) (o) {<span class="fu">\text</span>{oven}};</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[thick] (0.875,0.5) -- (0.875,-0.5);</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\filldraw</span>[white] (0.45,-0.1) rectangle (0.9,0.1);</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[thick,-stealth] (0.4,0) -- (2,0);</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[thick] (2,-0.5) rectangle (3,0.5) node[midway] {<span class="ss">$</span><span class="sc">\mu</span><span class="ss">_x$</span>};</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[thick] (3,0.25) node[above,right,yshift=0.15cm,scale=0.75] {<span class="ss">$+$</span>} -- (4.25,0.25) node[above,scale=0.75] {<span class="ss">$|</span><span class="sc">\mu</span><span class="ss">_x+</span><span class="sc">\rangle</span><span class="ss">$</span>};</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </center>
 <p>As a result of this experiment, we will see two beams from the second magnet measurement, with a 50/50 split between <span class="math inline">\(\pm\mu_0\)</span>. Let’s now use our postulates to analyze this experiment.</p>
 <p>Firstly, measuring <span class="math inline">\(\mu_x\)</span> appears to have two possible outcomes, namely <span class="math inline">\(\pm\mu_0\)</span>. As such, Postulates 3 and 4 suggest that the operator associated with this measurement will have two possible eigenvalues, also <span class="math inline">\(\pm\mu_0\)</span> (we expect <span class="math inline">\(\mu_y\)</span> and <span class="math inline">\(\mu_z\)</span> to also have two eigenvalues each). Thus, the Hilbert space <span class="math inline">\(\mathcal{E}\)</span> corresponding to this observable must be at least 2-dimensional, which aligns with our experimental measurements of components of the magnetic moment.</p>

@@ -73,11 +73,16 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <script>
-window.MathJax = {
-  loader: { load:['[tex]/physics']},
-  tex:    { packages: {'[+]': ['physics'] } }
-};
-</script>
+  window.MathJax = {
+    loader: { load: ['[tex]/physics'] },
+    tex: {
+      packages: {'[+]': ['physics']},
+      physics: {
+        italicdiff: true
+      }
+    }
+  };
+  </script>         
 <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
 <script src="https://tikzjax.com/v1/tikzjax.js"></script>
 
