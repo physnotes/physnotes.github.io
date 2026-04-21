@@ -325,9 +325,9 @@ according to this model, then the amount of energy it dissipates would have sent
   {\filldraw[red!40!white, outer color=red!40!white, inner color=white, fill opacity=1] \coord
 circle (0.25cm);  
   }
-  \foreach \r in {1.25cm,1.5cm,1.75cm,2cm} {
+  \foreach \r in {1.25cm,1.5cm} {
   \draw[thick,densely dotted,yellow!70!orange] (0,0) circle (\r);}
-  \foreach \coord in {(2,0),(-1.5,0),(0,1.75),(0,-1.25)}
+  \foreach \coord in {(-1.5,0),(0,-1.25)}
   {\filldraw[yellow!70!orange, outer color=yellow!70!orange, inner color=white, fill opacity=1] \coord
 circle (0.1cm); 
   }
