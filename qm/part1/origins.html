@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -216,7 +251,7 @@ window.Quarto = {
   <li><a href="#finding-the-energy-density" id="toc-finding-the-energy-density" class="nav-link" data-scroll-target="#finding-the-energy-density"><span class="header-section-number">1.2.2</span> Finding the Energy Density</a></li>
   </ul></li>
   <li><a href="#the-photoelectric-effect" id="toc-the-photoelectric-effect" class="nav-link" data-scroll-target="#the-photoelectric-effect"><span class="header-section-number">1.3</span> The Photoelectric Effect</a></li>
-  <li><a href="#the-double-slit-experiment" id="toc-the-double-slit-experiment" class="nav-link" data-scroll-target="#the-double-slit-experiment"><span class="header-section-number">1.4</span> The Double Slit Experiment</a></li>
+  <li><a href="#the-double-slit-experiment" id="toc-the-double-slit-experiment" class="nav-link" data-scroll-target="#the-double-slit-experiment"><span class="header-section-number">1.4</span> The Double-Slit Experiment</a></li>
   <li><a href="#the-case-of-the-electron" id="toc-the-case-of-the-electron" class="nav-link" data-scroll-target="#the-case-of-the-electron"><span class="header-section-number">1.5</span> The Case of the Electron</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">1.6</span> Conclusion</a></li>
   </ul>
@@ -244,40 +279,86 @@ window.Quarto = {
 </header>
 
 
-<p>In order to dive into the world of quantum properly, it pays to spend some time looking at its history. In this chapter, we will give a brief overview of how quantum mechanics came to be. This way, you will appreciate not only the beauty of quantum mechanics, but also understand why it is necessary to understanding the mechanics of our world.</p>
-<p>The content in this section is heavily inspired by Prof.&nbsp;Siddiqi’s notes for the introductory lecture in Physics 137A (Introductory Quantum Mechanics) at UC Berkeley.</p>
+<p>In order to dive into the world of quantum properly, it pays to spend some time looking at its history. In this chapter, we will give a brief overview of how quantum mechanics came to be. This way, you will appreciate not only the beauty of quantum mechanics, but also understand why it is necessary to understanding the mechanics of our world. We will illustrate how the need for quantum mechanics became apparent by revisiting a few crucial experimental results that did not align with what classical theory would predict, thus demonstrating that more was needed to understand the world around us.</p>
+<!--I chose to put this in a quote block, but maybe footnote? -->
+<blockquote class="blockquote">
+<p>The content in this section is heavily inspired by Prof.&nbsp;Siddiqi’s notes for the introductory lecture in Physics 137A (Quantum Mechanics I) at UC Berkeley.</p>
+</blockquote>
 <section id="blackbody-radiation" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="blackbody-radiation"><span class="header-section-number">1.1</span> Blackbody Radiation</h2>
-<p>To begin our story, we start in the mid 19th century. Around this time, Gustav Kirchhoff (yes, the one from your circuits classes) was studying the physics of black bodies — an idealized object that absorbs <em>all</em> electromagnetic radiation, hence the term “blackbody”. Even though perfect blackbodies do not exist in the real world, this theory turns out to be a very good model for celestial bodies like planets and stars.</p>
-<p>Kirchhoff’s crucial insight on blackbodies was that their emissive power <span class="math inline">\(R\)</span> was only determined by two factors: the emitted wavelength <span class="math inline">\(\lambda\)</span>, and its temperature <span class="math inline">\(T\)</span>. At around the same time, Josef Stefan empirically determined that the total radiation emitted by a blackbody is proportional to <span class="math inline">\(T^{4}\)</span>, meaning that the total power across all wavelengths, as a function of temperature, may be written as: <span id="eq-radiative-power"><span class="math display">\[
+<p>To begin our story, we travel back to the mid-19th century. Around this time, Gustav Kirchhoff (yes, the one from your circuits classes<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>) was studying the physics of <em>blackbodies</em>:</p>
+<div id="def-blackbody" class="definition theorem">
+<p><span class="theorem-title"><strong>Definition 1.1 (Blackbody)</strong></span> A <em>blackbody</em> (or black body) is an indealized object that absorbs <em>all</em> electromagnetic radiation (getting its name from how black absorbs all light).</p>
+</div>
+<p>Even though perfect blackbodies do not exist in the real world, this theory turns out to be a very good model for celestial bodies like planets and stars, which are precisely the objects Kirchhoff was studying.</p>
+<div class="proof remark">
+<p><span class="proof-title"><em>Remark</em>. </span>This is a general theme in all of physics (and we will see it quite a lot in quantum mechanics); idealized toy models serve to help us understand more realistic phenomena.</p>
+</div>
+<p>Kirchhoff’s crucial insight was that a blackbody’s emissive power <span class="math inline">\(R\)</span> was determined by only two factors: the emitted wavelength <span class="math inline">\(\lambda\)</span>, and its temperature <span class="math inline">\(T\)</span>. At around the same time, Josef Stefan empirically determined that the total radiation emitted by a blackbody is proportional to <span class="math inline">\(T^{4}\)</span>, meaning that the total power across all wavelengths, as a function of temperature, may be written as: <span id="eq-radiative-power"><span class="math display">\[
     R(T) = \int_{0}^{\infty} R(\lambda, T) \ d\lambda = \sigma T^{4}
-\tag{1.1}\]</span></span> The constant <span class="math inline">\(\sigma \approx 5.68 \times 10^{-8}\)</span> is the <strong>Stefan-Boltzmann constant</strong>. While this relation was known, the functional form of <span class="math inline">\(R(\lambda, T)\)</span> eluded physicists at the time. In the early 20th century, Lord Rayleigh and Sir James Jeans used a purely classical approach and arrived at the <em>Rayleigh-Jeans law</em>, given as:<br>
-<span class="math display">\[
+\tag{1.1}\]</span></span> The constant <span class="math inline">\(\sigma \approx 5.68 \times 10^{-8}\)</span> is the <strong>Stefan-Boltzmann constant</strong>. While this relation was known, the functional form of <span class="math inline">\(R(\lambda, T)\)</span> eluded physicists at the time. In the early 20th century, Lord Rayleigh and Sir James Jeans used a purely classical approach and arrived at a closed-form expression for this function:</p>
+<div id="thm-rayleigh-jeans" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 1.1 (Rayleigh-Jeans Law)</strong></span> <span class="math display">\[
     R(\lambda, T) = \frac{8 \pi k_B T}{\lambda^{4}}
-\]</span> Here, <span class="math inline">\(R(\lambda, T)\)</span> denotes the power emitted per unit area. But, there is a problem with this formula! This formula predicts that at smaller and smaller <span class="math inline">\(\lambda\)</span>, objects should emit an enormous amount of energy, due to the <span class="math inline">\(\lambda^{4}\)</span> scaling in the denominator. Putting this into <a href="#eq-radiative-power" class="quarto-xref">Equation&nbsp;<span>1.1</span></a> would result in an infinite amount of radiated energy, as the integral diverges at <span class="math inline">\(\lambda \to 0\)</span>. This is clearly not physically true (the sun is at finite temperature, and does not radiate infinite energy), and this discrepancy is what is known as the <strong>ultraviolet catastrophe</strong>. This is the first indication that classical physics was incomplete.</p>
+\]</span> Here, <span class="math inline">\(R(\lambda,t)\)</span> denotes the power emitted per unit area.</p>
+</div>
+<p>But, there is a problem with this formula! This formula predicts that, for sufficiently small <span class="math inline">\(\lambda\)</span>, objects should emit an enormous amount of energy, given the <span class="math inline">\(\lambda^{4}\)</span> scaling in the denominator. Putting this into <a href="#eq-radiative-power" class="quarto-xref">Equation&nbsp;<span>1.1</span></a> would result in infinite power across all wavelengths, since the integral diverges as <span class="math inline">\(\lambda \to 0\)</span>. Thus, while the Rayleigh-Jeans law accurately predicted experimental results for radiated power at high wavelengths, it failed to do so for lower wavelengths in the ultraviolet range and predicted infinite power across all wavelengths, which is certainly nonphysical; this discrepancy is what is known as the <strong>ultraviolet catastrophe</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>This is the first indication that classical physics was incomplete, because purely classical methods were not able to accurately explain certain phenomena and instead predicted infinite growth. How do we fix this?</p>
 </section>
 <section id="the-quantization-of-energy" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="the-quantization-of-energy"><span class="header-section-number">1.2</span> The Quantization of Energy</h2>
 <!-- NOTE: I did go through the full derviation here; if you think it's too long, feel free to cut some of
 this out.  -->
-<p>The resolution, as it turns out, is to introduce the idea of <strong>quantization</strong>. To fully appreciate why this is needed, let’s take a small detour. First, consider a square box of length <span class="math inline">\(L\)</span>, and we want to calculate the number of standing modes in the cavity. These waves must satisfy the wave equation:<br>
-<span class="math display">\[
-    \nabla^2 \Psi(r, t) = \frac{1}{c^2} \pdv[2]{t} \psi(r, t)
-\]</span> The solutions to this differential equation are sine waves, which in three dimensions are functions of the form: <span class="math display">\[
+<!-- I think the full derivation is fine; it may help to slightly change up the sectioning structure -->
+<p>The resolution, as it turns out, is to introduce the idea of <strong>quantization</strong>. To fully appreciate why this is needed, let’s take a small detour. First, consider a square box of length <span class="math inline">\(L\)</span>, and we want to calculate the number of <em>standing modes</em> in the cavity.</p>
+<!-- may want to try to find a slightly better way to articulate the definition; this feels a bit too
+complicated -->
+<div id="def-standing-mode" class="definition theorem">
+<p><span class="theorem-title"><strong>Definition 1.2 (Standing Mode)</strong></span> A <em>mode</em> is a standing wave state of excitation where all of the system’s components are affected sinusoidally at a fixed frequency. A wave is <em>standing</em> if it oscillates in time, but its peak amplitude does not move in space.</p>
+</div>
+<div id="fig-standing-modes" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-standing-modes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode tikz code-with-copy"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[thick] (0,2) sin (3,2.25) cos (6,2) node[right,xshift=0.25cm] {<span class="ss">$n=1$</span>} sin (3,1.75) cos (0,2);</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[thick] (0,1) sin (1.5,1.25) cos (3,1) sin (4.5,0.75) cos (6,1) node[right,xshift=0.25cm] {<span class="ss">$n=2$</span>}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sin (4.5,1.25) cos (3,1) sin (1.5,0.75) cos (0,1);</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[thick] (0,0) sin (1,0.25) cos (2,0) sin (3,-0.25) cos (4,0) sin (5,0.25) cos (6,0)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>node[right,xshift=0.25cm] {<span class="ss">$n=3$</span>} sin (5,-0.25) cos (4,0) sin (3,0.25) cos (2,0) sin (1,-0.25) cos (0,0);</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[ultra thick] (0,3) -- (0,-1) -- (6,-1) node[midway,below] {<span class="ss">$L$</span>} -- (6,3);</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-standing-modes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: Visualization of several standing modes in a box.
+</figcaption>
+</figure>
+</div>
+<p>These waves must satisfy the <em>wave equation</em>:</p>
+<!-- I thought this would look better in a box, but not sure... -->
+<div id="lem-wave-equation" class="lemma theorem">
+<p><span class="theorem-title"><strong>Lemma 1.1 (Wave Equation)</strong></span> <span class="math display">\[
+    \nabla^2 \psi(r, t) = \frac{1}{c^2} \pdv[2]{t} \psi(r, t)
+\]</span></p>
+</div>
+<p>The solutions to this differential equation are sine waves, which in three dimensions are functions of the form: <span class="math display">\[
     \psi(r, t) = A(t) \sin(k_x x) \sin (k_y y)\sin (k_z z)
-\]</span> Then, since we require that the wave is zero outside the cavity, we enforce <span class="math inline">\(\psi = 0\)</span> outside the cavity. We express this constraint mathematically as requiring that: <span class="math display">\[
+\]</span> Then, since we require that the wave only exists inside the cavity, we enforce the boundary condition that <span class="math inline">\(\psi = 0\)</span> outside the cavity. We express this constraint mathematically by making the sine terms vanish at the walls of the cavity: <span class="math display">\[
     k_i = \frac{n_i \pi}{L}
 \]</span> Now, to solve for <span class="math inline">\(A(t)\)</span>, we plug this back into the wave equation, which gives us a solution of the form: <span class="math display">\[
     A(t) = A_0 \cos (\omega t) + \phi
-\]</span> The <span class="math inline">\(\phi\)</span> factor is simply a phase which we don’t care that much about — we can always zero this out for simplicity. What’s more important here is <span class="math inline">\(\omega\)</span>, which from our earlier condition on <span class="math inline">\(k\)</span> satisfies the equation:<br>
+\]</span> The <span class="math inline">\(\phi\)</span> factor is simply a phase which we don’t care that much about — we can always zero this out for simplicity<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. What’s more important here is <span class="math inline">\(\omega\)</span>, which from our earlier condition on <span class="math inline">\(k\)</span> satisfies the equation:<br>
 <span id="eq-num-modes-precursor"><span class="math display">\[
     \omega^2 = \frac{c^2 \pi^2}{L^2}\left( n_x^2 + n_y^2 + n_z^2 \right)
-\tag{1.2}\]</span></span> From this equation, you can then see that the number of ways <span class="math inline">\(n_x, n_y\)</span> and <span class="math inline">\(n_z\)</span> can be chosen increases with increasing <span class="math inline">\(\omega\)</span>, which we will explore in the next section.</p>
+\tag{1.2}\]</span></span> From this equation, you can then see that the number of ways <span class="math inline">\(n_x\)</span>, <span class="math inline">\(n_y\)</span>, and <span class="math inline">\(n_z\)</span> can be chosen increases with increasing <span class="math inline">\(\omega\)</span>, which we now take some time to explore.</p>
 <section id="number-of-modes" class="level3" data-number="1.2.1">
 <h3 data-number="1.2.1" class="anchored" data-anchor-id="number-of-modes"><span class="header-section-number">1.2.1</span> Number of Modes</h3>
-<p>Now that we have the full form for <span class="math inline">\(\psi(r, t)\)</span>, let’s actually figure out how many modes there are for a given <span class="math inline">\(\omega\)</span> — in other words, for a given wave energy <span class="math inline">\(\omega\)</span>, what is the number of allowed modes <span class="math inline">\(N(\omega)\)</span> inside the box? To do this, we first define a <em>density of states</em> function <span class="math inline">\(g(\omega)\)</span>, defined as: <span class="math display">\[
+<p>Now that we have the full form for <span class="math inline">\(\psi(r, t)\)</span>, let’s actually figure out how many modes there are for a given <span class="math inline">\(\omega\)</span>. In other words, for a given wave energy <span class="math inline">\(\omega\)</span>, what is the number of allowed modes <span class="math inline">\(N(\omega)\)</span> inside the box? To do this, we first define a <em>density of states</em> function:</p>
+<div id="def-density-of-states" class="definition theorem">
+<p><span class="theorem-title"><strong>Definition 1.3 (Density of States)</strong></span> The <em>density of states</em>, denoted <span class="math inline">\(g(\omega)\)</span>, describes the number of available states per unit volume per unit wave energy <span class="math inline">\(\omega\)</span>: <span class="math display">\[
     g(\omega) = \dv{N(\omega)}{\omega}
-\]</span> This way, we have <span class="math display">\[
+\]</span></p>
+</div>
+<p>This way, we can represent the number of allowed modes with the following integral: <span class="math display">\[
     N(\omega) = \int_{0}^{\omega} g(\omega) \ d \omega
 \]</span> For a fixed <span class="math inline">\(\omega\)</span>, <span class="math inline">\(g(\omega)\)</span> is implicitly given by <a href="#eq-num-modes-precursor" class="quarto-xref">Equation&nbsp;<span>1.2</span></a>: it is equal to the number of ways to choose <span class="math inline">\(n_x, n_y, n_z\)</span> such that the left and right maintain equality. Since <span class="math inline">\(N(\omega)\)</span> integrates from 0 to the maximum allowed <span class="math inline">\(\omega\)</span>, then we are essentially looking for the number of ways to choose the <span class="math inline">\(n_i\)</span> such that the right hand side of <a href="#eq-num-modes-precursor" class="quarto-xref">Equation&nbsp;<span>1.2</span></a> doesn’t exceed the left. Written explicitly as an inequality, we are basically looking for: <span class="math display">\[
     n_x^2 + n_y^2 + n_z^2 \leq \frac{\omega^2 L^2}{c^2 \pi^2}
@@ -286,60 +367,130 @@ this out.  -->
     V}{6 c^3\pi^2}
 \]</span> Here, <span class="math inline">\(V = L^3\)</span> denotes the volume of the box. Converting this to linear frequency using <span class="math inline">\(\omega = 2\pi f\)</span>, we get: <span class="math display">\[
     N(f) = \frac{8 \pi^3 f^3 V}{6 c^3 \pi} \implies g(f) = \dv{N(f)}{f} = \frac{4\pi f^2V}{c^3}
-\]</span> Since each mode contains two different polarizations (you can loosely think of this as linearly and circularly polarized light), we have to multiply <span class="math inline">\(g(f)\)</span> by 2 to get the full expression:<br>
+\]</span> Since each mode contains two different polarizations (you can loosely think of this as linearly and circularly polarized light)<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, we have to multiply <span class="math inline">\(g(f)\)</span> by 2 to get the full expression:<br>
 <span class="math display">\[
-    g(f) = \frac{8 \pi f^2}{c^3} V
-\]</span> So far, this derivation is purely classical, and it is motivated purely by the mathematics. As we will see, this is where the similarities in the classical and quantum treatment end.</p>
+    \boxed{g(f) = \frac{8 \pi f^2}{c^3} V}
+\]</span> So far, this derivation is entirely <u>classical</u>, and it is motivated purely by the mathematics. As we will see, this is where the similarities in the classical and quantum treatment end.</p>
 </section>
 <section id="finding-the-energy-density" class="level3" data-number="1.2.2">
 <h3 data-number="1.2.2" class="anchored" data-anchor-id="finding-the-energy-density"><span class="header-section-number">1.2.2</span> Finding the Energy Density</h3>
-<p>When Rayleigh and Jeans derived their formula, they assumed that all modes exist and have energy <span class="math inline">\(k_BT\)</span>, a property given by the equipartition theorem.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Using this assumption, we then know that the number of modes between <span class="math inline">\(f\)</span> and <span class="math inline">\(f + d f\)</span> is given by <span class="math display">\[
+<!-- do we want to keep the equipartition thm in a footnote or encode it as a full box? -->
+<p>When Rayleigh and Jeans derived their formula, they assumed that all modes exist and have energy <span class="math inline">\(k_BT\)</span>, a property given by the equipartition theorem.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Under this assumption, the number of modes between <span class="math inline">\(f\)</span> and <span class="math inline">\(f + d f\)</span> is given by: <span class="math display">\[
     g(f) k_BT \ d f = \frac{8\pi}{c^3} f^2 V k_BT  \ d f
 \]</span> The energy density is given by dividing out the volume <span class="math inline">\(V\)</span>: <span class="math display">\[
     \rho(f) = \frac{8 \pi}{c^3} f^2 k_BT \ d f
 \]</span> Changing this into an expression involving <span class="math inline">\(\lambda\)</span> gives: <span class="math display">\[
     \rho(\lambda) = \frac{8\pi}{c^3} \frac{c^2}{\lambda^2} \frac{c}{\lambda^2} k_BT = \frac{8 \pi
-    k_BT}{\lambda^{4}}
-\]</span> which is precisely the energy density given by the Rayleigh-Jeans law, giving us the ultraviolet catastrophe. However, if we instead assume that not <em>all</em> modes exist but that energy is <strong>quantized</strong>, we get a different result. This is the assumption that Max Planck made, and it is what allows us to arrive at the Planck radiation formula. In particular, Planck assumed that energy may only be gained and lost in units of <span class="math inline">\(hf\)</span> (called <em>quanta</em>) where <span class="math inline">\(h\)</span> is Planck’s constant. With this assumption, it is possible to come up with a different energy density equation, now known as the <strong>Planck radiation formula</strong>: <span class="math display">\[
+    k_BT}{\lambda^{4}}.
+\]</span> This is precisely the energy density given by <a href="#thm-rayleigh-jeans" class="quarto-xref">Theorem&nbsp;<span>1.1</span></a>, which we know fails. However, if we instead assume that not <em>all</em> modes exist but that energy is <strong>quantized</strong>, we get a different result.</p>
+<div id="def-quantization" class="definition theorem">
+<p><span class="theorem-title"><strong>Definition 1.4 (Quantization)</strong></span> When we say that a quantity is <em>quantized</em>, we mean that it comes in discrete packets (called <em>quanta</em>) and cannot gain/lose anything less than this discrete unit.</p>
+</div>
+<p>In particular, Max Planck suggested that energy may only be gained and lost in units of <span class="math inline">\(hf\)</span>, where <span class="math inline">\(h\)</span> was dubbed <em>Planck’s constant</em>. With this assumption, it is possible to come up with a different energy density equation, now known as the <strong>Planck radiation formula</strong>:</p>
+<div id="thm-planck-radiation-formula" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 1.2 (Planck Radiation Formula)</strong></span> <span class="math display">\[
     \rho(\lambda, T) = \frac{8 \pi h c}{\lambda^{5}} \frac{1}{\exp(\frac{h c}{\lambda k_BT}) - 1}
-\]</span> The derivation for this equation is rather complicated, and involves the heavy use of statistical mechanics, so we will skip it here. What’s important is that this theory, unlike the Rayleigh-Jeans law, agrees very well with experimental data.</p>
-<p>So what’s the takeaway from all this? That we <em>had</em> to take quantum effects into account in order to come up with the correct relation for <span class="math inline">\(\rho(\lambda, T)\)</span>.<br>
-Hopefully through this example you can see why we need to study quantum mechanics; without it, our picture of the world would be incomplete!</p>
+\]</span></p>
+</div>
+<p>The derivation for this equation is rather complicated, and involves the heavy use of statistical mechanics, so we will skip it here. What’s important is that this theory, unlike the Rayleigh-Jeans law, agrees very well with experimental data and no longer predicts unbounded growth.</p>
+<p>So what’s the takeaway from all this? That we <em>had</em> to make a nonclassical leap in order to come up with the correct relation for <span class="math inline">\(\rho(\lambda, T)\)</span> and explain a real-world phenomenon.</p>
+<p>This is a first glimpse into why we need to study quantum mechanics; without it, our picture of the world would be incomplete! But what if something else had gone wrong? Did we really <em>need</em> this quantum leap to explain this phenomenon? If this example didn’t convince certain skeptical readers, let’s take a look at another paradigm-shifting experiment (namely, the one that earned Albert Einstein his Nobel Prize).</p>
 </section>
 </section>
 <section id="the-photoelectric-effect" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="the-photoelectric-effect"><span class="header-section-number">1.3</span> The Photoelectric Effect</h2>
-<p>Like the Planck radiation formula, the explanation of the photoelectric effect is also one that requires the assumption that energy is quantized. Famously, it was Einstein who proposed the correct mechanism for this phenomenon, which was ultimately the contribution that won him the Nobel prize, not his contributions of special and general relativity.</p>
-<p>The photoelectric effect can be described as follows: when you shine light onto a metal surface, the light transfers energy onto the electrons trapped inside the metal, eventually transferring enough energy to allow them to “escape” the metal, resulting in a phenomenon called <em>photoemission</em>. Naturally, if light were to gradually transfer energy to these electrons, you should expect that even if the light were dim and low energy (e.g.&nbsp;microwaves or radio waves), the electrons would eventually accumulate enough energy to escape the metal, but in reality it does not — not all wavelengths of light generate photoemission, no matter the intensity and duration of exposure. By contrast, it seems that when the light reaches a certain frequency, photoemission <em>does</em> occur, even at low intensities and exposures. This frequency dependence is difficult to explain classically, under the assumption that any kind of light would transfer energy to the electrons.</p>
-<p>So how do we explain this phenomenon? Einstein put forward the postulate that instead of treating light as a continuous beam of energy but instead <strong>quantizing</strong> it, this phenomenon can be explained. Specifically, we can imagine light as a stream of particles (called <strong>quanta</strong>), each carrying an energy <span class="math inline">\(E = hf\)</span> which it can impart to the electrons in the metal. He then theorized that there must be a minimum amount of energy required to remove an electron from the metal, called the <em>work function</em> <span class="math inline">\(\phi\)</span>. Since a photon can only deliver energy <span class="math inline">\(hf\)</span> to the electron, this solves the frequency-dependent effect we couldn’t explain from earlier. This also explains why changing the intensity nor duration matter: the energy of the light quanta is only frequency dependent, hence varying things like the intensity or duration have no bearing on photoemission.</p>
+<p>Like the Planck radiation formula, the explanation of the photoelectric effect is also one that requires the assumption that energy is quantized.</p>
+<div class="proof remark">
+<p><span class="proof-title"><em>Remark</em>. </span>Famously, it was Albert Einstein who proposed the correct mechanism for this phenomenon, and it was precisely this contribution that won him the Nobel prize, not his development of special/general relativity. Interestingly, Einstein was not happy about the inevitable probabilistic implications of this discovery, and he fought with prominent quantum theorists for years about whether quantum mechanics could ultimately be made into a deterministic theory (spoiler alert: it can’t).</p>
+</div>
+<p>The photoelectric effect can be described as follows: when you shine light onto a metal surface, the light transfers energy onto the electrons trapped inside the metal, eventually transferring enough energy to allow them to “escape” the metal, resulting in a phenomenon called <em>photoemission</em>.</p>
+<!-- don't love the way thjis figure turned out; let's try to tweak it -->
+<div id="fig-photoelectric-effect" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-photoelectric-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode tikz code-with-copy"><code class="sourceCode latex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[gray!30!white,fill,outer color=gray!30!white,inner color=gray!10!white,fill opacity=0.5] (0,0.15) rectangle (6,0.85) node[midway,below,yshift=-0.35cm,black,opacity=1] {metal surface};</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\foreach</span> <span class="fu">\coord</span> in</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  {(0.5,0.4),(1,0.6),(1.5,0.4),(2,0.6),(2.5,0.4),(3,0.6),(3.5,0.4),(4,0.6),(4.5,0.4),(5,0.6),(5.5,0.4),(4.75,2.125)} {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\filldraw</span>[yellow!70!orange, outer color=yellow!70!orange, inner color=white] <span class="fu">\coord</span> circle (0.1cm);</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\foreach</span> <span class="fu">\x</span> in {-2,-1,0} {</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[very thick,red!70,rotate=-30] (<span class="fu">\x</span>,1.85) sin (<span class="fu">\x+</span>0.25,1.975) cos (<span class="fu">\x+</span>0.5,1.85) sin (<span class="fu">\x+</span>0.75,1.725) cos (<span class="fu">\x+</span>1,1.85);</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[very thick,red!70,-stealth,rotate=-30] (1,1.85) -- (1.25,1.85);</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[very thick,blue!70,-stealth,rotate=30] (3,-0.5) -- (5,-0.5);</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-photoelectric-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: An illustration of the photoelectric effect: when the incident photons (red) strike the metal surface at just the right angle, some electrons (yellow) may be swept up and off of the metal, resulting in the observed photoemission (blue).
+</figcaption>
+</figure>
+</div>
+<p>Naturally, if light were to gradually transfer energy to these electrons, one should expect that, even at low energy (e.g.&nbsp;microwaves or radio waves), the electrons would eventually accumulate enough energy to escape the metal, but in reality it does not — not all wavelengths of light generate photoemission, no matter the intensity and duration of exposure. By contrast, it seems that when the light reaches a certain frequency, photoemission <em>does</em> occur, even at low intensities and exposures. This frequency dependence is difficult to explain classically, under the assumption that any kind of light would transfer energy to the electrons.</p>
+<p>So how do we explain this phenomenon? Einstein posited that, if light is quantized rather than a continuous beam of energy, this phenomenon can be explained. Specifically, we can imagine light as a stream of particles, each carrying an energy <span class="math inline">\(E = hf\)</span> which it can impart to the electrons in the metal. He then theorized that there must be a minimum amount of energy required to remove an electron from the metal, called the <em>work function</em> <span class="math inline">\(\phi\)</span>. Since a photon can only deliver energy <span class="math inline">\(hf\)</span> to the electron, this solves the frequency-dependent effect we couldn’t explain from earlier. This also explains why changing the intensity or duration doesn’t matter: the energy of the light quanta is only frequency-dependent, hence varying any other quantity has no bearing on photoemission.</p>
 </section>
 <section id="the-double-slit-experiment" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="the-double-slit-experiment"><span class="header-section-number">1.4</span> The Double Slit Experiment</h2>
-<p>The double slit experiment is another famous phenomenon discovered in the early 19th century that challenged our classical view of light. The experiment is as follows: it involves taking a beam of light (usually a laser beam) shining upon a plate that has two parallel slits cut into them. Then, the light passing through the slits is captured on a screen behind the plate.</p>
-<p>If light were to behave purely classically, you would expect to see two bright spots that trace out the shape of the slits on the screen. However, what is actually observed is an <em>interference pattern</em>: patches of light and dark spots spread across the screen that that gradually get fainter toward the edges. Now, if we are to assume that light is a beam of particles like we did with the photoelectric effect, this result makes no sense – only particles that fly through the slit make it onto the screen, and there is no force that allows them to change momentum so an interference pattern does not make sense.</p>
-<p>However, this phenomenon can be explained if we take a different approach, and assume that light consists of waves instead of particles. This way, as waves travel through the slit, they experience a phenomenon known as <em>diffraction</em>, where light passing through the slits generate wavefronts that interfere with each other. This way, light going through one slit can interfere with the other, producing the interference pattern we see on the screen.</p>
-<p>The double slit phenomenon, combined with the photoelectric effect, showcase a concept in quantum physics called the <em>wave-particle duality</em>. Specifically, it refers to the fact that light behaves both as a wave and a particle, depending on the context. In the double slit experiment, light behaves as a wave, whereas it behaves like a particle in the photoelectric effect.</p>
-<div class="warning">
-<p>It is often misunderstood that light somehow “chooses” to either be a wave or a particle depending on the experiment, but in reality wave-particle duality is better understood as light <em>simultaneously</em> behaving as a wave and a particle – doing the experiment simply allows us to see one of these two expressions.</p>
+<h2 data-number="1.4" class="anchored" data-anchor-id="the-double-slit-experiment"><span class="header-section-number">1.4</span> The Double-Slit Experiment</h2>
+<p>The double-slit experiment is another famous phenomenon discovered in the early 19th century that challenged our classical view of light. The experiment is as follows: it involves taking a beam of light (usually a laser beam) shining upon a plate that has two parallel slits cut into them. Then, the light passing through the slits is captured on a screen behind the plate.</p>
+<!-- do we want to illustrate a double-slit experimental figure here? if so, pls suggest what you think it
+should look like and i'll do my best to mock it up -->
+<p>If light were to behave purely classically, we would expect to see two bright spots that trace out the shape of the slits on the screen. However, what is actually observed is an <em>interference pattern</em>: patches of light and dark spots spread across the screen that that gradually get fainter toward the edges. Now, if we are to assume that light is a beam of particles like we did with the Photoelectric Effect, this result makes no sense: only particles that fly through the slit make it onto the screen (and there is no force that allows them to spontaneously change momentum), so an interference pattern does not make sense.</p>
+<p>However, this phenomenon can be explained if we take a different approach, and assume that light consists of <u>waves</u> instead of particles. This way, as waves travel through the slit, they experience a phenomenon known as <em>diffraction</em>, where light passing through the slits generate wavefronts that interfere with each other. This way, light going through one slit can interfere with the other, producing the interference pattern we see on the screen.</p>
+<div class="proof remark">
+<p><span class="proof-title"><em>Remark</em>. </span>This is a version of the <em>Huygens Principle</em>, discovered by Christiaan Huygens in 1678 and applied primarily to classical wave propagation, but it works here as well.</p>
 </div>
+<p>The double-slit phenomenon, combined with the Photoelectric Effect, showcase a concept in quantum physics called the <em>wave-particle duality</em>. Specifically, it refers to the fact that light behaves both as a wave and a particle, depending on the context. In the double-slit experiment, light behaves as a wave, whereas it behaves like a particle in the photoelectric effect.</p>
+<div class="warning">
+<p>It’s often misunderstood that light somehow “chooses” to either be a wave or a particle depending on the experiment. In reality, wave-particle duality is better understood as light <em>simultaneously</em> behaving as a wave and a particle – doing the experiment simply allows us to see one of these two expressions.</p>
+</div>
+<p>Even though waves are a fundamentally classical object, the fact that a certain object can exhibit either wave or particle behavior depending on the scenario is the crucial non-classical leap. A wave on water can never behave like a ball, and vice versa.</p>
 </section>
 <section id="the-case-of-the-electron" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="the-case-of-the-electron"><span class="header-section-number">1.5</span> The Case of the Electron</h2>
-<p>As a last example to motivate the need for quantum mechanics, there was a known problem with the classical model of the atom. In the late 19th and early 20th century, the leading model of the atom was the Bohr model, which depicted the nucleus with its protons and neutrons, and electrons orbiting around it. However, there was a problem with this model: by this point, it had already been established that moving charges radiate energy in the form of electromagnetic waves, and since the electron orbits around the nucleus you could calculate how much energy its orbit should radiate. As it turns out, if the electron really did orbit according to this model, then the electron would have crashed into the nucleus in <span class="math inline">\(10^{-11}\)</span> seconds!</p>
-<p>Clearly this isn’t true, and it really highlights why the classical models at the time were incomplete. Quantization resolves this however: by introducing <em>allowed</em> energies that the electron can exist in and removing the idea that the electron orbits around the nucleus, you resolve this problem immediately.</p>
+<p>As a last example to motivate the need for quantum mechanics, there was a known problem with the classical model of the atom. In the late 19th and early 20th century, the leading description of the atom was the <strong>Bohr model</strong>, which depicted an atom as a miniature planetary system. However, there was a problem with this model: by this point, it had already been established that moving charges radiate energy in the form of electromagnetic waves, which means we could in principle calculate how much energy an orbiting electron should radiate. As it turns out, if the electron really did orbit according to this model, then the amount of energy it dissipates would have sent it crashing into the nucleus within <span class="math inline">\(10^{-11}\)</span> seconds!</p>
+<!-- may want to tweak the colors for better visibility -->
+<div id="fig-bohr-model" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bohr-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode tikz code-with-copy"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\foreach</span> <span class="fu">\coord</span> in {(-0.175,0.175), (0.175,-0.175)}</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\filldraw</span>[blue!40!cyan!20, outer color=blue!40!cyan!20, inner color=blue!20!cyan!10!white,fill opacity=1] <span class="fu">\coord</span> circle (0.25cm);}</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\foreach</span> <span class="fu">\coord</span> in {(-0.175,-0.175), (0.175,0.175)}</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\filldraw</span>[red!40!white, outer color=red!40!white, inner color=white, fill opacity=1] <span class="fu">\coord</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>circle (0.25cm);  </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\foreach</span> <span class="fu">\r</span> in {1.25cm,1.5cm,1.75cm,2cm} {</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[thick,densely dotted,yellow!70!orange] (0,0) circle (<span class="fu">\r</span>);}</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\foreach</span> <span class="fu">\coord</span> in {(2,0),(-1.5,0),(0,1.75),(0,-1.25)}</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\filldraw</span>[yellow!70!orange, outer color=yellow!70!orange, inner color=white, fill opacity=1] <span class="fu">\coord</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>circle (0.1cm); </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bohr-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: Bohr model of the atom. Here, the nucleus (consisting of protons and neutrons) functions as the “star”, while electrons act as “planets” that “orbit” the nucleus.
+</figcaption>
+</figure>
+</div>
+<p>Clearly this isn’t true, so classical models once again fall short of accurately describing small systems. Fortunately, quantization resolves this as well: by introducing <em>allowed</em> energies that the electron can exist in and removing the idea that the electron orbits around the nucleus, the problem vanishes immediately.</p>
 </section>
 <section id="conclusion" class="level2" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">1.6</span> Conclusion</h2>
-<p>Hopefully through these examples you can see how inadequate our classical theories fail to explain the phenomena in the real world. Things like the photoelectric effect, the ultraviolet catastrophe and the electron radiation cannot be explained without introducing the quantization of energy, and phenomena like the double-slit experiment challenge our intuition, forcing us to accept that there are particles that can be both a wave and a particle at the same time. While this doesn’t immediately motivate quantum behavior, it does illustrate that objects we once thought of as particles have wave-like properties as well.</p>
-<p>Now that you’ve gotten an appreciation for the importance of quantum mechanics, let’s now move on to develop the formal mathematics of quantum mechanics.</p>
+<p>These examples are not meant to suggest that classical mechanics is wholly inadequate; rather, they simply illustrate that there are certain instances where classical principles fail to accurately predict real-world phenomena. Things like the Photoelectric Effect, the Ultraviolet Catastrophe, and electron radiation cannot be explained without introducing the quantization of energy, and phenomena like the double-slit experiment challenge our intuition, forcing us to accept that there are particles that can be both a wave and a particle at the same time. While this doesn’t immediately motivate quantum behavior, it does illustrate that objects we once thought of as particles have wave-like properties as well.</p>
+<!-- I don't love this final sentence, even with my tweak; let's try to come up with a better transition -->
+<p>Now that we’ve hopefully convinced you of the necessity of quantum mechanics, let’s now move on to develop some formal mathematics that will underpin the remainder of the theory.</p>
 
 
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>The equipartition theorem says that the average of any quadratic degree of freedom is <span class="math inline">\(\frac{1}{2}
-k_BT\)</span>. In short, the reason why each mode contributes <span class="math inline">\(k_BT\)</span> is because the Hamiltonian for harmonic oscillators have two quadratic degrees of freedom: one in position and another in momentum. Each contributes <span class="math inline">\(\frac{1}{2} k_BT\)</span>, so in total each mode contributes <span class="math inline">\(k_BT\)</span>. For a more detailed explanation, consult a statistical mechanics book.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>If you haven’t taken a circuits class yet, don’t worry; you’ll do it eventually, so we might as well bring him up now.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This term was coined a bit later by Paul Ehrenfest, as the error in the Rayleigh-Jeans prediction becomes most pronounced when the wavelength enters the UV range.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>We will often deal with unknown phase factors that can be suppressed; it’s not of much importance exactly how we can do this at the moment, but when it becomes relevant, we’ll address it properly.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>We will not worry about what this means exactly, for now.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>The equipartition theorem says that the average energy of any quadratic degree of freedom in a system is <span class="math inline">\(\frac{1}{2}
+k_BT\)</span>. In short, the reason why each mode contributes <span class="math inline">\(k_BT\)</span> is because the Hamiltonian for harmonic oscillators have two quadratic degrees of freedom: one in position and another in momentum. Each contributes <span class="math inline">\(\frac{1}{2} k_BT\)</span>, so in total each mode contributes <span class="math inline">\(k_BT\)</span>. For a more detailed explanation, consult a statistical mechanics book.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
