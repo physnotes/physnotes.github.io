@@ -23,41 +23,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -316,17 +281,10 @@ complicated -->
 <div id="def-standing-mode" class="definition theorem">
 <p><span class="theorem-title"><strong>Definition 1.2 (Standing Mode)</strong></span> A <em>mode</em> is a standing wave state of excitation where all of the system’s components are affected sinusoidally at a fixed frequency. A wave is <em>standing</em> if it oscillates in time, but its peak amplitude does not move in space.</p>
 </div>
-<div id="fig-standing-modes" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
+<div id="fig-standing-modes" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-standing-modes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode tikz code-with-copy"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[thick] (0,2) sin (3,2.25) cos (6,2) node[right,xshift=0.25cm] {<span class="ss">$n=1$</span>} sin (3,1.75) cos (0,2);</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[thick] (0,1) sin (1.5,1.25) cos (3,1) sin (4.5,0.75) cos (6,1) node[right,xshift=0.25cm] {<span class="ss">$n=2$</span>}</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sin (4.5,1.25) cos (3,1) sin (1.5,0.75) cos (0,1);</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[thick] (0,0) sin (1,0.25) cos (2,0) sin (3,-0.25) cos (4,0) sin (5,0.25) cos (6,0)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>node[right,xshift=0.25cm] {<span class="ss">$n=3$</span>} sin (5,-0.25) cos (4,0) sin (3,0.25) cos (2,0) sin (1,-0.25) cos (0,0);</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[ultra thick] (0,3) -- (0,-1) -- (6,-1) node[midway,below] {<span class="ss">$L$</span>} -- (6,3);</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<img src="origins_files/mediabag/35fc0c90c210d2bcb19d26b4ead4f30df19cb6b0.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-standing-modes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.1: Visualization of several standing modes in a box.
@@ -405,21 +363,10 @@ Figure&nbsp;1.1: Visualization of several standing modes in a box.
 </div>
 <p>The photoelectric effect can be described as follows: when you shine light onto a metal surface, the light transfers energy onto the electrons trapped inside the metal, eventually transferring enough energy to allow them to “escape” the metal, resulting in a phenomenon called <em>photoemission</em>.</p>
 <!-- don't love the way thjis figure turned out; let's try to tweak it -->
-<div id="fig-photoelectric-effect" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
+<div id="fig-photoelectric-effect" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-photoelectric-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode tikz code-with-copy"><code class="sourceCode latex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[gray!30!white,fill,outer color=gray!30!white,inner color=gray!10!white,fill opacity=0.5] (0,0.15) rectangle (6,0.85) node[midway,below,yshift=-0.35cm,black,opacity=1] {metal surface};</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\foreach</span> <span class="fu">\coord</span> in</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  {(0.5,0.4),(1,0.6),(1.5,0.4),(2,0.6),(2.5,0.4),(3,0.6),(3.5,0.4),(4,0.6),(4.5,0.4),(5,0.6),(5.5,0.4),(4.75,2.125)} {</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\filldraw</span>[yellow!70!orange, outer color=yellow!70!orange, inner color=white] <span class="fu">\coord</span> circle (0.1cm);</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\foreach</span> <span class="fu">\x</span> in {-2,-1,0} {</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[very thick,red!70,rotate=-30] (<span class="fu">\x</span>,1.85) sin (<span class="fu">\x+</span>0.25,1.975) cos (<span class="fu">\x+</span>0.5,1.85) sin (<span class="fu">\x+</span>0.75,1.725) cos (<span class="fu">\x+</span>1,1.85);</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\draw</span>[very thick,red!70,-stealth,rotate=-30] (1,1.85) -- (1.25,1.85);</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[very thick,blue!70,-stealth,rotate=30] (3,-0.5) -- (5,-0.5);</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<img src="origins_files/mediabag/07c74dc44d04ae363fadcbc95980cee5093c6e1f.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-photoelectric-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.2: An illustration of the photoelectric effect: when the incident photons (red) strike the metal surface at just the right angle, some electrons (yellow) may be swept up and off of the metal, resulting in the observed photoemission (blue).
@@ -449,23 +396,10 @@ should look like and i'll do my best to mock it up -->
 <h2 data-number="1.5" class="anchored" data-anchor-id="the-case-of-the-electron"><span class="header-section-number">1.5</span> The Case of the Electron</h2>
 <p>As a last example to motivate the need for quantum mechanics, there was a known problem with the classical model of the atom. In the late 19th and early 20th century, the leading description of the atom was the <strong>Bohr model</strong>, which depicted an atom as a miniature planetary system. However, there was a problem with this model: by this point, it had already been established that moving charges radiate energy in the form of electromagnetic waves, which means we could in principle calculate how much energy an orbiting electron should radiate. As it turns out, if the electron really did orbit according to this model, then the amount of energy it dissipates would have sent it crashing into the nucleus within <span class="math inline">\(10^{-11}\)</span> seconds!</p>
 <!-- may want to tweak the colors for better visibility -->
-<div id="fig-bohr-model" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
+<div id="fig-bohr-model" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bohr-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode tikz code-with-copy"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\foreach</span> <span class="fu">\coord</span> in {(-0.175,0.175), (0.175,-0.175)}</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\filldraw</span>[blue!40!cyan!20, outer color=blue!40!cyan!20, inner color=blue!20!cyan!10!white,fill opacity=1] <span class="fu">\coord</span> circle (0.25cm);}</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\foreach</span> <span class="fu">\coord</span> in {(-0.175,-0.175), (0.175,0.175)}</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\filldraw</span>[red!40!white, outer color=red!40!white, inner color=white, fill opacity=1] <span class="fu">\coord</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>circle (0.25cm);  </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\foreach</span> <span class="fu">\r</span> in {1.25cm,1.5cm,1.75cm,2cm} {</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\draw</span>[thick,densely dotted,yellow!70!orange] (0,0) circle (<span class="fu">\r</span>);}</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\foreach</span> <span class="fu">\coord</span> in {(2,0),(-1.5,0),(0,1.75),(0,-1.25)}</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">\filldraw</span>[yellow!70!orange, outer color=yellow!70!orange, inner color=white, fill opacity=1] <span class="fu">\coord</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>circle (0.1cm); </span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<img src="origins_files/mediabag/e9e21b3a2e708f39c5b8c07136859aa71a64ada2.svg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bohr-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.3: Bohr model of the atom. Here, the nucleus (consisting of protons and neutrons) functions as the “star”, while electrons act as “planets” that “orbit” the nucleus.
