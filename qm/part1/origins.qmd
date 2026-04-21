@@ -3,18 +3,33 @@
 In order to dive into the world of quantum properly, it pays to spend some time looking at its history. In
 this chapter, we will give a brief overview of how quantum mechanics came to be. This way, you will
 appreciate not only the beauty of quantum mechanics, but also understand why it is necessary to understanding
-the mechanics of our world. 
+the mechanics of our world. We will illustrate how the need for quantum mechanics became apparent by
+revisiting a few crucial experimental results that did not align with what classical theory would
+predict, thus demonstrating that more was needed to understand the world around us. 
 
-The content in this section is heavily inspired by Prof. Siddiqi's notes for the introductory lecture in
-Physics 137A (Introductory Quantum Mechanics) at UC Berkeley. 
+<!--I chose to put this in a quote block, but maybe footnote? -->
+> The content in this section is heavily inspired by Prof. Siddiqi's notes for the introductory lecture in
+> Physics 137A (Quantum Mechanics I) at UC Berkeley. 
 
 ## Blackbody Radiation
-To begin our story, we start in the mid 19th century. Around this time, Gustav Kirchhoff (yes, the one from your
-circuits classes) was studying the physics of black bodies --- an idealized object that absorbs *all*
-electromagnetic radiation, hence the term "blackbody". Even though perfect blackbodies do not exist in the
-real world, this theory turns out to be a very good model for celestial bodies like planets and stars.   
+To begin our story, we travel back to the mid-19th century. Around this time, Gustav Kirchhoff (yes, the one from your
+circuits classes[^circuits]) was studying the physics of *blackbodies*: 
 
-Kirchhoff's crucial insight on blackbodies was that their emissive power $R$ was only determined by two
+:::{.definition #def-blackbody}
+# Blackbody
+A *blackbody* (or black body) is an indealized object that absorbs *all* electromagnetic radiation (getting
+its name from how black absorbs all light).
+:::
+
+Even though perfect blackbodies do not exist in the real world, this theory turns out to be a very good model
+for celestial bodies like planets and stars, which are precisely the objects Kirchhoff was studying.
+
+:::{.remark}
+This is a general theme in all of physics (and we will see it quite a lot in quantum mechanics); idealized toy models serve to help us understand more realistic
+phenomena.
+:::
+
+Kirchhoff's crucial insight was that a blackbody's emissive power $R$ was determined by only two
 factors: the emitted wavelength $\lambda$, and its temperature $T$. At around the same time, Josef Stefan
 empirically determined that the total radiation emitted by a blackbody is proportional to $T^{4}$, meaning
 that the total power across all wavelengths, as a function of temperature, may be written as: 
@@ -23,36 +38,74 @@ $$
 $${#eq-radiative-power}
 The constant $\sigma \approx 5.68 \times 10^{-8}$ is the **Stefan-Boltzmann constant**. While this relation
 was known, the functional form of $R(\lambda, T)$ eluded physicists at the time. In the early 20th century,
-Lord Rayleigh and Sir James Jeans used a purely classical approach and arrived at the *Rayleigh-Jeans law*,
-given as:   
+Lord Rayleigh and Sir James Jeans used a purely classical approach and arrived at a closed-form
+expression for this function:
+
+:::{.theorem #thm-rayleigh-jeans}
+# Rayleigh-Jeans Law
 $$
 	R(\lambda, T) = \frac{8 \pi k_B T}{\lambda^{4}}
 $$
-Here, $R(\lambda, T)$ denotes the power emitted per unit area. But, there is a problem with this formula!
-This formula predicts that at smaller and smaller $\lambda$, objects should emit an enormous amount of
-energy, due to the $\lambda^{4}$ scaling in the denominator. Putting this into @eq-radiative-power would result
-in an infinite amount of radiated energy, as the integral diverges at $\lambda \to 0$. This is clearly not
-physically true (the sun is at finite temperature, and does not radiate infinite energy), and this
-discrepancy is what is known as the **ultraviolet catastrophe**. This is the first indication that classical
-physics was incomplete.
- 
+Here, $R(\lambda,t)$ denotes the power emitted per unit area.
+:::
+
+But, there is a problem with this formula!
+This formula predicts that, for sufficiently small $\lambda$, objects should emit an enormous amount of
+energy, given the $\lambda^{4}$ scaling in the denominator. Putting this into @eq-radiative-power would result
+in infinite power across all wavelengths, since the integral diverges as $\lambda \to 0$. Thus, while the
+Rayleigh-Jeans law accurately predicted experimental results for radiated power at high wavelengths, it
+failed to do so for lower wavelengths in the ultraviolet range and predicted infinite power across all wavelengths, which is certainly nonphysical; this discrepancy is what is known as the **ultraviolet catastrophe**[^uv-catastrophe].
+
+This is the first indication that classical
+physics was incomplete, because purely classical methods were not able to accurately explain certain
+phenomena and instead predicted infinite growth. How do we fix this?
 
 ## The Quantization of Energy
 <!-- NOTE: I did go through the full derviation here; if you think it's too long, feel free to cut some of
 this out.  -->
+<!-- I think the full derivation is fine; it may help to slightly change up the sectioning structure -->
 The resolution, as it turns out, is to introduce the idea of **quantization**. To fully appreciate why this
 is needed, let's take a small detour. First, consider a square box of length $L$, and we want to calculate
-the number of standing modes in the cavity. These waves must satisfy the wave equation:   
+the number of *standing modes* in the cavity.
+
+<!-- may want to try to find a slightly better way to articulate the definition; this feels a bit too
+complicated -->
+:::{.definition #def-standing-mode}
+# Standing Mode
+A *mode* is a standing wave state of excitation where all of the system's components are affected sinusoidally at a fixed frequency. A wave is *standing* if it oscillates in time, but its peak amplitude does not move in space.
+:::
+
+:::{#fig-standing-modes fig-env="figure*" fig-pos="h"}
+```tikz
+\begin{tikzpicture}
+  \draw[thick] (0,2) sin (3,2.25) cos (6,2) node[right,xshift=0.25cm] {$n=1$} sin (3,1.75) cos (0,2);
+  \draw[thick] (0,1) sin (1.5,1.25) cos (3,1) sin (4.5,0.75) cos (6,1) node[right,xshift=0.25cm] {$n=2$}
+sin (4.5,1.25) cos (3,1) sin (1.5,0.75) cos (0,1);
+  \draw[thick] (0,0) sin (1,0.25) cos (2,0) sin (3,-0.25) cos (4,0) sin (5,0.25) cos (6,0)
+node[right,xshift=0.25cm] {$n=3$} sin (5,-0.25) cos (4,0) sin (3,0.25) cos (2,0) sin (1,-0.25) cos (0,0);
+  \draw[ultra thick] (0,3) -- (0,-1) -- (6,-1) node[midway,below] {$L$} -- (6,3);
+\end{tikzpicture}
+```
+Visualization of several standing modes in a box.
+:::
+
+These waves must satisfy the *wave equation*:
+
+<!-- I thought this would look better in a box, but not sure... -->
+:::{.lemma #lem-wave-equation}
+# Wave Equation
 $$
-	\nabla^2 \Psi(r, t) = \frac{1}{c^2} \pdv[2]{t} \psi(r, t)
+	\nabla^2 \psi(r, t) = \frac{1}{c^2} \pdv[2]{t} \psi(r, t)
 $$
+:::
+
 The solutions to this differential equation are sine waves, which in three dimensions are functions of the
 form:
 $$
 	\psi(r, t) = A(t) \sin(k_x x) \sin (k_y y)\sin (k_z z)
 $$
-Then, since we require that the wave is zero outside the cavity, we enforce $\psi = 0$ outside the cavity. We
-express this constraint mathematically as requiring that:
+Then, since we require that the wave only exists inside the cavity, we enforce the boundary condition that 
+$\psi = 0$ outside the cavity. We express this constraint mathematically by making the sine terms vanish at the walls of the cavity:
 $$
 	k_i = \frac{n_i \pi}{L}
 $$
@@ -61,23 +114,29 @@ $$
 	A(t) = A_0 \cos (\omega t) + \phi
 $$
 The $\phi$ factor is simply a phase which we don't care that much about --- we can always zero this out for
-simplicity. What's more important here is $\omega$, which from our earlier condition on $k$
+simplicity[^phase-conventions]. What's more important here is $\omega$, which from our earlier condition on $k$
 satisfies the equation:      
 $$
 	\omega^2 = \frac{c^2 \pi^2}{L^2}\left( n_x^2 + n_y^2 + n_z^2 \right)
 $${#eq-num-modes-precursor}
-From this equation, you can then see that the number of ways $n_x, n_y$ and $n_z$ can be chosen increases
-with increasing $\omega$, which we will explore in the next section. 
+From this equation, you can then see that the number of ways $n_x$, $n_y$, and $n_z$ can be chosen increases
+with increasing $\omega$, which we now take some time to explore. 
 
 ### Number of Modes
 Now that we have the full form for $\psi(r, t)$, let's actually figure out how many modes there are
-for a given $\omega$ --- in other words, for a given wave energy $\omega$, what is the number of allowed
-modes $N(\omega)$ inside the box? To do this, we first define a *density of states* function $g(\omega)$,
-defined as: 
+for a given $\omega$. In other words, for a given wave energy $\omega$, what is the number of allowed
+modes $N(\omega)$ inside the box? To do this, we first define a *density of states* function: 
+
+:::{.definition #def-density-of-states}
+# Density of States
+The *density of states*, denoted $g(\omega)$, describes the number of available states per unit
+volume per unit wave energy $\omega$:
 $$
 	g(\omega) = \dv{N(\omega)}{\omega}
 $$
-This way, we have 
+:::
+
+This way, we can represent the number of allowed modes with the following integral: 
 $$
 	N(\omega) = \int_{0}^{\omega} g(\omega) \ d \omega
 $$
@@ -101,17 +160,17 @@ $$
 	N(f) = \frac{8 \pi^3 f^3 V}{6 c^3 \pi} \implies g(f) = \dv{N(f)}{f} = \frac{4\pi f^2V}{c^3}
 $$
 Since each mode contains two different polarizations (you can loosely think of this as linearly and
-circularly polarized light), we have to multiply $g(f)$ by 2 to get the full expression:   
+circularly polarized light)[^polarization], we have to multiply $g(f)$ by 2 to get the full expression:   
 $$
-	g(f) = \frac{8 \pi f^2}{c^3} V
+	\boxed{g(f) = \frac{8 \pi f^2}{c^3} V}
 $$
-So far, this derivation is purely classical, and it is motivated purely by the mathematics. As we will see,
+So far, this derivation is entirely <u>classical</u>, and it is motivated purely by the mathematics. As we will see,
 this is where the similarities in the classical and quantum treatment end. 
 
 ### Finding the Energy Density
+<!-- do we want to keep the equipartition thm in a footnote or encode it as a full box? -->
 When Rayleigh and Jeans derived their formula, they assumed that all modes exist and have energy
-$k_BT$, a property given by the equipartition theorem.[^1] Using this assumption, we then know
-that the number of modes between $f$ and $f + d f$ is given by 
+$k_BT$, a property given by the equipartition theorem.[^equipartition] Under this assumption, the number of modes between $f$ and $f + d f$ is given by:
 $$
 	g(f) k_BT \ d f = \frac{8\pi}{c^3} f^2 V k_BT  \ d f
 $$
@@ -122,114 +181,190 @@ $$
 Changing this into an expression involving $\lambda$ gives:
 $$
 	\rho(\lambda) = \frac{8\pi}{c^3} \frac{c^2}{\lambda^2} \frac{c}{\lambda^2} k_BT = \frac{8 \pi
-	k_BT}{\lambda^{4}}
+	k_BT}{\lambda^{4}}.
 $$
-which is precisely the energy density given by the Rayleigh-Jeans law, giving us the ultraviolet catastrophe.
+This is precisely the energy density given by @thm-rayleigh-jeans, which we know fails.
 However, if we instead assume that not *all* modes exist but that energy is **quantized**, we get a different
-result. This is the assumption that Max Planck made, and it is what allows us to arrive at the Planck
-radiation formula. In particular, Planck assumed that energy may only be gained and lost in units of $hf$
-(called *quanta*) where $h$ is Planck's constant. With this assumption, it is possible to come up with a
+result.
+
+:::{.definition #def-quantization}
+# Quantization
+When we say that a quantity is *quantized*, we mean that it comes in discrete packets (called *quanta*) and cannot gain/lose
+anything less than this discrete unit.
+:::
+
+In particular, Max Planck suggested that energy may only be gained and lost in units of $hf$, where $h$ was dubbed *Planck's constant*. With this assumption, it is possible to come up with a
 different energy density equation, now known as the **Planck radiation formula**:
+
+:::{.theorem #thm-planck-radiation-formula}
+# Planck Radiation Formula
 $$
 	\rho(\lambda, T) = \frac{8 \pi h c}{\lambda^{5}} \frac{1}{\exp(\frac{h c}{\lambda k_BT}) - 1}
 $$
+:::
+
 The derivation for this equation is rather complicated, and involves the heavy use of
 statistical mechanics, so we will skip it here. What's important is that this theory, unlike the
-Rayleigh-Jeans law, agrees very well with experimental data. 
+Rayleigh-Jeans law, agrees very well with experimental data and no longer predicts unbounded growth. 
 
-So what's the takeaway from all this? That we *had* to take quantum effects into account in order to come up
-with the correct relation for $\rho(\lambda, T)$.  
-Hopefully
-through this example you can see why we need to study quantum mechanics; without it, our picture of the world
-would be incomplete!
+So what's the takeaway from all this? That we *had* to make a nonclassical leap in order to come up
+with the correct relation for $\rho(\lambda, T)$ and explain a real-world phenomenon.  
+
+This is a first glimpse into why we need to study quantum mechanics; without it, our picture of the world would be incomplete! But what if something else had gone wrong? Did we really *need* this quantum leap to explain this phenomenon? If this example didn't convince certain skeptical readers, let's take a look at another paradigm-shifting experiment (namely, the one that earned Albert Einstein his Nobel Prize).
 
 ## The Photoelectric Effect
 
 Like the Planck radiation formula, the explanation of the photoelectric effect is also one that requires the
-assumption that energy is quantized. Famously, it was Einstein who proposed the correct mechanism for this
-phenomenon, which was ultimately the contribution that won him the Nobel prize, not his contributions of
-special and general relativity. 
+assumption that energy is quantized.
+
+:::{.remark}
+Famously, it was Albert Einstein who proposed the correct mechanism for this
+phenomenon, and it was precisely this contribution that won him the Nobel prize, not his development of
+special/general relativity. Interestingly, Einstein was not happy about the inevitable probabilistic
+implications of this discovery, and he fought with prominent quantum theorists for years about whether
+quantum mechanics could ultimately be made into a deterministic theory (spoiler alert: it can't).
+:::
 
 The photoelectric effect can be described as follows: when you shine light onto a metal surface, the light
 transfers energy onto the electrons trapped inside the metal, eventually transferring enough energy to allow
-them to "escape" the metal, resulting in a phenomenon called *photoemission*. Naturally, if light were to
-gradually transfer energy to these electrons, you should expect that even if the light were dim and low
-energy (e.g. microwaves or radio waves), the electrons would eventually accumulate enough energy to escape the
-metal, but in reality it does not --- not all wavelengths of light generate photoemission, no matter the
-intensity and duration of exposure. By contrast, it seems that when the light reaches a certain frequency,
+them to "escape" the metal, resulting in a phenomenon called *photoemission*. 
+
+<!-- don't love the way thjis figure turned out; let's try to tweak it -->
+:::{#fig-photoelectric-effect fig-env="figure*" fig-pos="h"}
+```tikz
+\begin{tikzpicture}
+  \draw[gray!30!white,fill,outer color=gray!30!white,inner color=gray!10!white,fill opacity=0.5] (0,0.15) rectangle (6,0.85) node[midway,below,yshift=-0.35cm,black,opacity=1] {metal surface};
+  \foreach \coord in
+  {(0.5,0.4),(1,0.6),(1.5,0.4),(2,0.6),(2.5,0.4),(3,0.6),(3.5,0.4),(4,0.6),(4.5,0.4),(5,0.6),(5.5,0.4),(4.75,2.125)} {
+    \filldraw[yellow!70!orange, outer color=yellow!70!orange, inner color=white] \coord circle (0.1cm);
+  }
+  \foreach \x in {-2,-1,0} {
+    \draw[very thick,red!70,rotate=-30] (\x,1.85) sin (\x+0.25,1.975) cos (\x+0.5,1.85) sin (\x+0.75,1.725) cos (\x+1,1.85);
+    \draw[very thick,red!70,-stealth,rotate=-30] (1,1.85) -- (1.25,1.85);
+  }
+  \draw[very thick,blue!70,-stealth,rotate=30] (3,-0.5) -- (5,-0.5);
+\end{tikzpicture}
+```
+An illustration of the photoelectric effect: when the incident photons (red) strike the metal surface at just the
+right angle, some electrons (yellow) may be swept up and off of the metal, resulting in the observed photoemission (blue).
+:::
+
+Naturally, if light were to gradually transfer energy to these electrons, one should expect that, even at low energy (e.g. microwaves or radio waves), the electrons would eventually accumulate enough 
+energy to escape the metal, but in reality it does not --- not all wavelengths of light generate photoemission, 
+no matter the intensity and duration of exposure. By contrast, it seems that when the light reaches a certain frequency,
 photoemission *does* occur, even at low intensities and exposures. This frequency dependence is difficult to
 explain classically, under the assumption that any kind of light would transfer energy to the electrons.  
 
-So how do we explain this phenomenon? Einstein put forward the postulate that instead of treating light as a
-continuous beam of energy but instead **quantizing** it, this phenomenon can be explained. Specifically, we
-can imagine light as a stream of particles (called **quanta**), each carrying an energy $E = hf$ which it can
+So how do we explain this phenomenon? Einstein posited that, if light is quantized rather than a continuous
+beam of energy, this phenomenon can be explained. Specifically, we
+can imagine light as a stream of particles, each carrying an energy $E = hf$ which it can
 impart to the electrons in the metal. He then theorized that there must be a minimum amount of energy
 required to remove an electron from the metal, called the *work function* $\phi$. Since a photon can only
 deliver energy $hf$ to the electron, this solves the frequency-dependent effect we couldn't explain from
-earlier. This also explains why changing the intensity nor duration matter: the energy of the light quanta is
-only frequency dependent, hence varying things like the intensity or duration have no bearing on
-photoemission.  
+earlier. This also explains why changing the intensity or duration doesn't matter: the energy of the light quanta is
+only frequency-dependent, hence varying any other quantity has no bearing on photoemission.  
 
-## The Double Slit Experiment
-The double slit experiment is another famous phenomenon discovered in the early 19th century that challenged
+## The Double-Slit Experiment
+The double-slit experiment is another famous phenomenon discovered in the early 19th century that challenged
 our classical view of light. The experiment is as follows: it involves taking a beam of light (usually a
 laser beam) shining upon a plate that has two parallel slits cut into them. Then, the light passing through
 the slits is captured on a screen behind the plate. 
 
-If light were to behave purely classically, you would expect to see two bright spots that trace out the shape
+<!-- do we want to illustrate a double-slit experimental figure here? if so, pls suggest what you think it
+should look like and i'll do my best to mock it up -->
+
+If light were to behave purely classically, we would expect to see two bright spots that trace out the shape
 of the slits on the screen. However, what is actually observed is an *interference pattern*: patches of light
 and dark spots spread across the screen that that gradually get fainter toward the edges. Now, if we are to
-assume that light is a beam of particles like we did with the photoelectric effect, this result makes no
-sense -- only particles that fly through the slit make it onto the screen, and there is no force that allows
-them to change momentum so an interference pattern does not make sense. 
+assume that light is a beam of particles like we did with the Photoelectric Effect, this result makes no
+sense: only particles that fly through the slit make it onto the screen (and there is no force that allows
+them to spontaneously change momentum), so an interference pattern does not make sense. 
 
 However, this phenomenon can be explained if we take a different approach, and assume that light consists of
-waves instead of particles. This way, as waves travel through the slit, they experience a phenomenon known as
+<u>waves</u> instead of particles. This way, as waves travel through the slit, they experience a phenomenon known as
 *diffraction*, where light passing through the slits generate wavefronts that interfere with each other. This
 way, light going through one slit can interfere with the other, producing the interference pattern we see on
 the screen. 
 
-The double slit phenomenon, combined with the photoelectric effect, showcase a concept in quantum physics
+:::{.remark}
+This is a version of the *Huygens Principle*, discovered by Christiaan Huygens in 1678 and applied primarily
+to classical wave propagation, but it works here as well.
+:::
+
+The double-slit phenomenon, combined with the Photoelectric Effect, showcase a concept in quantum physics
 called the *wave-particle duality*. Specifically, it refers to the fact that light behaves both as a wave and
-a particle, depending on the context. In the double slit experiment, light behaves as a
+a particle, depending on the context. In the double-slit experiment, light behaves as a
 wave, whereas it behaves like a particle in the photoelectric effect. 
 
 :::{.warning}
-It is often misunderstood that light somehow "chooses" to either be a wave or a particle depending on the
-experiment, but in reality wave-particle duality is better understood as light *simultaneously* behaving as a
+It's often misunderstood that light somehow "chooses" to either be a wave or a particle depending on the
+experiment. In reality, wave-particle duality is better understood as light *simultaneously* behaving as a
 wave and a particle -- doing the experiment simply allows us to see one of these two expressions. 
 :::
 
+Even though waves are a fundamentally classical object, the fact that a certain object can exhibit either
+wave or particle behavior depending on the scenario is the crucial non-classical leap. A wave on water can
+never behave like a ball, and vice versa.
+
 ## The Case of the Electron
 As a last example to motivate the need for quantum mechanics, there was a known problem with the classical
-model of the atom. In the late 19th and early 20th century, the leading model of the atom was the Bohr model,
-which depicted the nucleus with its protons and neutrons, and electrons orbiting around it. However, there
+model of the atom. In the late 19th and early 20th century, the leading description of the atom was the **Bohr model**,
+which depicted an atom as a miniature planetary system. However, there
 was a problem with this model: by this point, it had already been established that moving charges radiate
-energy in the form of electromagnetic waves, and since the electron orbits around the nucleus you could
-calculate how much energy its orbit should radiate. As it turns out, if the electron really did orbit
-according to this model, then the electron would have crashed into the nucleus in $10^{-11}$ seconds! 
+energy in the form of electromagnetic waves, which means we could in principle calculate how much energy an
+orbiting electron should radiate. As it turns out, if the electron really did orbit
+according to this model, then the amount of energy it dissipates would have sent it crashing into the nucleus within $10^{-11}$ seconds!
 
-Clearly this isn't true, and it really highlights why the classical models at the time were incomplete.
-Quantization resolves this however: by introducing *allowed* energies that the electron can exist in and
-removing the idea that the electron orbits around the nucleus, you resolve this problem immediately.  
+<!-- may want to tweak the colors for better visibility -->
+:::{#fig-bohr-model fig-env="figure*" fig-pos="h"}
+```tikz
+\begin{tikzpicture}
+  \foreach \coord in {(-0.175,0.175), (0.175,-0.175)}
+  {\filldraw[blue!40!cyan!20, outer color=blue!40!cyan!20, inner color=blue!20!cyan!10!white,fill opacity=1] \coord circle (0.25cm);}
+  \foreach \coord in {(-0.175,-0.175), (0.175,0.175)}
+  {\filldraw[red!40!white, outer color=red!40!white, inner color=white, fill opacity=1] \coord
+circle (0.25cm);  
+  }
+  \foreach \r in {1.25cm,1.5cm,1.75cm,2cm} {
+  \draw[thick,densely dotted,yellow!70!orange] (0,0) circle (\r);}
+  \foreach \coord in {(2,0),(-1.5,0),(0,1.75),(0,-1.25)}
+  {\filldraw[yellow!70!orange, outer color=yellow!70!orange, inner color=white, fill opacity=1] \coord
+circle (0.1cm); 
+  }
+\end{tikzpicture}
+```
+Bohr model of the atom. Here, the nucleus (consisting of protons and neutrons) functions as the "star", while
+electrons act as "planets" that "orbit" the nucleus.
+:::
+
+Clearly this isn't true, so classical models once again fall short of accurately describing small systems.
+Fortunately, quantization resolves this as well: by introducing *allowed* energies that the electron can exist in and
+removing the idea that the electron orbits around the nucleus, the problem vanishes immediately.  
  
 ## Conclusion
-Hopefully through these examples you can see how inadequate our classical theories fail to explain the
-phenomena in the real world. Things like the photoelectric effect, the ultraviolet catastrophe and the
-electron radiation cannot be explained without introducing the quantization of energy, and phenomena like 
+These examples are not meant to suggest that classical mechanics is wholly inadequate; rather, they simply
+illustrate that there are certain instances where classical principles fail to accurately predict
+real-world phenomena. Things like the Photoelectric Effect, the Ultraviolet Catastrophe, and electron radiation 
+cannot be explained without introducing the quantization of energy, and phenomena like 
 the double-slit experiment challenge our intuition, forcing us to accept that there are particles that can be 
 both a wave and a particle at the same time. While this doesn't immediately motivate quantum behavior, 
 it does illustrate that objects we once thought of as particles have wave-like properties as well.    
 
-Now that you've gotten an appreciation for the importance of quantum mechanics, let's now move on to
-develop the formal mathematics of quantum mechanics.    
+<!-- I don't love this final sentence, even with my tweak; let's try to come up with a better transition -->
+Now that we've hopefully convinced you of the necessity of quantum mechanics, let's now move on to
+develop some formal mathematics that will underpin the remainder of the theory.    
 
-[^1]: The equipartition theorem says that the average of any quadratic degree of freedom is $\frac{1}{2}
+[^equipartition]: The equipartition theorem says that the average energy of any quadratic degree of freedom in a system is $\frac{1}{2}
 	k_BT$. In short, the reason why each mode contributes $k_BT$ is because the Hamiltonian for harmonic
 	oscillators have two quadratic degrees of freedom: one in position and another in momentum. Each 
 	contributes $\frac{1}{2} k_BT$, so in total each mode contributes $k_BT$. 
 	For a more detailed explanation, consult a statistical
 	mechanics book.    
-
-[^2]: this is a fotonote inside a box.
-
+[^circuits]: If you haven't taken a circuits class yet, don't worry; you'll do it eventually, so we might as
+well bring him up now.
+[^uv-catastrophe]: This term was coined a bit later by Paul Ehrenfest, as the error in the
+Rayleigh-Jeans prediction becomes most pronounced when the wavelength enters the UV range.
+[^phase-conventions]: We will often deal with unknown phase factors that can be suppressed; it's not of much
+importance exactly how we can do this at the moment, but when it becomes relevant, we'll address it
+properly.
+[^polarization]: We will not worry about what this means exactly, for now.
