@@ -11,6 +11,9 @@ book:
   - name: Andrew Binder
     email: abinder@berkeley.edu
     affiliation: UC Berkeley, Stony Brook University
+  - name: Carl Sun
+    email: carlsxh@berkeley.edu
+    affiliation: UC Berkeley
 
   chapters:
     - index.qmd
@@ -21,6 +24,8 @@ book:
         - part1/postulates.qmd 
         - part1/1d-wave-mechanics.qmd
     - references.qmd
+  appendices:
+    - appendices/distributions.qmd
 
   page-footer: "[Home](../)"
 

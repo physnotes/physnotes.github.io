@@ -1,0 +1,11 @@
+# Appendices {.unnumbered}
+<br>
+The first part of our book will cover some fundamental theory to establish the general framework of quantum
+mechanics. We will provide some motivation for why quantum mechanics is needed/how it historically arose,
+establish a formal mathematical framework which we will use to develop theory, acquire some useful tools that
+will build the foundation of the field, and examine how to model some
+basic quantum mechanical systems with said tools.
+
+We have a long journey ahead of us, but don't worry; we will take great care to gently (but thoroughly)
+introduce the relevant tools for you (the reader) throughout each chapter. Without further delay, on with
+the show...

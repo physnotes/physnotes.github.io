@@ -1,0 +1,92 @@
+# Distributions
+
+Distributions are a more generalized version of functions which proves to be very useful in many other fields, especially partial differential equations.
+As a result, distribution theory is useful and appears here and there in quantum mechanics, which aims to solve the Schrödinger equation.
+
+For simplicity which doesn't lose much in theory, we will only consider distribution theory on $\mathbb{R}^n$, which means that we will only be generalizing functions of the form $\mathbb{R}^n\to\mathbb{C}$.
+
+## Motivation
+Our starting point is the fundamental lemma in calculus of variation:
+
+:::{.lemma #lem-calc-of-variation}
+# Fundamental lemma of Calculus of Variation
+If $f:[a,b]\to\mathbb{C}$ is continuous, and
+$$\int_a^bf(x)g(x)\text{d}x=0$$
+for every continuous $g:[a,b]\to\mathbb{C}$,
+then $f$ is necessarily $0$.
+:::
+
+We can think of this integral as the value we obtained when we "test" $f$, and $g$ is a "test function" that we can choose to tells us something about $f$.
+The specific collection of test functions $g$ that we will use needs more careful analysis that we will do later, so for now, we just denote the set of test functions as $X$.
+Then, the natural next step is to think of $f$ as individual test values when being tested on all possible different test functions in $X$.
+Specifically, we can think of $f$ as a function $T_f:X\to\mathbb{C}$ defined by
+$$T_f(g)=\int_a^bf(x)g(x)\text{d}x,$${#eq-dist-motivation}
+since the previous lemma tells us that if $f_1$ and $f_2$ are different functions, $T_{f_1}$ and $T_{f_2}$ are also going to be different.
+Essentially, $T_f$ contains all the information about $f$.
+
+Thus, essentially all functions can be thought of as a function $X\to\mathbb{C}$.
+This is our starting point of the definition of a distribution, which is just a function $X\to\mathbb{C}$, and $T_f$ means that we include all of our usual functions in this definition.
+
+There are two main issues with this naive definition.
+
+First and the main problem is what types of functions we need for the test functions in $X$.
+There are two points at contention: on the one hand we need functions in $X$ to be restricted enough so that the integral in @eq-dist-motivation is well defined, on the other hand we need enough functions in $X$ so that the conclusion of @lem-calc-of-variation is still true.
+The first point is not so much of a problem when we consider functions on $[a,b]$, but it does become a problem when we consider functions on $\mathbb{R}^n$ when the integral might diverge to infinity.
+
+The second and not so obvious problem is that this definition is too general and will allow for some very pathological distributions.
+Without any restriction, a distribution can output any arbitrary value on different test functions, which is useless.
+An obvious requirement we want distributions to have is that if we have two test functions $g_1$ and $g_2$ that are "close enough," the distribution should be output values that are close together when we input $g_1$ and $g_2$.
+In other words, we want some sort of continuity condition on distributions.
+
+It turns out, when we fix these two problems, we arrive at the elegant theory of distributions.
+
+The rest of this appendix are divided into fixing each problem and some applications of distributions.
+
+
+## Definition of Distributions
+
+In this section, we will fix the two aforementioned problems and arrive at the correct definition of a distribution.
+
+### Space of Test Functions
+
+Compactly supported smooth functions
+
+### Continuity
+
+Continuity
+
+
+
+## Operations on Distributions
+
+## Examples of Distributions
+
+## Applications
+
+
+
+
+
+
+:::{.definition #def-testfunctions}
+# Test functions
+The space of test functions $C_c(\mathbb{R}^n)$ is all the compactly supported smooth functions $\mathbb{R}^n\to\mathbb{R}$
+:::
+
+:::{.definition #def-distribution-continuity}
+A function $\rho:C_c(\mathbb{R}^n)\to\mathbb{R}$ is said to be continuous if 
+:::
+
+For a function $f:\mathbb{R}\to\mathbb{R}$, instead we can look at it using test functions, meaning think of it as a function on functions, mapping 
+$$g \mapsto \int_{-\infty}^\infty g(x)f(x)\text{d}x$$
+
+
+$$g\mapsto g(0)$$
+
+
+:::{.definition #def-distribuion}
+# Distribution
+A distribution is a continuous $\rho:C_c(\mathbb{R}^n)\to\mathbb{R}$.
+:::
+
+
