@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; From Classical Quantities to Quantum Operators – Quantum Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../part1/1d-wave-mechanics.html" rel="next">
+<link href="../part1/postulates.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-bfac0873c4381f1c6f64e3de4401b7ad.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+  window.MathJax = {
+    loader: { load: ['[tex]/physics'] },
+    tex: {
+      packages: {'[+]': ['physics']},
+      physics: {
+        italicdiff: true
+      }
+    }
+  };
+  </script>         
+<link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+<script src="https://tikzjax.com/v1/tikzjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/part1.html">I: Fundamental Theory</a></li><li class="breadcrumb-item"><a href="../part1/quantum-from-classical.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">From Classical Quantities to Quantum Operators</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Quantum Mechanics</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../part1/part1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">I: Fundamental Theory</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part1/origins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">History of Quantum Mechanics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part1/formalism.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Mathematical Formalism</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part1/postulates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Postulates of Quantum Mechanics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part1/quantum-from-classical.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">From Classical Quantities to Quantum Operators</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part1/1d-wave-mechanics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">1D Wave Mechanics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#position-representation" id="toc-position-representation" class="nav-link active" data-scroll-target="#position-representation"><span class="header-section-number">4.1</span> Position Representation</a>
+  <ul class="collapse">
+  <li><a href="#generalization-to-3-dimensions" id="toc-generalization-to-3-dimensions" class="nav-link" data-scroll-target="#generalization-to-3-dimensions"><span class="header-section-number">4.1.1</span> Generalization to 3 Dimensions</a></li>
+  <li><a href="#the-position-operator" id="toc-the-position-operator" class="nav-link" data-scroll-target="#the-position-operator"><span class="header-section-number">4.1.2</span> The Position Operator</a></li>
+  </ul></li>
+  <li><a href="#sec-momentum-operator" id="toc-sec-momentum-operator" class="nav-link" data-scroll-target="#sec-momentum-operator"><span class="header-section-number">4.2</span> Momentum Representation</a>
+  <ul class="collapse">
+  <li><a href="#translation-operators" id="toc-translation-operators" class="nav-link" data-scroll-target="#translation-operators"><span class="header-section-number">4.2.1</span> Translation Operators</a></li>
+  <li><a href="#generators-of-translations" id="toc-generators-of-translations" class="nav-link" data-scroll-target="#generators-of-translations"><span class="header-section-number">4.2.2</span> Generators of Translations</a></li>
+  <li><a href="#classical-vs.-quantum-momentum" id="toc-classical-vs.-quantum-momentum" class="nav-link" data-scroll-target="#classical-vs.-quantum-momentum"><span class="header-section-number">4.2.3</span> Classical vs.&nbsp;Quantum Momentum</a></li>
+  </ul></li>
+  <li><a href="#the-schrödinger-equation" id="toc-the-schrödinger-equation" class="nav-link" data-scroll-target="#the-schrödinger-equation"><span class="header-section-number">4.3</span> The Schrödinger Equation</a>
+  <ul class="collapse">
+  <li><a href="#time-evolution-operator" id="toc-time-evolution-operator" class="nav-link" data-scroll-target="#time-evolution-operator"><span class="header-section-number">4.3.1</span> Time-Evolution Operator</a></li>
+  <li><a href="#the-hamiltonian" id="toc-the-hamiltonian" class="nav-link" data-scroll-target="#the-hamiltonian"><span class="header-section-number">4.3.2</span> The Hamiltonian</a></li>
+  <li><a href="#deriving-the-schrödinger-equation" id="toc-deriving-the-schrödinger-equation" class="nav-link" data-scroll-target="#deriving-the-schrödinger-equation"><span class="header-section-number">4.3.3</span> Deriving the Schrödinger Equation</a></li>
+  <li><a href="#time-independent-schrödinger-equation" id="toc-time-independent-schrödinger-equation" class="nav-link" data-scroll-target="#time-independent-schrödinger-equation"><span class="header-section-number">4.3.4</span> Time-Independent Schrödinger Equation</a></li>
+  </ul></li>
+  <li><a href="#pictures-in-quantum-mechanics" id="toc-pictures-in-quantum-mechanics" class="nav-link" data-scroll-target="#pictures-in-quantum-mechanics"><span class="header-section-number">4.4</span> Pictures in Quantum Mechanics</a>
+  <ul class="collapse">
+  <li><a href="#schrödinger-picture" id="toc-schrödinger-picture" class="nav-link" data-scroll-target="#schrödinger-picture"><span class="header-section-number">4.4.1</span> Schrödinger Picture</a></li>
+  <li><a href="#heisenberg-picture" id="toc-heisenberg-picture" class="nav-link" data-scroll-target="#heisenberg-picture"><span class="header-section-number">4.4.2</span> Heisenberg Picture</a></li>
+  <li><a href="#equivalence-of-the-pictures" id="toc-equivalence-of-the-pictures" class="nav-link" data-scroll-target="#equivalence-of-the-pictures"><span class="header-section-number">4.4.3</span> Equivalence of the Pictures</a></li>
+  </ul></li>
+  <li><a href="#probability-current" id="toc-probability-current" class="nav-link" data-scroll-target="#probability-current"><span class="header-section-number">4.5</span> Probability Current</a></li>
+  <li><a href="#commutators" id="toc-commutators" class="nav-link" data-scroll-target="#commutators"><span class="header-section-number">4.6</span> Commutators</a>
+  <ul class="collapse">
+  <li><a href="#sec-poisson-bracket" id="toc-sec-poisson-bracket" class="nav-link" data-scroll-target="#sec-poisson-bracket"><span class="header-section-number">4.6.1</span> Poisson Brackets</a></li>
+  <li><a href="#ehrenfest-relations" id="toc-ehrenfest-relations" class="nav-link" data-scroll-target="#ehrenfest-relations"><span class="header-section-number">4.6.2</span> Ehrenfest Relations</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">4.7</span> Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part1/part1.html">I: Fundamental Theory</a></li><li class="breadcrumb-item"><a href="../part1/quantum-from-classical.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">From Classical Quantities to Quantum Operators</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-quantum-from-classical" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">From Classical Quantities to Quantum Operators</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- working title; maybe something better would work here? -->
+<p>We laid the theoretical framework underpinning quantum mechanics in the formalism and applied to the real world with the postulates. At long last, we are able to start developing some physics.</p>
+<p>Why all this setup? Many undergraduate courses in quantum mechanics will skip over all of this formal development at the beginning in favor of jumping straight into working with the wavefunction and utilizing the Schrödinger equation to solve basic problems. This choice is typically made to avoid adding needless complexity and to prevent the technical mathematical details from getting in the way of a basic physical intuition. As a matter of fact, this is precisely how we learned quantum mechanics initially, before supplementing the finer mathematical formalism in later graduate courses.</p>
+<p>We considered following suit and also omitting these details to jump straight into the physics, but decided to include this for a few reasons. Primarily, we did this because <strong>this is not a university course on quantum mechanics</strong>. We are not bound by any time constraints and do not need to adhere to any exlicit schedule, so the reader can take as much time as is required for everything to make sense. Since we don’t need to move through a unit within a week or two, there’s no longer a pressing need to omit certain details in the name of expediting the material.</p>
+<div class="proof remark">
+<p><span class="proof-title"><em>Remark</em>. </span>This is not in any way suggesting that the way undergraduate courses structure quantum mechanics is wrong. Rather, since we are not bound by the same restrictions that an undergraduate course is, we can take certain liberties in material presentation.</p>
+</div>
+<p>Since we don’t have the same time restrictions, we can build up the material a bit more rigorously and mathematically. Even though this rigorous development requires a certain level of mathematical maturity and is ultimately more challenging for a first reader than jumping straight into the physics would be, we feel that it is extremely satisfying to see all of the operators and equations we use pop out directly from first principles and experimental results. This way, we don’t need to simply state the form of an operator without justification simply because we want to practice using it. Thus, we hope you have beared with us while we laid all the pieces in place.</p>
+<div class="warning">
+<p>As we warned at the beginning of the Formalism chapter, there is a <em>lot</em> of mathematics involved in the development of a formal framework for a physical theory. If the reader wishes to gain a more solid mathematical footing before attempting to understand certain parts of the way we present the material, that’s totally fine! We will wait here for you to return. It is our hope, though, that we do a sufficiently good job of presenting whatever mathematics is necessary throughout the relevant chapters and accompanying appendices at the back.</p>
+</div>
+<section id="position-representation" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="position-representation"><span class="header-section-number">4.1</span> Position Representation</h2>
+<p>Let’s start with figuring out how to describe a particle’s position in quantum mechanics. For simplicity, we will start with the 1-dimensional case, then address 3 dimensions later on. Let’s also assume that a particle’s position in space (call it <span class="math inline">\(x\)</span>) can be measured, and these measurement results are continuous (since space isn’t discretized). Let’s then denote the operator associated with measuring the position <span class="math inline">\(\hat{x}\)</span> and any eigenkets of the position <span class="math inline">\(\ket{x}\)</span>. Thus, our eigenvalue problem takes the following form: <span class="math display">\[\hat{x}\ket{x} = x\ket{x}\]</span></p>
+<div class="notation">
+<p>We will see much more of this hat notation moving forward; an operator will typically be denoted with a hat on top of it to indicate that it is an operator rather than a variable. The main exceptions will be those operators labeled with <em>capital</em> letters, since those are harder to confuse for variables or other mathematical objects.</p>
+</div>
+<p>Since we are dealing with a continuous spectrum and nondegenerate eigenkets (positional values can only correspond to a unique position), the resolution of the identity for this operator takes the following form: <span class="math display">\[\int_{-\infty}^{\infty}dx\ketbra{x} = 1\]</span> Now, let <span class="math inline">\(\ket{\psi}\)</span> represent a normalized pure state for our system, and <span class="math inline">\(I=[x_0,x_1]\)</span> be some interval on the <span class="math inline">\(x\)</span>-axis. In this case, the projector onto the interval looks like this: <span class="math display">\[P_I = \int_{x_0}^{x_1}dx\ketbra{x}\]</span> Then, the probability postulate tells us that the probability of measuring some positional value within this interval is given by the following expectation value: <span class="math display">\[\mathrm{Prob}(x_0\leq x\leq x_1) = \expval{P_I}{\psi} = \int_{x_0}^{x_1}dx\braket{\psi}{x}\braket{x}{\psi}\]</span> Now, that last expression looks like we’re taking some squared norm. To make our lives easier (and to make this expression look more like an integral expression wherein we’re actually integrating a function), let’s finally define the <em>positional wavefunction</em> <span class="math inline">\(\psi(x)\)</span>:</p>
+<div id="def-positional-wavefunction" class="definition theorem">
+<p><span class="theorem-title"><strong>Definition 4.1 (Positional Wavefunction)</strong></span> The <em>wavefunction</em>, denoted <span class="math inline">\(\psi(x)\)</span>, encodes the state in configuration space and is given by the following inner product: <span class="math display">\[\psi(x) = \braket{x}{\psi}\]</span></p>
+</div>
+<p>Then, our probability becomes: <span class="math display">\[\mathrm{Prob}(x_0\leq x \leq x_1) = \int_{x_0}^{x_1}dx|\psi(x)|^2 = \int_{x_0}^{x_1}\psi^*(x)\psi(x)dx\]</span> Here, we see that the squared norm of the positional wavefunction encodes the probability density of finding the particle at a given point in space. Now, we finally have a way to go from kets to functions!</p>
+<p>Can we go the other way? No problem! If we multiply both sides of the resolution of the identity by <span class="math inline">\(\ket{\psi}\)</span>, we get a representation of the ket: <!-- do we want to encode this in a lemma or leave it outside any tcolorbox and just keep it boxed? --> <span class="math display">\[\ket{\psi} = \int dx\ket{x}\braket{x}{\psi} \implies \boxed{\ket{\psi} = \int dx \ket{x}\psi(x)}\]</span></p>
+<p>Now that we have a way to convert between ket formalism and functional notation, we also have a way to describe the inner product between two kets <span class="math inline">\(\ket{\psi}\)</span> and <span class="math inline">\(\ket{\phi}\)</span> by once again inserting the resolution of the identity between them: <span class="math display">\[\braket{\psi}{\phi} = \int dx \braket{\psi}{x}\braket{x}{\phi} = \int \psi^*(x)\phi(x)dx\]</span></p>
+<section id="generalization-to-3-dimensions" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="generalization-to-3-dimensions"><span class="header-section-number">4.1.1</span> Generalization to 3 Dimensions</h3>
+<p>This formalism extends quite easily to three dimensions, where we simply have to consider three separate positional components <span class="math inline">\((x,y,z)\)</span>.</p>
+<div class="notation">
+<p>For the sake of consistency (and because it will allow us to make more efficient use of index notation), instead of labeling the components <span class="math inline">\((x,y,z)\)</span>, we will label them <span class="math inline">\((x_1,x_2,x_3)\)</span>. This way, we can compare arbitrary spatial components <span class="math inline">\(x_i\)</span>, <span class="math inline">\(x_j\)</span> without having to find some random combination of <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>, and <span class="math inline">\(z\)</span>.</p>
+</div>
+<p>In this case, rather than simply measuring the overall position, we will have separate operators for measuring each component of the position: <span class="math inline">\(\hat{\mathbf{x}} = (\hat{x}_1, \hat{x}_2, \hat{x}_3)\)</span>. This is what’s known as a “vector operator”, since it’s a vector comprised of different operators. We will assume that the components all commute with each other (since they’re orthogonal and shouldn’t affect each other’s measurements): <span class="math display">\[[\hat{x}_i,\hat{x}_j] = 0\]</span> So, we now can write three separate eigenvalue problems, conveniently condensed into one using index notation: <span class="math display">\[x_i\ket{\mathbf{x}} = x_i\ket{\mathbf{x}}\]</span> Just as with the one-dimensional case, we have a similar resolution of the identity: <span class="math display">\[1 = \int d^3\mathbf{x}\ketbra{\mathbf{x}}\]</span> Then, our wavefunction-ket transformations translate seamlessly from the one-dimensional case: <span class="math display">\[\psi(\mathbf{x}) = \braket{\mathbf{x}}{\psi}, \quad \ket{\psi} = \int
+d^3\mathbf{x}\ket{\mathbf{x}}\psi(\mathbf{x})\]</span> Finally, the probability density of finding the particle in some region <span class="math inline">\(R\)</span> in 3-dimensional space becomes a multivariate integral: <span class="math display">\[\mathrm{Prob}(\mathbf{x}\in R) = \int_Rd^3\mathbf{x}|\psi(\mathbf{x})|^2\]</span></p>
+</section>
+<section id="the-position-operator" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="the-position-operator"><span class="header-section-number">4.1.2</span> The Position Operator</h3>
+<p>What we’ve accomplished thus far amounts to representing an arbitrary ket state in configuration space; this, at its core, is what the wavefunction is. What happens now when we try to represent the wavefunction of an operator’s action on a ket? For instance, if <span class="math inline">\(\ket{\psi}\)</span> corresponds to <span class="math inline">\(\psi(x)\)</span>, what wavefunction does <span class="math inline">\(\hat{x}\ket{\psi}\)</span> correspond to? Let’s label the resultant ket <span class="math inline">\(\ket{\phi} = \hat{x}\ket{\psi}\)</span> and find its wavefunction representation: <span class="math display">\[\phi(x) = \braket{x}{\phi} = \braket{x}(\hat{x}\ket{\psi}) = \mel{x}{\hat{x}}{\psi} = (x\bra{x})\ket{\psi}
+= x\braket{x}{\psi} = x\psi(x)\]</span> Interestingly, acting the <span class="math inline">\(\hat{x}\)</span> operator on a ket <span class="math inline">\(\ket{\psi}\)</span> just multiplies the corresponding configuration space wavefunction by <span class="math inline">\(x\)</span>: <span class="math display">\[\boxed{(\hat{x}\psi)(x) = x\psi(x)}\]</span> Thus, in configuration space, <span class="math inline">\(\hat{x}\)</span> is represented by multiplication of the wavefunction by <span class="math inline">\(x\)</span>. This is our position operator. Generalizing to three dimensions is easy: <span class="math display">\[(\hat{x}_i\psi)(\mathbf{x}) = x_i\psi(\mathbf{x})\]</span></p>
+<div class="proof remark">
+<p><span class="proof-title"><em>Remark</em>. </span>There’s one lingering question here: what’s the physical meaning of the position eigenkets <span class="math inline">\(\ket{x}\)</span>, <span class="math inline">\(\ket{\mathbf{x}}\)</span>? As we discovered before, these are not normalizable, which means they cannot belong to any relevant Hilbert space that we could make use of. This isn’t actually a big deal for us, because we’ll never measure the position of a particle <em>exactly</em>; rather, we will localize it to some region of space, and the eigenkets of position are simply an idealized variant where the size of the region is sent to <span class="math inline">\(0\)</span> in the limit.</p>
+<p>In general, measuring the position of a particle is an inherently nonrelativistic concept, since localizing the position to smaller and smaller regions will blow up the momentum (because of the uncertainty relation which we’ll quantify more explicitly later), until it eventually reaches relativistic ranges. As such, the concept of a position operator and measuring a particle’s position will be relegated mostly to nonrelativistic quantum mechanics (which we’ll be developing in the first two parts of this book), with relativistic quantum mechanics (explored in Part III) requiring a fundamentally different treatment.</p>
+</div>
+</section>
+</section>
+<section id="sec-momentum-operator" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="sec-momentum-operator"><span class="header-section-number">4.2</span> Momentum Representation</h2>
+<p>Now that we’ve established how to appropriately make positional measurements, a natural next step is to understand how to quantify momentum and associated momentum measurements.</p>
+<div class="proof remark">
+<p><span class="proof-title"><em>Remark</em>. </span>We will not, in fact, understand how to quantify momentum and associated momentum measurements. Oopsies. (I leave this to you Eric).</p>
+</div>
+<section id="translation-operators" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="translation-operators"><span class="header-section-number">4.2.1</span> Translation Operators</h3>
+</section>
+<section id="generators-of-translations" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="generators-of-translations"><span class="header-section-number">4.2.2</span> Generators of Translations</h3>
+</section>
+<section id="classical-vs.-quantum-momentum" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="classical-vs.-quantum-momentum"><span class="header-section-number">4.2.3</span> Classical vs.&nbsp;Quantum Momentum</h3>
+<section id="classical-momentum" class="level4" data-number="4.2.3.1">
+<h4 data-number="4.2.3.1" class="anchored" data-anchor-id="classical-momentum"><span class="header-section-number">4.2.3.1</span> Classical Momentum</h4>
+</section>
+<section id="quantum-momentum" class="level4" data-number="4.2.3.2">
+<h4 data-number="4.2.3.2" class="anchored" data-anchor-id="quantum-momentum"><span class="header-section-number">4.2.3.2</span> Quantum Momentum</h4>
+</section>
+</section>
+</section>
+<section id="the-schrödinger-equation" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="the-schrödinger-equation"><span class="header-section-number">4.3</span> The Schrödinger Equation</h2>
+<p>We are now finally ready to develop the Schrödinger equation, which will serve as the main equation all of quantum mechanics is aimed to solve to describe physical systems. To do so properly, however, we need to quantify how to determine a system’s energy in a quantum-mechanical system, which will require us to find the quantum analog of the <em>Hamiltonian</em>. We set everything up in a similar manner to how we presented (and ultimately derived) the momentum.</p>
+<section id="time-evolution-operator" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="time-evolution-operator"><span class="header-section-number">4.3.1</span> Time-Evolution Operator</h3>
+<p>At their core, any general equation for a specified field of physics describes how that particular system evolves in time. Some systems will not change in time, but being able to quantify how certain properties change as time advances is the core of that particular field. In classical mechanics, we saw that first through <strong>Newton’s Laws of Motion</strong>, which described how forces acting on an object in a system affect said object. Later on, we quantified how to describe the change in a system’s <em>energy</em>, for which we used the <strong>Lagrangian/Hamiltonian Equations of Motion</strong>. In quantum mechanics, we want to something very similar; we wish to understand how to express how a system evolves in time by quantifying its energy.</p>
+<p>Let’s now finally introduce time dependence into our ket vectors. Label the pure state of a system at some initial time <span class="math inline">\(t_0\)</span> by <span class="math inline">\(\ket{\psi(t_0)}\)</span>, and label that same state at a final time <span class="math inline">\(t\)</span> by <span class="math inline">\(\ket{\psi(t)}\)</span>. We now claim the existence of a <em>time-evolution operator</em>, which we’ll denote <span class="math inline">\(U(t,t_0)\)</span>, that transforms the state <span class="math inline">\(\ket{\psi(t_0)}\)</span> into the state <span class="math inline">\(\ket{\psi(t)}\)</span>: <span id="eq-tevolut-def"><span class="math display">\[\ket{\psi(t)} = U(t,t_0)\ket{\psi(t_0)} \tag{4.1}\]</span></span> Let’s properly define this operator:</p>
+<div id="def-time-evolution-operator" class="definition theorem">
+<p><span class="theorem-title"><strong>Definition 4.2 (Time-Evolution Operator)</strong></span> The <em>time-evolution operator</em>, denoted <span class="math inline">\(U(t,t_0)\)</span>, evolves a quantum state from initial time <span class="math inline">\(t_0\)</span> to final time <span class="math inline">\(t\)</span>, while satisfying the following three properties:</p>
+<ol type="1">
+<li><span class="math inline">\(U\)</span> should reduce to the identity operator at <span class="math inline">\(t=t_0\)</span>: <span class="math display">\[U(t_0,t_0) = 1\]</span></li>
+<li><span class="math inline">\(U\)</span> is unitary: <span class="math display">\[U(t,t_0)^{-1} = U(t,t_0)^{\dagger}\]</span></li>
+<li><span class="math inline">\(U\)</span> should satisfy the <em>composition property</em>: <span class="math display">\[U(t_2,t_1)U(t_1,t_0) = U(t_2,t_0)\]</span></li>
+</ol>
+</div>
+<p>Each of these properties make intuitive sense. Starting with the first, evolving between the same time is equivalent to not evolving in time at all, meaning the states before and after such a time evolution action should be equivalent. Secondly, we want to preserve probabilities. In other words, the probability of something like finding a particle somewhere in space should be <span class="math inline">\(1\)</span> regardless of <em>when</em> we measure in time. Thus, evolving forwards vs.&nbsp;backwards in time shouldn’t affect such probabilities. Finally, evolving a state from an initial time to a second time and then evolving to a final third should naturally produce the same result as directly evolving from the initial time to the final.</p>
+</section>
+<section id="the-hamiltonian" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="the-hamiltonian"><span class="header-section-number">4.3.2</span> The Hamiltonian</h3>
+<p>Let’s now consider some infinitesimal time evolution from <span class="math inline">\(t\)</span> to <span class="math inline">\(t+\epsilon\)</span>, for some small <span class="math inline">\(\epsilon\)</span>. We can expand <span class="math inline">\(U\)</span> to first order and tack on an additional correction term: <span id="eq-tevolut-expansion"><span class="math display">\[U(t+\epsilon,t) = 1 - i\epsilon\Omega(t) + \dots \tag{4.2}\]</span></span> Our correction term is defined as follows (with an extra <span class="math inline">\(i\)</span> factor to make the operator Hermitian: <span id="eq-generator-tevolut"><span class="math display">\[\Omega(t)  = i\pdv{t'}U(t',t)\bigg|_{t'=t} \tag{4.3}\]</span></span> This operator <span class="math inline">\(\Omega(t)\)</span> is then our <em>generator of time evolution</em> in quantum mechanics, since it is precisely the correction term that advances a state in time by small increments. Combining these terms in large quantities will advance time by larger increments.</p>
+<p>In classical mechanics<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, the Hamiltonian (which we’ll henceforth represent with <span class="math inline">\(H\)</span>) is fundamentally the generator of time translations, since it describes how a system evolves in time. Let’s consider some classical observable <span class="math inline">\(f(x,p)\)</span> (a function in position and momentum) that exhibits time dependence due to how <span class="math inline">\(x\)</span> and <span class="math inline">\(p\)</span> evolve in time. Expanding to first order in <span class="math inline">\(t\)</span> gives: <span class="math display">\[\begin{align*}
+f(t+\epsilon) &amp;= f(t) + \epsilon\dv{f}{t} = f(t)+\epsilon\left(\dot{x}\pdv{f}{x} + \dot{p}\pdv{f}{p}\right) =
+\\
+&amp;= f(t) + \epsilon\left(\pdv{H}{p}\pdv{f}{x} - \pdv{H}{x}\pdv{f}{p}\right) = f(t) - \epsilon\{H,f\}
+\end{align*}\]</span> Here, <span class="math inline">\(\{H,f\}\)</span> gives the <em>Poisson bracket</em> (discussed in more detail in <a href="#sec-poisson-bracket" class="quarto-xref"><span>Section 4.6.1</span></a>).</p>
+<p>Since we wish to develop a quantum analog to the classical Hamiltonian, it would make sense for the quantum Hamiltonian to also function as a generator of time evolution, meaning we want the associated Hamiltonian operator (henceforth denoted <span class="math inline">\(\hat{H}\)</span>) to be related to the generator of time evolutions defined in <a href="#eq-generator-tevolut" class="quarto-xref">Equation&nbsp;<span>4.3</span></a>: <span class="math display">\[\hat{H}(t) = \hbar\Omega(t)\]</span> We can plug this back into <a href="#eq-tevolut-expansion" class="quarto-xref">Equation&nbsp;<span>4.2</span></a> to express the time evolution operator exclusively in terms of the Hamiltonian: <span class="math display">\[U(t+\epsilon,t) = 1 - \frac{i\epsilon}{\hbar}\hat{H}(t) + \dots\]</span></p>
+<div class="proof remark">
+<p><span class="proof-title"><em>Remark</em>. </span>Classical Hamiltonians will depend on time in the presence of time-dependent forces or fields. As such, we will generally expect the quantum Hamiltonian <span class="math inline">\(\hat{H}\)</span> to also be time-dependent. There will still, however, be special time-independent cases that we will choose to study closely (this may or may not be foreshadowing).</p>
+</div>
+<p>It is, of course, a nontrivial question whether or not this <span class="math inline">\(\hbar\)</span> constant is the same one that is used in the de Broglie relations and the subsequent derivation of the quantum momentum done in <a href="#sec-momentum-operator" class="quarto-xref"><span>Section 4.2</span></a>. There is a requirement that these <span class="math inline">\(\hbar\)</span>’s be equivalent (known as <em>relativistic covariance</em>), but this won’t be relevant to us until we discuss relativistic quantum mechanics. To avoid a lengthy and complicated discussion, we will simply note here that this <span class="math inline">\(\hbar\)</span> constant is the same as the one that appears in momentum and energy representations.</p>
+</section>
+<section id="deriving-the-schrödinger-equation" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="deriving-the-schrödinger-equation"><span class="header-section-number">4.3.3</span> Deriving the Schrödinger Equation</h3>
+<p>With that established, we now need a differential equation that we can solve to ascertain physical properties of a system. Classically, that would involve Hamilton’s equations of motion (or Newton’s or Lagrange’s, depending on the scenario). So, let’s find a differential equation for time-evolution operators. Let’s start with the basic definition of the derivative: <span class="math display">\[\pdv{U(t,t_0)}{t} = \lim_{\epsilon\to0}\frac{U(t+\epsilon,t_0) - U(t,t_0)}{\epsilon}\]</span> The composition property in <a href="#def-time-evolution-operator" class="quarto-xref">Definition&nbsp;<span>4.2</span></a> allows us to rewrite <span class="math inline">\(U(t+\epsilon,t_0)\)</span>: <span class="math display">\[U(t+\epsilon,t_0) = U(t+\epsilon,t)U(t,t_0)\]</span> Substituting this back into our definition of the derivative and factoring out <span class="math inline">\(U(t,t_0)\)</span> gives: <span class="math display">\[\pdv{U(t,t_0)}{t} = \left(\lim_{\epsilon\to0}\frac{U(t+\epsilon,t) - 1}{\epsilon}\right)U(t,t_0) =
+\pdv{U(t',t)}{t'}\bigg|_{t'=t}U(t,t_0)\]</span> By <a href="#eq-generator-tevolut" class="quarto-xref">Equation&nbsp;<span>4.3</span></a>, the RHS derivative can be replaced with <span class="math inline">\(-i\Omega(t)\)</span>, which in turn can be replaced with <span class="math inline">\(\frac{-i\hat{H}(t)}{\hbar}\)</span>. Assembling all of that together (and rearranging a few prefactors) gives us our differential equation for the time evolution operator in terms of the Hamiltonian: <span class="math display">\[i\hbar\pdv{U(t,t_0)}{t} = \hat{H}(t)U(t,t_0)\]</span> Now, we can finally get rid of <span class="math inline">\(U\)</span> by differentiating <a href="#eq-tevolut-def" class="quarto-xref">Equation&nbsp;<span>4.1</span></a> with respect to time and substituting in this new expression to get rid of the time evolution (remember also to tack on the relevant <span class="math inline">\(i\hbar\)</span> prefactor): <span class="math display">\[\begin{align*}
+i\hbar\pdv{t}\ket{\psi(t)} &amp;= i\hbar\pdv{t}\left(U(t,t_0)\ket{\psi(t_0)}\right) =
+i\hbar\left[\pdv{U(t,t_0)}{t}\ket{\psi(t_0)} + \cancelto{0}{U(t,t_0)\pdv{t}\ket{\psi(t_0)}}\right] = \\
+&amp;= i\hbar\pdv{U(t,t_0)}{t}\ket{\psi(t_0)} = \hat{H}(t)U(t,t_0)\ket{\psi(t_0)} = \hat{H}(t)\ket{\psi(t)}
+\end{align*}\]</span> We summarize this as the <em>Schrödinger equation</em>:</p>
+<div id="thm-schrodinger" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4.1 (Schrödinger Equation)</strong></span> <span class="math display">\[i\hbar\pdv{t}\ket{\psi(t)} = \hat{H}(t)\ket{\psi(t)}\]</span></p>
+</div>
+<p>More precisely, this is the <em>time-dependent</em> Schrödinger equation, since we are allowing for a time-dependent Hamiltonian. This is the most general form of the equation, since it makes no claims as to what form <span class="math inline">\(\hat{H}\)</span> takes and it doesn’t express <span class="math inline">\(\ket{\psi}\)</span> in any particular basis. Can we be a bit more precise about the Hamiltonian? As a matter of fact, we can!</p>
+<p>Classically, the Hamiltonian of a system is given as the sum of its kinetic and potential energies<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (ie, the total energy of the system): <span class="math display">\[H = T + V\]</span> Here, <span class="math inline">\(T\)</span> represents the kinetic energy, while <span class="math inline">\(V\)</span> represents the potential energy. The kinetic energy is given by <span class="math inline">\(\frac{p^2}{2m}\)</span>, and the potential energy is generally unknown and will be system-depedent. Translating all respective quantities to quantum operators gives us the quantum Hamiltonian: <span class="math display">\[\hat{H} = \frac{\hat{p}^2}{2m} + \hat{V}\]</span> Translating this into configuration space wavefunction notation gives us: <span class="math display">\[\hat{H} = -\frac{\hbar^2}{2m}\pdv[2]{x} + V(x,t)\]</span> Generally, the potential will be time-dependent. Substituting all of that in gives us a slightly more specific form of the Schrödinger equation that we will actually apply to solve problems:</p>
+<div id="thm-tdse" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4.2 (Time-Dependent Schrödinger Equation)</strong></span> <span class="math display">\[\left(\frac{\hbar^2}{2m}\pdv[2]{x} + V(x,t)\right)\psi(x,t) = i\hbar\pdv{\psi(x,t)}{t}\]</span></p>
+</div>
+<p>To be a bit more precise, this was the one-dimensional form of the Schrödinger equation. In three dimensions, we replace the derivatives with Laplacians: <span class="math display">\[\left(-\frac{\hbar^2}{2m}\nabla^2 + V(\mathbf{x},t)\right)\psi(\mathbf{x},t) =
+i\hbar\pdv{\psi(\mathbf{x},t)}{t}\]</span> This is only one representation of the Schrödinger equation in functional form. There are, of course, many other bases in which we can represent (and subsequently solve) this equation. The most natural alternat form is writing the Schrödinger equation in momentum space, which we can do with a simple Fourier transform.</p>
+</section>
+<section id="time-independent-schrödinger-equation" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="time-independent-schrödinger-equation"><span class="header-section-number">4.3.4</span> Time-Independent Schrödinger Equation</h3>
+<p>While wavefunctions, potentials, and Hamiltonians will generally admit time dependence, it is also worth analyzing some time-independent potentials as a special case and a useful model for certain problems in nonrelativistic quantum mechanics. As such, we can write a time-independent version of the Schrödinger equation, where we instead focus on finding the energy eigenstates (or <em>stationary states</em>, since they don’t evolve in time). Thus, we can represent the Schrödinger equation as an eigenvalue problem:</p>
+<div id="thm-tise" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4.3 (Time-Independent Schrödinger Equation)</strong></span> <span class="math display">\[\hat{H}\ket{\psi} = E\ket{\psi}\]</span></p>
+</div>
+<p>Alternatively, you can enumerate the eigenstates <span class="math inline">\(\ket{n}\)</span> and the associated energy eigenvalues <span class="math inline">\(E_n\)</span>: <span class="math display">\[\hat{H}\ket{n} = E_n\ket{n}\]</span> Crucially, <span class="math inline">\(n\)</span> can represent one or more quantum numbers required to specify the energy eigenstate.</p>
+<div class="proof remark">
+<p><span class="proof-title"><em>Remark</em>. </span>This will become much more relevant in higher dimensions, where we will have radial and angular components, etc.</p>
+</div>
+<p>For the time being, much of our work will involve solving the time-independent Schrödinger equation for various relatively simple time-independent potentials. Should we choose to reintroduce time dependence, we will be able to do so with a separate expression that stores all of the information on the system’s time dependence (this is explored in more detail in the next chapter).</p>
+</section>
+</section>
+<section id="pictures-in-quantum-mechanics" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="pictures-in-quantum-mechanics"><span class="header-section-number">4.4</span> Pictures in Quantum Mechanics</h2>
+<p>As it turns out, there are multiple different interpretations for how operators and wavefunctions behave. So far, we have been operating in only one of these so-called pictures, but it is useful to quantify the difference between the two of them and see how each may be more applicable depending on the type of problem we are trying to solve.</p>
+<section id="schrödinger-picture" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="schrödinger-picture"><span class="header-section-number">4.4.1</span> Schrödinger Picture</h3>
+<p>So far, we have been operating under the assumption that the <em>wavefunctions</em> are what evolve in time, with observables remaining fixed. In other words, the way we measure position will never depend on what point in time we choose to measure that position. This is what’s known as the <em>Schrödinger picture</em>.</p>
+<p>Since our wavefunction is what describes the state of the system, it is natural for it to be the quantity that evolves in time. As a consequence, most problems we will tackle and most attempts at solving the Schrödinger equation will be undertaken in the Schrödinger picture.</p>
+</section>
+<section id="heisenberg-picture" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="heisenberg-picture"><span class="header-section-number">4.4.2</span> Heisenberg Picture</h3>
+<p>That being said, there is another way we can interpret systems. What if, instead of letting the wavefunction evolve in time whilst keeping observables static, we go the other way: let <em>observables</em> evolve in time whilst keeping wavefunctions static. This is what’s known as the <em>Heisenberg picture</em>, with our equations of motion now involving time-derivatives of operators rather than wavefunctions.</p>
+<p>[This section is currently incomplete; it will be updated very soon!]</p>
+</section>
+<section id="equivalence-of-the-pictures" class="level3" data-number="4.4.3">
+<h3 data-number="4.4.3" class="anchored" data-anchor-id="equivalence-of-the-pictures"><span class="header-section-number">4.4.3</span> Equivalence of the Pictures</h3>
+<p>Despite the fact that these two pictures seem fundamentally different and involve letting two completely different types of objects hold time dependence, they actually turn out to be equivalent. This makes sense, because the solution to a particular problem shouldn’t depend on the method used to solve that problem. Instead of merely saying that, however, let’s take the time now to prove that algebraic relations are equivalent between the two pictures.</p>
+<p>[This section is currently incomplete; it will be updated very soon!]</p>
+</section>
+</section>
+<section id="probability-current" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="probability-current"><span class="header-section-number">4.5</span> Probability Current</h2>
+<p>[This section is currently incomplete; it will be updated very soon!]</p>
+</section>
+<section id="commutators" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="commutators"><span class="header-section-number">4.6</span> Commutators</h2>
+<p>Lastly, even commutators can be derived from classical quantities! Previously, we introduced the notion of commutators as a way to quantify how close/far two operators are from commuting with each other. However, it is actually possible to connect this notion to classical mechanics.</p>
+<section id="sec-poisson-bracket" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="sec-poisson-bracket"><span class="header-section-number">4.6.1</span> Poisson Brackets</h3>
+<p>First, we will introduce the <em>Poisson bracket</em>, used extensively in classical mechanics (particularly with Hamiltonian mechanics):</p>
+<p>[This section is currently incomplete; it will be updated very soon!]</p>
+</section>
+<section id="ehrenfest-relations" class="level3" data-number="4.6.2">
+<h3 data-number="4.6.2" class="anchored" data-anchor-id="ehrenfest-relations"><span class="header-section-number">4.6.2</span> Ehrenfest Relations</h3>
+<p>[This section is currently incomplete; it will be updated very soon!]</p>
+</section>
+</section>
+<section id="conclusion" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">4.7</span> Conclusion</h2>
+<p>As mentioned earlier, much of what appears in this chapter is generally omitted in a first course on quantum mechanics in favor of jumping straight into the physics and trying to describe systems with new equations. Perhaps this may have been easier, but at the end of the day, it is entirely about the journey rather than the destination. Since we are not beholden to any schedule and are attempting to organize these notes in a way that we felt works best, we have chosen to take the road less traveled. There is a light at the end of this tunnel, however; we are at last done with the difficult setup. The following chapters will take a much lighter approach that may be more akin to an undergraduate perspective, albeit with some formalism sprinkled in every now and then.</p>
+<p>Let’s use our newly-acquired tools to finally start describing some basic one-dimensional systems!</p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>This section in particular (among others that deal with the transition from classical to quantum mechanics) will make use of some topics in classical mechanics, but will not go in detail about their derivations or physical significance. Since this is not a text on classical mechanics, some prior knowledge on that matter is assumed for these sections. If these topics are unfamiliar, we encourage the reader to consult our notes on classical mechanics (when they’re written) or any text on classical mechanics (some of which are linked in our References).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Those who have studied classical mechanics will recognize that this isn’t exactly true generally: the Hamiltonian only describes the total energy of the system when we are working in a <em>natural</em> coordinate system (ie, the relation between the positional descriptions of particles in a system and the generalized coordinates is time-independent). In functionally all of our cases, though, we will simply choose natural coordinate systems, meaning we can safely take the Hamiltonian to represent the total energy. See [REF: Taylor] for a more in-depth description of generalized coordinates and how they affect the form of the Lagrangian and Hamiltonian.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script>
+(() => {
+  const KINDS = ["example","remark"];   // only these are collapsible
+  const DURATION = 200;                  // ms
+  const EASING = "ease";                 // timing
+  const REDUCE_MOTION = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function findTitleNode(box, kind) {
+    let t = box.querySelector(`.${kind}-title`);
+    if (t) return t;
+    t = box.querySelector('[class$="-title"]');
+    if (t) return t;
+    const first = box.firstElementChild;
+    if (first && /^H[1-6]$/i.test(first.tagName)) return first;
+    return box.querySelector("strong, h1, h2, h3, h4, h5, h6, span");
+  }
+
+  function clearBodyStyles(body) {
+    body.style.transition = "";
+    body.style.height = "";
+    body.style.overflow = "";
+  }
+
+  function animateOpen(det, body) {
+    if (REDUCE_MOTION) { det.open = true; clearBodyStyles(body); return; }
+
+    // Open first so Firefox can compute a real scrollHeight
+    det.open = true;
+
+    // Prep for animation
+    body.style.overflow = "hidden";
+    body.style.height = "0px";
+    body.style.transition = `height ${DURATION}ms ${EASING}`;
+
+    // Reflow so the browser registers height:0
+    void body.offsetHeight;
+
+    // Firefox sometimes needs one more frame before scrollHeight is valid
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const target = body.scrollHeight + "px";
+        body.style.height = target;
+
+        const done = () => { clearBodyStyles(body); body.removeEventListener("transitionend", done); };
+        body.addEventListener("transitionend", done);
+        // Fallback in case transitionend is missed
+        setTimeout(done, DURATION + 60);
+      });
+    });
+  }
+
+  function animateClose(det, body) {
+    if (REDUCE_MOTION) { det.open = false; clearBodyStyles(body); return; }
+
+    // Fix current height as start value
+    const start = body.scrollHeight + "px";
+    body.style.overflow = "hidden";
+    body.style.height = start;
+    body.style.transition = `height ${DURATION}ms ${EASING}`;
+
+    // Reflow so the start height is committed
+    void body.offsetHeight;
+
+    // Then collapse to 0
+    body.style.height = "0px";
+
+    const done = () => {
+      det.open = false; // actually close after animation finishes
+      clearBodyStyles(body);
+      body.removeEventListener("transitionend", done);
+    };
+    body.addEventListener("transitionend", done);
+    setTimeout(done, DURATION + 60);
+  }
+
+  function convertBox(box, kind) {
+    if (box.dataset.detailsConverted) return;
+
+    const title = findTitleNode(box, kind);
+    if (!title) return;
+
+    // Build <details>/<summary>
+    const det = document.createElement("details");
+    // det.open = true;                 // set false if you prefer default-collapsed
+    det.className = box.className;   // keep .example/.remark etc.
+    if (box.id) det.id = box.id;
+
+    const sum = document.createElement("summary");
+    sum.classList.add(`${kind}-title`);
+    sum.innerHTML = title.innerHTML;
+    title.remove();
+
+    const body = document.createElement("div");
+    body.className = "details-body";
+    while (box.firstChild) body.appendChild(box.firstChild);
+
+    // Prevent flash of content if starting collapsed
+    if (!det.open) { body.style.height = "0px"; body.style.overflow = "hidden"; }
+
+    det.appendChild(sum);
+    det.appendChild(body);
+    box.replaceWith(det);
+
+    // Override native toggle so we can animate
+    const toggle = (e) => {
+      e.preventDefault();               // stop instant UA toggle
+      if (det.open) animateClose(det, body);
+      else          animateOpen(det, body);
+    };
+
+    sum.addEventListener("click", toggle);
+    sum.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(e); }
+    });
+
+    // a11y
+    sum.setAttribute("role", "button");
+    sum.setAttribute("tabindex", "0");
+
+    det.dataset.detailsConverted = "1";
+  }
+
+  function processAll(root = document) {
+    KINDS.forEach(kind => {
+      root.querySelectorAll(`.${kind}`).forEach(box => convertBox(box, kind));
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => processAll());
+  window.addEventListener("load", () => processAll());
+})();
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Select all .warning boxes
+  document.querySelectorAll(".warning").forEach(box => {
+    // Skip if it already has a title
+    if (box.querySelector(".warning-title")) return;
+
+    // Create the title element
+    const title = document.createElement("div");
+    title.className = "warning-title";
+    title.textContent = "Warning!";
+
+    // Insert at the top of the box
+    box.insertBefore(title, box.firstChild);
+  });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Select all .warning boxes
+  document.querySelectorAll(".notation").forEach(box => {
+    // Skip if it already has a title
+    if (box.querySelector(".notation-title")) return;
+
+    // Create the title element
+    const title = document.createElement("div");
+    title.className = "notation-title";
+    title.textContent = "Notation";
+
+    // Insert at the top of the box
+    box.insertBefore(title, box.firstChild);
+  });
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../part1/postulates.html" class="pagination-link" aria-label="The Postulates of Quantum Mechanics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Postulates of Quantum Mechanics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../part1/1d-wave-mechanics.html" class="pagination-link" aria-label="1D Wave Mechanics">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">1D Wave Mechanics</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p><a href="../">Home</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
