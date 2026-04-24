@@ -19,24 +19,14 @@ equations, what would they represent? Also, what rules do we go by when writing 
 Physics, at its core, aims to explain real-world phenomena through a mathematical *framework*, and as such we
 need some "ground rules" for how our theory will work. From there, we'll have a baseline from which we can
 build upwards and derive new results to explain new phenomena. These postulates will largely come from our
-observations in nature...
+observations in nature, and we use these observations to write down more formal statements that can be
+further experimentally tested (and confirmed). 
  
-
-
-Why do we need these? Can't we just start writing down equations? Well, if we were to try writing down
-equations, what would they represent? Physics, at its core, aims to explain real-world phenomena through a
-rigorous mathematical framework. As such, we need a bridge to translate certain physical observations to the
-formalism we'll use in our theory. From there, once we have a baseline, we can build upwards and derive new
-reslts to explain new phenomena. That being said, we have to start somewhere, and the easiest place to start
-is nature. In other words, we can make certain observations of physical phenomena, and use the results
-of these observations to write down more formal statements that can be further experimentally tested (and
-ideally confirmed). 
-
 <!-- Do we assume the reader has seen these before or should we show these? -->
 :::{.example #exm-euclid-elements}
 # Euclid's Elements
 In mathematics, the need for postulates (and how they arise) is a bit clearer to illustrate, so we will
-motivate postulates first with *Euclid's Elements*, which form the foundation of the Euclidean geometry
+motivate the need for postulates first with *Euclid's Elements*, which form the foundation of the Euclidean geometry
 taught in high school. They are as follows:
 
 1. A straight line segment can be drawn joining any two points.
@@ -50,8 +40,8 @@ taught in high school. They are as follows:
 
 At face value, these all appear obvious. But how do we *know* that they're true? The short answer is that
 we just do. We accept that each is a thing that is possible (and it's quite simple to convince ourselves that
-it's always possible to draw a line through two points, for example), but we make no attempts to actually rigorously *prove* that they're true
-mathematically. We use these always-true statements to then derive new results that we actually can prove.
+it's always possible to draw a line through two points, for example), but we make no attempts to actually rigorously 
+*prove* that they're true mathematically. We use these always-true statements to then derive new results that we actually can prove.
 :::
 
 Have we seen any postulates in physics before? As it turns out, yes we have! Although we didn't quite refer
@@ -84,23 +74,27 @@ The incomplete form of the postulates of quantum mechanics are as follows:
    $$\mathrm{Prob}(A=a_n) = \frac{\expval{P_n}{\psi}}{\braket{\psi}};$$
    Here, $P_n$ is the projection operator onto eigenspace $\mathcal{E}_n$ corresponding to eigenvalue $a_n$,
    and $\ket{\psi}$ is any nonzero ket in the ray representing the state of the system. In the continuous
-case, the probability of measuring some $A$ as lying somewhere in the interval $I=[a_0,a_1]$ is given by:
-$$\mathrm{Prob}(A\in I) = \frac{\expval{P_I}{\psi}}{\braket{\psi}};$$
-In this case, $P_I$ is the projection operator corresponding to the interval $I$[^expectation-value].
+   case, the probability of measuring some $A$ as lying somewhere in the interval $I=[a_0,a_1]$ is given by:
+   $$\mathrm{Prob}(A\in I) = \frac{\expval{P_I}{\psi}}{\braket{\psi}};$$
+   In this case, $P_I$ is the projection operator corresponding to the interval $I$. The
+   numerator in this expression is also of note, it is referred to as the *expectation value* of the
+   operator $P_I$, written sometimes as $\langle P_I \rangle$. 
 6. After a measurement with some discrete outcome $A=a_n$, the system is represented by the ket
    $P_n\ket{\psi}$, where $\ket{\psi}$ represents the system before the measurement[^measurement-outcome]. In
    the continuous case, after a measurement with some outcome $a_0\leq A\leq a_1$, the system will be
-represented by $P_I\ket{\psi}$ after the measurement[^collapse-postulate].
+   represented by $P_I\ket{\psi}$ after the measurement[^collapse-postulate].
 :::
-
 You may have noticed the term "incomplete" when describing this particular formulation of the postulates.
 We'll explain exactly what we mean by this (and how we can "complete" these postulates) a bit later. 
+That said, we urge you to read each and every postulate and internalize them before proceeding; 
+it will make understanding everything that follows a much easier task. 
 
 As we can see, quantum mechanics will rely on measurements of observables to describe the behavior of
 a physical system. The fifth postulate describes the **probability** of measuring a particular outcome,
 suggesting that the predictions quantum mechanics will make must be of a **statistical** nature rather than a
-deterministic one (like Newtonian mechanics). Now, to properly determine these probabilities, we need
-to repeat the same measurements many times on a large number of identically-prepared systems. 
+deterministic one (like Newtonian mechanics). This means that to properly determine these probabilities, we
+need to repeat the same measurement many times on a large number of identically-prepared systems, rather than
+relying on a single measurement result. 
 
 :::{.warning}
 This is a really important point that we will emphasize once more: quantum mechanics as a theory will make
@@ -173,16 +167,17 @@ expect the space to be spanned by eigenkets of $\mu_y$ and $\mu_z$, with the sam
 
 Let's denote a normalized eigenvector of $\mu_x$ with eigenvalue $+\mu_0$ by the ket $\ket{\mu_x+}$. Let's
 denote the eigenvector of $\mu_x$ with eigenvalue $-\mu_0$ by $\ket{\mu_x-}$, and use a similar convention
-for the eigenvectors of $\mu_y$ and $\mu_z$ (namely $\ket{\mu_y\pm}$ and $\ket{\mu_z\pm} = \ket{\pm}$). We
-showed in the previous chapter that eigenkets corresponding to distinct eigenvalues are orthogonal, meaning
-the following is true:
+for the eigenvectors of $\mu_y$ and $\mu_z$ (namely $\ket{\mu_y\pm}$ and $\ket{\mu_z\pm}$). For historical
+reasons, $\mu_z$ is also written as $\ket{+}$ and $\ket{-}$. We showed in the previous chapter that eigenkets 
+corresponding to distinct eigenvalues are orthogonal, meaning the following is true:
 $$\braket{\mu_x+}{\mu_x-} = \braket{\mu_y+}{\mu_y-} = \braket{+}{-} = 0$$
 
 Now, Postulate 2 claims that the atomic beam's state is described by some state vector at each stage in our
 experimental apparatus. Additionally, Postulate 6 states that the system will be specified by $\ket{\mu_x+}$
 after measuring $\mu_x$ with a result of $+\mu_0$, after which it'll be specified by $\ket{\pm}$, depending
 on the measurement outcome of $\mu_z$. This means that we can represent the state of the beam entering the
-second magnet (after the $\mu_x$ measurement, but before the $\mu_z$ measurement) as a linear combination of the $\mu_z$ result vectors:
+second magnet (after the $\mu_x$ measurement, but before the $\mu_z$ measurement) as a linear combination 
+of the $\mu_z$ result vectors:
 $$\ket{\mu_x+} = c_+\ket{+} + c_-\ket{-}$$
 Our goal now is to ascertain what these expansion coefficients are, and whether they align with the results
 of actually performing this experiment. Since the eigenkets $\ket{\pm}$ are orthogonal, we can represent the
@@ -191,7 +186,7 @@ $$c_\pm = \braket{\pm}{\mu_x+}$$
 Postulate 5 then tells us that the probability of measuring $\mu_z=+\mu_0$ is:
 $$\mathrm{Prob}(\mu_z=+\mu_0) = \expval{P_+}{\mu_x+}$$
 Here, $P_+=\ketbra{+}$ is the projection operator onto the $+\mu_0$ eigenspace of $\mu_z$. Substituting that
-and setting it equal to our experimentally-determined probability gives:
+and setting it equal to our experimentally-determined probability (50/50) gives:
 gives:
 $$\mathrm{Prob}(\mu_z=+\mu_0) = \braket{\mu_x+}{+}\braket{+}{\mu_x} = |\braket{+}{\mu_z+}|^2 = |c_+|^2 =
 \frac12$$
@@ -216,12 +211,13 @@ $c_-$ must have a similar form, albeit with a different phase factor:
 $$\therefore c_- = \frac{1}{\sqrt2}e^{i\beta_1}$$
 Putting these together gives us our expansion for $\ket{\mu_x+}$:
 $$\ket{\mu_x+} = \frac{1}{\sqrt2}\left(e^{i\alpha_1}\ket{+} + e^{i\beta_1}\ket{-}\right)$$
-This is looking promising, but we sitll have these pesky phase factors to deal with in order for us to have a
+This is looking promising, but we still have these pesky phase factors to deal with in order for us to have a
 complete description of the state of the system. There are a few things we can do to ascertain what they are.
 
 Firstly, we can actually get rid of one of these phase factors by "absorbing" it into the other. How?
 Instead define $\ket{\mu_x+}=\ket{\mu_x+}'e^{i\alpha_1}$ and now multiply our previous equation by
-$e^{-\alpha_1}$, while also setting $\beta_1' = \beta_1-\alpha_1$. After dropping the primes (which are merely notational conventions), we are left with:
+$e^{-\alpha_1}$, while also setting $\beta_1' = \beta_1-\alpha_1$. 
+After dropping the primes (which are merely notational conventions), we are left with:
 $$\ket{\mu_x-} = \frac{1}{\sqrt2}\left(\ket{+}+e^{i\beta_1}\ket{-}\right)$$
 
 :::{.notation}
@@ -264,14 +260,15 @@ basis, we can make the matrix elements of either $\mu_x$ or $\mu_y$ entirely rea
 whichever one we choose to make real will dictate our phase convention. 
 
 :::{.remark}
-Crucially, this demonstrates that it is *impossible* to satisfy the postulates of quantum mechancis using
+Crucially, this demonstrates that it is *impossible* to satisfy the postulates of quantum mechanics using
 exclusively real numbers, meaning we must employ complex numbers for our results to make sense with the
 theory we've chosen. This, in a way, means complex numbers are, to an extent, real.
 :::
 
 The general convention is to absorb $e^{i\beta_1}$ into the definition of $\ket{-}$, meaning we are left with
 the following operator representations:
-$$\mu_x = \mu_0\left(\ketbra{+}{-} + \ketbra{-}{+}\right),\quad \mu_y = \mu_0\left(-i\ketbra{+}{-} + i\ketbra{-}{+}\right),\quad \mu_z = \mu_0\left(\ketbra{+}{-} - \ketbra{-}{+}\right)$$
+$$\mu_x = \mu_0\left(\ketbra{+}{-} + \ketbra{-}{+}\right),\quad \mu_y = \mu_0\left(-i\ketbra{+}{-} + i\ketbra{-}{+}\right),\quad \mu_z 
+= \mu_0\left(\ketbra{+}{-} - \ketbra{-}{+}\right)$$
 We can write these in a more familiar matrix representation:
 $$\mu_x = \mu_0\begin{pmatrix}0&1\\1&0\end{pmatrix}, \quad \mu_y = \mu_0\begin{pmatrix}0&-i\\i&0\end{pmatrix},
 \quad \mu_z = \mu_0\begin{pmatrix}1&0\\0&-1\end{pmatrix}$$
@@ -309,9 +306,9 @@ complicated tools to accurately describe the statistics at play. Let's very brie
 this problem. Imagine instead a family of normalized kets that depend on some continuous parameter(s)
 $\lambda$, denoted $\ket{\psi(\lambda)}$, and let's assume that this parameter is distributed according to
 some probability distribution $f(\lambda)$ such that:
-$$f(\lambda) \geq 0 \quad\text{and}\quad \int d\lambda f(\lambda) = 1$$
+$$f(\lambda) \geq 0 \quad\text{and}\quad \int f(\lambda) \ d\lambda = 1$$
 Then, the expectation value of any arbitrary operator $A$ can be rewritten in terms of this new distribution:
-$$\expval{A} = \int d\lambda f(\lambda)\expval{A}{\psi(\lambda)}$$
+$$\expval{A} = \int f(\lambda)\expval{A}{\psi(\lambda)} \ d\lambda $$
 The discrete case is a lot simpler; here, we enumerate the states $\ket{\psi_i}$ and our probability
 distribution is now discretized:
 $$\sum_i f_i = 1$$
@@ -328,9 +325,17 @@ f_i\ketbra{\psi_i}\ \text{(discrete)}$$
 :::
 
 We can now combine the discrete and continuous versions of our expectation value into one unique expression
-in terms of $\rho$:
+i$, n terms of $\rho$:
 $$\expval{A} = \tr(\rho A)$$
 Here, $\tr$ represents the *trace* of the associated matrix.
+
+:::{.remark}
+This expression hides one subtlety: the basis $\ket{\psi_i}$ we choose must be *orthonormal* in order for 
+$\expval{A} = \tr(\rho A)$. The reason for this is because the step $\ket{\psi_i} \bra{\psi_i} A =
+\mel{\psi_i}{A}{\psi_i}$ requires a *resolution to the identity* a condition only met when $\{\ket{\psi_i}\}$
+is orthonormal. For a more detailed treatment of the density operator, consult the resources we list at the
+end of this section.   
+:::
 
 Now, when the state of a system can be completely represented by some definite state vector (as is the case
 for the beam that enters the second magnetic measurement in our Stern-Gerlach apparatus), then the density
@@ -392,113 +397,109 @@ these principles, await a graduate course in quantum mechanics and consult J. J.
 Mechanics*.
 :::
 
-## Quantum Mechanics from Classical
+## The Generalized Uncertainty Principle
 
-We laid the theoretical framework underpinning quantum mechanics in the formalism and applied to the real
-world with the postulates. At long last, we are able to start developing some physics. 
+Before we end this chapter, let's illustrate how these postulates are directly used to derive the generalized
+uncertainty principle, of which a special case is the famous Heisenberg uncertainty principle. To begin,
+let $f_n$ be the probability that the measurement of an observable $A$ on a pure state $\ket{\psi}$ is
+$a_n$, or using the language of our postulates: 
+$$
+	f_n = \frac{\mel{\psi}{P_n}{\psi}}{\braket*{\psi}{\psi}} = \mel{\psi}{P_n}{\psi}
+$$
+For now, we'll assume that $\ket{\psi}$ is normalized, so we can drop the $\braket*{\psi}{\psi}$ in the 
+denominator moving forward. In general, $A$ will have multiple eigenvalues, each with an associated
+probability given by the above formula. In such cases, it's often more useful to consider statistical
+quantities like the *average* value of measurement rather than a single value. This is not because a single
+measurement isn't useful, but rather that a single measurement can't tell us the full story of the
+coefficients. From statistics, the *expectation value* of an operator $A$ is defined as a weighted sum of the
+probability that $A = a_n$ multiplied by the result $a_n$:
+$$
+	\langle a \rangle = \sum_n f_n a_n = \mel**{\psi}{\sum_n a_n P_n}{\psi} = \mel{\psi}{A}{\psi}
+$$
+Similarly, there's the *variance* (loosely speaking, the spread), given by the equation:
+$$
+	\Delta a^2 = \Delta A^2 = \langle A^2\rangle - \langle A \rangle^2 = \sum_n f_n a_n^2 - \left( \sum_n f_n a_n \right)^2
+$$
+It's also possible to write this more cleanly by introducing an operator $A_1 = A - \langle A\rangle$, in which case the
+above becomes:
+$$
+	\Delta a^2 = \Delta A^2 =  \mel{\psi}{A_1^{\dagger}A_1}{\psi} = \mel{\psi}{A_1^2}{\psi}
+$$
+(check this for yourself) and with this, we now have all the tools we need to prove the generalized uncertainty principle! 
+We'll first state it below, and the proof will follow:
 
-### Why all the Setup?
-
-Many undergraduate courses in quantum mechanics will skip over all of this formal development at the
-beginning in favor of jumping straight into working with the wavefunction and utilizing the Schrodinger
-equation to solve basic problems. This choice is typically made to avoid adding needless complexity and to
-prevent the technical mathematical details from getting in the way of a basic physical intuition. As a matter
-of fact, this is precisely how we learned quantum mechanics initially, before supplementing the finer
-mathematical formalism in later graduate courses. 
-
-We considered following suit and also omitting these details to jump straight into the physics, but decided
-to include this for a few reasons. Primarily, we did this because **this is not a university course on
-quantum mechanics**. We are not bound by any time constraints and do not need to adhere to any exlicit
-schedule, so the reader can take as much time as is required for everything to make sense. Since we don't
-need to move through a unit within a week or two, there's no longer a pressing need to omit certain details
-in the name of expediting the material.
-
-:::{.remark}
-This is not in any way suggesting that the way undergraduate courses structure quantum mechanics is wrong.
-Rather, since we are not bound by the same restrictions that an undergraduate course is, we can take certain
-liberties in material presentation.
+:::{.theorem #thm-generalized-uncertainty}
+# Generalized Uncertainty Principle
+Given two observables $A$ and $B$, we have the following relation between their variances:
+$$
+	\Delta A^2 \Delta B^2 \geq \frac{1}{4} \left| \langle [A, B]\rangle \right|^2
+$$
 :::
 
-Since we don't have the same time restrictions, we can build up the material a bit more rigorously and
-mathematically. Even though this rigorous development requires a certain level of mathematical maturity and
-is ultimately more challenging for a first reader than jumping straight into the physics would be, we feel
-that it is extremely satisfying to see all of the operators and equations we use pop out directly from first
-principles and experimental results. This way, we don't need to simply state the form of an operator without
-justification simply because we want to practice using it. Thus, we hope you have beared with us while we
-laid all the pieces in place.
-
-:::{.warning}
-As we warned at the beginning of the previous chapter, there is a *lot* of mathematics involved in the
-development of a formal framework for a physical theory. If the reader wishes to gain a more solid
-mathematical footing before attempting to understand certain parts of the way we present the material, that's
-totally fine! We will wait here for you to return. It is our hope, though, that we do a sufficiently good job
-of presenting whatever mathematics is necessary throughout the relevant chapters and accompanying appendices
-at the back.
+:::{.proof}
+To begin, let's define two operators $A_1$ and $B_1$ just like above:
+$$
+	A_1 = A - \langle A\rangle, \quad B_1 = B - \langle B\rangle
+$$
+Then, define two vectors $\ket{\alpha}$ and $\ket{\beta}$:
+$$
+	\ket{\alpha} = A_1 \ket{\psi}, \quad \ket{\beta} = B_1 \ket{\psi} 
+$$
+now we use the Schwarz inequality (@thm-schwarz-inequality) and substitute in our vectors $\alpha$ and $\beta$:
+$$
+	\braket*{\alpha}{\alpha}\braket*{\beta}{\beta} \geq \left| \braket*{\alpha}{\beta} \right|^2
+$$
+on the left, we have $\braket*{\alpha}{\alpha} = \mel{\psi}{A_1^{\dagger} A_1}{\psi}$ which is just equal to
+$\Delta A^2$ (and same for $\braket*{\beta}{\beta}$). On the right side, we can write the following:
+$$
+	\braket*{\alpha}{\beta} = \mel{\psi}{A_1 B_1}{\psi} = \frac{1}{2}\mel{\psi}{[A_1, B_1]}{\psi} + \frac{1}{2} \mel{\psi}{\left\{ A_1,
+	B_1 \right\}}{\psi}
+$$
+to see why this is true, recall the definitions of the commutator (@def-commutator) 
+and anticommutator (@def-anticommutator) and expand:
+$$
+	\frac{1}{2 }[A_1, B_1] + \frac{1}{2} \left\{ A_1, B_1 \right\} = \frac{1}{2}(A_1B_1 - B_1A_1) +
+	\frac{1}{2}(A_1 B_1 + B_1 A_1) = A_1 B_1
+$$
+and here comes the clever observation: the commutator is anti-Hermitian and the anticommutator is Hermitian,
+meaning that the expectation values are either purely real or purely imaginary! These two facts actually follow
+directly from the postulates: 
+$$
+\begin{align*}
+	A \text{ Hermitian} &\implies \mel{\psi}{A}{\psi} = \mel{\psi}{A^{\dagger}}{\psi} 
+	= \mel{\psi}{A}{\psi}^{*} \implies \langle A\rangle = \langle A\rangle^{*} \implies \langle A\rangle \in \mathbb{R}\\
+	A \text{ Anti-Hermitian} &\implies \mel{\psi}{A}{\psi} = -\mel{\psi}{A^{\dagger}}{\psi} =
+	-\mel{\psi}{A}{\psi}^{*} \implies \langle A\rangle = -\langle A\rangle^{*} \implies \langle A\rangle \in
+	\mathbb{C}
+\end{align*}
+$$
+This is a particularly crucial observation, since it means that the two terms on the right are just the real
+and imaginary parts of $\braket*{\alpha}{\beta}$, so $|\braket*{\alpha}{\beta}|^2$ is the sum of the squares
+of both terms on the right. Therefore, we can get the following inequality:
+$$
+	\left| \braket*{\alpha}{\beta} \right|^2 \geq \frac{1}{4} \left|\mel{\psi}{[A_1, B_1]}{\psi}\right|
+$$
+this is done by considering only the square of the first term and rewriting in terms of an inequality.
+Finally, since $A_1$ and $A$ only differ by a constant $\langle A\rangle$, we can substitute in $A$ and $B$
+in place of $A_1$ and $B_1$. Therefore, the full Schwarz inequality reads:
+$$
+	\Delta A^2 \Delta B^2 \geq |\braket*{\alpha}{\beta}|^2 \geq \frac{1}{4} \left| \langle [A, B]\rangle \right|^2
+$$
+as desired.
 :::
+As mentioned, perhaps the most famous example of this is the Heisenberg uncertainty principle, where $A = x$,
+$B = p$, and $[A, B] = i\hbar$, and plugging these into the generalized uncertainty relation gives us: 
+$$
+	\Delta x \Delta p \geq \frac{\hbar}{2}
+$$
+and this tells us (famously) that one cannot be infinitely precise in their measurement of both position and
+momentum; when one measurement becomes more accurate, the other necessarily becomes less. What's truly
+remarkable about this property is that we didn't need to utilize any fancy machinery to arrive at this result
+-- all of this falls directly from the postulates, which gives us a taste into just how powerful these
+postulates are.
 
-### The Position Operator
+<!-- I wrote this at 3am, please fix --> 
 
-Let's start with figuring out how to describe a particle's position in quantum mechanics. For simplicity, we
-will start with the 1-dimensional case, then address 3 dimensions later on. Let's also assume that a
-particle's position in space (call it $x$) can be measured, and these measurement results are continuous
-(since space isn't discretized). Let's then denote the operator associated with measuring the position
-$\hat{x}$ and any eigenkets of the position $\ket{x}$. Thus, our eigenvalue problem takes the following form:
-$$\hat{x}\ket{x} = x\ket{x}$$
-
-:::{.notation}
-We will see much more of this hat notation moving forward; an operator will typically be denoted with a hat
-on top of it to indicate that it is an operator rather than a variable. The main exceptions will be those
-operators labeled with *capital* letters, since those are harder to confuse for variables or other
-mathematical objects.
-:::
-
-Since we are dealing with a continuous spectrum and nondegenerate eigenkets (positional values can only
-correspond to a unique position), the resolution of the identity for this operator takes the following form:
-$$\int_{-\infty}^{\infty} dx\ketbra{x} = 1$$
-Now, let $\ket{\psi}$ represent a normalized pure state for our system, and $I=[x_0,x_1]$ be some interval on
-the $x$-axis. In this case, the projector onto the interval looks like this:
-$$P_I = \int_{x_0}^{x_1}dx\ketbra{x}$$
-Then, the probability postulate tells us that the probability of measuring some positional value within this
-interval is given by the following expectation value:
-$$\mathrm{Prob}(x_0\leq x\leq x_1) = \expval{P_I}{\psi} = \int_{x_0}^{x_1}dx\braket{\psi}{x}\braket{x}{\psi}$$
-Now, that last expression looks like we're taking some squared norm. To make our lives easier (and to make
-this expression look more like an integral expression wherein we're actually integrating a function), let's
-finally define the *positional wavefunction* $\psi(x)$:
-
-:::{.definition #def-positional-wavefunction}
-# Positional Wavefunction
-The *wavefunction*, denoted $\psi(x)$, encodes information about the position of a particle and is given by the following inner product: 
-$$\psi(x) = \braket{x}{\psi}$$
-:::
-
-Then, our probability becomes:
-$$\mathrm{Prob}(x_0\leq x \leq x_1) = \int_{x_0}^{x_1}dx|\psi(x)|^2 = \int_{x_0}^{x_1}\psi^*(x)\psi(x)dx$$
-Here, we see that the squared norm of the wavefunction encodes the probability density of finding the
-particle at a given point in space. Now, we finally have a way to go from kets to functions!
-
-Can we go the other way? No problem! If we multiply both sides of the resolution of the identity by
-$\ket{\psi}$, we get a representation of the ket:
-<!-- do we want to encode this in a lemma or leave it outside any tcolorbox and just keep it boxed? -->
-$$\ket{\psi} = \int dx\ket{x}\braket{x}{\psi} \implies \boxed{\ket{\psi} = \int dx \ket{x}\psi(x)}$$
-
-Now that we have a way to convert between ket formalism and functional notation, we also have a way to
-describe the inner product between two kets $\ket{\psi}$ and $\ket{\phi}$ by once again inserting the
-resolution of the identity between them:
-$$\braket{\psi}{\phi} = \int dx \braket{\psi}{x}\braket{x}{\phi} = \int \psi^*(x)\phi(x)dx$$
-This formalism extends quite easily to three dimensions, where we simply have to consider three separate
-positional components $(x,y,z)$. Since we will mainly deal with 1-dimensional problems in the next chapter,
-we'll save the discussion of the 3D generalization for later.
-
-<!-- omitted this because I couldn't think of a satisfying way to present it without being overly
-complicated; still, I think it would be great to show a glimpse. Pls help! -->
-### The Momentum Operator 
-
-Lastly, let's take a look at the momentum. Although position is important, objects tend to move, so it's also
-helpful to quantify how we should go about measuring this change in motion, namely the momentum.
-
-:::{.remark}
-I did not, in fact, take a look at the momentum. Oopsies.
-:::
 
 ### Final Note
 
@@ -531,5 +532,3 @@ this is for a while.
 [^wlog]: This is an acronym for "without loss of generality". This is used when we are making a specific
 choice, but emphasize that the choice we make doesn't affect the general outcome, meaning we could've just as
 easily chosen the other option with the exact same results.
-[^expectation-value]: The numerator here is referred to as the **expectation value** of the operator $P_n$
-with respect to $\ket{\psi}$, in many instances shortened to $\expval{P_n}$.
