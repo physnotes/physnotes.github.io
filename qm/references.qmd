@@ -1,4 +1,7 @@
 # References {.unnumbered}
 
+A complete list of all the literature we draw from are listed below. As these notes are not complete at the
+moment, this list is subject to change, and we will make our best attempt to keep it as up to date as possible. 
+
 ::: {#refs}
 :::

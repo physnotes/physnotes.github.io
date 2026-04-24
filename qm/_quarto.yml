@@ -27,7 +27,8 @@ book:
 
 
 bibliography: references.bib
-
+nocite: |
+  @*
 
 filters:
   - diagram
