@@ -1,0 +1,387 @@
+<!-- working title; maybe something better would work here? -->
+# From Classical Quantities to Quantum Operators {#sec-quantum-from-classical}
+We laid the theoretical framework underpinning quantum mechanics in the formalism and applied to the real world with the postulates. At long last, we are able to start developing some physics.
+
+Why all this setup? Many undergraduate courses in quantum mechanics will skip over all of this formal development at the beginning in favor of jumping straight into working with the wavefunction and utilizing the Schrödinger equation to solve basic problems. This choice is typically made to avoid adding needless complexity and to prevent the technical mathematical details from getting in the way of a basic physical intuition. As a matter of fact, this is precisely how we learned quantum mechanics initially, before supplementing the finer mathematical formalism in later graduate courses.
+
+We considered following suit and also omitting these details to jump straight into the physics, but decided to include this for a few reasons. Primarily, we did this because **this is not a university course on quantum mechanics**. We are not bound by any time constraints and do not need to adhere to any exlicit schedule, so the reader can take as much time as is required for everything to make sense. Since we don't need to move through a unit within a week or two, there’s no longer a pressing need to omit certain details in the name of expediting the material.
+
+:::{.remark}
+This is not in any way suggesting that the way undergraduate courses structure quantum mechanics is wrong. Rather, since we are not bound by the same restrictions that an undergraduate course is, we can take certain liberties in material presentation.
+:::
+
+Since we don't have the same time restrictions, we can build up the material a bit more rigorously and mathematically. Even though this rigorous development requires a certain level of mathematical maturity and is ultimately more challenging for a first reader than jumping straight into the physics would be, we feel that it is extremely satisfying to see all of the operators and equations we use pop out directly from first principles and experimental results. This way, we don't need to simply state the form of an operator without justification simply because we want to practice using it. Thus, we hope you have beared with us while we laid all the pieces in place.
+
+:::{.warning}
+As we warned at the beginning of the Formalism chapter, there is a *lot* of mathematics involved in the development of a formal framework for a physical theory. If the reader wishes to gain a more solid mathematical footing before attempting to understand certain parts of the way we present the material, that's totally fine! We will wait here for you to return. It is our hope, though, that we do a sufficiently good job of presenting whatever mathematics is necessary throughout the relevant chapters and accompanying appendices at the back.
+:::
+
+## Position Representation
+Let’s start with figuring out how to describe a particle’s position in quantum mechanics. For simplicity, we
+will start with the 1-dimensional case, then address 3 dimensions later on. Let’s also assume that a
+particle’s position in space (call it $x$) can be measured, and these measurement results are continuous
+(since space isn’t discretized). Let’s then denote the operator associated with measuring the position
+$\hat{x}$ and any eigenkets of the position $\ket{x}$. Thus, our eigenvalue problem takes the following form:
+$$\hat{x}\ket{x} = x\ket{x}$$
+
+:::{.notation}
+We will see much more of this hat notation moving forward; an operator will typically be denoted with a hat on top of it to indicate that it is an operator rather than a variable. The main exceptions will be those operators labeled with *capital* letters, since those are harder to confuse for variables or other mathematical objects.
+:::
+
+Since we are dealing with a continuous spectrum and nondegenerate eigenkets (positional values can only correspond to a unique position), the resolution of the identity for this operator takes the following form:
+$$\int_{-\infty}^{\infty}dx\ketbra{x} = 1$$
+Now, let $\ket{\psi}$ represent a normalized pure state for our system, and $I=[x_0,x_1]$ be some interval on
+the $x$-axis. In this case, the projector onto the interval looks like this:
+$$P_I = \int_{x_0}^{x_1}dx\ketbra{x}$$
+Then, the probability postulate tells us that the probability of measuring some positional value within this
+interval is given by the following expectation value:
+$$\mathrm{Prob}(x_0\leq x\leq x_1) = \expval{P_I}{\psi} = \int_{x_0}^{x_1}dx\braket{\psi}{x}\braket{x}{\psi}$$
+Now, that last expression looks like we're taking some squared norm. To make our lives easier (and to make
+this expression look more like an integral expression wherein we're actually integrating a function), let's
+finally define the *positional wavefunction* $\psi(x)$:
+
+:::{.definition #def-positional-wavefunction}
+# Positional Wavefunction
+The *wavefunction*, denoted $\psi(x)$, encodes the state in configuration space and is given by the following inner product: 
+$$\psi(x) = \braket{x}{\psi}$$
+:::
+
+Then, our probability becomes:
+$$\mathrm{Prob}(x_0\leq x \leq x_1) = \int_{x_0}^{x_1}dx|\psi(x)|^2 = \int_{x_0}^{x_1}\psi^*(x)\psi(x)dx$$
+Here, we see that the squared norm of the positional wavefunction encodes the probability density of finding the
+particle at a given point in space. Now, we finally have a way to go from kets to functions!
+
+Can we go the other way? No problem! If we multiply both sides of the resolution of the identity by
+$\ket{\psi}$, we get a representation of the ket:
+<!-- do we want to encode this in a lemma or leave it outside any tcolorbox and just keep it boxed? -->
+$$\ket{\psi} = \int dx\ket{x}\braket{x}{\psi} \implies \boxed{\ket{\psi} = \int dx \ket{x}\psi(x)}$$
+
+Now that we have a way to convert between ket formalism and functional notation, we also have a way to
+describe the inner product between two kets $\ket{\psi}$ and $\ket{\phi}$ by once again inserting the
+resolution of the identity between them:
+$$\braket{\psi}{\phi} = \int dx \braket{\psi}{x}\braket{x}{\phi} = \int \psi^*(x)\phi(x)dx$$
+
+### Generalization to 3 Dimensions
+This formalism extends quite easily to three dimensions, where we simply have to consider three separate
+positional components $(x,y,z)$.
+
+:::{.notation}
+For the sake of consistency (and because it will allow us to make more efficient use of index notation),
+instead of labeling the components $(x,y,z)$, we will label them $(x_1,x_2,x_3)$. This way, we can compare
+arbitrary spatial components $x_i$, $x_j$ without having to find some random combination of $x$, $y$, and
+$z$.
+:::
+
+In this case, rather than simply measuring the overall position, we will have separate operators for
+measuring each component of the position: $\hat{\mathbf{x}} = (\hat{x}_1, \hat{x}_2, \hat{x}_3)$. This is
+what's known as a "vector operator", since it's a vector comprised of different operators. We will assume
+that the components all commute with each other (since they're orthogonal and shouldn't affect each other's
+measurements):
+$$[\hat{x}_i,\hat{x}_j] = 0$$
+So, we now can write three separate eigenvalue problems, conveniently condensed into one using index
+notation:
+$$x_i\ket{\mathbf{x}} = x_i\ket{\mathbf{x}}$$
+Just as with the one-dimensional case, we have a similar resolution of the identity:
+$$1 = \int d^3\mathbf{x}\ketbra{\mathbf{x}}$$
+Then, our wavefunction-ket transformations translate seamlessly from the one-dimensional case:
+$$\psi(\mathbf{x}) = \braket{\mathbf{x}}{\psi}, \quad \ket{\psi} = \int
+d^3\mathbf{x}\ket{\mathbf{x}}\psi(\mathbf{x})$$
+Finally, the probability density of finding the particle in some region $R$ in 3-dimensional space becomes a
+multivariate integral:
+$$\mathrm{Prob}(\mathbf{x}\in R) = \int_Rd^3\mathbf{x}|\psi(\mathbf{x})|^2$$
+
+### The Position Operator
+What we've accomplished thus far amounts to representing an arbitrary ket state in configuration space; this,
+at its core, is what the wavefunction is. What happens now when we try to represent the wavefunction of an
+operator's action on a ket? For instance, if $\ket{\psi}$ corresponds to $\psi(x)$, what wavefunction does
+$\hat{x}\ket{\psi}$ correspond to? Let's label the resultant ket $\ket{\phi} = \hat{x}\ket{\psi}$ and find
+its wavefunction representation:
+$$\phi(x) = \braket{x}{\phi} = \braket{x}(\hat{x}\ket{\psi}) = \mel{x}{\hat{x}}{\psi} = (x\bra{x})\ket{\psi}
+= x\braket{x}{\psi} = x\psi(x)$$
+Interestingly, acting the $\hat{x}$ operator on a ket $\ket{\psi}$ just multiplies the corresponding
+configuration space wavefunction by $x$:
+$$\boxed{(\hat{x}\psi)(x) = x\psi(x)}$$
+Thus, in configuration space, $\hat{x}$ is represented by multiplication of the wavefunction by $x$. This is
+our position operator. Generalizing to three dimensions is easy:
+$$(\hat{x}_i\psi)(\mathbf{x}) = x_i\psi(\mathbf{x})$$
+
+:::{.remark}
+There's one lingering question here: what's the physical meaning of the position eigenkets $\ket{x}$,
+$\ket{\mathbf{x}}$? As we discovered before, these are not normalizable, which means they cannot belong to
+any relevant Hilbert space that we could make use of. This isn't actually a big deal for us, because we'll
+never measure the position of a particle *exactly*; rather, we will localize it to some region of space, and
+the eigenkets of position are simply an idealized variant where the size of the region is sent to $0$ in the
+limit. 
+
+In general, measuring the position of a particle is an inherently nonrelativistic concept, since localizing
+the position to smaller and smaller regions will blow up the momentum (because of the uncertainty relation
+which we'll quantify more explicitly later), until it eventually reaches relativistic ranges. As such, the concept of a position
+operator and measuring a particle's position will be relegated mostly to nonrelativistic quantum mechanics
+(which we'll be developing in the first two parts of this book), with relativistic quantum mechanics
+(explored in Part III) requiring a fundamentally different treatment.
+:::
+
+## Momentum Representation {#sec-momentum-operator}
+Now that we've established how to appropriately make positional measurements, a natural next step is to
+understand how to quantify momentum and associated momentum measurements. 
+
+:::{.remark}
+We will not, in fact, understand how to quantify momentum and associated momentum measurements. Oopsies. (I
+leave this to you Eric).
+:::
+
+### Translation Operators 
+
+
+### Generators of Translations
+
+
+### Classical vs. Quantum Momentum
+
+
+#### Classical Momentum 
+
+
+#### Quantum Momentum
+
+
+## The Schrödinger Equation
+We are now finally ready to develop the Schrödinger equation, which will serve as the main equation all of
+quantum mechanics is aimed to solve to describe physical systems. To do so properly, however, we need to
+quantify how to determine a system's energy in a quantum-mechanical system, which will require us to find the
+quantum analog of the *Hamiltonian*. We set everything up in a similar manner to how we presented (and
+ultimately derived) the momentum.
+
+### Time-Evolution Operator 
+At their core, any general equation for a specified field of physics describes how that particular system
+evolves in time. Some systems will not change in time, but being able to quantify how certain properties
+change as time advances is the core of that particular field. In classical mechanics, we saw that first
+through **Newton's Laws of Motion**, which described how forces acting on an object in a system affect said
+object. Later on, we quantified how to describe the change in a system's *energy*, for which we used the
+**Lagrangian/Hamiltonian Equations of Motion**. In quantum mechanics, we want to something very similar; we wish to understand how to express how a system
+evolves in time by quantifying its energy. 
+
+Let's now finally introduce time dependence into our ket vectors. Label the pure state of a system at some
+initial time $t_0$ by $\ket{\psi(t_0)}$, and label that same state at a final time $t$ by $\ket{\psi(t)}$.
+We now claim the existence of a *time-evolution operator*, which we'll denote $U(t,t_0)$, that transforms the
+state $\ket{\psi(t_0)}$ into the state $\ket{\psi(t)}$:
+$$\ket{\psi(t)} = U(t,t_0)\ket{\psi(t_0)}$${#eq-tevolut-def}
+Let's properly define this operator:
+
+:::{.definition #def-time-evolution-operator}
+# Time-Evolution Operator
+The *time-evolution operator*, denoted $U(t,t_0)$, evolves a quantum state from initial time $t_0$ to final
+time $t$, while satisfying the following three properties:
+
+1. $U$ should reduce to the identity operator at $t=t_0$: $$U(t_0,t_0) = 1$$
+2. $U$ is unitary: $$U(t,t_0)^{-1} = U(t,t_0)^{\dagger}$$
+3. $U$ should satisfy the *composition property*: $$U(t_2,t_1)U(t_1,t_0) = U(t_2,t_0)$$
+:::
+
+Each of these properties make intuitive sense. Starting with the first, evolving between the same time is
+equivalent to not evolving in time at all, meaning the states before and after such a time evolution action
+should be equivalent. Secondly, we want to preserve probabilities. In other words, the probability of
+something like finding a particle somewhere in space should be $1$ regardless of *when* we measure in time.
+Thus, evolving forwards vs. backwards in time shouldn't affect such probabilities. Finally, evolving a state
+from an initial time to a second time and then evolving to a final third should naturally produce the same result
+as directly evolving from the initial time to the final.
+
+### The Hamiltonian
+Let's now consider some infinitesimal time evolution from $t$ to $t+\epsilon$, for some small $\epsilon$. We
+can expand $U$ to first order and tack on an additional correction term:
+$$U(t+\epsilon,t) = 1 - i\epsilon\Omega(t) + \dots$${#eq-tevolut-expansion}
+Our correction term is defined as follows (with an extra $i$ factor to make the operator Hermitian:
+$$\Omega(t)  = i\pdv{t'}U(t',t)\bigg|_{t'=t}$${#eq-generator-tevolut}
+This operator $\Omega(t)$ is then our *generator of time evolution* in quantum mechanics, since it
+is precisely the correction term that advances a state in time by small increments. Combining these terms in
+large quantities will advance time by larger increments.
+
+In classical mechanics[^classical-mechanics], the Hamiltonian (which we'll henceforth represent with $H$) is fundamentally the
+generator of time translations, since it describes how a system evolves in time. Let's consider some
+classical observable $f(x,p)$ (a function in position and momentum) that exhibits time dependence due to how
+$x$ and $p$ evolve in time. Expanding to first order in $t$ gives:
+$$\begin{align*}
+f(t+\epsilon) &= f(t) + \epsilon\dv{f}{t} = f(t)+\epsilon\left(\dot{x}\pdv{f}{x} + \dot{p}\pdv{f}{p}\right) =
+\\
+&= f(t) + \epsilon\left(\pdv{H}{p}\pdv{f}{x} - \pdv{H}{x}\pdv{f}{p}\right) = f(t) - \epsilon\{H,f\}
+\end{align*}$$
+Here, $\{H,f\}$ gives the *Poisson bracket* (discussed in more detail in @sec-poisson-bracket).
+
+Since we wish to develop a quantum analog to the classical Hamiltonian, it would make sense for the quantum
+Hamiltonian to also function as a generator of time evolution, meaning we want the associated Hamiltonian
+operator (henceforth denoted $\hat{H}$) to be related to the generator of time evolutions defined in
+@eq-generator-tevolut:
+$$\hat{H}(t) = \hbar\Omega(t)$$
+We can plug this back into @eq-tevolut-expansion to express the time evolution operator exclusively in terms
+of the Hamiltonian:
+$$U(t+\epsilon,t) = 1 - \frac{i\epsilon}{\hbar}\hat{H}(t) + \dots$$
+
+:::{.remark}
+Classical Hamiltonians will depend on time in the presence of time-dependent forces or fields. As such, we
+will generally expect the quantum Hamiltonian $\hat{H}$ to also be time-dependent. There will still, however,
+be special time-independent cases that we will choose to study closely (this may or may not be
+foreshadowing).
+:::
+
+It is, of course, a nontrivial question whether or not this $\hbar$ constant is the same one that is used in
+the de Broglie relations and the subsequent derivation of the quantum momentum done in
+@sec-momentum-operator. There is a requirement that these $\hbar$'s be equivalent (known as *relativistic
+covariance*), but this won't be relevant to us until we discuss relativistic quantum mechanics. To avoid a
+lengthy and complicated discussion, we will simply note here that this $\hbar$ constant is the same as the
+one that appears in momentum and energy representations. 
+
+### Deriving the Schrödinger Equation
+With that established, we now need a differential equation that we can solve to ascertain physical properties
+of a system. Classically, that would involve Hamilton's equations of motion (or Newton's or Lagrange's,
+depending on the scenario). So, let's find a differential equation for time-evolution operators. Let's start
+with the basic definition of the derivative:
+$$\pdv{U(t,t_0)}{t} = \lim_{\epsilon\to0}\frac{U(t+\epsilon,t_0) - U(t,t_0)}{\epsilon}$$
+The composition property in @def-time-evolution-operator allows us to rewrite $U(t+\epsilon,t_0)$:
+$$U(t+\epsilon,t_0) = U(t+\epsilon,t)U(t,t_0)$$
+Substituting this back into our definition of the derivative and factoring out $U(t,t_0)$ gives:
+$$\pdv{U(t,t_0)}{t} = \left(\lim_{\epsilon\to0}\frac{U(t+\epsilon,t) - 1}{\epsilon}\right)U(t,t_0) =
+\pdv{U(t',t)}{t'}\bigg|_{t'=t}U(t,t_0)$$
+By @eq-generator-tevolut, the RHS derivative can be replaced with $-i\Omega(t)$, which in turn can be
+replaced with $\frac{-i\hat{H}(t)}{\hbar}$. Assembling all of that together (and rearranging a few
+prefactors) gives us our differential equation for the time evolution operator in terms of the Hamiltonian:
+$$i\hbar\pdv{U(t,t_0)}{t} = \hat{H}(t)U(t,t_0)$$
+Now, we can finally get rid of $U$ by differentiating @eq-tevolut-def with respect to time and substituting
+in this new expression to get rid of the time evolution (remember also to tack on the relevant $i\hbar$
+prefactor):
+$$\begin{align*}
+i\hbar\pdv{t}\ket{\psi(t)} &= i\hbar\pdv{t}\left(U(t,t_0)\ket{\psi(t_0)}\right) =
+i\hbar\left[\pdv{U(t,t_0)}{t}\ket{\psi(t_0)} + \cancelto{0}{U(t,t_0)\pdv{t}\ket{\psi(t_0)}}\right] = \\
+&= i\hbar\pdv{U(t,t_0)}{t}\ket{\psi(t_0)} = \hat{H}(t)U(t,t_0)\ket{\psi(t_0)} = \hat{H}(t)\ket{\psi(t)}
+\end{align*}$$
+We summarize this as the *Schrödinger equation*:
+
+:::{.theorem #thm-schrodinger}
+# Schrödinger Equation
+$$i\hbar\pdv{t}\ket{\psi(t)} = \hat{H}(t)\ket{\psi(t)}$$
+:::
+
+More precisely, this is the *time-dependent* Schrödinger equation, since we are allowing for a time-dependent
+Hamiltonian. This is the most general form of the equation, since it makes no claims as to what form
+$\hat{H}$ takes and it doesn't express $\ket{\psi}$ in any particular basis. Can we be a bit more precise
+about the Hamiltonian? As a matter of fact, we can!
+
+Classically, the Hamiltonian of a system is given as the sum of its kinetic and potential
+energies[^natural-coordinates] (ie, the total energy of the system):
+$$H = T + V$$
+Here, $T$ represents the kinetic energy, while $V$ represents the potential energy. The kinetic energy is
+given by $\frac{p^2}{2m}$, and the potential energy is generally unknown and will be system-depedent.
+Translating all respective quantities to quantum operators gives us the quantum Hamiltonian:
+$$\hat{H} = \frac{\hat{p}^2}{2m} + \hat{V}$$
+Translating this into configuration space wavefunction notation gives us:
+$$\hat{H} = -\frac{\hbar^2}{2m}\pdv[2]{x} + V(x,t)$$
+Generally, the potential will be time-dependent. Substituting all of that in gives us a slightly more
+specific form of the Schrödinger equation that we will actually apply to solve problems:
+
+:::{.theorem #thm-tdse}
+# Time-Dependent Schrödinger Equation
+$$\left(\frac{\hbar^2}{2m}\pdv[2]{x} + V(x,t)\right)\psi(x,t) = i\hbar\pdv{\psi(x,t)}{t}$$
+:::
+
+To be a bit more precise, this was the one-dimensional form of the Schrödinger equation. In three dimensions,
+we replace the derivatives with Laplacians:
+$$\left(-\frac{\hbar^2}{2m}\nabla^2 + V(\mathbf{x},t)\right)\psi(\mathbf{x},t) =
+i\hbar\pdv{\psi(\mathbf{x},t)}{t}$$
+This is only one representation of the Schrödinger equation in functional form. There are, of course, many
+other bases in which we can represent (and subsequently solve) this equation. The most natural alternat form
+is writing the Schrödinger equation in momentum space, which we can do with a simple Fourier transform. 
+
+### Time-Independent Schrödinger Equation
+While wavefunctions, potentials, and Hamiltonians will generally admit time dependence, it is also worth
+analyzing some time-independent potentials as a special case and a useful model for certain problems in
+nonrelativistic quantum mechanics. As such, we can write a time-independent version of the Schrödinger
+equation, where we instead focus on finding the energy eigenstates (or *stationary states*, since they don't
+evolve in time). Thus, we can represent the Schrödinger equation as an eigenvalue problem:
+
+:::{.theorem #thm-tise}
+# Time-Independent Schrödinger Equation
+$$\hat{H}\ket{\psi} = E\ket{\psi}$$
+:::
+
+Alternatively, you can enumerate the eigenstates $\ket{n}$ and the associated energy eigenvalues $E_n$:
+$$\hat{H}\ket{n} = E_n\ket{n}$$
+Crucially, $n$ can represent one or more quantum numbers required to specify the energy eigenstate.
+
+:::{.remark}
+This will become much more relevant in higher dimensions, where we will have radial and angular components,
+etc.
+:::
+
+For the time being, much of our work will involve solving the time-independent Schrödinger equation for
+various relatively simple time-independent potentials. Should we choose to reintroduce time dependence, we
+will be able to do so with a separate expression that stores all of the information on the system's time
+dependence (this is explored in more detail in the next chapter).
+
+## Pictures in Quantum Mechanics
+As it turns out, there are multiple different interpretations for how operators and wavefunctions behave. So
+far, we have been operating in only one of these so-called pictures, but it is useful to quantify the
+difference between the two of them and see how each may be more applicable depending on the type of problem
+we are trying to solve.
+
+
+### Schrödinger Picture
+So far, we have been operating under the assumption that the *wavefunctions* are what evolve in time, with
+observables remaining fixed. In other words, the way we measure position will never depend on what point in
+time we choose to measure that position. This is what's known as the *Schrödinger picture*.
+
+Since our wavefunction is what describes the state of the system, it is natural for it to be the quantity
+that evolves in time. As a consequence, most problems we will tackle and most attempts at solving the
+Schrödinger equation will be undertaken in the Schrödinger picture.
+
+### Heisenberg Picture
+That being said, there is another way we can interpret systems. What if, instead of letting the wavefunction
+evolve in time whilst keeping observables static, we go the other way: let *observables* evolve in time
+whilst keeping wavefunctions static. This is what's known as the *Heisenberg picture*, with our equations of
+motion now involving time-derivatives of operators rather than wavefunctions.
+
+[This section is currently incomplete; it will be updated very soon!]
+
+### Equivalence of the Pictures
+Despite the fact that these two pictures seem fundamentally different and involve letting two completely
+different types of objects hold time dependence, they actually turn out to be equivalent. This makes sense,
+because the solution to a particular problem shouldn't depend on the method used to solve that problem.
+Instead of merely saying that, however, let's take the time now to prove that algebraic relations are
+equivalent between the two pictures. 
+
+[This section is currently incomplete; it will be updated very soon!]
+
+## Probability Current
+[This section is currently incomplete; it will be updated very soon!]
+
+## Commutators
+Lastly, even commutators can be derived from classical quantities! Previously, we introduced the notion of
+commutators as a way to quantify how close/far two operators are from commuting with each other. However, it
+is actually possible to connect this notion to classical mechanics.
+
+### Poisson Brackets {#sec-poisson-bracket}
+First, we will introduce the *Poisson bracket*, used extensively in classical mechanics (particularly with
+Hamiltonian mechanics):
+
+[This section is currently incomplete; it will be updated very soon!]
+
+### Ehrenfest Relations
+[This section is currently incomplete; it will be updated very soon!]
+
+## Conclusion
+As mentioned earlier, much of what appears in this chapter is generally omitted in a first course on quantum mechanics in favor of jumping straight into the physics and trying to describe systems with new equations. Perhaps this may have been easier, but at the end of the day, it is entirely about the journey rather than the destination. Since we are not beholden to any schedule and are attempting to organize these notes in a way that we felt works best, we have chosen to take the road less traveled. There is a light at the end of this tunnel, however; we are at last done with the difficult setup. The following chapters will take a much lighter approach that may be more akin to an undergraduate perspective, albeit with some formalism sprinkled in every now and then.
+
+Let’s use our newly-acquired tools to finally start describing some basic one-dimensional systems!
+
+[^classical-mechanics]: This section in particular (among others that deal with the transition from classical
+to quantum mechanics) will make use of some topics in classical mechanics, but will not go in detail about
+their derivations or physical significance. Since this is not a text on classical mechanics, some prior
+knowledge on that matter is assumed for these sections. If these topics are unfamiliar, we encourage the
+reader to consult our notes on classical mechanics (when they're written) or any text on classical mechanics
+(some of which are linked in our References).
+
+[^natural-coordinates]: Those who have studied classical mechanics will recognize that this isn't exactly
+true generally: the Hamiltonian only describes the total energy of the system when we are working in a
+*natural* coordinate system (ie, the relation between the positional descriptions of particles in a system
+and the generalized coordinates is time-independent). In functionally all of our cases, though, we will
+simply choose natural coordinate systems, meaning we can safely take the Hamiltonian to represent the total
+energy. See [REF: Taylor] for a more in-depth description of generalized coordinates and how they affect the
+form of the Lagrangian and Hamiltonian.
