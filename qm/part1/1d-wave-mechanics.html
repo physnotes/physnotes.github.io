@@ -420,7 +420,7 @@ and solve the differential equation for $\psi$, and out come the energy eigensta
     \infty &amp; \text{otherwise}
     \end{cases}
 \]</span> This is called the <em>infinite square well</em>, appropriately named since the graphical representation of the potential is a well whose walls are infinitely tall:</p>
-<div id="fig-infinite-square-well" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
+<div id="fig-infinite-square-well" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-infinite-square-well-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="1d-wave-mechanics_files/mediabag/8007d8bf3b1d4f71dc92c1a8484c3ae19413ba7a.svg" class="img-fluid figure-img">
@@ -451,7 +451,7 @@ Figure&nbsp;5.1: The infinite square well; the width is <span class="math inline
 \]</span> Therefore, the full solution to the infinite square well is the following discrete set of wavefunctions <span class="math inline">\(\psi_n\)</span>: <span id="eq-isw-wavefunctions"><span class="math display">\[
     \boxed{\psi_n(x) = \sqrt{\frac{2}{a}} \sin\left( \frac{n\pi}{a}x \right)}
 \tag{5.2}\]</span></span> These incidentally correspond to standing modes in a cavity, visualized below.</p>
-<div id="fig-isw-solutions" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
+<div id="fig-isw-solutions" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-isw-solutions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="1d-wave-mechanics_files/mediabag/71ccb499811641aea38b3bf56960ab173c04c94a.svg" class="img-fluid figure-img">
@@ -472,7 +472,7 @@ Figure&nbsp;5.2: A few infinite square well wavefunction solutions visualized.
 <p><span class="theorem-title"><strong>Definition 5.1 (Dirac Delta Function)</strong></span> The <em>Dirac delta function</em>, denoted <span class="math inline">\(\delta(x-x_0)\)</span>, is defined as the following: <span class="math display">\[\delta(x-x_0) = \begin{cases}\infty&amp;x=x_0\\0&amp;\text{otherwise}\end{cases}\]</span> Crucially, it is also defined to have a bounded integral: <span class="math display">\[\int_{-\infty}^{\infty}\delta(x-x_0)dx = 1\]</span> This can be thought of as the continuous version of the Kronecker delta.</p>
 </div>
 <p>This is quite a peculiar object. It’s not a “function” in the traditional sense, and instead defined as a function whose value is zero nearly everywhere but integrates to 1 over the entire real line. There is no true function that simultaneously satisfies these properties, hence the delta function isn’t really considered a “function”.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> However, it often makes an appearance in theoretical and experimental physics since many phenomena around us can be modeled approximately as delta functions.</p>
-<div id="fig-delta-well" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
+<div id="fig-delta-well" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-delta-well-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="1d-wave-mechanics_files/mediabag/40ccc246354fda2894055a6bb12e6b47a1a39790.svg" class="img-fluid figure-img">
@@ -548,7 +548,7 @@ Figure&nbsp;5.3: The delta function well potential. The width and the depth are 
 \]</span> Thus, we finally have the full solution for the delta function potential, for <span class="math inline">\(E &lt; 0\)</span>: <span id="eq-delta-well-decaying-sols"><span class="math display">\[
     \boxed{\psi(x) = \frac{\sqrt{ma}}{\hbar} e^{-ma |x|/\hbar^2}, \quad E = - \frac{ma^2}{2\hbar^2}}
 \tag{5.6}\]</span></span></p>
-<div id="fig-delta-well-bound-solutions" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
+<div id="fig-delta-well-bound-solutions" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-delta-well-bound-solutions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="1d-wave-mechanics_files/mediabag/c2494f52d9c3f9d73ba4d24566d52bbef82c4a10.svg" class="img-fluid figure-img">
@@ -590,7 +590,7 @@ Figure&nbsp;5.4: The delta function well bound state wavefunction solution visua
 \tag{5.7}\]</span></span> And that’s the full solution to the delta well! It’s blatantly apparent that this derivation is <em>very</em> non-classical: it predicts that a potential <em>well</em> has the chance to scatter a particle despite the particle having a positive energy.</p>
 <hr>
 <p>At this point, let’s talk briefly about the delta potential <em>barrier</em>, which is basically the same potential but positive: <span class="math display">\[V(x) = a \delta(x)\]</span> Similar to the well, we offer a (crude) visualization below.</p>
-<div id="fig-delta-barrier" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
+<div id="fig-delta-barrier" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-delta-barrier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="1d-wave-mechanics_files/mediabag/5f6ae9fc425352de2a5e7853eac432785d7addcc.svg" class="img-fluid figure-img">
@@ -617,7 +617,7 @@ Figure&nbsp;5.5: The delta function barrier potential. Similar to the delta well
     V_0 &amp; x &gt; 0
     \end{cases}
 \]</span> It is called the <em>potential step</em>, because it functions exactly like a step function in mathematics.</p>
-<div id="fig-potential-step" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="function*">
+<div id="fig-potential-step" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="function*" data-fig-pos="h">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-potential-step-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="1d-wave-mechanics_files/mediabag/d45052ea75538c967e88576ddaecff7ed8d4729e.svg" class="img-fluid figure-img">
@@ -686,7 +686,7 @@ Figure&nbsp;5.6: The step potential. This is like one half of a finite well, whi
     0 &amp; x &gt; a
     \end{cases}
 \]</span> Below is a visualization.</p>
-<div id="fig-potential-barrier" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
+<div id="fig-potential-barrier" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-potential-barrier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="1d-wave-mechanics_files/mediabag/df966638e10458a94136710ac193b290cc533b8c.svg" class="img-fluid figure-img">
@@ -856,32 +856,35 @@ exactly what comes next -->
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-axler" class="csl-entry" role="listitem">
+<div id="ref-axler2023" class="csl-entry" role="listitem">
 Axler, Sheldon. 2023. <em>Linear Algebra Done Right</em>. Fourth Edition. Springer.
 </div>
-<div id="ref-french-taylor" class="csl-entry" role="listitem">
+<div id="ref-french-taylor2017" class="csl-entry" role="listitem">
 French, A. P., and E. F. Taylor. 2017. <em>An Introduction to Quantum Physics (MIT Introductory Physics Series)</em>. First edition. CRC Press.
 </div>
-<div id="ref-griffiths" class="csl-entry" role="listitem">
+<div id="ref-griffiths2018" class="csl-entry" role="listitem">
 Griffiths, David J., and Darrell F. Schroeter. 2018. <em>Introduction to Quantum Mechanics</em>. Third edition. Cambridge University Press.
 </div>
-<div id="ref-littlejohn" class="csl-entry" role="listitem">
-Littlejohn, Robert. 2022. <em>Quantum Mechanics Lecture Notes</em>.
+<div id="ref-littlejohn2022" class="csl-entry" role="listitem">
+Littlejohn, Robert G. 2022. <em>Physics 221AB (Quantum Mechanics) Lecture Notes</em>. Https://bohr.physics.berkeley.edu/classes/221/2122/221.html.
 </div>
-<div id="ref-muller" class="csl-entry" role="listitem">
-Muller, Holger. 2024. <em>Physics 221A/b Lecture Notes</em>.
+<div id="ref-muller2023" class="csl-entry" role="listitem">
+Muller, Holger. 2023. <em>Physics 221A/b Supplementary Lecture Notes</em>.
 </div>
-<div id="ref-sakurai" class="csl-entry" role="listitem">
+<div id="ref-sakurai2020" class="csl-entry" role="listitem">
 Sakurai, Jun John. 2020. <em>Modern Quantum Mechanics</em>. Third edition. Cambridge University Press.
 </div>
-<div id="ref-schwabl" class="csl-entry" role="listitem">
+<div id="ref-schwabl2008" class="csl-entry" role="listitem">
 Schwabl, Franz, R. Hilton, and Angela Lahee. 2008. <em>Advanced Quantum Mechanics</em>. Fourth Edition. Springer.
 </div>
-<div id="ref-shankar" class="csl-entry" role="listitem">
+<div id="ref-shankar1994" class="csl-entry" role="listitem">
 Shankar, Ramamurti. 1994. <em>Principles of Quantum Mechanics</em>. Second Edition. Plenum Press.
 </div>
-<div id="ref-siddiqi" class="csl-entry" role="listitem">
+<div id="ref-siddiqi2022" class="csl-entry" role="listitem">
 Siddiqi, Irfan. 2022. <em>Physics 137A Lecture Notes</em>.
+</div>
+<div id="ref-taylor2005" class="csl-entry" role="listitem">
+Taylor, John R. 2005. <em>Classical Mechanics</em>. University Science Books.
 </div>
 </div>
 </section>

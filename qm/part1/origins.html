@@ -272,13 +272,13 @@ window.Quarto = {
 <p>In order to dive into the world of quantum properly, it pays to spend some time looking at its history. In this chapter, we will give a brief overview of how quantum mechanics came to be. This way, you will appreciate not only the beauty of quantum mechanics, but also understand why it is necessary to understanding the mechanics of our world. We will illustrate how the need for quantum mechanics became apparent by revisiting a few crucial experimental results that did not align with what classical theory would predict, thus demonstrating that more was needed to understand the world around us.</p>
 <!--I chose to put this in a quote block, but maybe footnote? -->
 <blockquote class="blockquote">
-<p>The content in this section is heavily inspired by Prof.&nbsp;Siddiqi’s notes for the introductory lecture in Physics 137A (Quantum Mechanics I) at UC Berkeley.</p>
+<p>The content in this section is heavily inspired by Prof.&nbsp;Siddiqi’s notes for the introductory lecture in Physics 137A (Quantum Mechanics I) at UC Berkeley <span class="citation" data-cites="siddiqi2022">(see <a href="../references.html#ref-siddiqi2022" role="doc-biblioref">Siddiqi 2022</a>)</span>.</p>
 </blockquote>
 <section id="blackbody-radiation" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="blackbody-radiation"><span class="header-section-number">1.1</span> Blackbody Radiation</h2>
 <p>To begin our story, we travel back to the mid-19th century. Around this time, Gustav Kirchhoff (yes, the one from your circuits classes<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>) was studying the physics of <em>blackbodies</em>:</p>
 <div id="def-blackbody" class="definition theorem">
-<p><span class="theorem-title"><strong>Definition 1.1 (Blackbody)</strong></span> A <em>blackbody</em> (or black body) is an indealized object that absorbs <em>all</em> electromagnetic radiation (getting its name from how black absorbs all light).</p>
+<p><span class="theorem-title"><strong>Definition 1.1 (Blackbody)</strong></span> A <em>blackbody</em> (or black body) is an idealized object that absorbs <em>all</em> electromagnetic radiation (getting its name from how black absorbs all light).</p>
 </div>
 <p>Even though perfect blackbodies do not exist in the real world, this theory turns out to be a very good model for celestial bodies like planets and stars, which are precisely the objects Kirchhoff was studying.</p>
 <div class="proof remark">
@@ -306,7 +306,7 @@ complicated -->
 <div id="def-standing-mode" class="definition theorem">
 <p><span class="theorem-title"><strong>Definition 1.2 (Standing Mode)</strong></span> A <em>mode</em> is a standing wave state of excitation where all of the system’s components are affected sinusoidally at a fixed frequency. A wave is <em>standing</em> if it oscillates in time, but its peak amplitude does not move in space.</p>
 </div>
-<div id="fig-standing-modes" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
+<div id="fig-standing-modes" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-standing-modes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="origins_files/mediabag/35fc0c90c210d2bcb19d26b4ead4f30df19cb6b0.svg" class="img-fluid figure-img">
@@ -388,7 +388,7 @@ Figure&nbsp;1.1: Visualization of several standing modes in a box.
 </div>
 <p>The photoelectric effect can be described as follows: when you shine light onto a metal surface, the light transfers energy onto the electrons trapped inside the metal, eventually transferring enough energy to allow them to “escape” the metal, resulting in a phenomenon called <em>photoemission</em>.</p>
 <!-- don't love the way thjis figure turned out; let's try to tweak it -->
-<div id="fig-photoelectric-effect" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
+<div id="fig-photoelectric-effect" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-photoelectric-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="origins_files/mediabag/07c74dc44d04ae363fadcbc95980cee5093c6e1f.svg" class="img-fluid figure-img">
@@ -409,7 +409,7 @@ should look like and i'll do my best to mock it up -->
 <p>If light were to behave purely classically, we would expect to see two bright spots that trace out the shape of the slits on the screen. However, what is actually observed is an <em>interference pattern</em>: patches of light and dark spots spread across the screen that that gradually get fainter toward the edges. Now, if we are to assume that light is a beam of particles like we did with the Photoelectric Effect, this result makes no sense: only particles that fly through the slit make it onto the screen (and there is no force that allows them to spontaneously change momentum), so an interference pattern does not make sense.</p>
 <p>However, this phenomenon can be explained if we take a different approach, and assume that light consists of <u>waves</u> instead of particles. This way, as waves travel through the slit, they experience a phenomenon known as <em>diffraction</em>, where light passing through the slits generate wavefronts that interfere with each other. This way, light going through one slit can interfere with the other, producing the interference pattern we see on the screen.</p>
 <div class="proof remark">
-<p><span class="proof-title"><em>Remark</em>. </span>This is a version of the <em>Huygens Principle</em>, discovered by Christiaan Huygens in 1678 and applied primarily to classical wave propagation, but it works here as well.</p>
+<p><span class="proof-title"><em>Remark</em>. </span>This is a version of the <em>Huygens principle</em>, discovered by Christiaan Huygens in 1678 and applied primarily to classical wave propagation, but it works here as well.</p>
 </div>
 <p>The double-slit phenomenon, combined with the Photoelectric Effect, showcase a concept in quantum physics called the <em>wave-particle duality</em>. Specifically, it refers to the fact that light behaves both as a wave and a particle, depending on the context. In the double-slit experiment, light behaves as a wave, whereas it behaves like a particle in the photoelectric effect.</p>
 <div class="warning">
@@ -421,7 +421,7 @@ should look like and i'll do my best to mock it up -->
 <h2 data-number="1.5" class="anchored" data-anchor-id="the-case-of-the-electron"><span class="header-section-number">1.5</span> The Case of the Electron</h2>
 <p>As a last example to motivate the need for quantum mechanics, there was a known problem with the classical model of the atom. In the late 19th and early 20th century, the leading description of the atom was the <strong>Bohr model</strong>, which depicted an atom as a miniature planetary system. However, there was a problem with this model: by this point, it had already been established that moving charges radiate energy in the form of electromagnetic waves, which means we could in principle calculate how much energy an orbiting electron should radiate. As it turns out, if the electron really did orbit according to this model, then the amount of energy it dissipates would have sent it crashing into the nucleus within <span class="math inline">\(10^{-11}\)</span> seconds!</p>
 <!-- may want to tweak the colors for better visibility -->
-<div id="fig-bohr-model" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
+<div id="fig-bohr-model" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bohr-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="origins_files/mediabag/c6d18f3d7dc0ddad60dccc2bba7f3d6a1b723b83.svg" class="img-fluid figure-img">
@@ -441,32 +441,35 @@ Figure&nbsp;1.3: Bohr model of the atom. Here, the nucleus (consisting of proton
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-axler" class="csl-entry" role="listitem">
+<div id="ref-axler2023" class="csl-entry" role="listitem">
 Axler, Sheldon. 2023. <em>Linear Algebra Done Right</em>. Fourth Edition. Springer.
 </div>
-<div id="ref-french-taylor" class="csl-entry" role="listitem">
+<div id="ref-french-taylor2017" class="csl-entry" role="listitem">
 French, A. P., and E. F. Taylor. 2017. <em>An Introduction to Quantum Physics (MIT Introductory Physics Series)</em>. First edition. CRC Press.
 </div>
-<div id="ref-griffiths" class="csl-entry" role="listitem">
+<div id="ref-griffiths2018" class="csl-entry" role="listitem">
 Griffiths, David J., and Darrell F. Schroeter. 2018. <em>Introduction to Quantum Mechanics</em>. Third edition. Cambridge University Press.
 </div>
-<div id="ref-littlejohn" class="csl-entry" role="listitem">
-Littlejohn, Robert. 2022. <em>Quantum Mechanics Lecture Notes</em>.
+<div id="ref-littlejohn2022" class="csl-entry" role="listitem">
+Littlejohn, Robert G. 2022. <em>Physics 221AB (Quantum Mechanics) Lecture Notes</em>. Https://bohr.physics.berkeley.edu/classes/221/2122/221.html.
 </div>
-<div id="ref-muller" class="csl-entry" role="listitem">
-Muller, Holger. 2024. <em>Physics 221A/b Lecture Notes</em>.
+<div id="ref-muller2023" class="csl-entry" role="listitem">
+Muller, Holger. 2023. <em>Physics 221A/b Supplementary Lecture Notes</em>.
 </div>
-<div id="ref-sakurai" class="csl-entry" role="listitem">
+<div id="ref-sakurai2020" class="csl-entry" role="listitem">
 Sakurai, Jun John. 2020. <em>Modern Quantum Mechanics</em>. Third edition. Cambridge University Press.
 </div>
-<div id="ref-schwabl" class="csl-entry" role="listitem">
+<div id="ref-schwabl2008" class="csl-entry" role="listitem">
 Schwabl, Franz, R. Hilton, and Angela Lahee. 2008. <em>Advanced Quantum Mechanics</em>. Fourth Edition. Springer.
 </div>
-<div id="ref-shankar" class="csl-entry" role="listitem">
+<div id="ref-shankar1994" class="csl-entry" role="listitem">
 Shankar, Ramamurti. 1994. <em>Principles of Quantum Mechanics</em>. Second Edition. Plenum Press.
 </div>
-<div id="ref-siddiqi" class="csl-entry" role="listitem">
+<div id="ref-siddiqi2022" class="csl-entry" role="listitem">
 Siddiqi, Irfan. 2022. <em>Physics 137A Lecture Notes</em>.
+</div>
+<div id="ref-taylor2005" class="csl-entry" role="listitem">
+Taylor, John R. 2005. <em>Classical Mechanics</em>. University Science Books.
 </div>
 </div>
 </section>

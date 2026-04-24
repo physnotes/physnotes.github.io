@@ -321,11 +321,18 @@ else? -->
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>The full technical details behind the theory and execution of the experiment extend beyond the scope of what we aim to cover here. As such, we will omit lengthy discussions of precisely <em>what</em> we are measuring and how we’re going about doing so. Instead, we urge the reader to focus on how we appropriately utilize the postulates and apply them to a physical system, thereby confirming experimentally what we expect from theory.</p>
 </div>
-Consider the setup illustrated in the figure below. Here, we send out a beam of silver atoms from an oven and measure different components of their <em>magnetic moment</em> <span class="math inline">\(\boldsymbol{\mu}\)</span>. We first measure the <span class="math inline">\(x\)</span> component of the magnetic moment, denoted <span class="math inline">\(\mu_x\)</span>, and pass the beam where the measured value is <span class="math inline">\(\mu_x=+\mu_0\)</span><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> into a second magnet that measures the <span class="math inline">\(z\)</span> component (denoted <span class="math inline">\(\mu_z\)</span>). <!-- I didn't make tikz work on my end while writing this; pls recreate the Stern-Gerlach apparatus from
-Notes 2 -->
-<center>
-<img src="postulates_files/mediabag/0ceb077d9a3382070b56ca8b2a1c1208826ccce8.svg" class="img-fluid">
-</center>
+<p>Consider the setup illustrated in the figure below. Here, we send out a beam of silver atoms from an oven and measure different components of their <em>magnetic moment</em> <span class="math inline">\(\boldsymbol{\mu}\)</span>. We first measure the <span class="math inline">\(x\)</span> component of the magnetic moment, denoted <span class="math inline">\(\mu_x\)</span>, and pass the beam where the measured value is <span class="math inline">\(\mu_x=+\mu_0\)</span><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> into a second magnet that measures the <span class="math inline">\(z\)</span> component (denoted <span class="math inline">\(\mu_z\)</span>). <!-- I didn't make tikz work on my end while writing this; pls recreate the Stern-Gerlach apparatus from
+Notes 2 --></p>
+<div id="fig-stern-gerlach-xplus" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stern-gerlach-xplus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="postulates_files/mediabag/5553b75c830b0058eeacaaf1719bd9ac51d74e7e.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stern-gerlach-xplus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: The Stern-Gerlach experimental apparatus <span class="citation" data-cites="littlejohn2022">(as visualized in <a href="../references.html#ref-littlejohn2022" role="doc-biblioref">Littlejohn 2022, nn. 2, 3</a>)</span>. An oven with silver atoms sends out a beam to a magnet that measures the <span class="math inline">\(x\)</span>-component of the magnetic moment. After this, a beam of those with component <span class="math inline">\(\ket{\mu_x+}\)</span> is sent into a second magnet that measures the <span class="math inline">\(z\)</span>-component of the magnetic moment. We predict (and observe) that half of the resulting atoms are measured in <span class="math inline">\(\ket{\mu_z+}\)</span> and the other half in <span class="math inline">\(\ket{\mu_z-}\)</span>.
+</figcaption>
+</figure>
+</div>
 <p>As a result of this experiment, we will see two beams from the second magnet measurement, with a 50/50 split between <span class="math inline">\(\pm\mu_0\)</span>. Let’s now use our postulates to analyze this experiment.</p>
 <p>Firstly, measuring <span class="math inline">\(\mu_x\)</span> appears to have two possible outcomes, namely <span class="math inline">\(\pm\mu_0\)</span>. As such, Postulates 3 and 4 suggest that the operator associated with this measurement will have two possible eigenvalues, also <span class="math inline">\(\pm\mu_0\)</span> (we expect <span class="math inline">\(\mu_y\)</span> and <span class="math inline">\(\mu_z\)</span> to also have two eigenvalues each). Thus, the Hilbert space <span class="math inline">\(\mathcal{E}\)</span> corresponding to this observable must be at least 2-dimensional, which aligns with our experimental measurements of components of the magnetic moment.</p>
 <p>To proceed, let us assume that the eigenvalues <span class="math inline">\(\pm\mu_0\)</span> are <em>nondegenerate</em> (ie, they each have exactly one associated eigenket). In this case, the eigenspaces are each 1-dimensional, <span class="math inline">\(\mathcal{E}\)</span> is exactly 2-dimensional, and it is spanned by the eigenkets of <span class="math inline">\(\mu_x\)</span> with eigenvalues <span class="math inline">\(\pm\mu_0\)</span>. We’ll similarly expect the space to be spanned by eigenkets of <span class="math inline">\(\mu_y\)</span> and <span class="math inline">\(\mu_z\)</span>, with the same associated eigenvalues.</p>
@@ -336,9 +343,20 @@ Notes 2 -->
 <p><span class="proof-title"><em>Remark</em>. </span>Even though these phase factors cannot be ignored, there are many cases when we can ascertain exactly what they should be, given additional conditions/restrictions on our problem. This is similar to how we can solve for integration constants given additional boundary conditions that may occasionally be imposed on our problem.</p>
 </div>
 <p>Now, since the probability of measuring <span class="math inline">\(\mu_z=-\mu_0\)</span> is also <span class="math inline">\(\frac12\)</span>, that means we can conclude that <span class="math inline">\(c_-\)</span> must have a similar form, albeit with a different phase factor: <span class="math display">\[\therefore c_- = \frac{1}{\sqrt2}e^{i\beta_1}\]</span> Putting these together gives us our expansion for <span class="math inline">\(\ket{\mu_x+}\)</span>: <span class="math display">\[\ket{\mu_x+} = \frac{1}{\sqrt2}\left(e^{i\alpha_1}\ket{+} + e^{i\beta_1}\ket{-}\right)\]</span> This is looking promising, but we still have these pesky phase factors to deal with in order for us to have a complete description of the state of the system. There are a few things we can do to ascertain what they are.</p>
-<p>Firstly, we can actually get rid of one of these phase factors by “absorbing” it into the other. How? Instead define <span class="math inline">\(\ket{\mu_x+}=\ket{\mu_x+}'e^{i\alpha_1}\)</span> and now multiply our previous equation by <span class="math inline">\(e^{-\alpha_1}\)</span>, while also setting <span class="math inline">\(\beta_1' = \beta_1-\alpha_1\)</span>. After dropping the primes (which are merely notational conventions), we are left with: <span class="math display">\[\ket{\mu_x-} = \frac{1}{\sqrt2}\left(\ket{+}+e^{i\beta_1}\ket{-}\right)\]</span></p>
+<p>Firstly, we can actually get rid of one of these phase factors by “absorbing” it into the other. How? Instead define <span class="math inline">\(\ket{\mu_x+}=\ket{\mu_x+}'e^{i\alpha_1}\)</span> and now multiply our previous equation by <span class="math inline">\(e^{-\alpha_1}\)</span>, while also setting <span class="math inline">\(\beta_1' = \beta_1-\alpha_1\)</span>. After dropping the primes (which are merely notational conventions), we are left with: <span class="math display">\[\ket{\mu_x+} = \frac{1}{\sqrt2}\left(\ket{+}+e^{i\beta_1}\ket{-}\right)\]</span></p>
 <div class="notation">
 <p>This may look cheesy, and that’s because it is. We are abusing the fact that our notation simply represents some arbitrary factor. We used a new definition to shift the phase factor elsewhere, and once we were able to move the entirety of the phase to one ket, we no longer required the primes to distinguish from anything else, so we could safely drop them.</p>
+</div>
+<p>If we instead feed the <span class="math inline">\(-\mu_0\)</span> beam into our second magnet, we can perform the exact same analysis to express the negative <span class="math inline">\(x\)</span>-component beam: <span class="math display">\[\ket{\mu_x-} = \frac{1}{\sqrt2}(\ket{+}+e^{i\gamma_1}\ket{-})\]</span> As with <span class="math inline">\(\ket{\mu_x+}\)</span>, we have an undetermined phase factor <span class="math inline">\(e^{i\gamma_1}\)</span>.</p>
+<div id="fig-stern-gerlach-xminus" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stern-gerlach-xminus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="postulates_files/mediabag/afe91a5213f9253fe2787927a112a319ed4fb2ed.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stern-gerlach-xminus-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: The same Stern-Gerlach apparatus as in <a href="#fig-stern-gerlach-xplus" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>, but we instead feed the <span class="math inline">\(\ket{\mu_x-}\)</span> beam into the second magnet.
+</figcaption>
+</figure>
 </div>
 <p>Let’s now try to figure out what these phase factors are. Even though we chose distinct variables for these phase factors to avoid assumptions, they indeed are related through the orthogonality condition of these respective eigenkets: <span class="math display">\[\braket{\mu_x+}{\mu_x-} = \frac12\left(1+e^{i(-\beta_1+\gamma_1)}\right) = 0 \implies e^{i\beta_1} =
 -e^{i\gamma_1}\]</span> This allows us to get rid of <span class="math inline">\(\gamma_1\)</span> and write both kets in terms of the same phase factor: <span class="math display">\[\ket{\mu_x\pm} = \frac{1}{\sqrt2}\left(\ket{+}\pm e^{i\beta_1}\ket{-}\right)\]</span></p>
@@ -362,7 +380,7 @@ Notes 2 -->
 <section id="the-density-operator-briefly" class="level3" data-number="3.2.3">
 <h3 data-number="3.2.3" class="anchored" data-anchor-id="the-density-operator-briefly"><span class="header-section-number">3.2.3</span> The Density Operator, Briefly</h3>
 <p>The majority of our previous analysis was predicated on the assumption that we are accurately able to describe the quantum state of each beam in our experimental apparatus by a definite state vector (in other words, what’s known as a <em>pure state</em>). Is this necessarily the case? Well, the quantum state of the beam that first emerges from the first magnetic measurement is known and can properly be described; what about the state of the beam that first enters the measurement apparatus from the oven?</p>
-<p>A long answer (explored more deeply in Littlejohn Notes 3) made incredibly short is <strong>no</strong>. In general, the state of a particular system may not be specified by a definite state vector, meaning we need more complicated tools to accurately describe the statistics at play. Let’s very briefly construct the solution to this problem. Imagine instead a family of normalized kets that depend on some continuous parameter(s) <span class="math inline">\(\lambda\)</span>, denoted <span class="math inline">\(\ket{\psi(\lambda)}\)</span>, and let’s assume that this parameter is distributed according to some probability distribution <span class="math inline">\(f(\lambda)\)</span> such that: <span class="math display">\[f(\lambda) \geq 0 \quad\text{and}\quad \int f(\lambda) \ d\lambda = 1\]</span> Then, the expectation value of any arbitrary operator <span class="math inline">\(A\)</span> can be rewritten in terms of this new distribution: <span class="math display">\[\expval{A} = \int f(\lambda)\expval{A}{\psi(\lambda)} \ d\lambda \]</span> The discrete case is a lot simpler; here, we enumerate the states <span class="math inline">\(\ket{\psi_i}\)</span> and our probability distribution is now discretized: <span class="math display">\[\sum_i f_i = 1\]</span> Similarly, our expectation value shifts from an integral to a discrete sum over the probabilities <span class="math inline">\(f_i\)</span>: <span class="math display">\[\expval{A} = \sum_i f_i\expval{A}{\psi_i}\]</span> Let’s now introduce the <em>density operator</em> to help us systematize our analysis:</p>
+<p>A long answer <span class="citation" data-cites="littlejohn2022">(explored more deeply in <a href="../references.html#ref-littlejohn2022" role="doc-biblioref">Littlejohn 2022, n. 3</a>)</span> made incredibly short is <strong>no</strong>. In general, the state of a particular system may not be specified by a definite state vector, meaning we need more complicated tools to accurately describe the statistics at play. Let’s very briefly construct the solution to this problem. Imagine instead a family of normalized kets that depend on some continuous parameter(s) <span class="math inline">\(\lambda\)</span>, denoted <span class="math inline">\(\ket{\psi(\lambda)}\)</span>, and let’s assume that this parameter is distributed according to some probability distribution <span class="math inline">\(f(\lambda)\)</span> such that: <span class="math display">\[f(\lambda) \geq 0 \quad\text{and}\quad \int f(\lambda) \ d\lambda = 1\]</span> Then, the expectation value of any arbitrary operator <span class="math inline">\(A\)</span> can be rewritten in terms of this new distribution: <span class="math display">\[\expval{A} = \int f(\lambda)\expval{A}{\psi(\lambda)} \ d\lambda \]</span> The discrete case is a lot simpler; here, we enumerate the states <span class="math inline">\(\ket{\psi_i}\)</span> and our probability distribution is now discretized: <span class="math display">\[\sum_i f_i = 1\]</span> Similarly, our expectation value shifts from an integral to a discrete sum over the probabilities <span class="math inline">\(f_i\)</span>: <span class="math display">\[\expval{A} = \sum_i f_i\expval{A}{\psi_i}\]</span> Let’s now introduce the <em>density operator</em> to help us systematize our analysis:</p>
 <div id="def-density-operator" class="definition theorem">
 <p><span class="theorem-title"><strong>Definition 3.1 (Density Operator)</strong></span> The <em>density operator</em>, denoted <span class="math inline">\(\rho\)</span>, is defined like so in terms of the given kets <span class="math inline">\(\ket{\psi}\)</span> and probabily distributions <span class="math inline">\(f\)</span>: <span class="math display">\[\rho = \int d\lambda f(\lambda) \ketbra{\psi(\lambda)}\ \text{(continuous)}, \quad \rho = \sum_i
 f_i\ketbra{\psi_i}\ \text{(discrete)}\]</span></p>
@@ -390,7 +408,7 @@ f_i\ketbra{\psi_i}\ \text{(discrete)}\]</span></p>
 </div>
 <p>Now, we have a more complete set of postulates that we can apply to any kind of physical system. Whenever we deal with a system that can be represented by a pure state (which will be often in the beginning), we can default to the earlier, incomplete variant and not worry about the density operator too much. Nevertheless, we felt it was important to explain what it was and (intuitively) why we need it.</p>
 <div class="proof remark">
-<p><span class="proof-title"><em>Remark</em>. </span>This may have been fairly confusing, and we completely understand. Sometimes, we will state important corrections to certain principles for the sake of completeness and total transparency, but at this stage, the simplified variants will be more than sufficient to develop the theory. For more detailed discussions of these principles, await a graduate course in quantum mechanics and consult J. J. Sakurai’s <em>Modern Quantum Mechanics</em>.</p>
+<p><span class="proof-title"><em>Remark</em>. </span>This may have been fairly confusing, and we completely understand. Sometimes, we will state important corrections to certain principles for the sake of completeness and total transparency, but at this stage, the simplified variants will be more than sufficient to develop the theory. For more detailed discussions of these principles, await a graduate course in quantum mechanics and consult <span class="citation" data-cites="sakurai2020">(<a href="../references.html#ref-sakurai2020" role="doc-biblioref">Sakurai 2020</a>)</span>.</p>
 </div>
 </section>
 </section>
@@ -448,32 +466,35 @@ f_i\ketbra{\psi_i}\ \text{(discrete)}\]</span></p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-axler" class="csl-entry" role="listitem">
+<div id="ref-axler2023" class="csl-entry" role="listitem">
 Axler, Sheldon. 2023. <em>Linear Algebra Done Right</em>. Fourth Edition. Springer.
 </div>
-<div id="ref-french-taylor" class="csl-entry" role="listitem">
+<div id="ref-french-taylor2017" class="csl-entry" role="listitem">
 French, A. P., and E. F. Taylor. 2017. <em>An Introduction to Quantum Physics (MIT Introductory Physics Series)</em>. First edition. CRC Press.
 </div>
-<div id="ref-griffiths" class="csl-entry" role="listitem">
+<div id="ref-griffiths2018" class="csl-entry" role="listitem">
 Griffiths, David J., and Darrell F. Schroeter. 2018. <em>Introduction to Quantum Mechanics</em>. Third edition. Cambridge University Press.
 </div>
-<div id="ref-littlejohn" class="csl-entry" role="listitem">
-Littlejohn, Robert. 2022. <em>Quantum Mechanics Lecture Notes</em>.
+<div id="ref-littlejohn2022" class="csl-entry" role="listitem">
+Littlejohn, Robert G. 2022. <em>Physics 221AB (Quantum Mechanics) Lecture Notes</em>. Https://bohr.physics.berkeley.edu/classes/221/2122/221.html.
 </div>
-<div id="ref-muller" class="csl-entry" role="listitem">
-Muller, Holger. 2024. <em>Physics 221A/b Lecture Notes</em>.
+<div id="ref-muller2023" class="csl-entry" role="listitem">
+Muller, Holger. 2023. <em>Physics 221A/b Supplementary Lecture Notes</em>.
 </div>
-<div id="ref-sakurai" class="csl-entry" role="listitem">
+<div id="ref-sakurai2020" class="csl-entry" role="listitem">
 Sakurai, Jun John. 2020. <em>Modern Quantum Mechanics</em>. Third edition. Cambridge University Press.
 </div>
-<div id="ref-schwabl" class="csl-entry" role="listitem">
+<div id="ref-schwabl2008" class="csl-entry" role="listitem">
 Schwabl, Franz, R. Hilton, and Angela Lahee. 2008. <em>Advanced Quantum Mechanics</em>. Fourth Edition. Springer.
 </div>
-<div id="ref-shankar" class="csl-entry" role="listitem">
+<div id="ref-shankar1994" class="csl-entry" role="listitem">
 Shankar, Ramamurti. 1994. <em>Principles of Quantum Mechanics</em>. Second Edition. Plenum Press.
 </div>
-<div id="ref-siddiqi" class="csl-entry" role="listitem">
+<div id="ref-siddiqi2022" class="csl-entry" role="listitem">
 Siddiqi, Irfan. 2022. <em>Physics 137A Lecture Notes</em>.
+</div>
+<div id="ref-taylor2005" class="csl-entry" role="listitem">
+Taylor, John R. 2005. <em>Classical Mechanics</em>. University Science Books.
 </div>
 </div>
 </section>

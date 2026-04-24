@@ -295,7 +295,7 @@ window.Quarto = {
 <div class="warning">
 <p>There will be a <em>lot</em> of math in the following chapter. This chapter alone will introduce more math than any other individual chapter. This may feel rather overwhelming. Do not fret; the goal is not to master all of the math we’re about to explain with the utmost rigor; rather, the goal is to obtain a basic framework so the math we’ll use to develop the remaining theory of quantum mechanics will make sense.</p>
 </div>
-<p>Let’s now begin with the formalism. For the time being, we will assume some prior familiarity working with linear algebra objects like vector spaces and linear maps, and a bit of knowledge about complex numbers, such as the definition of a complex conjugate. If you’re interested in learning more about these, feel free to check out the appendices at the end of this book, or consult some linear algebra textbooks such as Axler’s <em>Linear Algebra Done Right</em>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. <!--
+<p>Let’s now begin with the formalism. For the time being, we will assume some prior familiarity working with linear algebra objects like vector spaces and linear maps, and a bit of knowledge about complex numbers, such as the definition of a complex conjugate. If you’re interested in learning more about these, feel free to check out the appendices at the end of this book, or consult some linear algebra textbooks <span class="citation" data-cites="axler2023">(such as <a href="../references.html#ref-axler2023" role="doc-biblioref">Axler 2023</a>)</span>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. <!--
 :::{.notation}
 One brief notational remark. For brevity, we will use *quantifiers* to shorten notation:
 
@@ -309,16 +309,16 @@ One brief notational remark. For brevity, we will use *quantifiers* to shorten n
 <p>The central focus of our analysis is the <em>wavefunction</em> of a system, which we’ll denote with a capital or lowercase <span class="math inline">\(\psi\)</span>. As the name suggests, this is a function that will take certain inputs (such as position, momentum, etc) and can be used to ascertain other properties (such as energy). Solving for the wavefunction of a system is the central focus of quantum mechanics, since the wavefunction itself fully represents a system/state; this will be expanded on further in [POSTULATES REF].</p>
 <p>Now, since the wavefunction has to represent physically realizable states (eg, an electron or a Hydrogen atom), there are certain restrictions we must enforce on what type of function this can be. What restriction can we put on a function describing some sort of physical system? Answering this question involves understanding what the wavefunction is meant to encode in the first place. The key insight is recognizing that we can make use of <em>probability</em> for this. In other words, when measuring a particle’s position, we know that it <strong>must</strong> exist <em>somewhere</em> in space. Mathematically, this means that the probability of finding the wavefunction across all of space must be 1: <span class="math display">\[
    \int_{-\infty}^{\infty} |\psi(x)|^2 \ dx = 1
-\]</span> When <span class="math inline">\(\psi\)</span> satisfies this property, we say that it is <em>normalized</em>. To make our lives a little bit simpler for now, we can loosen this restriction and only enforce that the function is <em>normalizable</em>: <span class="math display">\[
-  \int_{-\infty}^{\infty} |\psi(x)|^2 \ dx &lt; \infty
-\]</span> This condition ends up being sufficient for our discussion, since any wavefunction satisfying this can be normalized by multiplying <span class="math inline">\(\psi\)</span> by the reciprocal of the square root of the integral: <span class="math display">\[
-    \int_{-\infty}^{\infty} |\psi(x)|^2 \ d x = A \implies \int_{-\infty}^{\infty} \left|\frac{1}{\sqrt{A}} \psi(x)\right|^2 \ d x
-    = 1
 \]</span></p>
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>The interpretation that the squared norm of the wavefunction encodes probability was a nontrivial leap that took physicists years to uncover. We applaud Max Born’s discovery, but will make no attempt to naturally arrive at this conclusion ourselves.</p>
 </div>
-<p>The requirement that <span class="math inline">\(\psi\)</span> is normalizable and it being complex valued are the only restrictions on the kinds of <span class="math inline">\(\psi\)</span> we are allowed to consider. The collection of such <span class="math inline">\(\psi\)</span> forms a vector space, and since <span class="math inline">\(\psi\)</span> is complex-valued, we call this a <em>complex vector space</em>. We can then take this space, and attach an operation called the <em>inner product</em> to produce a <em>Hilbert space</em>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Specifically, the inner product we use is: <span class="math display">\[
+<p>When <span class="math inline">\(\psi\)</span> satisfies this property, we say that it is <em>normalized</em>. To make our lives a little bit simpler for now, we can loosen this restriction and only enforce that the function is <em>normalizable</em>: <span class="math display">\[
+  \int_{-\infty}^{\infty} |\psi(x)|^2 \ dx &lt; \infty
+\]</span> This condition ends up being sufficient for our discussion, since any wavefunction satisfying this can be normalized by multiplying <span class="math inline">\(\psi\)</span> by the reciprocal of the square root of the integral: <span class="math display">\[
+    \int_{-\infty}^{\infty} |\psi(x)|^2 \ d x = A \implies \int_{-\infty}^{\infty} \left|\frac{1}{\sqrt{A}} \psi(x)\right|^2 \ d x
+    = 1
+\]</span> The requirement that <span class="math inline">\(\psi\)</span> is normalizable and it being complex valued are the only restrictions on the kinds of <span class="math inline">\(\psi\)</span> we are allowed to consider. The collection of such <span class="math inline">\(\psi\)</span> forms a vector space, and since <span class="math inline">\(\psi\)</span> is complex-valued, we call this a <em>complex vector space</em>. We can then take this space, and attach an operation called the <em>inner product</em> to produce a <em>Hilbert space</em>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Specifically, the inner product we use is: <span class="math display">\[
     \langle \psi(x), \phi(x) \rangle = \int_{-\infty}^{\infty} \psi^{*}(x)\phi(x) \ d x
 \]</span> where <span class="math inline">\(\psi, \phi\)</span> are two wavefunctions and the <span class="math inline">\(*\)</span> represents the complex conjugate. Combining this inner product with the set of <span class="math inline">\(\psi\)</span>’s defines our Hilbert space. The reason we do this is because, as we will see, this framework ends up being a very natural (and elegant) way to talk about wavefunctions and the relationships between them.</p>
 <!-- I think this should go in a linear algebra appendix-- have Carl write? -->
@@ -780,32 +780,35 @@ U_1U_2U_2^{-1}U_1^{-1} = \\
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-axler" class="csl-entry" role="listitem">
+<div id="ref-axler2023" class="csl-entry" role="listitem">
 Axler, Sheldon. 2023. <em>Linear Algebra Done Right</em>. Fourth Edition. Springer.
 </div>
-<div id="ref-french-taylor" class="csl-entry" role="listitem">
+<div id="ref-french-taylor2017" class="csl-entry" role="listitem">
 French, A. P., and E. F. Taylor. 2017. <em>An Introduction to Quantum Physics (MIT Introductory Physics Series)</em>. First edition. CRC Press.
 </div>
-<div id="ref-griffiths" class="csl-entry" role="listitem">
+<div id="ref-griffiths2018" class="csl-entry" role="listitem">
 Griffiths, David J., and Darrell F. Schroeter. 2018. <em>Introduction to Quantum Mechanics</em>. Third edition. Cambridge University Press.
 </div>
-<div id="ref-littlejohn" class="csl-entry" role="listitem">
-Littlejohn, Robert. 2022. <em>Quantum Mechanics Lecture Notes</em>.
+<div id="ref-littlejohn2022" class="csl-entry" role="listitem">
+Littlejohn, Robert G. 2022. <em>Physics 221AB (Quantum Mechanics) Lecture Notes</em>. Https://bohr.physics.berkeley.edu/classes/221/2122/221.html.
 </div>
-<div id="ref-muller" class="csl-entry" role="listitem">
-Muller, Holger. 2024. <em>Physics 221A/b Lecture Notes</em>.
+<div id="ref-muller2023" class="csl-entry" role="listitem">
+Muller, Holger. 2023. <em>Physics 221A/b Supplementary Lecture Notes</em>.
 </div>
-<div id="ref-sakurai" class="csl-entry" role="listitem">
+<div id="ref-sakurai2020" class="csl-entry" role="listitem">
 Sakurai, Jun John. 2020. <em>Modern Quantum Mechanics</em>. Third edition. Cambridge University Press.
 </div>
-<div id="ref-schwabl" class="csl-entry" role="listitem">
+<div id="ref-schwabl2008" class="csl-entry" role="listitem">
 Schwabl, Franz, R. Hilton, and Angela Lahee. 2008. <em>Advanced Quantum Mechanics</em>. Fourth Edition. Springer.
 </div>
-<div id="ref-shankar" class="csl-entry" role="listitem">
+<div id="ref-shankar1994" class="csl-entry" role="listitem">
 Shankar, Ramamurti. 1994. <em>Principles of Quantum Mechanics</em>. Second Edition. Plenum Press.
 </div>
-<div id="ref-siddiqi" class="csl-entry" role="listitem">
+<div id="ref-siddiqi2022" class="csl-entry" role="listitem">
 Siddiqi, Irfan. 2022. <em>Physics 137A Lecture Notes</em>.
+</div>
+<div id="ref-taylor2005" class="csl-entry" role="listitem">
+Taylor, John R. 2005. <em>Classical Mechanics</em>. University Science Books.
 </div>
 </div>
 </section>
