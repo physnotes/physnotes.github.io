@@ -47,6 +47,7 @@
   color: var(--dgf);
 }
 
+
 /* Padding fix */
 .theorem > :last-child {margin-bottom: 0}
 .lemma > :last-child {margin-bottom: 0}
@@ -153,6 +154,14 @@ div:has(> script[type="display flex"]) {
 /* Left and right justification */
 p {
   text-align: justify
+}
+
+/* Proof environment stuff */ 
+div.proof > :last-child::after {
+  content: "\25A0"; 
+  display: block;
+  text-align: right;
+  margin-top: 0.5em;
 }
 
 
