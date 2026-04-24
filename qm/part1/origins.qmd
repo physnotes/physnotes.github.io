@@ -9,7 +9,7 @@ predict, thus demonstrating that more was needed to understand the world around 
 
 <!--I chose to put this in a quote block, but maybe footnote? -->
 > The content in this section is heavily inspired by Prof. Siddiqi's notes for the introductory lecture in
-> Physics 137A (Quantum Mechanics I) at UC Berkeley. 
+> Physics 137A (Quantum Mechanics I) at UC Berkeley [see @siddiqi2022]. 
 
 ## Blackbody Radiation
 To begin our story, we travel back to the mid-19th century. Around this time, Gustav Kirchhoff (yes, the one from your
@@ -17,7 +17,7 @@ circuits classes[^circuits]) was studying the physics of *blackbodies*:
 
 :::{.definition #def-blackbody}
 # Blackbody
-A *blackbody* (or black body) is an indealized object that absorbs *all* electromagnetic radiation (getting
+A *blackbody* (or black body) is an idealized object that absorbs *all* electromagnetic radiation (getting
 its name from how black absorbs all light).
 :::
 
@@ -287,7 +287,7 @@ way, light going through one slit can interfere with the other, producing the in
 the screen. 
 
 :::{.remark}
-This is a version of the *Huygens Principle*, discovered by Christiaan Huygens in 1678 and applied primarily
+This is a version of the *Huygens principle*, discovered by Christiaan Huygens in 1678 and applied primarily
 to classical wave propagation, but it works here as well.
 :::
 

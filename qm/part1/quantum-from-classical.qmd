@@ -125,25 +125,22 @@ operator and measuring a particle's position will be relegated mostly to nonrela
 Now that we've established how to appropriately make positional measurements, a natural next step is to
 understand how to quantify momentum and associated momentum measurements. 
 
-:::{.remark}
-We will not, in fact, understand how to quantify momentum and associated momentum measurements. Oopsies. (I
-leave this to you Eric).
-:::
+[This section is currently incomplete; it will be updated very soon!]
 
 ### Translation Operators 
-
+[This section is currently incomplete; it will be updated very soon!]
 
 ### Generators of Translations
-
+[This section is currently incomplete; it will be updated very soon!]
 
 ### Classical vs. Quantum Momentum
-
+[This section is currently incomplete; it will be updated very soon!]
 
 #### Classical Momentum 
-
+[This section is currently incomplete; it will be updated very soon!]
 
 #### Quantum Momentum
-
+[This section is currently incomplete; it will be updated very soon!]
 
 ## The Schrödinger Equation
 We are now finally ready to develop the Schrödinger equation, which will serve as the main equation all of
@@ -383,5 +380,5 @@ true generally: the Hamiltonian only describes the total energy of the system wh
 *natural* coordinate system (ie, the relation between the positional descriptions of particles in a system
 and the generalized coordinates is time-independent). In functionally all of our cases, though, we will
 simply choose natural coordinate systems, meaning we can safely take the Hamiltonian to represent the total
-energy. See [REF: Taylor] for a more in-depth description of generalized coordinates and how they affect the
+energy. See [taylor2005] for a more in-depth description of generalized coordinates and how they affect the
 form of the Lagrangian and Hamiltonian.

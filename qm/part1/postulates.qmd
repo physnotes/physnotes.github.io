@@ -137,19 +137,32 @@ component of the magnetic moment, denoted $\mu_x$, and pass the beam where the m
 $\mu_x=+\mu_0$[^bohr-magneton] into a second magnet that measures the $z$ component (denoted $\mu_z$). 
 <!-- I didn't make tikz work on my end while writing this; pls recreate the Stern-Gerlach apparatus from
 Notes 2 -->
-<center>
+
+:::{#fig-stern-gerlach-xplus fig-env="figure*" fig-pos="h"}
 ``` tikz
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=1.25]
   \draw[thick] (-0.5,-0.5) rectangle (0.5,0.5) node[midway] {Ag};
   \node at (0,-0.75) (o) {\text{oven}};
   \draw[thick] (0.875,0.5) -- (0.875,-0.5);
   \filldraw[white] (0.45,-0.1) rectangle (0.9,0.1);
   \draw[thick,-stealth] (0.4,0) -- (2,0);
-  \draw[thick] (2,-0.5) rectangle (3,0.5) node[midway] {$\mu_x$};
-  \draw[thick] (3,0.25) node[above,right,yshift=0.15cm,scale=0.75] {$+$} -- (4.25,0.25) node[above,scale=0.75] {$|\mu_x+\rangle$};
+  \draw[thick] (2,-0.5) rectangle (3,0.5) node[midway,scale=1.5] {$\mu_x$};
+  \draw[thick] (3,0.25) node[above right,scale=0.75] {$+$} -- (4.25,0.25) node[above left,scale=0.75] {$|\mu_x+\rangle$} -- (4.5,0);
+  \draw[thick,-stealth] (4.5,0) -- (4.75,0);
+  \draw[thick,-||] (3,-0.25) node[above right,scale=0.75] {$-$} -- (3.75,-0.25);
+  \draw[thick] (4.75,-0.5) rectangle (5.75,0.5) node[midway,scale=1.5] {$\mu_z$};
+  \draw[thick,-stealth] (5.75,0.25) node[above right,scale=0.75] {$|\mu_z+\rangle$} --
+(7,0.25) node[right] {$50\%$};
+  \draw[thick,-stealth] (5.75,-0.25) node[above right,scale=0.75] {$|\mu_z-\rangle$} --
+(7,-0.25) node[right] {$50\%$};
 \end{tikzpicture}
 ```
-</center>
+The Stern-Gerlach experimental apparatus [as visualized in @littlejohn2022 Notes 2, 3]. An oven with
+silver atoms sends out a beam to a magnet that measures the $x$-component of the magnetic moment.
+After this, a beam of those with component $\ket{\mu_x+}$ is sent into a second magnet that measures the
+$z$-component of the magnetic moment. We predict (and observe) that half of the resulting atoms are measured
+in $\ket{\mu_z+}$ and the other half in $\ket{\mu_z-}$.
+:::
 
 As a result of this experiment, we will see two beams from the second magnet measurement, with a 50/50 split
 between $\pm\mu_0$. Let's now use our postulates to analyze this experiment.
@@ -218,7 +231,7 @@ Firstly, we can actually get rid of one of these phase factors by "absorbing" it
 Instead define $\ket{\mu_x+}=\ket{\mu_x+}'e^{i\alpha_1}$ and now multiply our previous equation by
 $e^{-\alpha_1}$, while also setting $\beta_1' = \beta_1-\alpha_1$. 
 After dropping the primes (which are merely notational conventions), we are left with:
-$$\ket{\mu_x-} = \frac{1}{\sqrt2}\left(\ket{+}+e^{i\beta_1}\ket{-}\right)$$
+$$\ket{\mu_x+} = \frac{1}{\sqrt2}\left(\ket{+}+e^{i\beta_1}\ket{-}\right)$$
 
 :::{.notation}
 This may look cheesy, and that's because it is. We are abusing the fact that our notation simply represents
@@ -226,6 +239,34 @@ some arbitrary factor. We used a new definition to shift the phase factor elsewh
 move the entirety of the phase to one ket, we no longer required the primes to distinguish from anything
 else, so we could safely drop them.
 :::
+
+If we instead feed the $-\mu_0$ beam into our second magnet, we can perform the exact same analysis to express the negative $x$-component beam:
+$$\ket{\mu_x-} = \frac{1}{\sqrt2}(\ket{+}+e^{i\gamma_1}\ket{-})$$
+As with $\ket{\mu_x+}$, we have an undetermined phase factor $e^{i\gamma_1}$.
+
+:::{#fig-stern-gerlach-xminus fig-env="figure*" fig-pos="h"}
+``` tikz
+\begin{tikzpicture}[scale=1.25]
+  \draw[thick] (-0.5,-0.5) rectangle (0.5,0.5) node[midway] {Ag};
+  \node at (0,-0.75) (o) {\text{oven}};
+  \draw[thick] (0.875,0.5) -- (0.875,-0.5);
+  \filldraw[white] (0.45,-0.1) rectangle (0.9,0.1);
+  \draw[thick,-stealth] (0.4,0) -- (2,0);
+  \draw[thick] (2,-0.5) rectangle (3,0.5) node[midway,scale=1.5] {$\mu_x$};
+  \draw[thick] (3,-0.25) node[above right,scale=0.75] {$-$} -- (4.25,-0.25) node[above left,scale=0.75] {$|\mu_x-\rangle$} -- (4.5,0);
+  \draw[thick,-stealth] (4.5,0) -- (4.75,0);
+  \draw[thick,-||] (3,0.25) node[above right,scale=0.75] {$+$} -- (3.75,0.25);
+  \draw[thick] (4.75,-0.5) rectangle (5.75,0.5) node[midway,scale=1.5] {$\mu_z$};
+  \draw[thick,-stealth] (5.75,0.25) node[above right,scale=0.75] {$|\mu_z+\rangle$} --
+(7,0.25) node[right] {$50\%$};
+  \draw[thick,-stealth] (5.75,-0.25) node[above right,scale=0.75] {$|\mu_z-\rangle$} --
+(7,-0.25) node[right] {$50\%$};
+\end{tikzpicture}
+```
+The same Stern-Gerlach apparatus as in @fig-stern-gerlach-xplus, but we instead feed the $\ket{\mu_x-}$ beam
+into the second magnet.
+:::
+
 
 Let's now try to figure out what these phase factors are. Even though we chose distinct variables for these
 phase factors to avoid assumptions, they indeed are related through the orthogonality condition of these
@@ -300,7 +341,7 @@ words, what's known as a *pure state*). Is this necessarily the case? Well, the 
 that first emerges from the first magnetic measurement is known and can properly be described; what about the
 state of the beam that first enters the measurement apparatus from the oven? 
 
-A long answer (explored more deeply in Littlejohn Notes 3) made incredibly short is **no**. In general, the
+A long answer [explored more deeply in @littlejohn2022 Notes 3] made incredibly short is **no**. In general, the
 state of a particular system may not be specified by a definite state vector, meaning we need more
 complicated tools to accurately describe the statistics at play. Let's very briefly construct the solution to
 this problem. Imagine instead a family of normalized kets that depend on some continuous parameter(s)
@@ -393,8 +434,7 @@ we felt it was important to explain what it was and (intuitively) why we need it
 This may have been fairly confusing, and we completely understand. Sometimes, we will state important
 corrections to certain principles for the sake of completeness and total transparency, but at this stage, the
 simplified variants will be more than sufficient to develop the theory. For more detailed discussions of
-these principles, await a graduate course in quantum mechanics and consult J. J. Sakurai's *Modern Quantum
-Mechanics*.
+these principles, await a graduate course in quantum mechanics and consult [@sakurai2020].
 :::
 
 ## The Generalized Uncertainty Principle
