@@ -4,7 +4,7 @@ We laid the theoretical framework underpinning quantum mechanics in the formalis
 
 Why all this setup? Many undergraduate courses in quantum mechanics will skip over all of this formal development at the beginning in favor of jumping straight into working with the wavefunction and utilizing the Schrödinger equation to solve basic problems. This choice is typically made to avoid adding needless complexity and to prevent the technical mathematical details from getting in the way of a basic physical intuition. As a matter of fact, this is precisely how we learned quantum mechanics initially, before supplementing the finer mathematical formalism in later graduate courses.
 
-We considered following suit and also omitting these details to jump straight into the physics, but decided to include this for a few reasons. Primarily, we did this because **this is not a university course on quantum mechanics**. We are not bound by any time constraints and do not need to adhere to any exlicit schedule, so the reader can take as much time as is required for everything to make sense. Since we don't need to move through a unit within a week or two, there’s no longer a pressing need to omit certain details in the name of expediting the material.
+We considered following suit and also omitting these details to jump straight into the physics, but decided to include this for a few reasons. Primarily, we did this because **this is not a university course on quantum mechanics**. We are not bound by any time constraints and do not need to adhere to any explicit schedule, so the reader can take as much time as is required for everything to make sense. Since we don't need to move through a unit within a week or two, there’s no longer a pressing need to omit certain details in the name of expediting the material.
 
 :::{.remark}
 This is not in any way suggesting that the way undergraduate courses structure quantum mechanics is wrong. Rather, since we are not bound by the same restrictions that an undergraduate course is, we can take certain liberties in material presentation.
@@ -380,5 +380,5 @@ true generally: the Hamiltonian only describes the total energy of the system wh
 *natural* coordinate system (ie, the relation between the positional descriptions of particles in a system
 and the generalized coordinates is time-independent). In functionally all of our cases, though, we will
 simply choose natural coordinate systems, meaning we can safely take the Hamiltonian to represent the total
-energy. See [taylor2005] for a more in-depth description of generalized coordinates and how they affect the
+energy. See [@taylor2005] for a more in-depth description of generalized coordinates and how they affect the
 form of the Lagrangian and Hamiltonian.
