@@ -29,13 +29,13 @@ We will see much more of this hat notation moving forward; an operator will typi
 :::
 
 Since we are dealing with a continuous spectrum and nondegenerate eigenkets (positional values can only correspond to a unique position), the resolution of the identity for this operator takes the following form:
-$$\int_{-\infty}^{\infty}dx\ketbra{x} = 1$$
+$$\int_{-\infty}^{\infty}\ketbra{x}dx = 1$$
 Now, let $\ket{\psi}$ represent a normalized pure state for our system, and $I=[x_0,x_1]$ be some interval on
 the $x$-axis. In this case, the projector onto the interval looks like this:
-$$P_I = \int_{x_0}^{x_1}dx\ketbra{x}$$
+$$P_I = \int_{x_0}^{x_1}\ketbra{x}dx$$
 Then, the probability postulate tells us that the probability of measuring some positional value within this
 interval is given by the following expectation value:
-$$\mathrm{Prob}(x_0\leq x\leq x_1) = \expval{P_I}{\psi} = \int_{x_0}^{x_1}dx\braket{\psi}{x}\braket{x}{\psi}$$
+$$\mathrm{Prob}(x_0\leq x\leq x_1) = \expval{P_I}{\psi} = \int_{x_0}^{x_1}\braket{\psi}{x}\braket{x}{\psi}dx$$
 Now, that last expression looks like we're taking some squared norm. To make our lives easier (and to make
 this expression look more like an integral expression wherein we're actually integrating a function), let's
 finally define the *positional wavefunction* $\psi(x)$:
@@ -47,19 +47,19 @@ $$\psi(x) = \braket{x}{\psi}$$
 :::
 
 Then, our probability becomes:
-$$\mathrm{Prob}(x_0\leq x \leq x_1) = \int_{x_0}^{x_1}dx|\psi(x)|^2 = \int_{x_0}^{x_1}\psi^*(x)\psi(x)dx$$
+$$\mathrm{Prob}(x_0\leq x \leq x_1) = \int_{x_0}^{x_1}|\psi(x)|^2dx = \int_{x_0}^{x_1}\psi^*(x)\psi(x)dx$$
 Here, we see that the squared norm of the positional wavefunction encodes the probability density of finding the
 particle at a given point in space. Now, we finally have a way to go from kets to functions!
 
 Can we go the other way? No problem! If we multiply both sides of the resolution of the identity by
 $\ket{\psi}$, we get a representation of the ket:
 <!-- do we want to encode this in a lemma or leave it outside any tcolorbox and just keep it boxed? -->
-$$\ket{\psi} = \int dx\ket{x}\braket{x}{\psi} \implies \boxed{\ket{\psi} = \int dx \ket{x}\psi(x)}$$
+$$\ket{\psi} = \int \ket{x}\braket{x}{\psi}dx \implies \boxed{\ket{\psi} = \int  \ket{x}\psi(x)dx}$$
 
 Now that we have a way to convert between ket formalism and functional notation, we also have a way to
 describe the inner product between two kets $\ket{\psi}$ and $\ket{\phi}$ by once again inserting the
 resolution of the identity between them:
-$$\braket{\psi}{\phi} = \int dx \braket{\psi}{x}\braket{x}{\phi} = \int \psi^*(x)\phi(x)dx$$
+$$\braket{\psi}{\phi} = \int \braket{\psi}{x}\braket{x}{\phi}dx = \int \psi^*(x)\phi(x)dx$$
 
 ### Generalization to 3 Dimensions
 This formalism extends quite easily to three dimensions, where we simply have to consider three separate
@@ -82,13 +82,13 @@ So, we now can write three separate eigenvalue problems, conveniently condensed 
 notation:
 $$x_i\ket{\mathbf{x}} = x_i\ket{\mathbf{x}}$$
 Just as with the one-dimensional case, we have a similar resolution of the identity:
-$$1 = \int d^3\mathbf{x}\ketbra{\mathbf{x}}$$
+$$1 = \int \ketbra{\mathbf{x}}d^3\mathbf{x}$$
 Then, our wavefunction-ket transformations translate seamlessly from the one-dimensional case:
 $$\psi(\mathbf{x}) = \braket{\mathbf{x}}{\psi}, \quad \ket{\psi} = \int
-d^3\mathbf{x}\ket{\mathbf{x}}\psi(\mathbf{x})$$
+\ket{\mathbf{x}}\psi(\mathbf{x})d^3\mathbf{x}$$
 Finally, the probability density of finding the particle in some region $R$ in 3-dimensional space becomes a
 multivariate integral:
-$$\mathrm{Prob}(\mathbf{x}\in R) = \int_Rd^3\mathbf{x}|\psi(\mathbf{x})|^2$$
+$$\mathrm{Prob}(\mathbf{x}\in R) = \int_R|\psi(\mathbf{x})|^2d^3\mathbf{x}$$
 
 ### The Position Operator
 What we've accomplished thus far amounts to representing an arbitrary ket state in configuration space; this,
@@ -140,6 +140,10 @@ understand how to quantify momentum and associated momentum measurements.
 [This section is currently incomplete; it will be updated very soon!]
 
 #### Quantum Momentum
+[This section is currently incomplete; it will be updated very soon!]
+
+### Canonical Commutation Relation
+<!-- i am far too lazy to write this one up; can you take this too pls -->
 [This section is currently incomplete; it will be updated very soon!]
 
 ## The Schrödinger Equation
@@ -241,7 +245,7 @@ $$\pdv{U(t,t_0)}{t} = \left(\lim_{\epsilon\to0}\frac{U(t+\epsilon,t) - 1}{\epsil
 By @eq-generator-tevolut, the RHS derivative can be replaced with $-i\Omega(t)$, which in turn can be
 replaced with $\frac{-i\hat{H}(t)}{\hbar}$. Assembling all of that together (and rearranging a few
 prefactors) gives us our differential equation for the time evolution operator in terms of the Hamiltonian:
-$$i\hbar\pdv{U(t,t_0)}{t} = \hat{H}(t)U(t,t_0)$$
+$$i\hbar\pdv{U(t,t_0)}{t} = \hat{H}(t)U(t,t_0)$${#eq-uderiv-hamiltonian}
 Now, we can finally get rid of $U$ by differentiating @eq-tevolut-def with respect to time and substituting
 in this new expression to get rid of the time evolution (remember also to tack on the relevant $i\hbar$
 prefactor):
@@ -329,13 +333,58 @@ Since our wavefunction is what describes the state of the system, it is natural 
 that evolves in time. As a consequence, most problems we will tackle and most attempts at solving the
 Schrödinger equation will be undertaken in the Schrödinger picture.
 
+:::{.notation}
+In this section, we denote operators and kets in the Schrödinger picture with a subscripted
+$S$:
+$$\ket{\psi} \to \ket{\psi_S(t)}, \quad \hat{A} \to \hat{A}_S$$
+In general, if a subscript is not present, then we assume that we are working in the Schrödinger picture.
+:::
+
 ### Heisenberg Picture
 That being said, there is another way we can interpret systems. What if, instead of letting the wavefunction
 evolve in time whilst keeping observables static, we go the other way: let *observables* evolve in time
 whilst keeping wavefunctions static. This is what's known as the *Heisenberg picture*, with our equations of
 motion now involving time-derivatives of operators rather than wavefunctions.
 
-[This section is currently incomplete; it will be updated very soon!]
+:::{.notation}
+We denote operators and kets in the Heisenberg picture with a subscripted
+$H$:
+$$\ket{\psi} \to \ket{\psi_H}, \quad \hat{A} \to \hat{A}_H(t)$$
+:::
+
+Since we are eliminating time dependence from kets in the Heisenberg picture, we relate them to the
+corresponding time-dependent state vector in the Schrödinger picture by a time evolution:
+$$\ket{\psi_H} = U(t,t_0)^{\dagger}\ket{\psi_S(t)}$$
+This is equivalent to writing that the Heisenberg state vector is simply the Schrödinger state vector at
+the initial time $t_0$:
+$$\boxed{\ket{\psi_H} =
+\ket{\psi_S(t_0)}}$${#eq-schrodinger-heisenberg-ket}
+Now, operators in the Schrödinger picture are still generally allowed to have an explicit time
+dependence, we need to introduce a separate (implicit) time depedence when relating to the
+Heisenberg operator:
+$$\hat{A}_H(t) =
+U(t,t_0)^{\dagger}\hat{A}_S(t)U(t,t_0)$${#eq-schrodinger-heiseberg-operator}
+Since the Heisenberg kets don't have any time dependence, we no longer have a time evolution equation
+for them like we did in the Schrödinger picture. Instead, we need a time evolution equation for Heisenberg
+operators. If we differentiate the above equation and once again invoke @eq-uderiv-hamiltonian, we get:
+$$i\hbar\dv{\hat{A}_H}{t} = -U^{\dagger}(t,t_0)\hat{A}_SU(t,t_0) + U^{\dagger}(t,t_0)\hat{A}_S\hat{H}U(t,t_0) + i\hbar U^{\dagger}(t,t_0)\pdv{\hat{A}_S}{t}U(t,t_0)$$
+Notice, however, that the first two terms on the RHS can be converted to their Heisenberg
+equivalents by @eq-schrodinger-heiseberg-operator:
+$$-U^{\dagger}(t,t_0)\hat{H}\hat{A}_SU(t,t_0) + U^{\dagger}(t,t_0)\hat{A}_S\hat{H}U(t,t_0) = -\hat{H}_H\hat{A}_H + \hat{A}_H\hat{H}_H = [\hat{A}_H,\hat{H}_H]$$
+The final term on the RHS can be rewritten in a similar manner to represent the derivative of the operator
+$\hat{A}$ in the Heisenberg picture:
+$$i\hbar U^{\dagger}(t,t_0)\pdv{\hat{A}_S}{t}U(t,t_0) = i\hbar\left(\pdv{\hat{A}}{t}\right)_H$$
+Putting these together gives us the *Heisenberg equations of motion*:
+
+:::{.theorem #thm-heisenberg-eoms}
+# Heisenberg Equations of Motion 
+$$i\hbar\dv{\hat{A}_H}{t} = [\hat{A}_H,\hat{H}_H] + i\hbar\left(\pdv{\hat{A}}{t}\right)_H$$
+:::
+
+If the prefactors are annoying, we can instead write it as:
+$$\dv{\hat{A}_H}{t} = -\tfrac{i}{\hbar}[\hat{A}_H,\hat{H}_H] + \left(\pdv{\hat{A}}{t}\right)_H$$
+Whenever we operate in the Heisenberg picture, @thm-heisenberg-eoms will be the equation(s) we will be
+interested in solving rather than anything to do with kets.
 
 ### Equivalence of the Pictures
 Despite the fact that these two pictures seem fundamentally different and involve letting two completely
@@ -344,9 +393,61 @@ because the solution to a particular problem shouldn't depend on the method used
 Instead of merely saying that, however, let's take the time now to prove that algebraic relations are
 equivalent between the two pictures. 
 
-[This section is currently incomplete; it will be updated very soon!]
+In the previous section, we saw how to convert kets and operators between the Schrödinger and Heisenberg pictures, but what about algebraic relations between operators/kets? Let's consider some Schrödinger operator $\hat{A}_S$, related to the Heisenberg operator $\hat{A}_H$ by the usual $\hat{A}_H = U^{\dagger}\hat{A}_SU$ (here, $U=U(t,t_0)$, where we dropped the functional notation for brevity). Now suppose we have a different Schrödinger operator $\hat{B}_S = f(\hat{A}_S)$, where $f$ is some function. Let's see what $\hat{B}_H$ would look like:
+$$\hat{B}_H = U^{\dagger}f(\hat{A}_S)U = f(U^{\dagger}\hat{A}_SU) = f(\hat{A}_H)$$
+<!-- TODO: write up definition of function of an observable in formalism chapter -->
+Wait, hold on a second; why can we just pull the $U$'s into the function? We can start by convincing
+ourselves that this true for simple forms of $f$, such as a polynomial or power series. Take, for
+instance, $f(\hat{A}_S) = \hat{A}^2_S$:
+$$\hat{B}_H = U^{\dagger}\hat{A}_S\hat{A}_SU =
+U^{\dagger}\hat{A}_SUU^{\dagger}\hat{A}_SU = \hat{A}_H\hat{A}_H = \hat{A}_H^2$$
+More generally, we can prove this result holds by recalling the definition of the function of an
+observable discussed in the Formalism chapter. We won't go into too much detail here, so we conclude our
+discussion with that.
 
-## Probability Current
+This relation equivalence also holds for products of operators that don't necessarily commute. Suppose we
+had $\hat{C}_S = \hat{A}_S\hat{B}_S$, where the latter two don't necessarily commute. Then:
+$$\hat{C}_H = U^{\dagger}\hat{A}_S\hat{B}_SU =
+U^{\dagger}\hat{A}_SUU^{\dagger}\hat{B}_SU = \hat{A}_H\hat{B}_H$$
+Notably, we can combine the above two results to conclude that commutation relations also maintain the same form across both pictures:
+<!-- do we want to show this explicitly or leave as is? -->
+$$\hat{C}_S = [\hat{A}_S,\hat{B}_S] \implies \hat{C}_H = [\hat{A}_H,\hat{B}_H]$$
+Finally, potentials also have the same form across both pictures:
+$$U^{\dagger}V(\mathbf{x}_S)U = V(\mathbf{x}_H)$$
+Putting all of these together, we can conclude that the Hamiltonian itself has the same form in both
+pictures:
+$$\hat{H}_S = \frac{\mathbf{p}_S^2}{2m} + V(\mathbf{x}_S) \implies \hat{H}_H = \frac{\mathbf{p}_S^2}{2m} +
+V(\mathbf{x}_H)$$
+We have shown that algebraic relations are the same, but how do we show that the Heisenberg and Schrödinger
+pictures are physically equivalent? Well, we need to consider measurable quantities in quantum
+mechancis and see how they compare to each other across the two pictures. Each measurable quantity can
+be represented in terms of matrix elements of the form $\mel{\phi}{\hat{A}}{\psi}$. Thus, if we
+can show that these are equivalent between the two pictures, we can conclude that either picture should
+predict (and subsequently yield) the same experimental outcomes. Let's start in the Heisenberg picture:
+$$\begin{align*}
+\mel{\phi_H}{\hat{A}_H(t)}{\psi_H} &=
+(\bra{\phi_S(t_0)})(U^{\dagger}(t,t_0)\hat{A}_SU(t,t_0))(\ket{\psi_S(t)}) = \\
+&= (\bra{\phi_S(t_0)}U^{\dagger}(t,t_0))\hat{A}_S(U(t,t_0)\ket{\psi_S(t)}) = \\
+&= \mel{\phi_S(t)}{\hat{A}_S}{\psi_S(t)}
+\end{align*}$$
+Thus, matrix elements are equivalent between the two pictures, meaning any measurable quantity will be
+equivalent between these pictures as well. This means that we can predict the outcome of any experiment
+equally well by finding the time evolution of operators in the Heisenbeg picture of the time evolution
+of state vectors in the Schrödinger picture.
+
+As is par for the course, it is worth considering a special case. In particular, when the Schrödinger
+Hamiltonian $\hat{H}_S$ is time-independent, the time-evolution operator will be a function of $H$ and
+thus commute with it. This then means that the Schrödinger and Heisenberg Hamiltonians will be equal:
+$$\hat{H}_H = U^{\dagger}\hat{H}_SU = U^{\dagger}U\hat{H}_S = \hat{H}_S$$
+
+### Other Pictures?
+Are there other pictures beyond the two that we've considered just now? Yes! In particular, when we start
+dealing with something called *time-dependent perturbation theory* (in Part II), we will consider the
+*interaction picture*, which can be considered a sort-of intermediary between these two[^interaction-picture].
+
+## Probability Current 
+<!-- i am far too lazy to write this up as well; can you also take this pls (use griffiths and/or littlejohn)
+-->
 [This section is currently incomplete; it will be updated very soon!]
 
 ## Commutators
@@ -358,10 +459,82 @@ is actually possible to connect this notion to classical mechanics.
 First, we will introduce the *Poisson bracket*, used extensively in classical mechanics (particularly with
 Hamiltonian mechanics):
 
-[This section is currently incomplete; it will be updated very soon!]
+:::{.definition #def-poisson-bracket}
+# Poisson Bracket
+The *Poisson bracket* of two functions $f(p_i,q_i,t)$ and $g(p_i,q_i,t)$, denoted $\{f,g\}$, is given as:
+$$\{f,g\} = \sum_{i}\left(\pdv{f}{q_i}\pdv{g}{p_i} - \pdv{f}{p_i}\pdv{g}{q_i}\right)$$
+:::
 
-### Ehrenfest Relations
-[This section is currently incomplete; it will be updated very soon!]
+Here, $p_i$ represent components of the *generalized momentum*, $q_i$ represent *generalized
+coordinates*, and $t$ is time. Together, the make up *canonical coordinates*. We will not worry about
+what these mean exactly and save detailed discussion for a book on clasical mechanics. 
+
+The main thing we will note is that we can express the total time derivative of a classical observable
+$A(p_i,q_i,t)$ as a sum of the explicit time dependence and implicit time dependence resulting from the time
+dependence of $p$ and $q$ using the Poisson bracket:
+$$\dv{A}{t} = \underbrace{\pdv{A}{t}}_{\text{explicit}} + \underbrace{\{A,H\}}_{\text{implicit}}$$
+This looks suspiciously similar to @thm-heisenberg-eoms, and we can in fact create an explicit mapping
+between the Poisson bracket and the commutator to make this work:
+$$[A,B] \to i\hbar\{A,B\}$$
+We applaud Paul Dirac for noticing this correspondence.
+
+:::{.warning}
+There is one important caveat: this isn't an exact correspondence in every scenario, since the commutator is
+still defined slightly differently. Fortunately for us, the correspondence will be exact in the most
+crucial scenarios. For instance, the Poisson bracket relations for the classical
+angular momentum $\mathbf{L}=\mathbf{x}\times\mathbf{p}$ is given by:
+$$\{L_i,L_j\} = \epsilon_{ijk}L_k$$[^levi-civita]
+Likewise, as we will discover later, the quantum-mechanical commutation relations for the angular
+momentum become:
+$$[\hat{L}_i,\hat{L}_j] = i\hbar\epsilon_{ijk}\hat{L}_k$$
+In other cases, however, the correspondence will only be an approximation.
+:::
+
+### Ehrenfest's Theorem
+The last thing we'll do in this chapter is compute the time derivative of the expectation value of an
+observable. Armed with the Heisenberg equations of motion and an understanding of how to take time
+derivatives of operators, let's consider some arbitrary observable $A$:
+$$\dv{t}\expval{A} = \pdv{t}\braket{\psi}{\hat{A}\psi} = \braket{\pdv{\psi}{t}}{\hat{A}\psi} +
+\braket{\psi}{\pdv{\hat{A}}{t}\psi} + \braket{\psi}{\hat{A}\pdv{\psi}{t}}$$
+Now, the Schrödinger equation tells us that we can replace $i\hbar\pdv{t}\ket{\psi} = \hat{H}\ket{\psi}$.
+Substituting that in gives us:
+$$\dv{t}\expval{A} = -\tfrac{i}{\hbar}\braket{\hat{H}\psi}{\hat{A}\psi} +
+\tfrac{1}{i\hbar}\braket{\psi}{\hat{A}\hat{H}\psi} + \expval{\pdv{\hat{A}}{t}}$$
+Finally, since $\hat{H}$ is Hermitian, we can move it through the inner product and we have that
+$\braket{\hat{H}\psi}{\hat{A}\psi} = \braket{\psi}{\hat{H}\hat{A}\psi}$. Combining the first two terms on the
+RHS into a commutator, we summarize the final form of our
+equation as the *generalized Ehrenfest theorem*:
+
+:::{.theorem #thm-generalized-ehrenfest}
+# Generalized Ehrenfest's Theorem
+$$\dv{t}\expval{A} =\tfrac{i}{\hbar}\expval{[\hat{H},\hat{A}]} + \expval{\pdv{\hat{A}}{t}}$$
+:::
+
+The term "generalized Ehrenfest theorem" to describe the above equation was coined in @griffiths2018, as it
+doesn't actually have an official name. Since, however, it is a useful expression that can be used to derive
+more specific relations that *are* named, we'll use this term.
+
+Let's put this theorem to the test with two special cases, notably the position and momentum operators.
+
+In this case, let's work out the Heisenberg equations of motion for $x$ and $p$. Plugging them directly into
+@thm-heisenberg-eoms gives:
+$$\dv{t}\mathbf{x}_H = -\tfrac{i}{\hbar}[\hat{\mathbf{x}}_H,\hat{H}_H], \quad \dv{t}\mathbf{p}_H = -\tfrac{i}{\hbar}[\hat{\mathbf{p}}_H,\hat{H}_H]$$
+Since the position and momentum operators don't have explicit time dependence, the final term drops out for
+both of them. Now, we can evaluate the commutators: <!--maybe put the derivation here? if not i think it's ok
+-->
+$$\dv{t}\mathbf{x}_H = \frac{\mathbf{p}_H}{m}, \quad \dv{t}\mathbf{p}_H = -nabla V(\mathbf{x},t)$$
+Taking the expectation value with respect to some $\ket{\psi}$ gives us two special cases of
+@thm-generalized-ehrenfest which are collectively named *Ehrenfest's theorem*:
+
+:::{.theorem #thm-ehrenfest}
+# Ehrenfest's Theorem 
+$$\dv{t}\expval{\mathbf{x}} = \frac{\expval{\mathbf{p}}}{m}, \quad \dv{t}\expval{\mathbf{p}} =
+-\expval{\nabla V(\mathbf{x},t)}$$
+:::
+
+If we so desire, we could eliminate $\expval{\mathbf{p}}$ and express the latter relation purely in terms of
+$\expval{\mathbf{x}}$:
+$$m\dv[2]{\expval{\mathbf{x}}}{t} = -\expval{\nabla V(\mathbf{x},t)}$$
 
 ## Conclusion
 As mentioned earlier, much of what appears in this chapter is generally omitted in a first course on quantum mechanics in favor of jumping straight into the physics and trying to describe systems with new equations. Perhaps this may have been easier, but at the end of the day, it is entirely about the journey rather than the destination. Since we are not beholden to any schedule and are attempting to organize these notes in a way that we felt works best, we have chosen to take the road less traveled. There is a light at the end of this tunnel, however; we are at last done with the difficult setup. The following chapters will take a much lighter approach that may be more akin to an undergraduate perspective, albeit with some formalism sprinkled in every now and then.
@@ -382,3 +555,11 @@ and the generalized coordinates is time-independent). In functionally all of our
 simply choose natural coordinate systems, meaning we can safely take the Hamiltonian to represent the total
 energy. See [@taylor2005] for a more in-depth description of generalized coordinates and how they affect the
 form of the Lagrangian and Hamiltonian.
+
+[^interaction-picture]: Specifically, the time dependence due to some unperturbed base Hamiltonian
+$\hat{H}_0$ will be moved from the kets to the operators, while the time dependence due to some perturbation
+$\hat{H}_1$ will remain on the kets. 
+
+[^levi-civita]: $\epsilon_{ijk}$ is what's known as the *Levi-Civita tensor* (or symbol). It is yet another
+tool used in index notation to compactify notation. We discuss this symbol (and how to effectively utilize
+it) in more detail in our appendices.
