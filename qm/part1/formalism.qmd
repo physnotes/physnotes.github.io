@@ -20,8 +20,8 @@ so the math we'll use to develop the remaining theory of quantum mechanics will 
 Let's now begin with the formalism. For the time being, we will assume some prior familiarity working with
 linear algebra objects like vector spaces and linear maps, and a bit of knowledge about complex numbers, such as the
 definition of a complex conjugate. If you're interested in learning more about these, feel
-free to check out the appendices at the end of this book, or consult some linear algebra textbooks such as
-Axler's *Linear Algebra Done Right*.[^linear-algebra].
+free to check out the appendices at the end of this book, or consult some linear algebra textbooks [such as
+@axler2023].[^linear-algebra].
 <!--
 :::{.notation}
 One brief notational remark. For brevity, we will use *quantifiers* to shorten notation:
@@ -51,6 +51,14 @@ wavefunction across all of space must be 1:
 $$
    \int_{-\infty}^{\infty} |\psi(x)|^2 \ dx = 1
 $$
+
+:::{.remark}
+  The interpretation that the squared norm of the wavefunction encodes probability was a nontrivial leap that
+  took physicists years to uncover. We applaud Max Born's discovery, but will make no attempt to naturally
+  arrive at this conclusion ourselves.
+:::
+
+
 When $\psi$ satisfies this property, we say that it is *normalized*. 
 To make our lives a little bit simpler for now, we can loosen this restriction and only enforce that the
 function is *normalizable*:
@@ -63,12 +71,6 @@ $$
 	\int_{-\infty}^{\infty} |\psi(x)|^2 \ d x = A \implies \int_{-\infty}^{\infty} \left|\frac{1}{\sqrt{A}} \psi(x)\right|^2 \ d x
 	= 1
 $$
-
-:::{.remark}
-  The interpretation that the squared norm of the wavefunction encodes probability was a nontrivial leap that
-  took physicists years to uncover. We applaud Max Born's discovery, but will make no attempt to naturally
-  arrive at this conclusion ourselves.
-:::
 The requirement that $\psi$ is normalizable and it being complex valued are the
 only restrictions on the kinds of $\psi$ we are allowed to consider. The collection of such $\psi$ forms a
 vector space, and since $\psi$ is complex-valued, we call this a *complex vector space*. 
