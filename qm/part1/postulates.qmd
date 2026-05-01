@@ -41,7 +41,8 @@ taught in high school. They are as follows:
 At face value, these all appear obvious. But how do we *know* that they're true? The short answer is that
 we just do. We accept that each is a thing that is possible (and it's quite simple to convince ourselves that
 it's always possible to draw a line through two points, for example), but we make no attempts to actually rigorously 
-*prove* that they're true mathematically. We use these always-true statements to then derive new results that we actually can prove.
+*prove* that they're true mathematically. We use these always-true statements to then derive new results that we 
+actually can prove.
 :::
 
 Have we seen any postulates in physics before? As it turns out, yes we have! Although we didn't quite refer
@@ -71,11 +72,15 @@ The incomplete form of the postulates of quantum mechanics are as follows:
 4. The possible results of measurement are the eigenvalues $A$, either discrete ($a_1, a_2, \dots$) or
    continuous ($a(\nu)$).
 5. In the discrete case, the probability of measuring a particular eigenvalue $A=a_n$ is given by:
-   $$\mathrm{Prob}(A=a_n) = \frac{\expval{P_n}{\psi}}{\braket{\psi}};$$
+   $$
+	\mathrm{Prob}(A=a_n) = \frac{\expval{P_n}{\psi}}{\braket{\psi}};
+	$$
    Here, $P_n$ is the projection operator onto eigenspace $\mathcal{E}_n$ corresponding to eigenvalue $a_n$,
    and $\ket{\psi}$ is any nonzero ket in the ray representing the state of the system. In the continuous
    case, the probability of measuring some $A$ as lying somewhere in the interval $I=[a_0,a_1]$ is given by:
-   $$\mathrm{Prob}(A\in I) = \frac{\expval{P_I}{\psi}}{\braket{\psi}};$$
+   $$
+	   \mathrm{Prob}(A\in I) = \frac{\expval{P_I}{\psi}}{\braket{\psi}};
+   $$
    In this case, $P_I$ is the projection operator corresponding to the interval $I$. The
    numerator in this expression is also of note, it is referred to as the *expectation value* of the
    operator $P_I$, written sometimes as $\langle P_I \rangle$. 
@@ -135,11 +140,10 @@ Consider the setup illustrated in the figure below. Here, we send out a beam of 
 measure different components of their *magnetic moment* $\boldsymbol{\mu}$. We first measure the $x$
 component of the magnetic moment, denoted $\mu_x$, and pass the beam where the measured value is
 $\mu_x=+\mu_0$[^bohr-magneton] into a second magnet that measures the $z$ component (denoted $\mu_z$). 
-<!-- I didn't make tikz work on my end while writing this; pls recreate the Stern-Gerlach apparatus from
-Notes 2 -->
 
 :::{#fig-stern-gerlach-xplus fig-env="figure*" fig-pos="h"}
-``` tikz
+
+```{.tikz}
 \begin{tikzpicture}[scale=1.25]
   \draw[thick] (-0.5,-0.5) rectangle (0.5,0.5) node[midway] {Ag};
   \node at (0,-0.75) (o) {\text{oven}};
@@ -183,7 +187,9 @@ denote the eigenvector of $\mu_x$ with eigenvalue $-\mu_0$ by $\ket{\mu_x-}$, an
 for the eigenvectors of $\mu_y$ and $\mu_z$ (namely $\ket{\mu_y\pm}$ and $\ket{\mu_z\pm}$). For historical
 reasons, $\mu_z$ is also written as $\ket{+}$ and $\ket{-}$. We showed in the previous chapter that eigenkets 
 corresponding to distinct eigenvalues are orthogonal, meaning the following is true:
-$$\braket{\mu_x+}{\mu_x-} = \braket{\mu_y+}{\mu_y-} = \braket{+}{-} = 0$$
+$$
+	\braket{\mu_x+}{\mu_x-} = \braket{\mu_y+}{\mu_y-} = \braket{+}{-} = 0
+$$
 
 Now, Postulate 2 claims that the atomic beam's state is described by some state vector at each stage in our
 experimental apparatus. Additionally, Postulate 6 states that the system will be specified by $\ket{\mu_x+}$
@@ -191,26 +197,38 @@ after measuring $\mu_x$ with a result of $+\mu_0$, after which it'll be specifie
 on the measurement outcome of $\mu_z$. This means that we can represent the state of the beam entering the
 second magnet (after the $\mu_x$ measurement, but before the $\mu_z$ measurement) as a linear combination 
 of the $\mu_z$ result vectors:
-$$\ket{\mu_x+} = c_+\ket{+} + c_-\ket{-}$$
+$$
+	\ket{\mu_x+} = c_+\ket{+} + c_-\ket{-}
+$$
 Our goal now is to ascertain what these expansion coefficients are, and whether they align with the results
 of actually performing this experiment. Since the eigenkets $\ket{\pm}$ are orthogonal, we can represent the
 expansion coefficients via an inner product:
-$$c_\pm = \braket{\pm}{\mu_x+}$$
+$$
+	c_\pm = \braket{\pm}{\mu_x+}
+$$
 Postulate 5 then tells us that the probability of measuring $\mu_z=+\mu_0$ is:
-$$\mathrm{Prob}(\mu_z=+\mu_0) = \expval{P_+}{\mu_x+}$$
+$$
+	\mathrm{Prob}(\mu_z=+\mu_0) = \expval{P_+}{\mu_x+}
+$$
 Here, $P_+=\ketbra{+}$ is the projection operator onto the $+\mu_0$ eigenspace of $\mu_z$. Substituting that
 and setting it equal to our experimentally-determined probability (50/50) gives:
 gives:
-$$\mathrm{Prob}(\mu_z=+\mu_0) = \braket{\mu_x+}{+}\braket{+}{\mu_x} = |\braket{+}{\mu_z+}|^2 = |c_+|^2 =
-\frac12$$
+$$
+	\mathrm{Prob}(\mu_z=+\mu_0) = \braket{\mu_x+}{+}\braket{+}{\mu_x} = |\braket{+}{\mu_z+}|^2 = |c_+|^2 =
+	\frac12
+$$
 Taking the square root gives us our expansion coefficient:
-$$\therefore c_+ = \frac{1}{\sqrt2}e^{i\alpha_1}$$
+$$
+	\therefore c_+ = \frac{1}{\sqrt2}e^{i\alpha_1}
+$$
 <!-- maybe this clarification should go in a remark? -->
 Here, $e^{i\alpha_1}$ is an unknown *phase factor*. Why do we add it? We add it for the same reason that we add
 an integration constant $+C$ whenever taking the antiderivative for an indefinite integral: just as how
 constants disappear under derivatives and must be accounted for in antiderivatives, phase factors disappear
 when taking the squared norm, meaning they must be reintroduced when taking the square root:
-$$|e^{i\alpha}|^2 = e^{i\alpha}e^{-i\alpha} = e^0 = 1$$
+$$
+	|e^{i\alpha}|^2 = e^{i\alpha}e^{-i\alpha} = e^0 = 1
+$$
 
 :::{.remark}
 Even though these phase factors cannot be ignored, there are many cases when we can ascertain exactly what
@@ -221,9 +239,13 @@ problem.
 
 Now, since the probability of measuring $\mu_z=-\mu_0$ is also $\frac12$, that means we can conclude that
 $c_-$ must have a similar form, albeit with a different phase factor:
-$$\therefore c_- = \frac{1}{\sqrt2}e^{i\beta_1}$$
+$$
+	\therefore c_- = \frac{1}{\sqrt2}e^{i\beta_1}
+$$
 Putting these together gives us our expansion for $\ket{\mu_x+}$:
-$$\ket{\mu_x+} = \frac{1}{\sqrt2}\left(e^{i\alpha_1}\ket{+} + e^{i\beta_1}\ket{-}\right)$$
+$$
+	\ket{\mu_x+} = \frac{1}{\sqrt2}\left(e^{i\alpha_1}\ket{+} + e^{i\beta_1}\ket{-}\right)
+$$
 This is looking promising, but we still have these pesky phase factors to deal with in order for us to have a
 complete description of the state of the system. There are a few things we can do to ascertain what they are.
 
@@ -231,7 +253,9 @@ Firstly, we can actually get rid of one of these phase factors by "absorbing" it
 Instead define $\ket{\mu_x+}=\ket{\mu_x+}'e^{i\alpha_1}$ and now multiply our previous equation by
 $e^{-\alpha_1}$, while also setting $\beta_1' = \beta_1-\alpha_1$. 
 After dropping the primes (which are merely notational conventions), we are left with:
-$$\ket{\mu_x+} = \frac{1}{\sqrt2}\left(\ket{+}+e^{i\beta_1}\ket{-}\right)$$
+$$
+	\ket{\mu_x+} = \frac{1}{\sqrt2}\left(\ket{+}+e^{i\beta_1}\ket{-}\right)
+$$
 
 :::{.notation}
 This may look cheesy, and that's because it is. We are abusing the fact that our notation simply represents
@@ -241,11 +265,13 @@ else, so we could safely drop them.
 :::
 
 If we instead feed the $-\mu_0$ beam into our second magnet, we can perform the exact same analysis to express the negative $x$-component beam:
-$$\ket{\mu_x-} = \frac{1}{\sqrt2}(\ket{+}+e^{i\gamma_1}\ket{-})$$
+$$
+	\ket{\mu_x-} = \frac{1}{\sqrt2}(\ket{+}+e^{i\gamma_1}\ket{-})
+$$
 As with $\ket{\mu_x+}$, we have an undetermined phase factor $e^{i\gamma_1}$.
 
 :::{#fig-stern-gerlach-xminus fig-env="figure*" fig-pos="h"}
-``` tikz
+```{.tikz}
 \begin{tikzpicture}[scale=1.25]
   \draw[thick] (-0.5,-0.5) rectangle (0.5,0.5) node[midway] {Ag};
   \node at (0,-0.75) (o) {\text{oven}};
@@ -271,30 +297,43 @@ into the second magnet.
 Let's now try to figure out what these phase factors are. Even though we chose distinct variables for these
 phase factors to avoid assumptions, they indeed are related through the orthogonality condition of these
 respective eigenkets:
-$$\braket{\mu_x+}{\mu_x-} = \frac12\left(1+e^{i(-\beta_1+\gamma_1)}\right) = 0 \implies e^{i\beta_1} =
--e^{i\gamma_1}$$
+$$
+	\braket{\mu_x+}{\mu_x-} = \frac12\left(1+e^{i(-\beta_1+\gamma_1)}\right) = 0 \implies e^{i\beta_1} = -e^{i\gamma_1}
+$$
 This allows us to get rid of $\gamma_1$ and write both kets in terms of the same phase factor:
-$$\ket{\mu_x\pm} = \frac{1}{\sqrt2}\left(\ket{+}\pm e^{i\beta_1}\ket{-}\right)$$
-
+$$
+	\ket{\mu_x\pm} = \frac{1}{\sqrt2}\left(\ket{+}\pm e^{i\beta_1}\ket{-}\right)
+$$
 What if we instead opted to measure $\mu_y$ at the first stage? As it turns out, the beams emerging from the
 second magnet will each still respectively carry a 50% probability, meaning we can perform the exact same
 analysis to conclude:
-$$\ket{\mu_y\pm} = \frac{1}{\sqrt2}\left(\ket{+}+e^{i\beta_2}\ket{-}\right)$$
-
+$$
+	\ket{\mu_y\pm} = \frac{1}{\sqrt2}\left(\ket{+}+e^{i\beta_2}\ket{-}\right)
+$$
 We are now ready to write down the operators that represent the components of $\boldsymbol{\mu}$. From the
 formalism, we have:
-$$\mu_x = \mu_0\left(\ketbra{\mu_x+}{\mu_x-} + \ketbra{\mu_x-}{\mu_x+}\right)$$
+$$
+	\mu_x = \mu_0\left(\ketbra{\mu_x+}{\mu_x-} + \ketbra{\mu_x-}{\mu_x+}\right)
+$$
 Using what we discovered previously, we can rewrite this in the $\ket{\pm}$ basis:
-$$\mu_x = \mu_0\left(e^{-i\beta_1}\ketbra{+}{-} + e^{i\beta_1}\ketbra{-}{+}\right)$$
+$$
+	\mu_x = \mu_0\left(e^{-i\beta_1}\ketbra{+}{-} + e^{i\beta_1}\ketbra{-}{+}\right)
+$$
 Similarly, we can get the $y$ component:
-$$\mu_y = \mu_0\left(e^{-i\beta_2}\ketbra{+}{-} + e^{i\beta_2}\ketbra{-}{+}\right)$$
+$$
+	\mu_y = \mu_0\left(e^{-i\beta_2}\ketbra{+}{-} + e^{i\beta_2}\ketbra{-}{+}\right)
+$$
 Finally, the $z$ component is the most straightforward:
-$$\mu_z = \mu_0\left(\ketbra{+}{-} - \ketbra{-}{+}\right)$$
+$$
+	\mu_z = \mu_0\left(\ketbra{+}{-} - \ketbra{-}{+}\right)
+$$
 We're at last ready to relate $e^{i\beta_1}$ and $e^{i\beta_2}$ by directly comparing them with a slightly
 different Stern-Gerlach experimental setup. Instead of measuring $\mu_z$ in the second magnet, let's measure
 $\mu_y$. Experimentally, we still expect to measure $\mu_y=\pm\mu_0$ with equal probability, meaning we have:
-$$\frac12 = |\braket{\mu_y\pm}{\mu_x\pm}|^2 = \frac12(1\pm\cos(\beta_2-\beta_1)) \implies \beta_2 =
-\beta_1\pm\tfrac{\pi}{2}\iff\boxed{e^{i\beta_2} = \pm ie^{i\beta_1}}$$
+$$
+	\frac12 = |\braket{\mu_y\pm}{\mu_x\pm}|^2 = \frac12(1\pm\cos(\beta_2-\beta_1)) \implies \beta_2 =
+	\beta_1\pm\tfrac{\pi}{2}\iff\boxed{e^{i\beta_2} = \pm ie^{i\beta_1}}
+$$
 Thus, we've reduced our unknowns to a single unknown phase (let it be $e^{i\beta_1}$ WLOG[^wlog]). We can
 finally figure this one out by setting a phase convention for $\ket{-}$. For example, in the $\ket{\pm}$
 basis, we can make the matrix elements of either $\mu_x$ or $\mu_y$ entirely real, but not both. Thus,
@@ -308,11 +347,16 @@ theory we've chosen. This, in a way, means complex numbers are, to an extent, re
 
 The general convention is to absorb $e^{i\beta_1}$ into the definition of $\ket{-}$, meaning we are left with
 the following operator representations:
-$$\mu_x = \mu_0\left(\ketbra{+}{-} + \ketbra{-}{+}\right),\quad \mu_y = \mu_0\left(-i\ketbra{+}{-} + i\ketbra{-}{+}\right),\quad \mu_z 
-= \mu_0\left(\ketbra{+}{-} - \ketbra{-}{+}\right)$$
+$$
+	\mu_x = \mu_0\left(\ketbra{+}{-} + \ketbra{-}{+}\right),\quad \mu_y = \mu_0\left(-i\ketbra{+}{-} + i\ketbra{-}{+}\right),
+	\quad \mu_z = \mu_0\left(\ketbra{+}{-} - \ketbra{-}{+}\right)
+$$
 We can write these in a more familiar matrix representation:
-$$\mu_x = \mu_0\begin{pmatrix}0&1\\1&0\end{pmatrix}, \quad \mu_y = \mu_0\begin{pmatrix}0&-i\\i&0\end{pmatrix},
-\quad \mu_z = \mu_0\begin{pmatrix}1&0\\0&-1\end{pmatrix}$$
+$$
+	\mu_x = \mu_0\begin{pmatrix}0&1\\1&0\end{pmatrix}, \quad 
+	\mu_y = \mu_0\begin{pmatrix}0&-i\\i&0\end{pmatrix},\quad 
+	\mu_z = \mu_0\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+$$
 
 :::{.remark}
 These are the **Pauli spin matrices**! These are a very important set of matrices and operators that will
@@ -346,28 +390,41 @@ state of a particular system may not be specified by a definite state vector, me
 complicated tools to accurately describe the statistics at play. Let's very briefly construct the solution to
 this problem. Imagine instead a family of normalized kets that depend on some continuous parameter(s)
 $\lambda$, denoted $\ket{\psi(\lambda)}$, and let's assume that this parameter is distributed according to
-some probability distribution $f(\lambda)$ such that:
-$$f(\lambda) \geq 0 \quad\text{and}\quad \int f(\lambda) \ d\lambda = 1$$
+some probability distribution $f(\lambda)$ such that: 
+$$
+	f(\lambda) \geq 0 \quad\text{and}\quad \int f(\lambda) \ d\lambda = 1
+$$
 Then, the expectation value of any arbitrary operator $A$ can be rewritten in terms of this new distribution:
-$$\expval{A} = \int f(\lambda)\expval{A}{\psi(\lambda)} \ d\lambda $$
+$$
+	\expval{A} = \int f(\lambda)\expval{A}{\psi(\lambda)} \ d\lambda 
+$$
 The discrete case is a lot simpler; here, we enumerate the states $\ket{\psi_i}$ and our probability
 distribution is now discretized:
-$$\sum_i f_i = 1$$
+$$
+	\sum_i f_i = 1
+$$
 Similarly, our expectation value shifts from an integral to a discrete sum over the probabilities $f_i$:
-$$\expval{A} = \sum_i f_i\expval{A}{\psi_i}$$
+$$
+	\expval{A} = \sum_i f_i\expval{A}{\psi_i}
+$$
 Let's now introduce the *density operator* to help us systematize our analysis:
 
 :::{.definition #def-density-operator}
 # Density Operator
 The *density operator*, denoted $\rho$, is defined like so in terms of the given kets $\ket{\psi}$ and
 probabily distributions $f$:
-$$\rho = \int d\lambda f(\lambda) \ketbra{\psi(\lambda)}\ \text{(continuous)}, \quad \rho = \sum_i
-f_i\ketbra{\psi_i}\ \text{(discrete)}$$
+$$
+	\rho = \int d\lambda f(\lambda) \ketbra{\psi(\lambda)}\ \text{(continuous)}, \quad \rho = \sum_i
+	f_i\ketbra{\psi_i}\ \text{(discrete)}
+$$
 :::
 
 We can now combine the discrete and continuous versions of our expectation value into one unique expression
-i$, n terms of $\rho$:
-$$\expval{A} = \tr(\rho A)$$
+in terms of $\rho$:
+$$
+	\expval{A} = \tr(\rho A)
+$$
+
 Here, $\tr$ represents the *trace* of the associated matrix.
 
 :::{.remark}
@@ -381,7 +438,9 @@ end of this section.
 Now, when the state of a system can be completely represented by some definite state vector (as is the case
 for the beam that enters the second magnetic measurement in our Stern-Gerlach apparatus), then the density
 operator is a simple outer product in terms of that exact state:
-$$\rho = \ketbra{\psi}$$
+$$
+	\rho = \ketbra{\psi}
+$$
 In this case, we say that the state of our system is a *pure state*, and our postulates apply as written.
 However, if we have any statistical uncertainty in the state vector that would represent our system (and thus
 can no longer say that this singular state vector would have an associated probability of 100%), we say our
@@ -393,7 +452,7 @@ There is some subtlety in one what mean by "definite state vector" when discussi
 example, if our system is represented by two kets that only differ by some phase factor and we choose to
 attach a 50% measurement probability to each of them, that's in fact a pure state, since these vectors are
 indeed related. This subtlety will not be addressed any further than this here, because we will often not
-havve to deal with mixed states and the density operator at this level of study.
+have to deal with mixed states and the density operator at this level of study.
 :::
 
 The density operator has a variety of associated properties that we will not worry about here (but may
@@ -414,14 +473,18 @@ The slightly revised postulates of quantum mechanics are as follows:
    or the continuous ones $a(\nu)$. 
 5. The average value measured for the operator $A$ is $\tr(\rho A)$. The probability of measuring a given
 eigenvalue for both the discrete and continuous case is given by:
-$$\mathrm{Prob}(A=a_n) = \tr(\rho P_n)\ \text{(discrete)}, \quad \mathrm{Prob}(A\in I) = \tr(\rho P_I)$$
+$$
+	\mathrm{Prob}(A=a_n) = \tr(\rho P_n)\ \text{(discrete)}, \quad \mathrm{Prob}(A\in I) = \tr(\rho P_I)
+$$
 In the discrete case, $P_n$ is the projection operator onto the eigenspace $\mathcal{E}_n$ with associated
 eigenvalue $a_n$. In the continuous case, $P_I$ is the projection operator corresponding to the interval
 $I=[a_0,a_1]$.
 6. If a system is described by a density operator $\rho$ (which we assume to be normalized). Then, after a
    measurement of the operator $A$ producing some (possibly degenerate) eigenvalue $a_n$, the system will be
    described by the (normalized) density operator
-$$\rho' = \frac{P_n\rho P_n}{\tr(\rho P_n)},$$
+$$
+	\rho' = \frac{P_n\rho P_n}{\tr(\rho P_n)},
+$$
 where $P_n$ is the projector onto the $n$-th eigenspace of $A$.
 :::
 
@@ -531,6 +594,9 @@ As mentioned, perhaps the most famous example of this is the Heisenberg uncertai
 $B = p$, and $[A, B] = i\hbar$, and plugging these into the generalized uncertainty relation gives us: 
 $$
 	\Delta x \Delta p \geq \frac{\hbar}{2}
+
+
+
 $$
 and this tells us (famously) that one cannot be infinitely precise in their measurement of both position and
 momentum; when one measurement becomes more accurate, the other necessarily becomes less. What's truly

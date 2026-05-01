@@ -38,8 +38,8 @@ The central focus of our analysis is the *wavefunction* of a system, which we'll
 or lowercase $\psi$. As the name suggests, this is a function that will take certain inputs (such as 
 position, momentum, etc) and can be used to ascertain other properties (such as energy). 
 Solving for the wavefunction of a system is the central focus of quantum mechanics, 
-since the wavefunction itself fully represents a system/state; this will be expanded on further in
-[POSTULATES REF].  
+since the wavefunction itself fully represents a system/state; here we will introduce these concepts, but a
+more detailed background on the wavefunction is given in @sec-quantum-from-classical.
 
 Now, since the wavefunction has to represent physically realizable states (eg, an electron or a Hydrogen
 atom), there are certain restrictions we must enforce on what type of function this can be. What restriction
@@ -229,24 +229,36 @@ between kets and bras. We'll denote this correspondence $D:\mathcal{E}\to\mathca
 write a ket $\ket{\psi}$, we know that the associated bra under this dual correspondence will be denoted
 $\bra{\psi}$. Given this metric, we can then explicitly define the bra $\bra{\psi}$ in terms of how it acts
 on any random ket $\ket{\phi}$:
-$$\bra{\psi}(\ket{\phi}) = g(\ket{\psi},\ket{\phi})$$
+$$
+	\bra{\psi}(\ket{\phi}) = g(\ket{\psi},\ket{\phi})
+$$
 
 :::{.notation}
 We'll denote the bra we get from a ket's dual correspondence through a *dagger* $\dagger$:
-$$\bra{\psi} = (\ket{\psi})^{\dagger}, \quad \ket{\psi} = (\bra{\psi})^{\dagger}$$
+$$
+	\bra{\psi} = (\ket{\psi})^{\dagger}, \quad \ket{\psi} = (\bra{\psi})^{\dagger}
+$$
 This dagger means then that $\bra{\psi}$ is the *Hermitian conjugate* of $\ket{\psi}$ (and vice-versa).
 :::
 
 Given how we defined our scalar product to be antilinear in the first operand, we expect the dual
 correspondence to also be antilinear:
-$$(c_1\ket{\psi_1} + c_2\ket{\psi_2})^{\dagger} = c_1^{*}\bra{\psi_1} + c_2^{*}\bra{\psi_2}$$
+$$
+	(c_1\ket{\psi_1} + c_2\ket{\psi_2})^{\dagger} = c_1^{*}\bra{\psi_1} + c_2^{*}\bra{\psi_2}
+$$
 Given how we expressed this correspondence, we naturally expect that repeating the operation necessarily
 returns us to the original state:
-$$(\ket{\psi})^{\dagger\dagger} = \ket{\psi}, \quad (\bra{\psi})^{\dagger\dagger} = \bra{\psi}$$
+$$
+	(\ket{\psi})^{\dagger\dagger} = \ket{\psi}, \quad (\bra{\psi})^{\dagger\dagger} = \bra{\psi}
+$$
 With all of this clarified, we can proceed to simplify our notation of bra's actions on kets:
-$$\bra{\psi}(\ket{\phi}) = g(\ket{\psi},\ket{\phi}) = \braket*{\psi}{\phi}$$
+$$
+	\bra{\psi}(\ket{\phi}) = g(\ket{\psi},\ket{\phi}) = \braket*{\psi}{\phi}
+$$
 This means we can also rewrite our Hermiticity and positive-definite conditions:
-$$\braket*{\psi}{\phi} = \braket*{\phi}{\psi}^{*}, \quad \braket*{\psi}{\psi} \geq 0$$
+$$
+	\braket*{\psi}{\phi} = \braket*{\phi}{\psi}^{*}, \quad \braket*{\psi}{\psi} \geq 0
+$$
 This has allowed us to completely rid ourselves of the $g$-function notation, meaning we can now deal
 exclusively with bras and kets. This operation of acting a bra on a ket has another name which may be
 familiar to those who have studied linear algebra: the *inner product*.
@@ -378,9 +390,13 @@ From linear algebra, we know that these operators can be scaled by complex numbe
 produce new operators on the same ket spaces, meaning they also form their own vector space. What about
 multiplication? Well, we expect the multiplication to be associative for any combination of linear operators
 $A$, $B$, and $C$:
-$$A(BC) = (AB)C$$
+$$
+	A(BC) = (AB)C
+$$
 However, it won't necessarily be commutative:
-$$AB \neq BA$$
+$$
+	AB \neq BA
+$$
 Why not? Let's illustrate with a real-world example.
 
 :::{.example #exm-commuting-operations}
@@ -396,10 +412,12 @@ north of where you started, facing north. Despite only performing two steps, the
 If you think of operators acting on ket vectors as instructions we give someone to perform, we see that
 swapping the order of the operators is equivalent to giving instructions in a different order, which can
 produce completely different results:
-$$\begin{align*}
-AB\ket{\psi} &= A(B\ket{\psi}) = A(B(\ket{\psi})) = A(\ket{\phi_B}) = \ket{\alpha}\\
-BA\ket{\psi} &= B(A\ket{\psi}) = B(A(\ket{\psi})) = B(\ket{\phi_A}) = \ket{\beta}
-\end{align*}$$
+$$
+\begin{align*}
+	AB\ket{\psi} &= A(B\ket{\psi}) = A(B(\ket{\psi})) = A(\ket{\phi_B}) = \ket{\alpha}\\
+	BA\ket{\psi} &= B(A\ket{\psi}) = B(A(\ket{\psi})) = B(\ket{\phi_A}) = \ket{\beta}
+\end{align*}
+$$
 Thus, multiplication of operators will not act the same as standard scalar multiplication, meaning we'll have
 to be careful when specifying order.
 :::
@@ -410,7 +428,9 @@ far) two operators are from commuting with each other. To help us with this, we 
 :::{.definition #def-commutator}
 # Commutator
 The *commutator* of two operators $A$ and $B$ is the difference between their ordered products:
-$$[A,B] = AB - BA$$
+$$
+	[A,B] = AB - BA
+$$
 :::
 
 Similarly, we define the *anticommutator*:
@@ -418,7 +438,9 @@ Similarly, we define the *anticommutator*:
 :::{.definition #def-anticommutator}
 # Anticommutator
 The *anticommutator* of two operators is the sum of their ordered products:
-$$\{A,B\} = AB + BA$$
+$$
+	\{A,B\} = AB + BA
+$$
 :::
 
 Naturally, the operators will commute when their commutator is $0$; in that case, we can freely
@@ -426,7 +448,9 @@ interchange their order.
 Some operators may have an associated *inverse*, which we'll denote $A^{-1}$. This inverse "undoes" the
 action of the operator:
 
-$$AA^{-1} = A^{-1}A = 1$$
+$$
+	AA^{-1} = A^{-1}A = 1
+$$
 
 :::{.notation}
 Above, the "1" denotes the *identity matrix*, rather than a number. In some instances, we will opt to write
@@ -440,7 +464,9 @@ materials. Fortunately for us, many key operators will in fact be invertible.
 
 When all available inverses exist, we have the following relation for inverting products of operators:
 
-$$(AB)^{-1} = B^{-1}A^{-1}$$
+$$
+	(AB)^{-1} = B^{-1}A^{-1}
+$$
 
 :::{.remark}
 Another important consideration we glossed over here is the *dimensionality* of our vector spaces.
@@ -467,24 +493,30 @@ There are two additional properties the commutator obeys that we want to address
 
 :::{.lemma #lem-jacobi-identity}
 # Jacobi Identity
-$$[A,[B,C]] + [B,[C,A]] + [C,[A,B]] = 0$$
+$$
+	[A,[B,C]] + [B,[C,A]] + [C,[A,B]] = 0
+$$
 :::
 :::{.proof}
 Expand out each nested commutator:
-$$\begin{align*}
-[A,[B,C]] &= [A,(BC-CB)] = A(BC-CB) - (BC-CB)A = \\
-&= ABC - ACB - BCA + CBA\\
-[B,[C,A]] &= [B,(CA-AC)] = B(CA-AC) - (CA-AC)B = \\
-&= BCA - BAC - CAB + ACB\\
-[C,[A,B]] &= [C,(AB-BA)] = C(AB-BA) - (AB-BA)C = \\
-&= CAB - CBA - ABC + BAC
-\end{align*}$$
+$$
+\begin{align*}
+	[A,[B,C]] &= [A,(BC-CB)] = A(BC-CB) - (BC-CB)A = \\
+	&= ABC - ACB - BCA + CBA\\
+	[B,[C,A]] &= [B,(CA-AC)] = B(CA-AC) - (CA-AC)B = \\
+	&= BCA - BAC - CAB + ACB\\
+	[C,[A,B]] &= [C,(AB-BA)] = C(AB-BA) - (AB-BA)C = \\
+	&= CAB - CBA - ABC + BAC
+\end{align*}
+$$
 Now, add these expressions together and cancel negative terms:
-$$\begin{align*}
-[A,[B,C]] + [B,[C,A]] + [C,[A,B]] &= \cancel{ABC} - \cancel{ACB} - \cancel{BCA} + \cancel{CBA} + \\
-&+ \cancel{BCA} - \cancel{BAC} - \cancel{CAB} + \cancel{ACB} + \\
-&+ \cancel{CAB} - \cancel{CBA} - \cancel{ABC} + \cancel{BAC} = \boxed{0} &&\checkmark
-\end{align*}$$
+$$
+\begin{align*}
+	[A,[B,C]] + [B,[C,A]] + [C,[A,B]] &= \cancel{ABC} - \cancel{ACB} - \cancel{BCA} + \cancel{CBA} + \\
+	&+ \cancel{BCA} - \cancel{BAC} - \cancel{CAB} + \cancel{ACB} + \\
+	&+ \cancel{CAB} - \cancel{CBA} - \cancel{ABC} + \cancel{BAC} = \boxed{0} &&\checkmark
+\end{align*}
+$$
 As desired. $\blacksquare$
 :::
 
@@ -493,26 +525,32 @@ property* (or *Leibniz rule*):
 
 :::{.lemma #lem-leinbiz-rule}
 # Leibniz Rule 
-$$[AB,C] = A[B,C] + [A,C]B, \quad [A,BC] = B[A,C] + [A,B]C$$
+$$
+	[AB,C] = A[B,C] + [A,C]B, \quad [A,BC] = B[A,C] + [A,B]C
+$$
 :::
 :::{.proof}
 We'll prove both of these by expanding the left-hand and right-hand sides to show they're equal, starting
 with the first:
-$$\begin{align*}
-[AB,C] &= (AB)C - C(AB) = ABC - CAB = \\
-&= ABC - CAB + (ACB - ACB) = \\
-&= ABC - ACB + ACB - CAB = \\
-&= A(BC-CB) + (AC-CA)B =
-A[B,C] + [A,C]B \quad\checkmark
-\end{align*}$$
+$$
+\begin{align*}
+	[AB,C] &= (AB)C - C(AB) = ABC - CAB = \\
+	&= ABC - CAB + (ACB - ACB) = \\
+	&= ABC - ACB + ACB - CAB = \\
+	&= A(BC-CB) + (AC-CA)B =
+	A[B,C] + [A,C]B \quad\checkmark
+\end{align*}
+$$
 Here, we cleverly added $0$ to avoid changing the value of the LHS, while also giving us extra terms to rewrite
 the RHS. We do the same for the second expression:
-$$\begin{align*}
-[A,BC] &= A(BC) - (BC)A = ABC - BCA = \\
-&= ABC - BCA + (BAC - BAC) = \\
-&= BAC - BCA + ABC - BAC = \\
-&= B(AC - CA) + (AB-BA)C = B[A,C] + [A,B]C \quad\checkmark
-\end{align*}$$
+$$
+\begin{align*}
+	[A,BC] &= A(BC) - (BC)A = ABC - BCA = \\
+	&= ABC - BCA + (BAC - BAC) = \\
+	&= BAC - BCA + ABC - BAC = \\
+	&= B(AC - CA) + (AB-BA)C = B[A,C] + [A,B]C \quad\checkmark
+\end{align*}
+$$
 As desired. $\blacksquare$
 :::
 
@@ -523,23 +561,31 @@ will, of course, introduce more commutator relations in the future, but we have 
 ### Operators on Dual Vectors 
 
 Given how we have defined operators, we expect them to act on a ket vector and output some new ket vector:
-$$A\ket{\psi} = \ket{\phi}$$
+$$
+	A\ket{\psi} = \ket{\phi}
+$$
 In other words, this operator will perform some kind of operation on the ket vector and modify it. What about
 bras and dual vectors? What kind of action will an operator perform in that scenario?
 
 :::{.notation}
 We will use the following notation to denote the action of an operator on a bra:
-$$\bra{\psi}A = ?$$
+$$
+	\bra{\psi}A = ?
+$$
 Colloquially, we will say that operators act on kets to the right and bras to the left.
 :::
 
 Since operators acting on kets will produce other kets, we should expect operators acting on bras to produce
 other bras:
-$$\bra{\psi}A = \bra{\phi}$$
+$$
+	\bra{\psi}A = \bra{\phi}
+$$
 Given how we defined operators and how bras and kets are related, it is not inconveivable for us to extend 
 their definition to behave as such.[^operators] Now, given this, we can expect to envision an operator sandwiched between
 a bra and a ket as either a resultant bra acting on ket or vice versa:
-$$(\bra{\psi}A)\ket{\phi} = \bra{\psi}(A\ket{\phi})$$
+$$
+	(\bra{\psi}A)\ket{\phi} = \bra{\psi}(A\ket{\phi})
+$$
 This means we can drop the parentheses and treat this as one unit:
 $$
 	(\bra{\psi}A)(\ket{\phi}) = \mel{\psi}{A}{\phi}
@@ -558,12 +604,16 @@ element of that operator.
 We previously defined the inner product as a bra acting on a ket from the left, which would produce a scalar
 by the definitions of bras and kets, respectively. What if we instead have a bra acting on a ket from the 
 right? Let's act this new thing on a ket and see what we should expect:
-$$(\ket{\alpha}\bra{\beta})\ket{\psi} = \ket{\alpha}(\braket*{\beta}{\psi}) = \ket{\alpha}c_1 =
-c_1\ket{\alpha} = \ket{\gamma_1}$$
+$$
+	(\ket{\alpha}\bra{\beta})\ket{\psi} = \ket{\alpha}(\braket*{\beta}{\psi}) = 
+	\ket{\alpha}c_1 = c_1\ket{\alpha} = \ket{\gamma_1}
+$$
 Thus, this new combination, which we'll call the *outer product*, should produce a resultant ket when acted
 on a ket. Similarly, when acted on a bra, we should expect a resultant bra:
-$$\bra{\psi}(\ket{\alpha}\bra{\beta}) = \braket*{\psi}{\alpha}\bra{\beta} = c_2\bra{\beta} =
-\bra{\gamma_2}$$
+$$
+	\bra{\psi}(\ket{\alpha}\bra{\beta}) = \braket*{\psi}{\alpha}\bra{\beta} = c_2\bra{\beta} =
+	\bra{\gamma_2}
+$$
 Thus, this outer product must itself be a special type of linear operator. Note that the bra action is not
 the direct definition of the outer product; it is simply a consequence of the ket action, which itself is the
 proper definition.
@@ -601,11 +651,15 @@ we'll see a lot later on called the *Kronecker delta*[^kronecker-delta]:
 :::{.definition #def-kronecker-delta}
 # Kronecker Delta
 The *Kronecker delta* is defined like so:
-$$\delta_{mn} = \begin{cases} 1 & m=n \\ 0 & m \neq n \end{cases}$$
+$$
+	\delta_{mn} = \begin{cases} 1 & m=n \\ 0 & m \neq n \end{cases}
+$$
 :::
 
 Thus, we can rewrite the orthonormality condition for our basis into the following really compact form:
-$$\braket*{n}{m} = \delta_{mn}$$
+$$
+	\braket*{n}{m} = \delta_{mn}
+$$
 
 :::{.remark}
 We will use *index notation* like the Kronecker delta above to simplify notation often throughout quantum
@@ -616,7 +670,9 @@ little later.
 
 Given any basis, we can represent any arbitrary ket vector $\ket{\psi}$ in that space as a linear combination
 of some these basis vectors:
-$$\ket{\psi} = \sum_{n}c_n\ket{n} = \sum_{n}\ket{n}c_n$$
+$$
+	\ket{\psi} = \sum_{n}c_n\ket{n} = \sum_{n}\ket{n}c_n
+$$
 These expansion coefficients $c_n$ are given by the following inner product if the basis is orthonormal:
 $$
 	c_n = \braket*{n}{\psi}
@@ -632,7 +688,9 @@ $$
 $$
 Since $\ket{\psi}$ is an arbitrarily-chosen ket vector, we can remove it from our expression to get a
 *resolution of the identity*:
-$$\boxed{1 = \sum_{n}\ket{n}\bra{n}}$$
+$$
+	\boxed{1 = \sum_{n}\ket{n}\bra{n}}
+$$
 
 ### A Special Case: Hermitian and Unitary Operators
 
@@ -642,7 +700,9 @@ types of operators.
 Before we discuss them, we need to extend the notion of Hermitian conjugation from kets to operators. Given
 some operator $A: \mathcal{E}\to\mathcal{E}$, we expect the Hermitian conjugate $A^{\dagger}:
 \mathcal{E}\to\mathcal{E}$ to be another linear operator with the following action on an arbitrary ket:
-$$A^{\dagger}\ket{\psi} = (\bra{\psi}A)^{\dagger}$$
+$$
+	A^{\dagger}\ket{\psi} = (\bra{\psi}A)^{\dagger}
+$$
 We have a couple of immediate consequences that result directly from this definition, which we compile here:
 
 :::{.corollary #cor-conjugate-operator-properties}
@@ -672,54 +732,69 @@ $$
 	\end{align*}
 $$
 Next:
-$$\begin{align*}
-(c_1A_1 + c_2A_2)^{\dagger}\ket{\psi} &= (\bra{\psi}(c_1A_1 + c_2A_2))^{\dagger} = ((\bra{\psi}c_1A_1) + (\bra{\psi}c_2A_2))^{\dagger} = \\
-&= (\bra{\psi}c_1A_1)^{\dagger} + (\bra{\psi}c_2A_2)^{\dagger} = A_1^{\dagger}(c_1^{*}\ket{\psi}) +
-A_2^{\dagger}(c_2^{*}\ket{\psi}) = \\
-&= c_1^{*}A_1^{\dagger}\ket{\psi} + c_2^{*}A_2^{\dagger}\ket{\psi} =
-(c_1^{*}A_1^{\dagger}+c_2^{*}A_2^{\dagger})\ket{\psi}\\
-\therefore (c_1A_1+c_2A_2)^{\dagger} &= c_1^{*}A_1^{\dagger}+c_2^{*}A_2^{\dagger}\quad\checkmark
-\end{align*}$$
+$$
+\begin{align*}
+	(c_1A_1 + c_2A_2)^{\dagger}\ket{\psi} &= (\bra{\psi}(c_1A_1 + c_2A_2))^{\dagger} = 
+	((\bra{\psi}c_1A_1) + (\bra{\psi}c_2A_2))^{\dagger} = \\
+	&= (\bra{\psi}c_1A_1)^{\dagger} + (\bra{\psi}c_2A_2)^{\dagger} = A_1^{\dagger}(c_1^{*}\ket{\psi}) +
+	A_2^{\dagger}(c_2^{*}\ket{\psi}) = \\
+	&= c_1^{*}A_1^{\dagger}\ket{\psi} + c_2^{*}A_2^{\dagger}\ket{\psi} =
+	(c_1^{*}A_1^{\dagger}+c_2^{*}A_2^{\dagger})\ket{\psi}\\
+	\therefore (c_1A_1+c_2A_2)^{\dagger} &= c_1^{*}A_1^{\dagger}+c_2^{*}A_2^{\dagger}\quad\checkmark
+\end{align*}
+$$
 For the fourth, we use what we proved in the first:
 $$
-	\begin{align*}
-		\mel{\phi}{(AB)^{\dagger}}{\psi} &= \mel{\psi}{AB}{\phi}^{*} = ((\bra{\psi}A)(B \ket{\phi}))^{*} =
-		((\bra{\psi}A)^{\dagger}(B \ket{\phi})^{\dagger}) \\ 
-		&= (\bra{\phi}B^{\dagger}) (A^{\dagger} \ket{\psi}) = \mel{\phi}{B^{\dagger}A^{\dagger}}{\psi} \\ 
-		\therefore (AB)^{\dagger}&=  B^{\dagger}A^{\dagger} 
-	\end{align*}
+\begin{align*}
+	\mel{\phi}{(AB)^{\dagger}}{\psi} &= \mel{\psi}{AB}{\phi}^{*} = ((\bra{\psi}A)(B \ket{\phi}))^{*} =
+	((\bra{\psi}A)^{\dagger}(B \ket{\phi})^{\dagger}) \\ 
+	&= (\bra{\phi}B^{\dagger}) (A^{\dagger} \ket{\psi}) = \mel{\phi}{B^{\dagger}A^{\dagger}}{\psi} \\ 
+	\therefore (AB)^{\dagger}&=  B^{\dagger}A^{\dagger} 
+\end{align*}
 $$
 Finally, for the last one, we directly invoke the previous part (as well as dual correspondence between bras and kets):
-$$(\ket{\alpha}\bra{\beta})^{\dagger} = (\bra{\beta})^{\dagger}(\ket{\alpha})^{\dagger} =
-\ket{\beta}\bra{\alpha}\quad\checkmark$$
+$$
+	(\ket{\alpha}\bra{\beta})^{\dagger} = (\bra{\beta})^{\dagger}(\ket{\alpha})^{\dagger} =
+	\ket{\beta}\bra{\alpha}\quad\checkmark
+$$
 We have shown all properties are true, as desired. $\blacksquare$
 :::
 
 Now, we have properly defined the action of Hermitian conjugation on bras, kets, and operators. As a side
 note, it's helpful to describe the action of Hermitian conjugation on scalars (numbers) as simply complex
 conjugation:
-$$c^{\dagger} = c^{*}$$
+$$
+	c^{\dagger} = c^{*}
+$$
 With this in mind, we can combine all of these together and write that the Hermitian conjugate simply
 reverses the order of the quantities and swaps them out for their Hermitian conjugate:
-$$\boxed{(c_1A_1\ket{\psi_1} + \bra{\psi_2}c_2A_2)^{\dagger} = \bra{\psi_1}A_1^{\dagger}c_1^{*} +
-c_2^{*}A_2^{\dagger}\ket{\psi_2}}$$
+$$
+	\boxed{(c_1A_1\ket{\psi_1} + \bra{\psi_2}c_2A_2)^{\dagger} = \bra{\psi_1}A_1^{\dagger}c_1^{*} +
+	c_2^{*}A_2^{\dagger}\ket{\psi_2}}
+$$
 We are now finally ready to discuss a special class of operators that we will see a lot of in quantum
 mechanics. We start with *Hermitian* operators:
 
 :::{.definition #def-hermitian-operator}
 # Hermitian Operator
 An operator $A$ is *Hermitian* if it is equal to its own Hermitian conjugate:
-$$A^{\dagger} = A$$
+$$
+	A^{\dagger} = A
+$$
 :::
 Using the first auxiliary property we proved that followed from the definition, we can equivalently write
 this condition in terms of matrix elements:
-$$A\text{ Hermitian} \implies \mel{\psi}{A}{\phi} = \mel{\phi}{A}{\psi}^{*} \quad \forall \ket{\psi},\ket{\phi}$$
+$$
+	A\text{ Hermitian} \implies \mel{\psi}{A}{\phi} = \mel{\phi}{A}{\psi}^{*} \quad \forall \ket{\psi},\ket{\phi}
+$$
 Similarly, we have *anti-Hermitian* operators:
 
 :::{.definition #def-antihermitian-operator}
 # Anti-Hermitian Operator
 An operator $A$ is *anti-Hermitian* if it is the additive inverse of its Hermitian conjugate:
-$$A^{\dagger} =-A$$
+$$
+	A^{\dagger} =-A
+$$
 :::
 
 An operator being Hermitian or anti-Hermitian is a special case; in other words, if an operator isn't
@@ -730,16 +805,22 @@ anti-Hermitian operator.
 :::{.lemma #lem-hermitian-decomposition}
 # Hermitian Decomposition of Operators 
 Any operator $A$ can be uniquely decomposed into the sum of a Hermitian and anti-Hermitian operator:
-$$A = \frac{A + A^{\dagger}}{2} + \frac{A - A^{\dagger}}{2}$$
+$$
+	A = \frac{A + A^{\dagger}}{2} + \frac{A - A^{\dagger}}{2}
+$$
 :::
 :::{.proof}
 The decomposition itself is trivial, so there's no need to prove it. The more interesting part to prove is
 that these newly-generated operators are Hermitian and anti-Hermitian. We prove by taking their respective
 Hermitian conjugates:
-$$\begin{align*}
-\left(\frac{A+A^{\dagger}}{2}\right)^{\dagger} &= \frac{A^{\dagger}+A^{\dagger\dagger}}{2} = \frac{A^{\dagger}+A}{2} = \frac{A+A^{\dagger}}{2} &&\text{(Hermitian)}\\
-\left(\frac{A+A^{\dagger}}{2}\right)^{\dagger} &= \frac{A^{\dagger}-A^{\dagger\dagger}}{2} = \frac{A^{\dagger}-A}{2} = -\left(\frac{A-A^{\dagger}}{2}\right) &&\text{(anti-Hermitian)}
-\end{align*}$$
+$$
+\begin{align*}
+	\left(\frac{A+A^{\dagger}}{2}\right)^{\dagger} &= \frac{A^{\dagger}+A^{\dagger\dagger}}{2} 
+	= \frac{A^{\dagger}+A}{2} = \frac{A+A^{\dagger}}{2} &&\text{(Hermitian)}\\
+	\left(\frac{A+A^{\dagger}}{2}\right)^{\dagger} &= \frac{A^{\dagger}-A^{\dagger\dagger}}{2} 
+	= \frac{A^{\dagger}-A}{2} = -\left(\frac{A-A^{\dagger}}{2}\right) &&\text{(anti-Hermitian)}
+\end{align*}
+$$
 Thus, the first term in the decomposition is a Hermitian operator, and the second is anti-Hermitian. Since
 the decomposition is possible to write for any operator $A$, we can always uniquely decompose into a sum of
 Hermitian and anti-Hermitian operators, as desired. $\blacksquare$
@@ -763,14 +844,22 @@ The proof is quite simple, but because we have a biconditional, we must prove bo
 
 ($\implies$) Starting with the forward direction, we will prove that if the product of two Hermitian
 operators is Hermitian, then they must commute. If the product of $A$ and $B$ is Hermitian, then we have:
-$$(AB)^{\dagger} = B^{\dagger}A^{\dagger} = (B)(A) = AB$$
+$$
+	(AB)^{\dagger} = B^{\dagger}A^{\dagger} = (B)(A) = AB
+$$
 This last equality implies that they commute:
-$$[A,B] = AB - BA = 0 \quad\checkmark$$
+$$
+	[A,B] = AB - BA = 0 \quad\checkmark
+$$
 ($\impliedby$) Now, we prove the reverse direction, showing that if two Hermitian operators commute, their
 product must be Hermitian. If $A$ and $B$ commute, then we have:
-$$[A,B] = AB - BA = 0 \implies AB = BA$$
+$$
+	[A,B] = AB - BA = 0 \implies AB = BA
+$$
 Taking the Hermitian conjugate of $AB$ shows us that the product is Hermitian:
-$$(AB)^{\dagger} = B^{\dagger}A^{\dagger} = (B)(A) = BA = AB \quad\checkmark$$
+$$
+	(AB)^{\dagger} = B^{\dagger}A^{\dagger} = (B)(A) = BA = AB \quad\checkmark
+$$
 Having shown both directions, we are done. $\blacksquare$
 :::
 
@@ -779,7 +868,9 @@ Now, we move on to *unitary* operators.
 :::{.definition #def-unitary-operator}
 # Unitary Operator 
 An operator $U$ is *unitary* if its Hermitian conjugate is equal to its inverse:
-$$UU^{\dagger} = U^{\dagger}U = 1 \implies U^{-1} = U^{\dagger}$$
+$$
+	UU^{\dagger} = U^{\dagger}U = 1 \implies U^{-1} = U^{\dagger}
+$$
 :::
 
 This definition has one immediate (and important) consequence:
@@ -790,15 +881,19 @@ The product of two unitary operators $U_1$, $U_2$ will always be unitary.
 :::
 :::{.proof}
 The proof is quite simple. Let's throw their product into the definition:
-$$\begin{align*}
-(U_1U_2)(U_1U_2)^{\dagger} &= U_1U_2(U_2^{\dagger}U_1^{\dagger}) = U_1U_2U_2^{\dagger}U_1^{\dagger} =
-U_1U_2U_2^{-1}U_1^{-1} = \\
-&= U_1(U_2U_2^{-1})U_1^{-1} = U_1(1)U_1^{-1} = U_1U_1^{-1} = 1\\
-(U_1U_2)^{\dagger}(U_1U_2) &= (U_2^{\dagger}U_1^{\dagger})U_1U_2 = U_2^{\dagger}U_1^{\dagger}U_1U_2 = U_2^{-1}U_1^{-1}U_1U_2 = \\
-&= U_2^{-1}(U_1^{-1}U_1)U_2 = U_2^{-1}(1)U_2 = U_2^{-1}U_2 = 1
-\end{align*}$$
+$$
+\begin{align*}
+	(U_1U_2)(U_1U_2)^{\dagger} &= U_1U_2(U_2^{\dagger}U_1^{\dagger}) = U_1U_2U_2^{\dagger}U_1^{\dagger} =
+	U_1U_2U_2^{-1}U_1^{-1} = \\
+	&= U_1(U_2U_2^{-1})U_1^{-1} = U_1(1)U_1^{-1} = U_1U_1^{-1} = 1\\
+	(U_1U_2)^{\dagger}(U_1U_2) &= (U_2^{\dagger}U_1^{\dagger})U_1U_2 = U_2^{\dagger}U_1^{\dagger}U_1U_2 = U_2^{-1}U_1^{-1}U_1U_2 = \\
+	&= U_2^{-1}(U_1^{-1}U_1)U_2 = U_2^{-1}(1)U_2 = U_2^{-1}U_2 = 1
+\end{align*}
+$$
 Thus, we have shown that 
-$$(U_1U_2)(U_1U_2)^{\dagger} = (U_1U_2)^{\dagger}(U_1U_2) = 1,$$
+$$
+	(U_1U_2)(U_1U_2)^{\dagger} = (U_1U_2)^{\dagger}(U_1U_2) = 1,
+$$
 showing that the product of two unitary operators is unitary, as desired. $\blacksquare$
 :::
 
@@ -807,13 +902,17 @@ showing that the product of two unitary operators is unitary, as desired. $\blac
 Operators will act on kets to produce other kets (and act on bras to produce other bras). In many instances,
 this new resultant ket will be completely new and not entirely related to the original input ket. Sometimes,
 however, acting an operator on a certain ket will simply scale the original ket by some factor:
-$$A\ket{u} = a\ket{u}$$
+$$
+	A\ket{u} = a\ket{u}
+$$
 Here, the ket vector $\ket{u}$ is called an *eigenket* of $A$ (or, equivalently in linear algebra, an
 *eigenvector* of the matrix represented by $A$), and the complex number $a$ is the associated (right) *eigenvalue* of
 $A$[^eigen].
 
 We also expect that there may exist a special bra that will only be scaled under the operator:
-$$\bra{\nu}A = b\bra{\nu}$$
+$$
+	\bra{\nu}A = b\bra{\nu}
+$$
 In this case, we call the bra $\bra{\nu}$ an *eigenbra* of $A$ and $b$ a (left) eigenvalue.
 
 :::{.remark}
@@ -842,7 +941,9 @@ Hermitian operators possess real eigenvalues.
 :::
 :::{.proof}
 Let's begin with our Hermitian operator $A$ and one of its eigenkets $\ket{u}$ and associated eigenvalue $a$:
-$$A\ket{u} = a\ket{u}$$
+$$
+	A\ket{u} = a\ket{u}
+$$
 If we multiply both sides by $\bra{u}$, we get:
 $$
 	\mel{u}{A}{u} = \mel{u}{a}{u} = a \braket*{u}{u}
@@ -875,7 +976,9 @@ $$
 	A\ket{u} = a \ket{u} \implies \mel{u}{A}{u} = a \braket*{u}{u}
 $$
 Now, dividing out $\ket{u}$ from both sides yields:
-$$\bra{u}A = a\bra{u}$$
+$$
+	\bra{u}A = a\bra{u}
+$$
 as desired. $\blacksquare$
 :::
 
@@ -887,7 +990,9 @@ The *eigenspaces* of a Hermitian operator corresponding to distinct eigenvalues 
 :::
 :::{.proof}
 Let's start with two distinct eigenvalue equations for our operator $A$:
-$$A\ket{u} = a\ket{u},\quad A\ket{u'} = a'\ket{u'}$$
+$$
+	A\ket{u} = a\ket{u},\quad A\ket{u'} = a'\ket{u'}
+$$
 Multiplying the first equation on both sides by $\bra{u'}$ and the second by $\bra{u}$ gives:
 $$
 	\mel{u'}{A}{u} = a \braket*{u'}{u}, \quad \mel{u}{A}{u'} = a' \braket*{u}{u'}
@@ -923,12 +1028,16 @@ We introduce one final operator which we'll need in the next section, called a *
 :::{.definition #def-projector}
 # Projection Operator
 A *projection operator* (or *projector*) is an observable $P$ that is *idempotent*:
-$$P^2 = P$$
+$$
+	P^2 = P
+$$
 :::
 
 It's immediately clear from this definition what eigenvalues projection operators possess:
-$$P\ket{p} = p\ket{p} \implies P^2\ket{p} = P\ket{p} = p^2\ket{p} = p\ket{p} \implies p^2 = p \implies 
-\boxed{p =0,1}$$
+$$
+	P\ket{p} = p\ket{p} \implies P^2\ket{p} = P\ket{p} = p^2\ket{p} = p\ket{p} \implies p^2 = p \implies 
+	\boxed{p =0,1}
+$$
 This means that a projection operator will separate a given Hilbert space $\mathcal{E}$ into two orthogonal
 subspaces, where every ket vector in one space will be annihilated (associated with the eigenvalue $0$),
 while every ket vector in the other will be unaffected (associated with eigenvalue $1$). The space associated

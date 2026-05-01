@@ -304,7 +304,7 @@ physics since many phenomena around us can be modeled approximately as delta fun
 
 
 :::{#fig-delta-well fig-env="figure*" fig-pos="h"}
-```tikz
+```{.tikz}
 \begin{tikzpicture}
   \draw[thick] (-2,0) node[left] {$0$} -- (-0.25,0) cos (-0.125,-1.5) sin (0,-3) node[below] {$-\infty$} cos (0.125,-1.5) sin (0.25,0) -- (2,0) node[right] {$V(x)$};
 \end{tikzpicture}
@@ -421,7 +421,7 @@ $$
 	\lim_{\epsilon\to0} \psi'(a + \epsilon) - \psi'(a - \epsilon) = 0,
 $$ 
 Which is precisely the definition of continuity in $\psi'$. However, if $V(x)$ is infinite, then
-this equality fails. Hence, since our choice of $\psi$ and $V$ was arbitrary, we've proven that $\psi'$ is always continuous for finite potentials. $\blacksquare$ 
+this equality fails. Hence, since our choice of $\psi$ and $V$ was arbitrary, we've proven that $\psi'$ is always continuous for finite potentials. 
 :::
 
 :::{.remark}
@@ -456,8 +456,12 @@ $$
 	\boxed{\psi(x) = \frac{\sqrt{ma}}{\hbar} e^{-ma |x|/\hbar^2}, \quad E = - \frac{ma^2}{2\hbar^2}}
 $${#eq-delta-well-decaying-sols}
 
+Here's also a visual diagram of $\psi(x)$ with the potential in blue. Notice that since the potential is
+infinite at $x = 0$ from the Dirac delta, that's also the only point where the derivative is undefined.
+Despite this however, $\psi(x)$ remains continuous, as required for $\psi$ to be considered physical.
+ 
 :::{#fig-delta-well-bound-solutions fig-env="figure*" fig-pos="h"}
-```tikz
+```{.tikz}
 \begin{tikzpicture}
   \draw[thick] (-2,0) node[left] {$0$} -- (-0.25,0) cos (-0.125,-1.5) sin (0,-3) node[below] {$-\infty$} cos (0.125,-1.5) sin (0.25,0) -- (2,0) node[right] {$V(x)$};
   \draw[very thick,blue!] (-2,0.1) node[above] {$\psi(x)$} parabola (0,1) (2,0.1) parabola (0,1);
@@ -487,7 +491,7 @@ $$
 $$
 Employing the same trick as in @eq-delta-function-integral, we get:
 $$
-	\psi'(\epsilon) - \psi'(-\epsilon) = ik(D - C) - ik(B - A) = \frac{2ma}{\hbar^2}\psi(0) = \frac{2ma}{\hbar^2}(A + B)
+\psi'(\epsilon) - \psi'(-\epsilon) = ik(D - C) - ik(B - A) = \frac{2ma}{\hbar^2}\psi(0) = \frac{2ma}{\hbar^2}(A + B)
 $$
 We choose to use $\psi_L(0) = A + B$ for the last equality; the logic works the same with $\psi_R$.
 There is a more compact way to write this equality; letting $\beta = \frac{ma}{\hbar^2 k}$ gives:
@@ -541,7 +545,7 @@ $$V(x) = a \delta(x)$$
 Similar to the well, we offer a (crude) visualization below.
 
 :::{#fig-delta-barrier fig-env="figure*" fig-pos="h"}
-```tikz
+```{.tikz}
 \begin{tikzpicture}
   \draw[thick] (-2,0) node[left] {$0$} -- (-0.25,0) cos (-0.125,1.5) sin (0,3) node[above] {$\infty$} cos (0.125,1.5) sin (0.25,0) -- (2,0) node[right] {$V(x)$};
 \end{tikzpicture}
@@ -584,7 +588,7 @@ $$
 It is called the *potential step*, because it functions exactly like a step function in mathematics.
 
 :::{#fig-potential-step fig-env="function*" fig-pos="h"}
-```tikz
+```{.tikz}
 \begin{tikzpicture}
 \draw[thick] (-2,0) node[left] {$0$} -- (0,0) node[below] {$V(x)$} -- (0,2) -- (2,2) node[right] {$V_0$};
 \end{tikzpicture}
@@ -707,7 +711,7 @@ $$
 Below is a visualization.
 
 :::{#fig-potential-barrier fig-env="figure*" fig-pos="h"}
-``` tikz
+```{.tikz}
 \begin{tikzpicture}[scale=2]
 	\draw[thick] (-1, 0) -- (0, 0) node[below] {$0$} -- (0, 1) node[left] {$V_0$} -- (1, 1) -- (1, 0) node[below] {$a$} -- (2, 0);
 \end{tikzpicture}
@@ -812,7 +816,7 @@ This potential is functionally the inverse of the potential barrier that we stud
 treatment will look a little different.
 
 :::{#fig-finite-square-well}
-``` tikz
+```{.tikz}
 	\begin{tikzpicture}[scale=1.5]
 		\draw[thick] (-2, 2) node[left] {$0$} -- (-1, 2) -- (-1, 0) node[below] {$-a$} -- (1, 0) node[below] {$a$} node[right] {$-V_0$} -- (1, 2) -- (2, 2);
 	\end{tikzpicture}

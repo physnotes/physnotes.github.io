@@ -76,7 +76,7 @@ A *mode* is a standing wave state of excitation where all of the system's compon
 :::
 
 :::{#fig-standing-modes fig-env="figure*" fig-pos="h"}
-```tikz
+```{.tikz}
 \begin{tikzpicture}
   \draw[thick] (0,2) sin (3,2.25) cos (6,2) node[right,xshift=0.25cm] {$n=1$} sin (3,1.75) cos (0,2);
   \draw[thick] (0,1) sin (1.5,1.25) cos (3,1) sin (4.5,0.75) cos (6,1) node[right,xshift=0.25cm] {$n=2$}
@@ -231,7 +231,7 @@ them to "escape" the metal, resulting in a phenomenon called *photoemission*.
 
 <!-- don't love the way thjis figure turned out; let's try to tweak it -->
 :::{#fig-photoelectric-effect fig-env="figure*" fig-pos="h"}
-```tikz
+```{.tikz}
 \begin{tikzpicture}
   \draw[gray!30!white,fill,outer color=gray!30!white,inner color=gray!10!white,fill opacity=0.5] (0,0.15) rectangle (6,0.85) node[midway,below,yshift=-0.35cm,black,opacity=1] {metal surface};
   \foreach \coord in
@@ -317,7 +317,7 @@ according to this model, then the amount of energy it dissipates would have sent
 
 <!-- may want to tweak the colors for better visibility -->
 :::{#fig-bohr-model fig-env="figure*" fig-pos="h"}
-```tikz
+```{.tikz}
 \begin{tikzpicture}
   \foreach \coord in {(-0.175,0.175), (0.175,-0.175)}
   {\filldraw[blue!40!cyan!20, outer color=blue!40!cyan!20, inner color=blue!20!cyan!10!white,fill opacity=1] \coord circle (0.25cm);}
