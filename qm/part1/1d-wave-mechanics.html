@@ -420,7 +420,7 @@ and solve the differential equation for $\psi$, and out come the energy eigensta
     \infty &amp; \text{otherwise}
     \end{cases}
 \]</span> This is called the <em>infinite square well</em>, appropriately named since the graphical representation of the potential is a well whose walls are infinitely tall:</p>
-<div id="fig-infinite-square-well" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
+<div id="fig-infinite-square-well" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-infinite-square-well-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="1d-wave-mechanics_files/mediabag/8007d8bf3b1d4f71dc92c1a8484c3ae19413ba7a.svg" class="img-fluid figure-img">
@@ -451,7 +451,7 @@ Figure&nbsp;5.1: The infinite square well; the width is <span class="math inline
 \]</span> Therefore, the full solution to the infinite square well is the following discrete set of wavefunctions <span class="math inline">\(\psi_n\)</span>: <span id="eq-isw-wavefunctions"><span class="math display">\[
     \boxed{\psi_n(x) = \sqrt{\frac{2}{a}} \sin\left( \frac{n\pi}{a}x \right)}
 \tag{5.2}\]</span></span> These incidentally correspond to standing modes in a cavity, visualized below.</p>
-<div id="fig-isw-solutions" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
+<div id="fig-isw-solutions" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-isw-solutions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="1d-wave-mechanics_files/mediabag/71ccb499811641aea38b3bf56960ab173c04c94a.svg" class="img-fluid figure-img">
@@ -472,7 +472,7 @@ Figure&nbsp;5.2: A few infinite square well wavefunction solutions visualized.
 <p><span class="theorem-title"><strong>Definition 5.1 (Dirac Delta Function)</strong></span> The <em>Dirac delta function</em>, denoted <span class="math inline">\(\delta(x-x_0)\)</span>, is defined as the following: <span class="math display">\[\delta(x-x_0) = \begin{cases}\infty&amp;x=x_0\\0&amp;\text{otherwise}\end{cases}\]</span> Crucially, it is also defined to have a bounded integral: <span class="math display">\[\int_{-\infty}^{\infty}\delta(x-x_0)dx = 1\]</span> This can be thought of as the continuous version of the Kronecker delta.</p>
 </div>
 <p>This is quite a peculiar object. It’s not a “function” in the traditional sense, and instead defined as a function whose value is zero nearly everywhere but integrates to 1 over the entire real line. There is no true function that simultaneously satisfies these properties, hence the delta function isn’t really considered a “function”.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> However, it often makes an appearance in theoretical and experimental physics since many phenomena around us can be modeled approximately as delta functions.</p>
-<div id="fig-delta-well" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
+<div id="fig-delta-well" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-delta-well-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="1d-wave-mechanics_files/mediabag/40ccc246354fda2894055a6bb12e6b47a1a39790.svg" class="img-fluid figure-img">
@@ -528,7 +528,7 @@ Figure&nbsp;5.3: The delta function well potential. The width and the depth are 
     \psi(x) \ d x
 \]</span> This brings us to the heart of the argument: if <span class="math inline">\(V(x)\)</span> is finite, then the integral on the right vanishes, and we get: <span class="math display">\[
     \lim_{\epsilon\to0} \psi'(a + \epsilon) - \psi'(a - \epsilon) = 0,
-\]</span> Which is precisely the definition of continuity in <span class="math inline">\(\psi'\)</span>. However, if <span class="math inline">\(V(x)\)</span> is infinite, then this equality fails. Hence, since our choice of <span class="math inline">\(\psi\)</span> and <span class="math inline">\(V\)</span> was arbitrary, we’ve proven that <span class="math inline">\(\psi'\)</span> is always continuous for finite potentials. <span class="math inline">\(\blacksquare\)</span></p>
+\]</span> Which is precisely the definition of continuity in <span class="math inline">\(\psi'\)</span>. However, if <span class="math inline">\(V(x)\)</span> is infinite, then this equality fails. Hence, since our choice of <span class="math inline">\(\psi\)</span> and <span class="math inline">\(V\)</span> was arbitrary, we’ve proven that <span class="math inline">\(\psi'\)</span> is always continuous for finite potentials.</p>
 </div>
 <div class="proof remark">
 <p><span class="proof-title"><em>Remark</em>. </span>This is also why we didn’t have to consider continuity in <span class="math inline">\(\psi'\)</span> when dealing with the infinite square well.</p>
@@ -548,7 +548,8 @@ Figure&nbsp;5.3: The delta function well potential. The width and the depth are 
 \]</span> Thus, we finally have the full solution for the delta function potential, for <span class="math inline">\(E &lt; 0\)</span>: <span id="eq-delta-well-decaying-sols"><span class="math display">\[
     \boxed{\psi(x) = \frac{\sqrt{ma}}{\hbar} e^{-ma |x|/\hbar^2}, \quad E = - \frac{ma^2}{2\hbar^2}}
 \tag{5.6}\]</span></span></p>
-<div id="fig-delta-well-bound-solutions" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
+<p>Here’s also a visual diagram of <span class="math inline">\(\psi(x)\)</span> with the potential in blue. Notice that since the potential is infinite at <span class="math inline">\(x = 0\)</span> from the Dirac delta, that’s also the only point where the derivative is undefined. Despite this however, <span class="math inline">\(\psi(x)\)</span> remains continuous, as required for <span class="math inline">\(\psi\)</span> to be considered physical.</p>
+<div id="fig-delta-well-bound-solutions" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-delta-well-bound-solutions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="1d-wave-mechanics_files/mediabag/c2494f52d9c3f9d73ba4d24566d52bbef82c4a10.svg" class="img-fluid figure-img">
@@ -568,7 +569,7 @@ Figure&nbsp;5.4: The delta function well bound state wavefunction solution visua
         \psi_R'(0) &amp;= ik (D - C)
     \end{align*}
 \]</span> Employing the same trick as in <a href="#eq-delta-function-integral" class="quarto-xref">Equation&nbsp;<span>5.4</span></a>, we get: <span class="math display">\[
-    \psi'(\epsilon) - \psi'(-\epsilon) = ik(D - C) - ik(B - A) = \frac{2ma}{\hbar^2}\psi(0) = \frac{2ma}{\hbar^2}(A + B)
+\psi'(\epsilon) - \psi'(-\epsilon) = ik(D - C) - ik(B - A) = \frac{2ma}{\hbar^2}\psi(0) = \frac{2ma}{\hbar^2}(A + B)
 \]</span> We choose to use <span class="math inline">\(\psi_L(0) = A + B\)</span> for the last equality; the logic works the same with <span class="math inline">\(\psi_R\)</span>. There is a more compact way to write this equality; letting <span class="math inline">\(\beta = \frac{ma}{\hbar^2 k}\)</span> gives: <span class="math display">\[
     C - D = A(2 i \beta + 1) + B (2 i \beta - 1)
 \]</span> So we have the following two equations for <span class="math inline">\(A, B, C\)</span> and <span class="math inline">\(D\)</span>: <span class="math display">\[
@@ -590,7 +591,7 @@ Figure&nbsp;5.4: The delta function well bound state wavefunction solution visua
 \tag{5.7}\]</span></span> And that’s the full solution to the delta well! It’s blatantly apparent that this derivation is <em>very</em> non-classical: it predicts that a potential <em>well</em> has the chance to scatter a particle despite the particle having a positive energy.</p>
 <hr>
 <p>At this point, let’s talk briefly about the delta potential <em>barrier</em>, which is basically the same potential but positive: <span class="math display">\[V(x) = a \delta(x)\]</span> Similar to the well, we offer a (crude) visualization below.</p>
-<div id="fig-delta-barrier" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
+<div id="fig-delta-barrier" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-delta-barrier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="1d-wave-mechanics_files/mediabag/5f6ae9fc425352de2a5e7853eac432785d7addcc.svg" class="img-fluid figure-img">
@@ -617,7 +618,7 @@ Figure&nbsp;5.5: The delta function barrier potential. Similar to the delta well
     V_0 &amp; x &gt; 0
     \end{cases}
 \]</span> It is called the <em>potential step</em>, because it functions exactly like a step function in mathematics.</p>
-<div id="fig-potential-step" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="function*">
+<div id="fig-potential-step" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="function*" data-fig-pos="h">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-potential-step-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="1d-wave-mechanics_files/mediabag/d45052ea75538c967e88576ddaecff7ed8d4729e.svg" class="img-fluid figure-img">
@@ -686,7 +687,7 @@ Figure&nbsp;5.6: The step potential. This is like one half of a finite well, whi
     0 &amp; x &gt; a
     \end{cases}
 \]</span> Below is a visualization.</p>
-<div id="fig-potential-barrier" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-pos="h" data-fig-env="figure*">
+<div id="fig-potential-barrier" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-env="figure*" data-fig-pos="h">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-potential-barrier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="1d-wave-mechanics_files/mediabag/df966638e10458a94136710ac193b290cc533b8c.svg" class="img-fluid figure-img">
