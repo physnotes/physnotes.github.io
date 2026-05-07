@@ -3,109 +3,48 @@
 Having laid the foundation with formalism, connected said formalism to experimental results through
 postulates, used these postulates to derive quantum analogs to some classical quantities, and derived the
 Schrödinger equation (which will be the fundamental equation we aim to solve), we are now
-ready to tackle some basic problems and learn how to solve certain quantum mechanical systems. In this chapter, we will utilize the time-independent Schrödinger equation to extract the allowed states in our system, and explore some
-canonical problems studied in most quantum mechanics books. Finally, we will look at how to incorporate time
+ready to tackle some basic problems and learn how to solve certain quantum mechanical systems. 
+In this chapter, we will develop the formal process through which we extract allowed states in our system,
+starting in one dimension for simplicity. Finally, we will look at how to incorporate  
+
+In this chapter, we will utilize the time-independent Schrödinger equation to extract the allowed states in our system, 
+and explore some canonical problems studied in most quantum mechanics books. Finally, we will look at how to incorporate time
 dependence and transform a time-independent solution $\psi(x)$ into a time-dependent $\Psi(x, t)$. 
 
-<!-- I have removed this because I feel it is now redundant
-## The Wavefunction
-As mentioned in [REF formalisms], the fundamental object in our study of quantum mechanics is the
-**wavefunction**, denoted $\psi(x, t)$ or $\Psi(x, t)$, which is a vector in our Hilbert space $\mathcal{E}$. 
-This is also sometimes denoted as the **state** of our system, and is represented in bra-ket
-notation by $\ket{\psi}$. To begin our discussion, we will focus on 1D wave functions; that is, wavefunctions
-of the form $\psi(x, t)$ (so only having one position coordinate), and then later generalize this notion 
-to multiple dimensions. This is summarized in the box below:
-
-:::{.notation}
-The state of a quantum system is denoted by its wavefunction $\psi$, which lives in a Hilbert space
-$\mathcal{E}$, and is represented in functional form by $\psi(x)$ or in its vector form by $\ket{\psi}$. 
-:::
-
-Recall that $\psi$ itself isn't something that can be directly observed, but it contains all the information
-about the quantum system. What we do observe is $|\psi|^2$, which represents the probability density of
-measuring a particular observable (assuming of course, that $\psi$ is expressed in the basis of the
-corresponding observable). As $|\psi|^2$ is a probability density, it must follow the law of total
-probability, which is written as:
-$$
-	\int_{-\infty}^{\infty} |\psi(x, t)|^2 \ dx = \int_{-\infty}^{\infty} \psi(x) \psi^{*}(x) \ dx = 1 
-$$
-at all $t$, with the $\psi^{*}$ being the complex conjugate of $\psi$. Intuitively, this should also make sense: 
-this is essentially saying that the probability you measure *some* value of your observable is guaranteed. 
-
-:::{.warning}
-Note that this does NOT imply that $\psi$ is necessarily integrable, and that's perfectly fine! Remember that
-what we physically observe is the probability $|\psi|^2$ and not $\psi$, so there is no requirement on what
-$\psi$ needs to be. Formally, $\psi$ belongs to a class of functions which are considered
-*square-integrable*, namely the property that $|\psi|^2$ must be integrable.  
-:::
--->
-
 ## Time-Independent Schrödinger Equation
-<!-- I have commented this section out while I draft up the quantum from classical chapter; once it exists,
-let's revisit this and write whatever content you deem relevant -->
-<!--
-Now, we will take a look at how we actually write down the wavefunction $\psi$. To begin, recall that from
-[REF formalisms] that $\psi$ can be expressed in many different ways, depending on the basis we choose.
-One particular basis of interest to us is the *energy* basis, which are eigenstates of the Hamiltonian
-operator $\hat{H}$. These are of particular interest to us since at a high level, one primary property we
-care about in our quantum system is the energy of our particles. Now, since $\psi$ is written as a linear 
-combination of these eigenstates, the next logical step is to solve the eigenvalue equation for $H$ to find them. 
-This equation is known as the **time-independent Schrodinger equation (TISE)**, which we
-introduce below: 
+As mentioned, in this whole chapter will focus on solving the time-independent Schrödinger equation outlined in
+@thm-tise. We rewrite it here for convenience:
+$$
+	\hat{H} \ket{\psi} = E\ket{\psi}
+$$
+We will make a few simplifying assumptions to begin: firstly, we will only consider the one-dimensional
+wavefunction $\psi(x)$, and secondly we will drop the time dependence. At the end of this chapter, we'll see
+how to generalize these notions to three dimensions and re-introduce the time dependence. 
 
-:::{.theorem #thm-tise}
-# Time-Independent Schrödinger Equation
-Given a Hamiltonian $\hat{H}$, its energy eigenstates are given by the eigenvalue equation:
+In its current form, the time-independent Schrödinger equation is not very useful. To remedy this, we
+use the form of $\hat{H}$ in @eq-hamiltonian-wavefunction-form and get rid of the time dependence on $V$
+temporarily:
 $$
-	\hat{H} \ket{\psi} = E \ket{\psi}
+	\left(-\frac{\hbar^2}{2m} \pdv[2]{x} + V(\mathbf{x}, t) \right) \ket{\psi} = E \ket{\psi}
 $$
-:::
-This equation is at the heart of quantum mechanics -- everything we do from here on out is all in the name of
-solving this equation. Don't let its simplicity fool you, though: this equation is deceptively complex. 
+Finally, we'll make one last switch by changing $\ket{\psi}$ into $\psi(x)$:
+$$
+	\left( -\frac{\hbar^2}{2m} \pdv[2]{x} + V(x) \right) \psi(x) = E \psi(x)
+$$
 
-In light of this, there are still some things we can do. To begin, we should unpack the Hamiltonian 
-operator $\hat{H}$, and write it down in a "nicer" form. First, we go back to the classical (non-quantum) definition
-of the Hamiltonian as the sum of kinetic and potential energies of a system: 
-<!-- perhaps we should include a citation to the classical mechanics part of the book, when possible -->   
-<!--$$
-	H = T + V
-$$
-The kinetic energy, written in terms of the momentum $p$, is: 
-$$
-	T = \frac{p^2}{2m}
-$$
-So the Hamiltonian can be written as:
-$$
-	H = \frac{p^2}{2m} + V(x)
-$$
-For now (and for most of this book), we will consider time-independent potentials $V(x)$, meaning the energy
-will depend exclusively on the position in space and will not evolve in time.
 
-An additional simplification we will make in this chapter is considering systems in <u>one dimension</u>.
-This reduces the degrees of freedom and simplifies our equation dramatically.
-
-:::{.remark}
-The abstraction to three dimensions will not be as complicated as it may seem at first, but for the sake of
-clarity, we will limit our discussion to one-dimensional systems, for now.
-:::
-
-To transform this Hamiltonian into the quantum language, we promote all observables to operators (motivated by our
-postulate), so this means we promote $p$ to $\hat{p}$, and $x$ to $\hat{x}$. In one dimension, these
-operators have the following form:
-$$\hat{x} = x, \quad \hat{p} = -i\hbar\pdv{x}$$
-So, the time-independent Schrödinger equation now reads:
-$$
-	\left(-\frac{\hbar^2}{2m} \pdv[2]{x} + V(x)\right) \ket{\psi} = E \ket{\psi}
-$$
-Now, the path forward is clear: for different systems, we substitute in the appropriate potential $V(x)$,
-and solve the differential equation for $\psi$, and out come the energy eigenstates! 
--->
 :::{.notation}
 Since we are only dealing in one dimension and have abstracted out time dependence, our function is
 technically single-variable, meaning the derivative is a regular total derivative. However, since this will
 not generally be the case, we will use the partial derivative notation to maintain consistency. In the
 following problems, though, treat this derivative as $-i\hbar\dv{x}$. 
 :::
+
+and unlike the previous form, this form of the Schrödinger equation is just a differential equation which we
+can solve for different potentials $V(x)$. So, now our path to solving $\psi(x)$ is more clear: for every
+system we're interested in, we substitute in the appropriate potential $V(x)$, and solve the differential
+equation for $\psi$, and out come the energy eigenstates!
+
 
 ## Fundamental Problems
 As we saw above, the main quantity that will determine the behavior of the system (and the resulting energy
@@ -152,7 +91,7 @@ Intuitively, this makes sense: these are just *plane waves* travelling through s
 right with positive $k$ and one to the left with negative $k$.
 :::
 
-However, this solution has a problem: **it isn't normalizabile**! If we try to check the normalization:
+However, this solution has a problem: **it isn't normalizable**! If we try to check the normalization:
 $$\begin{align*}
 	\int_{-\infty}^{\infty}\left|Ae^{ikx}+Be^{-ikx}\right|^2dx &= \int_{-\infty}^{\infty}\left( Ae^{ikx} + Be^{-ikx} \right)\left(
 	A^{*}e^{-ikx} + B^{*}e^{ikx}\right)dx = \\
@@ -375,7 +314,19 @@ of $\psi$ around $x = 0$. To find the energy, we need to impose an additional co
 encountered yet: continuity of $\psi'$ (the wavefunction's derivative). 
 
 First off, we should try and understand the reason why continuity in $\psi'$ is needed, of which there are two. 
-The first comes directly from our time-independent Schrodinger equation. Recall that the equation reads:
+The first comes from the definition of the probability current. Recall from @def-probability-current that the 
+probability current (in three dimensions) is:
+$$
+	\mathbf{J} = \frac{i\hbar}{2m} \left( \psi \nabla \psi^{*} - \psi^{*} \nabla \psi \right)
+$$
+restricting to one dimension changes the del operator $\nabla$ to a derivative:
+$$
+	J = \frac{i\hbar}{2m} \left( \psi \pdv{\psi^{*}}{x} - \psi^{*} \pdv{\psi}{x} \right)
+$$
+and here we see why continuity in $\psi'$ is important: the probability current quantifies the flow of
+probability over time, and therefore it must be a continuous quantity. The continuity in $J$ depends on
+continuity in $\psi$ and $\psi'$ (and its conjugates), and thus $\psi'$ should also be continuous. 
+The second motivation comes from our time-independent Schrödinger equation. Recall that the equation reads:
 $$
 	\left(-\frac{i\hbar}{2m} \pdv[2]{x} + V(x)\right) \ket{\psi} = E \ket{\psi}
 $$
@@ -599,7 +550,8 @@ The step potential. This is like one half of a finite well, which we will analyz
 There are two different kind of states to consider: $0 < E < V_0$ and $E > V_0$ (the $E < 0$ state does
 not exist). Let's consider the $E < V_0$ state first.
 
-To the left of the barrier, we have a scattering state, but to the right we have a *decaying* state, since $E - V_0$ is negative. This is because inside the barrier, Schrödinger's equation reads:
+To the left of the barrier, we have a scattering state, but to the right we have a *decaying* state, 
+since $E - V_0$ is negative. This is because inside the barrier, Schrödinger's equation reads:
 $$
 	\pdv[2]{\psi}{x} = (E - V_0)\psi
 $$
@@ -655,9 +607,9 @@ The answer to this question is quite subtle. Firstly, decaying solutions don't c
 probability current turns out to be zero. Hence, all the energy must be reflected back. But, perhaps this
 isn't a satisfying answer, in which case there another solution.
 
-Suppose we *were* able to measure the particle inside the barrier. In that case, the decaying solution has a characteristic length of $\frac{1}{\kappa}$, so the variance in position is 
-$$\Delta x \sim \frac{1}{\kappa}.$$
-But, by the position-momentum uncertainty relation: 
+Suppose we *were* able to measure the particle inside the barrier. In that case, the decaying solution has 
+a characteristic length of $\frac{1}{\kappa}$, so the variance in position is $$\Delta x \sim \frac{1}{\kappa}.$$
+But, by the position-momentum uncertainty relation (@eq-position-momentum-uncertainty): 
 $$
 	\Delta p_x \geq \frac{\hbar}{\Delta x} = \hbar \kappa = \sqrt{2m(V_0 - E)}
 $$
@@ -696,7 +648,8 @@ We encourage the reader to verify on their own that $R + T = 1$.
 <!-- I may be overusing remarks; decide for yourself which of these should be left in external environments
 -->
 :::{.remark}
-Just like the delta potential well, we find that even though the particle's energy can be higher than the step, there's *still* get some reflection regardless, which is a fundamentally non-classical result.
+Just like the delta potential well, we find that even though the particle's energy can be higher than the step, 
+there's *still* get some reflection regardless, which is a fundamentally non-classical result.
 :::
 
 ### The Potential Barrier {#sec-potential-barrier}
@@ -804,7 +757,7 @@ means that there are some configurations where the $T = 1$ and $R = 0$, yielding
 ### Finite Square Well 
 The final potential we'll analyze in this chapter is the finite square well. This is similar to the
 infinite square well, but this time our walls are finitely tall. As we'll see, this gives us a first glimpse
-into why the Schrodinger equation is difficult to solve analytically. Mathematically, we will express this
+into why the Schrödinger equation is difficult to solve analytically. Mathematically, we will express this
 potential as:
 $$
 	V(x) = \begin{cases}
@@ -943,8 +896,8 @@ $$
 	\sin^2(2k'a)}{4E(V_0 + E)} \right]^{-1}}
 $$
 
-## Time-Dependent Schrodinger Equation
-So far, we've been dealing with the time-*independent* Schrodinger equation, which doesn't account for any
+## Time-Dependent Schrödinger Equation
+So far, we've been dealing with the time-*independent* Schrödinger equation, which doesn't account for any
 time evolution. In this section, we will look at how we can transform a solution to the
 time-independent solution into one that incorporates time dependence. While this may seem complicated at first,
 the trick actually turns out to be very simple. 
@@ -1035,3 +988,4 @@ tunnel through to the other side.
 
 [^finite-square-well]: We also have to make the change $a \to 2a$ compared to the square barrier since $a$
 	was the width of the barrier, but $a$ as defined in the finite well is only half the width of the well.
+

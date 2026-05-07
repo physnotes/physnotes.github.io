@@ -5,7 +5,8 @@ world with the postulates. At long last, we are able to start developing some ph
 
 Why all this setup? Many undergraduate courses in quantum mechanics will skip over all of this formal 
 development at the beginning in favor of jumping straight into working with the wavefunction and utilizing the 
-Schrödinger equation to solve basic problems. This choice is typically made to avoid adding needless complexity and to prevent the technical mathematical 
+Schrödinger equation to solve basic problems. This choice is typically made to avoid adding needless complexity 
+and to prevent the technical mathematical 
 details from getting in the way of a basic physical intuition. As a matter of fact, this is precisely how we 
 learned quantum mechanics initially, before supplementing the finer mathematical formalism in later graduate courses.
 
@@ -30,9 +31,13 @@ to practice using it. Thus, we hope you have beared with us while we laid all th
 
 :::{.warning}
 As we warned at the beginning of the Formalism chapter, there is a *lot* of mathematics involved in the 
-development of a formal framework for a physical theory. If the reader wishes to gain a more solid mathematical footing 
-before attempting to understand certain parts of the way we present the material, that's totally fine! We will wait 
-here for you to return. It is our hope, though, that we do a sufficiently good job of presenting whatever mathematics 
+development of a formal framework for a physical theory. In particular, this chapter will also make use of
+classical objects like the Hamiltonian as a foundational object in the derivation of quantum operators, while
+omitting many details about what they represent. We do recognize that this diminishes the satisfaction 
+from arriving at a result, but we do feel that these omissions are a worthy price to pay so as to keep our discussion focused 
+on the quantum mechanics. If the reader wishes to gain a more solid 
+mathematical footing before attempting to understand certain parts of our presentation, that's totally fine! 
+We will wait here for you to return. It is our hope, though, that we do a sufficiently good job of presenting whatever mathematics 
 is necessary throughout the relevant chapters and accompanying appendices at the back.
 :::
 
@@ -51,9 +56,13 @@ We will see much more of this hat notation moving forward; an operator will typi
 to indicate that it is an operator rather than a variable. The main exceptions will be those operators labeled with 
 *capital* letters, since those are harder to confuse for variables or other mathematical objects.
 :::
-
-Since we are dealing with a continuous spectrum and nondegenerate eigenkets (positional values can only correspond to a 
-unique position), the resolution of the identity for this operator takes the following form:
+Since we are dealing with a continuous spectrum and nondegenerate eigenkets (positional values can only
+correspond to a unique position), the inner product between two kets $\ket{x_1}$ and $\ket{x_2}$ is,
+according to [REFERENCE HERE] is given by:
+$$
+	\braket*{x_1}{x_2} = \delta(x_1 - x_2)
+$$
+The resolution of the identity is then:
 $$
 	\int_{-\infty}^{\infty}\ketbra{x}dx = 1
 $$
@@ -72,6 +81,7 @@ this expression look more like an integral expression wherein we're actually int
 finally define the *positional wavefunction* $\psi(x)$:
 
 :::{.definition #def-positional-wavefunction}
+
 # Positional Wavefunction
 The *wavefunction*, denoted $\psi(x)$, encodes the state in configuration space and is given by the following inner product: 
 $$
@@ -121,7 +131,7 @@ $$
 	[\hat{x}_i,\hat{x}_j] = 0
 $$
 So, we now can write three separate eigenvalue problems, conveniently condensed into one using index
-notation:
+notation: 
 $$
 	x_i\ket{\mathbf{x}} = x_i\ket{\mathbf{x}}
 $$
@@ -136,7 +146,7 @@ $$
 Finally, the probability density of finding the particle in some region $R$ in 3-dimensional space becomes a
 multivariate integral:
 $$
-	\mathrm{Prob}(\mathbf{x}\in R) = \int_R|\psi(\mathbf{x})|^2 \ d^3\mathbf{x}
+	\mathrm{Prob}(\mathbf{x} \in R) = \int_R|\psi(\mathbf{x})|^2 \ d^3\mathbf{x}
 $$
 
 ### The Position Operator
@@ -153,7 +163,7 @@ Interestingly, acting the $\hat{x}$ operator on a ket $\ket{\psi}$ just multipli
 configuration space wavefunction by $x$:
 $$
 	\boxed{(\hat{x}\psi)(x) = x\psi(x)}
-$$
+$${#eq-position-definition}
 Thus, in configuration space, $\hat{x}$ is represented by multiplication of the wavefunction by $x$. This is
 our position operator. Generalizing to three dimensions is easy:
 $$
@@ -188,44 +198,397 @@ This is well defined, but what does $\hat{p}$ do to states $\ket{x}$, the states
 space? Since $\ket{x}$ are eigenstates of $\hat{x}$ but not necessarily eigenstates of $\hat{p}$ -- in fact, they
 *cannot* be, as we'll soon show -- what $\hat{p}$ does to $\ket{x}$ is not immediately obvious.
 
-So, to begin our derivation, we first turn to classical mechanics for a hint: in Lagrangian and Hamiltonian
-mechanics, translational invariance (also sometimes called translational symmetry) directly leads to
-the conservation of momentum, which hints at a link between translation and momentum. Motivated by this
-observation, we'll do the same in our quantum framework by defining the translation operator, and see how
-that leads naturally to how $\hat{p}$ should behave.     
- 
+### The Generator of Translations
 
-### Translation Operators 
-First, we define the translation operator, which as its name suggests, takes a ket $\ket{x}$ and moves it in
-space to $\ket{x + a}$:
+Before we begin, one question we should ask ourselves is, how *should* the momentum operator $\hat{p}$ behave? 
+In a sense, there is no right answer to this: one can define the "momentum operator" however they please, but
+that definition may not lead to any meaningful physics. Our goal then, is to find a definition of momentum
+that *does* give us interesting physics, and without any better reference point, why not pick the momentum
+$\hat{p}$ such that it plays the same role as its classical analogue?
+   
+Following this reasoning, now our goal is clear: we want to define the momentum operator $\hat{p}$ such that
+it fulfills the same role as $p$ does in classical mechanics. So, what role does $p$ fundamentally fulfill in
+classical mechanics? As it turns out $p$ is also called the *generator of translations*, and this fact gives
+us the proper springboard to define its quantum counterpart.
 
-:::{.definition #def-translation-operator}
+To begin, consider a scalar function $f(x, p)$ parametrized by position and momentum, and now consider a
+translation by $a$ units. We can then write this new function $f(x - a, p)$ in terms of $f(x, p)$ and its
+derivatives:
+$$
+	f(x - a, p) = f(x, p) + a \pdv{f}{x} + \frac{a^2}{2} \pdv[2]{f}{x} (x, p) + \dots
+$$
+If we now make use of Poisson brackets (more on these in @sec-poisson-bracket), it is possible to write
+this as: 
+$$
+	f(x - a, p) = f(x, \dot x), + a \{p, f\} + \frac{a^2}{2} \left\{ p, \left\{ p, f \right\} \right\} +
+	\dots 
+$$
+where we can see that on the right, the translation operation can be built up directly using only $p$, and
+this is why we call $p$ the classical generator of translations.
 
-# Translation Operator 
+At first, it may feel contrived to consider a function specifically parametrized by $x$ and $p$, but there is a good
+reason for this. In classical mechanics, the *Hamiltonian* (an object we will also soon quantize) is a mathematical object
+parametrized by $(x, p)$ that captures all the dynamics of the system, meaning that how a system evolves in
+time can be calculated once the Hamiltonian is known. In a sense, the Hamiltonian mathematically *represents* 
+the system itself, so how transformations of the Hamiltonian can be represented in terms of quantities like
+$p$ are important and give a more fundamental representation of what these quantities actually represent. 
+
+Now, to figure out what the quantum generator of translations looks like, we must first define a translation operator, which we do
+below:[^translation-operator]
+
+:::{.definition #def-quantum-translation-operator}
+
+# Quantum Translation Operator 
 The *translation operator* is a linear operator parametrized by a displacement $a$. On the Hilbert space of
 position eigenstates $\ket{x}$, the translation operator $T(a)$ acts as:
 $$
 	T(a) \ket{x} = \ket{x + a}
 $$
 :::
-Simple enough. What happens to $T$ when we act it on wavefunctions? Well, we know from
-@def-positional-wavefunction that the wavefunction is defined as $\psi(x) = \braket*{x}{\psi}$, 
+Just like in the classical case, let's now Taylor expand $T(a)$ around $a = 0$:
+$$
+	T(a) = T(0) + a \dv{T}{a}(0) + \dots 
+$$
+And now, we define an operator $\hat{k}$ such that:
+$$
+	\hat{k} = i\dv{T}{a}(0) 
+$${#eq-khat-definition}
+The reason we include the imaginary part $i$ so that $\hat{k}$ can be Hermitian. With this definition of
+$\hat{k}$, we can write $T(a)$ as: 
+$$
+	T(a) = 1 - ia \hat{k} + \dots 
+$$
+And now, we can see that we've managed to rewrite $T(a)$ purely in terms a Taylor expansion in $\hat{k}$. So,
+just like it's classical analogue, we've found an operator $\hat{k}$ from which a general translation $T(a)$
+can be built up, and hence we call $\hat{k}$ the generator of translations in quantum mechanics.
+
+So, is $\hat{k}$ then our momentum operator? Not quite! While both $p$ and $\hat{k}$ are their
+respective generators of translations, their units are not quite the same. We can see from the Taylor
+expansion of $T(a)$ that $\hat{k}$ must have units of inverse length so that $T(a)$ remains dimensionless. On
+the contrary, the classical quantity $p$ has units of momentum. So, to fix this discrepancy, we insert a
+proportionality constant in front of $\hat{k}$ to make the dimensions work out: 
+$$
+	\hat{p} = \hbar \hat{k}
+$$
+and this is the definition of the momentum in quantum mechanics.
+
+<!-- insert some description of the planck constant here, I can't think of anything good to write right now.--> 
+
+### Properties of the Momentum Operator  
+Now that we have a proper definition of $\hat{p}$ in $\hat{p} = \hbar \hat{k}$, we return to our original
+question: what does $\hat{p}$ do to states $\ket{x}$? This is essentially asking what $\hat{k}$ does to these
+states, since $\hat{p}$ is defined in terms of $\hat{k}$ up to a proportionality constant. To start, let's
+use the definition of $\hat{k}$ (@eq-khat-definition) and act it on a $\ket{x}$ and see what happens:
+$$
+	\hat{k}\ket{x} = i\dv{T}{a} \eval{\ket{x}}_{a = 0} = i\dv{a} \eval{\ket{x + a}}_{a = 0} = i \dv{x} \ket{x}
+$${#eq-k-on-ket}
+The last step may seem strange since we're switching from $\dv{a}$ to $\dv{x}$, but it can be 
+motivated using the chain rule:
+$$
+	i\dv{a} \eval{\ket{x + a}}_{a = 0} = i \dv{x} \dv{x}{a} \eval{\ket{x + a}}_{a = 0}
+$$
+and $\dv{x}{a}$ is interpreted as the change in $x$ relative to a change in $a$. Since $T(a)$ moves $\ket{x}$
+to $\ket{x + a}$, a change in $a$ is equal to a change in $x$, hence $\dv{x}{a} = 1$. Thus, we're left with
+the desired result:
+$$
+	i\dv{a} \eval{\ket{x + a}}_{a = 0} = i \dv{x} \ket{x}
+$$
+Since we've also just discovered how we can write wavefunctions as $\psi(x) = \braket*{x}{\psi}$, let's also
+work what $\hat{k}$ does to those. First, consider a ket $\ket{\psi}$ and its wavefunction $\psi(x) = 
+\braket*{x}{\psi}$, and now define $\ket{\phi} = T(a) \ket{\psi}$. Now, we calculate $\phi(x)$, the
+wavefunction of $\ket{\phi}$:
+$$
+	\phi(x) = \braket*{x}{\phi} = \mel{x}{T(a)}{\psi} = \int \mel{x}{T(a)}{x'} \braket*{x'}{\psi} \ dx'
+$$
+where again, we insert the resolution of the identity. From the definition of $T(a)$ we have 
+$T(a) \ket{x'} = \ket{x + a}$ and $\braket*{x'}{\psi} = \psi(x')$, so we have:
+$$
+	\int \mel{x}{T(a)}{x'} \braket*{x'}{\psi}\ dx' = \int \braket*{x}{x' + a} \psi(x') \ dx' = \int \delta(x
+	- x' - a) \psi(x') = \psi(x - a)
+$$
+With this result, we can now write how $T(a)$ transforms a wavefunction:
+$$
+	\left( T(a) \psi \right)(x) = \psi(x - a)
+$${#eq-translation-on-psi}
+Now, we can write down what $\hat{k}$ does with wavefunctions as well:
+$$
+	(\hat{k} \psi)(x) = i \eval{\left( \dv{T(a)}{a} \psi\right)(x)}_{a = 0} = i \dv{a} \eval{\psi(x - a)}_{a
+	= 0} = -i \dv{\psi(x)}{x}
+$${#eq-k-on-psi}
+where again, we make use of the chain rule to get $\dv{a} = \dv{x} \dv{x}{a} = \dv{x}$. Then, since $\hat{p}
+= \hbar \hat{k}$, we now know what $\hat{p}$ does to wavefunctions as well:
+$$
+	(\hat{p} \psi)(x) = (\hbar \hat{k} \psi)(x) = -i \hbar \dv{\psi(x)}{x}
+$$
+and this is where we arrive at the famous definition of the momentum operator:
+$$
+	\hat{p} = -i\hbar \dv{x}
+$$
+We can also generalize all these notions to three dimensions pretty easily, by replacing scalars with vectors
+and derivatives with partial derivatives. Starting with $\hat{k}$, we use $\hat{k}_i$ to denote the $\hat{k}$
+vector in the $i$-th direction:
+$$
+	\hat{k}_i = i \eval{\pdv{T(\mathbf{a})}{a_i}}_{a = 0}
+$${#eq-k-on-psi-multidimensional}
+@eq-k-on-ket and @eq-k-on-psi also generalize easily:
+$$
+	\hat{k}_i \ket{\mathbf{x}} = i \pdv{x_i} \ket{\mathbf{x}}, \quad (\hat{k}_i \psi)(\mathbf{x}) = -i
+	\pdv{\psi(\mathbf{x})}{x_i}
+$$
+Finally, since $\hat{p} = \hbar \hat{k}$, we now know what the momentum operator does to $\ket{x}$:
+$$
+	\hat{p}_i \ket{\mathbf{x}} = i \hbar \pdv{x_i} \ket{\mathbf{x}}, \quad (\hat{p}_i \psi)(\mathbf{x}) = -i \hbar
+	\pdv{\psi(\mathbf{x})}{x_i}
+$$
+
+### Canonical Commutation Relations
+The last property we'll explore about $\hat{k}$ is the commutation relations between $\hat{k}_i$ and
+$\hat{k}_j$ and also discuss the relation between $\hat{x}_i$ and $\hat{k}_j$. The commutation $[\hat{k}_i,
+\hat{k}_j]$ can be derived using @eq-k-on-psi-multidimensional:  
+$$
+	\begin{align*}
+		\hat{k}_i \hat{k}_j \psi(\mathbf{x}) = 
+		\left( -i \pdv{x_i} \right) \cdot \left(-i \pdv{x_j}\right) \psi(\mathbf{x}) = -\pdv[2]{}{x_i}{x_j} \psi(x)
+	\end{align*}
+$$
+From here, we can see that switching the order $\hat{k}_j \hat{k}_i$ flips the order of the mixed partial
+derivative, but we know from multivariate calculus that the mixed partial derivatives are equal, 
+provided that $\psi(x)$ satisfies some continuity conditions.[^clairaut] For our purposes, we will assume
+that $\psi(x)$ is well-behaved enough that this will always be true. Therefore, the order in which $\hat{k}_i$ and $\hat{k}_j$
+are arranged does not matter, and therefore the commutation relation is:
+$$
+	[\hat{k}_i, \hat{k}_j] = 0
+$$
+Finally, we can also work out the commutator $[\hat{x}_i, \hat{k}_j]$ by applying them in alternating order to a 
+wavefunction $\psi(x)$:  
+$$
+\begin{align*}
+	\hat{x}_i \hat{k}_j \psi &= \hat{x_i} \left( -i \pdv{x_j} \right)\psi = -i x_i \pdv{\psi}{x_j}\\
+	\hat{k}_j \hat{x}_i \psi &= -i \pdv{x_j} \left( x_i \psi \right) = -i \delta_{ij} \psi - i x_i \pdv{\psi}{x_j}
+\end{align*}
+$$
+Now we put the pieces together:
+$$
+	(\hat{x}_i \hat{k}_j - \hat{k}_j \hat{x}_i) \psi 
+	= -i x_i \pdv{\psi}{x_j} - \left( -i \delta_{ij} \psi - i x_i \pdv{\psi}{x_j} \right) = i \delta_{ij}\psi
+$$
+and so we get the relation:
+$$
+	[\hat{x}_i, \hat{k}_j] = i\delta_{ij}
+$${#eq-xk-commutation}
+
+And since $\hat{p} = \hbar \hat{k}$, we can now write the famous commutation relation:
+$$
+	[\hat{x}_i, \hat{p}_j] = i\hbar \delta_{ij}
+$$
+With this established, we can now use @thm-generalized-uncertainty to to derive the famous Heisenberg
+uncertainty principle by using $A = \hat{x}$, $B = \hat{p}$ and taking the square root:
+$$
+	\Delta \hat{x}_i \Delta \hat{p}_i \geq \frac{\hbar}{2} \delta_{ij}
+$${#eq-position-momentum-uncertainty}
+
+Typically in any undergraduate treatment of this material, this result would simply be quoted and accepted
+without proof. However, by stepping through the derivation hopefully this result feels more like a natural
+consequence of our formalism than a result pulled from thin air.
+
+<!-- write something here pls --> 
+
+<!-- 
+This was the first iteration of explaining the momentum operator -- I think it goes into classical
+mechanics more than I want to; I'd like to make it shorter which is why I'm rewriting it. Keeping it here in
+case we want to bring it back 
+
+
+
+So, to begin our derivation, we first turn to classical mechanics for a hint: in Lagrangian and Hamiltonian
+mechanics, translational invariance (also sometimes called translational symmetry) directly leads to
+the conservation of momentum, which hints at a link between translation and momentum. Motivated by this, we
+will begin our derivation by looking closely at the role of $p$ in classical mechanics, and define the
+quantum operator $\hat{p}$ in a way that is consistent with the classical $p$.
+
+
+### The Classical Generator of Translations
+
+:::{.warning}
+This section will make use of Lagrangians, Hamiltonians, and Poisson brackets: mathematical objects which appear frequently
+(and almost exclusively, with the exception of quantum field theory) in the study of classical mechanics. 
+Since this is a quantum mechanics book, we will spare the formal details about these objects, 
+and ask that you read our notes on classical mechanics (which are being written) for a more rigorous treatment. 
+Here, we'll focus more on what these quantities represent, without delving into the formalism that underpins them.
+:::
+
+The particular property of momentum we're going to concern ourselves with is that the momentum 
+$p$ acts as the *generator of translations* in classical mechanics. To begin,
+the *Lagrangian* is an object which, using a set of generalized
+coordinates $\mathbf{x}, \dot{\mathbf{x}}$ (here $\dot{\mathbf{x}}$ represents the velocity vector), 
+captures *all* the dynamics of a system, and how a system evolves can be calculated from it.
+The *canonical momentum* is a quantity which can be derived from the Lagrangian:
+$$
+	\mathbf{p} = \pdv{\mathcal{L}}{\dot{\mathbf{x}}}
+$$
+ordinarily, this would be equal to the *kinetic momentum*, $\mathbf{p} = m \dot{\mathbf{x}}$, which is its
+definition in Newtonian mechanics. However, when the Lagrangian has other terms dependent on
+$\dot{\mathbf{x}}$, these two quantities differ. To see how the canonical momentum generates these
+translations, we first define a translation operator below. 
+
+:::{.definition #def-classical-translation-operator}
+
+# Classical Translation Operator
+
+The classical translation operator $T_{\text{cl}}(a)$ acting on a function $f(x, p)$ is given by:
+$$
+	(T_{\text{cl}}(a) f)(x, p) = f(x - a, p)
+$$
+:::
+Intuitively, this definition should make sense: a translation operator should only modify the position
+variables, while leaving the momentum terms alone. Now, consider a Taylor expansion of $T_{\text{cl}}(a)$
+for a small displacement $a$:
+$$
+	(T_\text{cl}(a) f) (x, p) = f(x - a, p) = f(x, p) - a \pdv{f}{x} + \frac{a^2}{2!}
+	\pdv[2]{f}{x} (x, p) + \dots 
+$$
+it turns out that using Poisson brackets (more on these in @sec-poisson-bracket), one can write this as:
+$$
+	f(x - a, p) = f(x, \dot x), + a \{p, f\} + \frac{a^2}{2} \left\{ p, \left\{ p, f \right\} \right\} +
+	\dots 
+$$
+So, it's clear from this expression that on a function $f$ parametrized by position and momentum, the
+operator $T_\text{cl}(a)$ can be built up in terms of the canonical momentum $p$. The reason this is
+significant is becasue there's another quantity    
+
+ 
+
+
+So, it's clear from this expression that the translation operator $T_\text{cl}(a)$ can be written in terms of
+an expansion involving the canonical momentum $p$, which is why we call $p$ the *generator of translations*
+in classical mechanics. 
+
+:::{.remark}
+We have glossed over a *lot* in this chapter, and to be honest 
+:::
+
+# Translation Operators 
+First, we define the translation operator, which as its name suggests, takes a ket $\ket{x}$ and moves it
+space to $\ket{x + a}$:
+
+:::{.definition #def-quantum-translation-operator}
+
+# Quantum Translation Operator 
+The *translation operator* is a linear operator parametrized by a displacement $a$. On the Hilbert space of
+position eigenstates $\ket{x}$, the translation operator $T(a)$ acts as:
+$$
+	T(a) \ket{x} = \ket{x + a}
+$$
+:::
+Simple enough. What happens to $T$ when we act it on wavefunctions? Well, following the same logic as the
+derivation with the momentum, let's first define a wavefunction $\psi(x) = \braket*{x}{\psi}$, and define a
+second wavefunction $\phi(x) = T(a) \ket{\psi} = \braket*{x}{\phi}$. Now, we have:
+$$
+	\phi(x) = \braket*{x}{\phi} = \mel{x}{T(a)}{\psi} = \int \mel{x}{T(a)}{x'} \braket*{x'}{\psi} \ dx'
+$$
+where again, we insert the resolution of the identity. Now, from the definition of $T(a)$ we have 
+$T(a) \ket{x'} = \ket{x + a}$ and $\braket*{x'}{\psi} = \psi(x')$, so we have:
+$$
+	\int \mel{x}{T(a)}{x'} \braket*{x'}{\psi}\ dx' = \int \braket*{x}{x' + a} \psi(x') \ dx' = \int \delta(x
+	- x' - a) \psi(x') = \psi(x - a)
+$$
+With this result, we can now write an expression similar to @eq-position-definition:
+$$
+	\left( T(a) \psi \right)(x) = \psi(x - a)
+$${#eq-translation-on-psi}
+
+In other words, what this tells us is that the translation operator $T(a)$ translates the whole function
+$\psi(x)$ to the right by $a$ units, as expected. This also generalized cleanly to three dimensions, by
+replacing scalars with vectors:
+$$
+	T(\mathbf{a}) \ket{\mathbf{x}} = \ket{\mathbf{x} + \mathbf{a}}
+$$
 
 ### Generators of Translations
-[This section is currently incomplete; it will be updated very soon!]
+Above, we defined the translation operator $T(a)$ which displaces $\psi(x)$ by a finite distance $a$, but
+one can also imagine $T(a)$ being made up of many infinitesimal translations, and these infinitesimal
+versions are called the *generator* of translations. For a small displacement $a$, we we can Taylor expand
+$T(a)$ in powers of $a$:
+$$
+	T(a) = T(0) + a \dv{T}{a}(0) + \dots 
+$$
+Remember that this is an *operator* expansion, so all the terms on the right are operators as well. In
+particular, $T(0)$ is an operator denoting a displacement of zero units, or basically the identity. For
+subsequent terms, we define:
+$$
+	\hat{k} = i\dv{T}{a}(0) 
+$$
+The reason we include the imaginary part $i$ so that $\hat{k}$ can be Hermitian. With this definition of
+$\hat{k}$, we can write $T(a)$ as: 
+$$
+	T(a) = 1 - ia \hat{k} + \dots 
+$$
+In the context of translations, $\hat{k}$ is what we call the *generator* of translations, as it defines
+infinitesimal translations, which we then use to define larger transformations. Since $\hat{k}$ is also an
+operator, we should also work out how it acts on kets and wavefunctions. Starting with kets:
+$$
+	\hat{k}x = i\dv{T}{a} \eval{\ket{x}}_{a = 0} = i\dv{a} \eval{\ket{x + a}}_{a = 0} = i \dv{x} \ket{x}
+$$
+The last step may seem strange since we're switching from $\dv{a}$ to $\dv{x}$, but it can be 
+motivated using the chain rule:
+$$
+	i\dv{a} \eval{\ket{x + a}}_{a = 0} = i \dv{x} \dv{x}{a} \eval{\ket{x + a}}_{a = 0}
+$$
+and $\dv{x}{a}$ is interpreted as the change in $x$ relative to a change in $a$. Since $T(a)$ moves $\ket{x}$
+to $\ket{x + a}$, a change in $a$ is equal to a change in $x$, hence $\dv{x}{a} = 1$. Thus, we're left with
+the desired result:
+$$
+	i\dv{a} \eval{\ket{x + a}}_{a = 0} = i \dv{x} \ket{x}
+$$
+Now that we know how $\hat{k}$ acts on kets, let's figure out how it acts on wavefunctions. We use
+@eq-translation-on-psi to help us out:
+$$
+	(\hat{k} \psi)(x) = i \eval{\left( \dv{T(a)}{a} \psi\right)(x)}_{a = 0} = i \dv{a} \eval{\psi(x - a)}_{a
+	= 0} = -i \dv{\psi(x)}{x}
+$${#eq-k-on-psi}
+where again, we make use of the chain rule to get $\dv{a} = \dv{x} \dv{x}{a} = \dv{x}$. We can also
+generalize $\hat{k}$ to three dimensions using $\hat{\mathbf{k}}$ with comopnents $\hat{k}_i$, defined as:
+$$
+	\hat{k}_i = i \eval{\pdv{T(\mathbf{a})}{a_i}}_{a = 0}
+$$
+essentially, each $\hat{k}$ encodes the infinitesimal translation independently, which is then
+combined into a vector form. 
 
-### Classical vs. Quantum Momentum
-[This section is currently incomplete; it will be updated very soon!]
-
-#### Classical Momentum 
-[This section is currently incomplete; it will be updated very soon!]
-
-#### Quantum Momentum
-[This section is currently incomplete; it will be updated very soon!]
-
-### Canonical Commutation Relation
-<!-- i am far too lazy to write this one up; can you take this too pls -->
-[This section is currently incomplete; it will be updated very soon!]
+One can also work out the commutation relations between $\hat{k}_i$ and $\hat{k}_j$, which will be useful
+to later derive the commutation relation between $\hat{x}$ and $\hat{p}$. It's easy to see the commutation
+relation when we compute $\hat{k}_i \hat{k}_j \ket{x}$ by generalizing @eq-k-on-psi to three dimensions:
+$$
+	\begin{align*}
+		\hat{k}_i \hat{k}_j \psi(\mathbf{x}) = 
+		\left( -i \pdv{x_i} \right) \cdot \left(-i \pdv{x_j}\right) \psi(\mathbf{x}) = -\pdv[2]{}{x_i}{x_j} \psi(x)
+	\end{align*}
+$$
+From here, we can see that switching the order $\hat{k}_j \hat{k}_i$ flips the order of the mixed partial
+derivative, but we know from multivariate calculus that the mixed partial derivatives are equal, 
+provided that $\psi(x)$ satisfies some continuity conditions.[^clairaut] For our purposes, $\psi(x)$ is
+well-behaved enough that this will always be true. Therefore, the order in which $\hat{k}_i$ and $\hat{k}_j$
+are arranged does not matter, and therefore the commutation relation is:
+$$
+	[\hat{k}_i, \hat{k}_j] = 0
+$$
+Finally, we can also work out the commutator $[\hat{x}_i, \hat{k}_j]$ by applying them to a $\psi(x)$ and
+seeing what we get:
+$$
+\begin{align*}
+	\hat{x}_i \hat{k}_j \psi &= \hat{x_i} \left( -i \pdv{x_j} \right)\psi = -i x_i \pdv{\psi}{x_j}\\
+	\hat{k}_j \hat{x}_i \psi &= -i \pdv{x_j} \left( x_i \psi \right) = -i \delta_{ij} \psi - i x_i \pdv{\psi}{x_j}
+\end{align*}
+$$
+Putting these together
+$$
+	(\hat{x}_i \hat{k}_j - \hat{k}_j \hat{x}_i) \psi 
+	= -i x_i \pdv{\psi}{x_j} - \left( -i \delta_{ij} \psi - i x_i \pdv{\psi}{x_j} \right) = i \delta_{ij}\psi
+$$
+and so we get the relation:
+$$
+	[\hat{x}_i, \hat{k}_j] = i\delta_{ij}
+$${#eq-xk-commutation}
+-->
 
 ## The Schrödinger Equation
 We are now finally ready to develop the Schrödinger equation, which will serve as the main equation all of
@@ -253,6 +616,7 @@ $${#eq-time-evolution-def}
 Let's properly define this operator:
 
 :::{.definition #def-time-evolution-operator}
+
 # Time-Evolution Operator
 The *time-evolution operator*, denoted $U(t,t_0)$, evolves a quantum state from initial time $t_0$ to final
 time $t$, while satisfying the following three properties:
@@ -282,7 +646,7 @@ can expand $U$ to first order and tack on an additional correction term:
 $$
 	U(t+\epsilon,t) = 1 - i\epsilon\Omega(t) + \dots
 $${#eq-time-evolution-expansion}
-Our correction term is defined as follows (with an extra $i$ factor to make the operator Hermitian:
+Our correction term is defined as follows (with an extra $i$ factor to make the operator Hermitian):
 $$
 	\Omega(t)  = i\pdv{t'}U(t',t)\bigg|_{t'=t}
 $${#eq-generator-time-evolution}
@@ -290,23 +654,19 @@ This operator $\Omega(t)$ is then our *generator of time evolution* in quantum m
 is precisely the correction term that advances a state in time by small increments. Combining these terms in
 large quantities will advance time by larger increments.
 
-In classical mechanics[^classical-mechanics], the Hamiltonian (which we'll henceforth represent with $H$) is fundamentally the
+In classical mechanics, the Hamiltonian (which we'll henceforth represent with $H$) is fundamentally the
 generator of time translations, since it describes how a system evolves in time. Let's consider some
 classical observable $f(x,p)$ (a function in position and momentum) that exhibits time dependence due to how
 $x$ and $p$ evolve in time. Expanding to first order in $t$ gives:
 $$
-	\begin{align*}
-		f(t+\epsilon) &= f(t) + \epsilon\dv{f}{t} = f(t)+\epsilon\left(\dot{x}\pdv{f}{x} + \dot{p}\pdv{f}{p}\right) =
-		\\
-		&= f(t) + \epsilon\left(\pdv{H}{p}\pdv{f}{x} - \pdv{H}{x}\pdv{f}{p}\right) = f(t) - \epsilon\{H,f\}
-	\end{align*}
+	f(t+\epsilon) = f(t) + \epsilon\dv{f}{t} = f(t)+\epsilon\left(\dot{x}\pdv{f}{x} + \dot{p}\pdv{f}{p}\right) 
+	= f(t) + \epsilon\left(\pdv{H}{p}\pdv{f}{x} - \pdv{H}{x}\pdv{f}{p}\right) = f(t) - \epsilon\{H,f\}
 $$
-Here, $\{H,f\}$ gives the *Poisson bracket* (discussed in more detail in @sec-poisson-bracket).
+where the last equality again makes use of the Poisson bracket. 
 
-Since we wish to develop a quantum analog to the classical Hamiltonian, it would make sense for the quantum
-Hamiltonian to also function as a generator of time evolution, meaning we want the associated Hamiltonian
-operator (henceforth denoted $\hat{H}$) to be related to the generator of time evolutions defined in
-@eq-generator-time-evolution:
+Much like the momentum operator, the quantum analog of the classical Hamiltonian (henceforth denoted
+$\hat{H}$) should also be a generator of time evolution. However, we run into the same issue with the units as we did with
+the momentum, so we insert a proportionality constant here as well: 
 $$
 	\hat{H}(t) = \hbar\Omega(t)
 $$
@@ -324,8 +684,7 @@ foreshadowing).
 :::
 
 It is, of course, a nontrivial question whether or not this $\hbar$ constant is the same one that is used in
-the de Broglie relations and the subsequent derivation of the quantum momentum done in
-@sec-momentum-operator. There is a requirement that these $\hbar$'s be equivalent (known as *relativistic
+@sec-momentum-operator. As it turns out, there is a requirement that these $\hbar$'s be equivalent (known as *relativistic
 covariance*), but this won't be relevant to us until we discuss relativistic quantum mechanics. To avoid a
 lengthy and complicated discussion, we will simply note here that this $\hbar$ constant is the same as the
 one that appears in momentum and energy representations. 
@@ -389,7 +748,7 @@ $$
 Translating this into configuration space wavefunction notation gives us:
 $$
 	\hat{H} = -\frac{\hbar^2}{2m}\pdv[2]{x} + V(x,t)
-$$
+$${#eq-hamiltonian-wavefunction-form}
 Generally, the potential will be time-dependent. Substituting all of that in gives us a slightly more
 specific form of the Schrödinger equation that we will actually apply to solve problems:
 
@@ -416,6 +775,7 @@ equation, where we instead focus on finding the energy eigenstates (or *stationa
 evolve in time). Thus, we can represent the Schrödinger equation as an eigenvalue problem:
 
 :::{.theorem #thm-tise}
+
 # Time-Independent Schrödinger Equation
 $$
 	\hat{H}\ket{\psi} = E\ket{\psi}
@@ -492,8 +852,9 @@ $${#eq-schrodinger-heisenberg-ket}
 Now, operators in the Schrödinger picture are still generally allowed to have an explicit time
 dependence, we need to introduce a separate (implicit) time depedence when relating to the
 Heisenberg operator:
-$$\hat{A}_H(t) =
-U(t,t_0)^{\dagger}\hat{A}_S(t)U(t,t_0)$${#eq-schrodinger-heiseberg-operator}
+$$
+	\hat{A}_H(t) = U(t,t_0)^{\dagger}\hat{A}_S(t)U(t,t_0)
+$${#eq-schrodinger-heiseberg-operator}
 Since the Heisenberg kets don't have any time dependence, we no longer have a time evolution equation
 for them like we did in the Schrödinger picture. Instead, we need a time evolution equation for Heisenberg
 operators. If we differentiate the above equation and once again invoke @eq-uderiv-hamiltonian, we get:
@@ -578,7 +939,7 @@ $$
 $$
 We have shown that algebraic relations are the same, but how do we show that the Heisenberg and Schrödinger
 pictures are physically equivalent? Well, we need to consider measurable quantities in quantum
-mechancis and see how they compare to each other across the two pictures. Each measurable quantity can
+mechanics and see how they compare to each other across the two pictures. Each measurable quantity can
 be represented in terms of matrix elements of the form $\mel{\phi}{\hat{A}}{\psi}$. Thus, if we
 can show that these are equivalent between the two pictures, we can conclude that either picture should
 predict (and subsequently yield) the same experimental outcomes. Let's start in the Heisenberg picture:
@@ -603,12 +964,83 @@ $$
 ### Other Pictures?
 Are there other pictures beyond the two that we've considered just now? Yes! In particular, when we start
 dealing with something called *time-dependent perturbation theory* (in Part II), we will consider the
-*interaction picture*, which can be considered a sort-of intermediary between these two[^interaction-picture].
+*interaction picture*, which can be considered a sort-of intermediary between these two[^interaction-picture]. 
+Until then however, we will deal almost exclusively with the Schrödinger picture, where operators are fixed
+and states evolve in time. This is, in part, due to the fact that it's somewhat more natural to think about
+observable as invariant, and having the state evolve in time instead.
+
 
 ## Probability Current 
-<!-- i am far too lazy to write this up as well; can you also take this pls (use griffiths and/or littlejohn)
--->
-[This section is currently incomplete; it will be updated very soon!]
+<!-- i am far too lazy to write this up as well; can you also take this pls (use griffiths and/or littlejohn) -->
+
+Recall that in our formalism chapter, given a wavefunction $\psi(\mathbf{x}, t)$ in position space, the norm-squared
+$|\psi(x, t)|^2$ gives the *probability density* of a position measurement. While the state is allowed to
+evolve in time according to the Schrodinger equation, its probability density should still integrate to one.
+This is to say that the probability that the particle is measured to be anywhere should always be guaranteed.
+To define this notion rigorously, we define the probability density to be the norm-squared of $\psi$:
+
+:::{.definition #def-probability-density}
+
+# Probability Density
+Given a wavefunction $\psi(\mathbf{x}, t)$ the probability density is defined as:
+$$
+	\rho(\mathbf{x}, t) = |\psi(\mathbf{x}, t)|^2
+$$
+:::
+
+Then, the integral over all space of $\rho(\mathbf{x}, t)$ should always be one:
+$$
+	\int  \rho(\mathbf{x}, t) \ d^3 \mathbf{x} = \int |\psi(\mathbf{x}, t)|^2 \ d^3 \mathbf{x} = 1
+$$
+Now, while the integral over all space must be constant, $\rho(\mathbf{x}, t)$ can still evolve in time --
+the probability density can flow from one location to another, so long as the total integral remains
+constant. Therefore, the probability density obeys a *continuity equation*:
+
+:::{.theorem #thm-conitnuity-equation} 
+
+# Probability Current
+$$
+	\nabla \cdot \mathbf{J} + \pdv{\rho}{t} = 0
+$$
+:::
+This is the same equation for the conservation of charge in electrodynamics. We interpret this equation to
+mean that the "flow" of probability (in time) represented by $\nabla \cdot \mathbf{J}$ should be exactly equal in
+magnitude to the change of charge $\pdv{\rho}{t}$. Truthfully, we won't be encountering $\mathbf{J}$ 
+very often, but what it represents is still very meaningful, as any description of how a state evolves in
+time should. Now, let's derive the explicit form of $\mathbf{J}$ using this definition: 
+<!-- I literally can't come up with a good use case for the probabilty current, if you have any better ideas
+pls edit. -->   
+$$
+	\begin{align*}
+		\nabla \cdot \mathbf{J} &=  -\pdv{\rho}{t} \\ 
+		&= -\pdv{t} \left( \psi^{*} \psi \right) \\ 
+		&= -\psi \pdv{\psi^{*}}{t} - \psi^{*} \pdv{\psi}{t}	
+	\end{align*}
+$$
+Now, we use the Schrodinger equation (@thm-schrodinger) to help us expand further:
+$$
+	\begin{align*}
+		\nabla \cdot \mathbf{J} = -\psi\pdv{\psi^{*}}{t} - \psi^{*}\pdv{\psi}{t} &= \psi \frac{i\hbar}{2m} \left( \nabla^2 + V
+		\right)\psi^{*} - \psi^{*} \frac{i\hbar}{2m} \left( \nabla^2 + V \right)\psi \\ 
+		&= \frac{i\hbar}{2m} \psi \nabla^2 \psi^{*} + \psi V \psi^{*} - \frac{i\hbar}{2m} \psi^{*}
+		\nabla^2 \psi - \psi^{*} V \psi \\ 
+		&= \frac{i\hbar}{2m}\left( \psi \nabla^2 \psi^{*} - \psi^{*} \nabla^2 \psi \right) 
+	\end{align*}
+$${#eq-prob-current-derivation}
+Now, if we define:
+
+:::{.definition #def-probability-current}
+
+# Probability Current
+$$
+	\mathbf{J} = \frac{i\hbar}{2m} \left( \psi \nabla \psi^{*} - \psi^{*} \nabla \psi \right)
+$$
+:::
+
+then $\nabla \cdot \mathbf{J}$ is exactly the final equation in @eq-prob-current-derivation. In particular,
+the terms with derivatives on both $\psi$ and $\psi^{*}$ will cancel out, leaving only terms with second
+partial derivatives, as desired.
+
 
 ## Commutators
 Lastly, even commutators can be derived from classical quantities! Previously, we introduced the notion of
@@ -702,7 +1134,7 @@ Since the position and momentum operators don't have explicit time dependence, t
 both of them. Now, we can evaluate the commutators: <!--maybe put the derivation here? if not i think it's ok
 -->
 $$
-	\dv{t}\mathbf{x}_H = \frac{\mathbf{p}_H}{m}, \quad \dv{t}\mathbf{p}_H = -nabla V(\mathbf{x},t)
+	\dv{t}\mathbf{x}_H = \frac{\mathbf{p}_H}{m}, \quad \dv{t}\mathbf{p}_H = -\nabla V(\mathbf{x},t)
 $$
 Taking the expectation value with respect to some $\ket{\psi}$ gives us two special cases of
 @thm-generalized-ehrenfest which are collectively named *Ehrenfest's theorem*:
@@ -732,13 +1164,6 @@ albeit with some formalism sprinkled in every now and then.
 
 Let’s use our newly-acquired tools to finally start describing some basic one-dimensional systems!
 
-[^classical-mechanics]: This section in particular (among others that deal with the transition from classical
-to quantum mechanics) will make use of some topics in classical mechanics, but will not go in detail about
-their derivations or physical significance. Since this is not a text on classical mechanics, some prior
-knowledge on that matter is assumed for these sections. If these topics are unfamiliar, we encourage the
-reader to consult our notes on classical mechanics (when they're written) or any text on classical mechanics
-(some of which are linked in our References).
-
 [^natural-coordinates]: Those who have studied classical mechanics will recognize that this isn't exactly
 true generally: the Hamiltonian only describes the total energy of the system when we are working in a
 *natural* coordinate system (ie, the relation between the positional descriptions of particles in a system
@@ -754,3 +1179,11 @@ $\hat{H}_1$ will remain on the kets.
 [^levi-civita]: $\epsilon_{ijk}$ is what's known as the *Levi-Civita tensor* (or symbol). It is yet another
 tool used in index notation to compactify notation. We discuss this symbol (and how to effectively utilize
 it) in more detail in our appendices.
+
+[^clairaut]: Formally, this is known as *Clairaut's Theorem*, which states that partial derivatives commute
+	at a point $p$ if the second partial derivatives of $f$ are continuous around a neighborhood of $p$. 
+
+[^translation-operator]: Formally, one could also define a *classical* translation operator $T_\text{cl}(a)
+	f(x, p) = f(x - a, p)$, but inserting this definition would only complicate things, so we've
+	decided to omit it. In the quantum picture however, since our formalism *is* founded upon the use of
+	operators, we must define a translation operator.
