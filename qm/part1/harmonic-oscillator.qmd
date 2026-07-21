@@ -1,0 +1,441 @@
+# The Harmonic Oscillator
+
+Now that we're familiar with how to solve simple potentials in 1 dimension, let's solve a more difficult
+potential, but also one that's more realistic. This is the *Harmonic Oscillator*, given by the potential:
+$$
+	V(x) = \frac{1}{2}m \omega^2 x^2
+$$
+so, the differential equation we aim to solve is:
+$$
+	\left(-\frac{\hbar^2}{2m} \pdv[2]{x} + \frac{1}{2}m \omega^2 x^2\right) \psi = E \psi
+$${#eq-harmonic-oscillator-de}
+
+Up until now, all the potentials we've seen have been constant along
+specified intervals, meaning it was easy to break up the problem by solving the potential along those
+intervals and stitch them together using boundary conditions. This won't work here, since we don't have any
+constant intervals to work with.
+
+So, what are our options? In this chapter, we'll present two different solutions: an analytic method that
+involves a power series solution, and a clever method that allows us to reformulate the problem in terms of
+so-called "ladder operators". While the latter method is cleaner and easier to conceptually understand, it's
+also a method which only works due to the form of the differential equation, and thus won't work in general.
+Therefore, we'll start with the (arguably more difficult) analytic method first, then introduce the shortcut
+after. 
+ 
+## The Analytic (Power Series) Method
+
+Before we begin, let's first get rid of some of the "clutter" introduced by the constants like $m$ and
+$\hbar$, by moving to dimensionless units. First, define:
+$$
+	\lambda = \frac{2E}{\hbar \omega}, \quad \xi = \alpha x \quad \alpha = \left( \frac{m \omega}{\hbar}\right)^{1 /2 }
+$$
+With these constants, the differential equation now becomes:
+$$
+	\dv[2]{\psi(\xi)}{\xi} + (\lambda - \xi^2) \psi(\xi) = 0
+$${#eq-harmonic-oscillator-simplified}
+
+And now the equation looks a lot cleaner. Whenever we have a differential equation of this form, it's often
+useful to consider first the asymptotic behavior as $|\xi| \to \infty$, since that will tell us what kind of
+behavior the solution $\psi(\xi)$ should have. In this limit, the $\lambda$ term becomes insignificant, and
+therefore we have an equation of the form:
+$$
+	\left( \dv[2]{\xi} - \xi^2 \right) \psi(\xi) = 0
+$$
+and this is a simple differential equation, which has solutions of the form:
+$$
+	\psi_p(\xi) = \xi^{p} e^{\pm \xi^2 / 2}
+$$
+and since the positive $e^{\xi^2 / 2}$ term blows up as $\xi \to \infty$, we can drop it so therefore:
+$$
+	\psi_p(\xi) = \xi^{p} e^{-\xi^2 / 2}
+$$
+this works for any integer coefficient $p$, so we can label each $\psi$ using $\psi_p$. Now, since we can add
+any linear combination of these solutions together to form a solution, in general then a solution to 
+@eq-harmonic-oscillator-simplified is then:
+$$
+	\psi(\xi) = H(\xi) e^{-\xi^2 / 2}
+$$
+where $H(\xi)$ is any polynomial.
+
+Before we go any further, take a moment to process what we've just done: first, we transformed the
+differential equation into a more tractable one by removing constants, then by analyzing asymptotic behavior
+we managed to solve part of the differential equation; all that remains now is finding $H(\xi)$. As we'll
+see, not all polynomials will work, and it's our job to figure out which ones do. To begin, let's first plug
+this solution back into the @eq-harmonic-oscillator-de:
+$$
+	\dv[2]{H}{\xi} - 2 \xi \dv{H}{\xi} + (\lambda - 1) H = 0
+$${#eq-hermite-equation} 
+For those who are familiar with differential equations, this is known as the *Hermite equation*, and its
+solutions are the Hermite polynomials, which we will derive. Since we don't know the form of $H(\xi)$ beyond
+the fact that it's a polynomial, we will first assume that $H(\xi)$ takes on the most general form:
+$$
+	H(\xi) = \sum_{\ell = 0}^{\infty} c_{\ell} \xi^{\ell}
+$$
+Now, we can separate $H(\xi)$ into an even and odd part: 
+$$
+	H(\xi) = H_\text{even}(\xi) + H_\text{odd}(\xi)
+$$
+with each section defined as:
+$$
+	\begin{align*}
+		H_\text{even}(\xi) &= \sum_{\ell = 0}^{\infty} c_{\ell} \xi^{2\ell} \\ 
+		H_\text{odd}(\xi) &=  \sum_{\ell = 0}^{\infty} d_{\ell} \xi^{2\ell + 1} 
+	\end{align*}
+$$
+Note that by @thm-1d-symmetric-potential, since $V$ is symmetric then the solution $\psi$ is either even or
+odd, and therefore only one of $H_\text{even}$ and $H_\text{odd}$ will be nonzero at a time. This is a
+subtle, but crucial point -- even without solving for the relation between the coefficients, we already know
+that at least half of the coefficients must be zero!
+
+Now, let's deal with the even solutions first. Substituting $H_\text{even}$ into @eq-hermite-equation, we get
+this:
+$$
+	\sum_{\ell = 0}^{\infty} \left[ 2\ell(\ell - 1) c_{\ell}\xi^{2(\ell - 1)} + (\lambda - 1 - 4\ell)
+	c_{\ell}\xi^{2\ell} \right] = 0 
+$$
+This summation has two different powers of $\xi^{\ell}$, which makes it a bit difficult to analyze the coefficients 
+$c_{\ell}$. So, let's rearrange this summation and group terms according to their $\xi^{\ell}$ exponent:
+$$
+	\sum_{\ell = 0}^{\infty} \left[ 2(\ell + 1) (2\ell + 1) c_{\ell + 1} + (\lambda - 1 - 4\ell) c_{\ell}
+	\right]\xi^{2\ell} = 0
+$$
+Now the conclusion is clear: in order for the left hand side to be zero, then all the coefficients of
+$\xi^{2\ell}$ must be zero, and therefore this allows us to conclude:
+$$
+	2(\ell + 1)(2\ell + 1) c_{\ell + 1} + (\lambda - 1 - 4 \ell) c_{\ell} = 0 
+$$	
+this is now a recurrence relation on $c_{\ell}$, specifically: 
+$$
+	c_{\ell + 1} = \frac{4 \ell + 1 - \lambda}{2(\ell + 1) (2\ell + 1)}c_{\ell}
+$$
+We can do a similar thing with the odd part, which gives us the recurrence relation:
+$$
+	d_{\ell + 1} = \frac{4\ell + 3 - \lambda}{2 (\ell + 1) (2\ell + 1)}d_{\ell}
+$$
+Now with $c_{\ell}$ and $d_{\ell}$ solved, there's one last question we need to ask: can we have an infinite
+number of coefficients? Suppose for a moment that we are looking at an even solution, and $c_{\ell}$ has
+infinitely many nonzero terms. Looking at the recurrence relation for $c_{\ell}$, the ratio for each
+successive term is:
+$$
+	\frac{c_{\ell + 1}}{c_{\ell}} \sim \frac{1}{\ell}
+$$
+This fact, combined with the general form of $H_\text{even}$:
+$$
+	H_\text{even}(\xi) = \sum_{\ell} c_{\ell} \xi^{2\ell}
+$$
+suggests that $H_\text{even}$ grows like $e^{\xi^2}$. To see why, consider the Taylor expansion of
+$e^{\xi^2}$:
+$$
+	e^{\xi^2} = \sum_{\ell}\frac{(\xi^{\ell^2})}{\ell!} = \sum_{\ell}\frac{\xi^{2\ell}}{\ell!}
+$$
+here, the coefficient also grows as $\frac{1}{\ell}$, and the exponent on $\xi$ also matches exactly.
+Therefore, on a coarse level we can say that $H_\text{even}(\xi) \sim e^{\xi^2}$. This is inherently
+problematic, since it means that the wavefunction $\psi$ would have the property: 
+$$
+	\psi(\xi) \sim e^{\xi^2} e^{- \xi^2 / 2} = e^{\xi^2 / 2}
+$$
+and this wavefunction is not normalizable since it blows up as $|\xi| \to \infty$. Therefore, the only
+resolution is that $H$ *must* terminate at some order. The argument is exactly the same for $H_\text{odd}$;
+one can consider the Taylor expansion of $e^{\xi^2}/\xi$ and arrive at the same result.
+
+:::{.remark}
+Notice that here, the origin of quantization in the case of the harmonic
+oscillator -- the fact that $H$ must terminate -- is much more subtle than anything we've seen previously,
+where the quantization came from a continuity constraint. Despite this, the reason that $H$ must terminate
+still comes from the very natural constraint that $\psi$ must be normalized. 
+
+We feel that it's necessary to point this out here for two reasons. Firstly, it shows that continuity isn't the only constraint
+that leads to quantization, which you may have thought from all the continuity conditions we did in the
+previous chapter. Secondly, it's another very good example demonstrating how we impose constraints
+derived from our physical observations onto purely mathematical solutions, to arrive at a solution which
+physically makes sense. This is something we'll run into time and time again when studying physics, no matter
+the field. 
+:::
+
+Now, since $H$ must terminate, and only one of $H_\text{even}$ or $H_\text{odd}$ is nonzero at a time, then
+the parity of $n$ will determine which one is nonzero. Suppose for now that $n$ is even, so we need to
+truncate $H_\text{even}$. How do we do this? The key is to go to the recurrence relation (written again below
+for convenience):
+$$
+	c_{\ell + 1} = \frac{4 \ell + 1 - \lambda}{2(\ell + 1) (2\ell + 1)}c_{\ell}
+$$
+and enforce that $c_{n}$ is the last nonzero element (in other words $c_{n + 1} = 0$), which can be enforced by setting the numerator on the
+right side to be zero when $\ell = n$, so:
+$$
+	4n + 1 - \lambda = 0
+$$
+Recalling that we set $\lambda = \frac{2E}{\hbar \omega}$, this gives us:
+$$
+	\frac{2E}{\hbar \omega} = 4n + 1 \implies E = \hbar \omega\left( 2n + \frac{1}{2} \right)
+$${#eq-energy-levels-even}
+Similarly for the odd solutions:
+$$
+	4n + 3 - \frac{2E}{\hbar \omega} = 0 \implies E = \hbar \omega \left( 2n + 1 + \frac{1}{2} \right)
+$${#eq-energy-levels-odd}
+we can now combine the two together into one equation. Due to the way that we've labeled our indices where
+$n$ in the expansions of $H_\text{even}$ and $H_\text{odd}$ refer to every *other* element, then the $2n$
+and $2n + 1$ become $n$ in @eq-energy-levels-even and @eq-energy-levels-odd, respectively. Thus, we can now
+write:
+$$
+	E_n = \left( n + \frac{1}{2} \right)\hbar \omega
+$$
+where $n = 1, 2, \dots$. And with that, we can put it all together and write down $\psi_n$:
+$$
+	\psi_n = H_n(\xi) e^{-\xi^2 / 2}
+$$
+where $H_n$ is the $n$-th Hermite polynomial, given by the recurrence relation we just solved. The first few
+Hermite polynomials are:
+$$
+	\begin{align*}
+		H_0 &=  1 \\ 
+		H_1 &=  2 \xi \\ 
+		H_2 &= 4 \xi^2 - 2\\
+		H_3 &= 8 \xi^3 - 12\xi
+		H_4 &= 16 \xi^{4} - 48 \xi^2 + 12
+	\end{align*}
+$$
+
+:::{.remark}
+As an aside, there is another way to generate the Hermite polynomials that doesn't involve solving the
+recurrence, and can be obtained by using the generating function:
+$$
+	H_n(\xi) = (-1)^{n}e^{\xi^2} \dv[n]{e^{\xi^2}}{\xi} = e^{\xi^2 / 2}\left( \xi - \dv{\xi}
+	\right)^{n}e^{-\xi^2 / 2}
+$$
+we won't go into detail as to how to obtain this relation, but you should try the first few terms out to
+convince yourself that it does indeed work.
+:::
+
+As a final step, we can convert $\psi(\xi)$ back into $\psi(x)$, by returning the substitution and also
+normalizing $\xi$ by inserting the appropriate constant:
+$$
+	\psi_n(x) = \left( \frac{\alpha}{\sqrt{\pi}2^{n}n!} \right)^{1 / 2}e^{-\alpha^2 x^2 / 2}H_n(\alpha x)
+$${#eq-harmonic-oscillator-hermite}
+where:
+$$
+	\alpha = \left( \frac{m \omega}{\hbar} \right)^{1 / 2}
+$${#eq-alpha-define}
+
+## Ladder Operators
+Now with the analytic method solved, let's look at the much cleaner approach, which avoids all this math
+entirely. Unlike the power series method though, this approach only works in this specific case because of
+the form of the Schrodinger equation. First, we rewrite the Hamiltonian in terms of operators:
+$$
+	\hat{H} = \frac{\hat{p}_x^2}{2m} + \frac{1}{2}k\hat{x}^2 = \frac{\hat{p}_x^2}{2m} + \frac{1}{2} m
+	\omega^2 x^2
+$$
+and now we define the *ladder operator*:
+
+:::{.definition #def-ladder-operator}
+# Ladder Operators
+The ladder operators $\hat{a}_{\pm}$ are defined as:
+$$
+	\hat{a}_{\pm} = \frac{1}{\sqrt{2}} \left[ \left( \frac{m \omega}{\hbar} \right)^{1 / 2} \hat{x} \mp i
+	\frac{\hat{p}_x}{(m \hbar \omega)^{1 / 2}} \right]
+$$
+:::
+working out the algebra, it's possible to show that $a_\pm$ are adjoints of each other (i.e.
+$\hat{a}_+^{\dagger} = \hat{a}_-$), and also:
+$$
+	[\hat{a}_-, \hat{a}_+] = 1
+$$
+The nice thing about these ladder operators is that with them, we can now rewrite the Hamiltonian as:
+$$
+	\hat{H} = \frac{\hbar \omega}{2} \left( \hat{a}_- \hat{a}_+ + \hat{a}_+ \hat{a}_- \right) = \hbar \omega
+	\left( \hat{a}_+ \hat{a}_- + \frac{1}{2} \right)
+$$
+then, for a solution $\psi$, the Schrodinger equation then reads:
+$$
+	H \psi = \hbar \omega \left( \hat{a}_+ \hat{a}_- + \frac{1}{2} \right)\psi = E \psi
+$${#eq-oscillator-operator-form}
+and here comes the crucial argument, boxed below:
+
+:::{.theorem #thm-ladder-operator}
+Suppose $\psi$ is a solution to the Schrodinger equation with energy $E$. Then, $\hat{a}_+ \psi$ is alsoa
+solution, with energy $E + \hbar \omega$. 
+:::
+
+:::{.proof}
+We use @eq-oscillator-operator-form, inserting $\hat{a}_+ \psi$ in place of $\psi$:
+$$
+	\hat{H}(\hat{a}_+ \psi) = \hbar \omega\left( \hat{a}_+ \hat{a}_- + \frac{1}{2} \right) (\hat{a}_+ \psi) =
+	\hbar \omega \hat{a}_+ \hat{a}_- \hat{a}_+ \psi + \frac{1}{2} \hbar \omega \hat{a}_+ \psi
+$$
+Since $[\hat{a}_-, \hat{a}_+] = 1$, this means:
+$$
+	\hat{a}_- \hat{a}_+ - \hat{a}_+ \hat{a}_- = 1 \implies \hat{a}_- \hat{a}_+ = 1 + \hat{a}_+ \hat{a}_-
+$$
+substituting this into the Schrodinger equation:
+$$
+	\begin{align*}
+	\hbar \omega \hat{a}_+ (1 + \hat{a}_+ \hat{a}_-) \psi + \frac{1}{2} \hbar \omega \hat{a}_+ \psi &= \hbar \omega
+	\hat{a}_+ \psi + \hbar \omega \hat{a}_+ \hat{a}_+ \hat{a}_- \psi + \frac{1}{2} \hbar \omega \hat{a}_+ \psi \\
+	&= \hbar \omega \hat{a}_+ \psi + \hbar \omega \hat{a}_+ \left( \hat{a}_+ \hat{a}_- + \frac{1}{2} \right) \psi\\
+	&= \hbar \omega  \hat{a}_+ \psi + \hbar \omega \hat{a}_+ \hat{H} \psi \\
+	&= \hbar \omega \hat{a}_+ \psi + \hbar \omega \hat{a}_+ E \psi \\ 
+	&= (E + \hbar \omega) \hat{a}_+ \psi
+	\end{align*}
+$$
+this implies that $\hat{H} (\hat{a}_+ \psi) = (E + \hbar \omega) \psi$, hence $\hat{a}_+\psi$ is also a
+solution with energy $E + \hbar \omega$, as desired.  
+:::
+It's also possible to then carry out the same analysis for $\hat{a}_-$, which will produce a solution with
+energy $E - \hbar \omega$. Now for the reason why this formulation is so powerful: we know that there must be
+a *lowest energy state*, call it $\psi_0$. Because it's the state with the lowest energy, then $\hat{a}_-
+\psi_0$ should give us zero. Using this fact, we can now set up a differential equation that solves for
+$\psi_0$:
+$$
+	\hat{a}_- \psi_0 = \frac{1}{\sqrt{2}} \left[ \left(\frac{m \omega}{\hbar} \right)^{ 1 / 2} \hat{x} + i
+	\frac{\hat{p}_x}{(m \hbar \omega)^{ 1 / 2}}\right] \psi_0 = 0
+$$
+Expanding out the operators:
+$$
+	\left( \frac{m \omega}{\hbar} \right)^{1 / 2} x \psi_0 + \frac{\hbar}{(m \hbar \omega)^{ 1 / 2}} \pdv{x}
+	\psi_0 = 0
+$$
+This gives us the differential equation:
+$$
+	\pdv{x} \psi + \frac{m \omega}{\hbar} x\psi_0 = 0
+$$
+Now, we can treat the partial derivative as an ordinary derivative and solve the differential equation via
+separation of variables:
+$$
+	\int \frac{d \psi_0}{\psi_0} = \frac{- m \omega}{\hbar} \int x \ d x
+$$
+therefore, our solution is:
+$$
+	\psi_0 = A\exp\left(-\frac{m \omega}{2 \hbar} x^2\right)
+$$
+We can then solve for $A$ by enforcing normalization, which gives us:
+$$
+	\int_{-\infty}^{\infty} \left| A e^{-\frac{m \omega}{2 \hbar}x^2} \right|^2 \ d x = 1 \implies A = \left(
+	\frac{m \omega }{\pi \hbar}\right)^{1 / 4}
+$$
+therefore, our final wavefunction is:
+$$
+	\psi_0 = \left( \frac{m \omega}{\pi \hbar} \right)^{1 / 4} \exp\left( - \frac{m \omega}{2 \hbar} x^2 \right)
+$$
+compare this with what we would get if we plug in $n = 0$ into @eq-harmonic-oscillator-hermite:
+$$
+	\psi_0(x) = \left( \frac{\alpha}{\sqrt{\pi} 2^{0} 0!} \right)^{1 / 2} e^{- \alpha^2 x^2 / 2}H_0(\alpha x)
+$$
+since $H_0 = 1$ and using $\alpha$ from @eq-alpha-define, we get:
+$$
+	\psi_0(x) = \left( \frac{m \omega}{\pi \hbar} \right)^{1 / 4} \exp\left( -\frac{m \omega}{2 \hbar} x^2 \right)
+$$
+so we get the same equation, which is expected. We can then determine the energy of this system by plugging
+this back into @eq-oscillator-operator-form:
+$$
+	\hbar \omega\left( \hat{a}_+ \hat{a}_- + \frac{1}{2} \right) \psi_0(x) = E \psi_0(x)
+$$
+and since we know that $\hat{a}_- \psi_0 = 0$ (by our earlier definition), then we get:
+$$
+	E = \hbar \omega + \frac{1}{2}
+$$
+Then, since $\hat{a}_+ \psi_n$ raises the energy by $\hbar \omega$ every time, then the energy for every
+state is also now solved for:
+$$
+	E_n = \hbar \omega \left(n + \frac{1}{2}\right)
+$$
+We are almost done, the only problem left is that as written $\hat{a}_+$ does not preserve normalization. So,
+we need to find what extra factor $\hat{a}_+\psi_n$ applies, then normalize it by dividing out that
+prefactor. Explicitly, we currently have:
+$$
+	\hat{a}_+ \psi_n = c_n \psi_{n + 1}
+$$
+and we want to find what $c_n$ is. The easiest way to do this is to abstract away $\psi_n$ and use the vector
+language we developed, in which case we can rewrite our equation as:
+$$
+	\hat{a}_+ \ket{n} = c_n \ket{n + 1}
+$$
+it will be obvious soon why we use this instead of explicitly relying on the algebraic form of $\hat{a}$. To
+find $c_n$, we multiply by the adjoint:
+$$
+	\bra{n} \hat{a}_+^{\dagger} \hat{a}_+ \ket{n} = \bra{n} \hat{a}_- \hat{a}_+ \ket{n} = |c_n|^2 \braket*{n + 1}{n + 1}
+$$ 
+since $\ket{n + 1}$ is assumed to be normalized, the inner product on the right side is 1. For the left hand
+side, since we solved for the energy of each state, we can rewrite the Schrodinger equation in a way that
+helps us simplify $\hat{a}_{-} \hat{a}_+$:
+$$
+	\hbar \omega \left( \hat{a}_{+} \hat{a}_- + \frac{1}{2} \right) \psi_n = E_n \psi_n = \hbar \omega \left(
+	n + \frac{1}{2} \right) \psi
+$$
+Using the commutator $[\hat{a}_-, \hat{a}_+] = 1$, we express the above in terms of $\hat{a}_- \hat{a}_+$:
+$$
+	\hbar \omega \left( \hat{a}_- \hat{a}_+ - \frac{1}{2} \right) \psi_n = \hbar \omega \left( n + \frac{1}{2} \right) \psi_n
+$$
+hence, from here we see that $\hat{a}_- \hat{a}_+ = n + 1$. Plugging this back now into our derivation:
+$$
+	\bra{n} \hat{a}_- \hat{a}_+ \ket{n} = (n + 1)\braket*{n}{n} = |c_n|^2 
+$$
+again, $\braket*{n}{n} = 1$, so:
+$$
+	|c_n|^2 = n + 1 \implies c_n = \sqrt{n + 1}
+$$
+We can run the exact same calculation for the lowering operator:
+$$
+	\hat{a}_- \ket{n} = d_n \ket{n - 1}
+$$
+this time:
+$$
+	\bra{n} \hat{a}_+ \hat{a}_- \ket{n} = |d_n|^2
+$$
+and from the Schrodinger equation we get $\hat{a}_+ \hat{a}_- = n$, hence:
+$$
+	n \braket*{n}{n} = |d_n|^2 \implies d_n = \sqrt{n}
+$$
+with this, we now have a full set of equations:
+$$
+	\hat{a}_+ \ket{n} = \sqrt{n + 1}\ket{n + 1}, \quad \hat{a}_- \ket{n} = \sqrt{n} \ket{n - 1}, \quad
+	\hat{a}_- \ket{0} = 0
+$$
+This is quite a remarkable result in its simplicity, but it must be stressed that this approach does **not**
+for every potential, as the definition of the raising and lowering operators depended heavily on the form of
+the potential. What is nice though, is that nearly every potential can be *approximated* as a bunch of
+harmonic oscillators, meaning it's possible to "stack up" these solutions to create a general solution for
+more complex potentials.
+
+One last thing we should mention here is that using the $\ket{n}$ notation made this calculation much
+easier, since we can deal with $\hat{a}$ as operators rather than algebraic expressions, allowing us to skip
+all the ugly integral math associated with it. More broadly speaking, the ket notation is also used more
+often since most of the time what $\ket{n}$ *represents* (a vector in Hilbert space) is more important to us
+than the its algebraic definition, and as such we tend to prefer the $\ket{n}$ convention over $\psi_n$.
+
+<!--
+
+not sure if this should be included in this section, will leave commented for now. 
+
+
+## Coherent States 
+
+Another type of state that we tend to care a lot about in quantum mechanics are so-called *coherent states*,
+which are defined as states that minimize the uncertainty product. In this section, we will work with natural
+units $m = \hbar = \omega = 1$ (the constants will only get in the way of our argument, so we'll "drop" them). 
+Coherent states are defined below:
+
+:::{.definition #def-coherent-state}
+# Coherent State
+A coherent state $\braket*{x}{\psi} = \psi(x)$ is one that satisfies 
+$$
+	\Delta x = \Delta p = \frac{1}{\sqrt{2}}
+$$
+:::
+from this definition, it follows that a coherent state is one that has the minimum uncertainty value of $1 / 2$. 
+To give some intuition on why these states are important, in a sense they are the closest quantum analogue we
+have to a classical particle, where the position and momentum are treated as infinitely precise measurements.
+In quantum optics, they are also 
+
+
+
+
+### Heisenberg Operators
+
+
+
+### Glauber's Theorem
+
+
+-->
+
+
+

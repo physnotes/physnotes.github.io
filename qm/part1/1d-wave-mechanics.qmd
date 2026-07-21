@@ -808,7 +808,7 @@ Now, we will leverage the following theorem to make our lives easier:
 
 :::{.theorem #thm-1d-symmetric-potential}
 # Wavefunction for Symmetric Potentials
-If a potential $V(x)$ is symmetric (ie, $V(x) = V(-x)$ for all $x$), then its wavefunction is also symmetric (ie, $\psi(x) = \psi(-x)$ for all $x$).   
+If a potential $V(x)$ is symmetric (ie, $V(x) = V(-x)$ for all $x$), then its wavefunction can always be taken to be even or odd. (ie, $\psi(x) = \psi(-x)$ for all $x$).   
 :::
 :::{.proof}
 Suppose first that $\psi(x)$ satisfies the Schrödinger equation for $V(x)$. That is, $\psi(x)$ is a solution

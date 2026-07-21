@@ -4,7 +4,7 @@ project:
 
 book:
   title: "Quantum Mechanics"
-  author: 
+  author:
   - name: Eric Du
     email: eric.du03@berkeley.edu
     affiliation: UC Berkeley
@@ -15,12 +15,13 @@ book:
   chapters:
     - index.qmd
     - part: part1/part1.qmd
-      chapters: 
+      chapters:
         - part1/origins.qmd
         - part1/formalism.qmd
-        - part1/postulates.qmd 
+        - part1/postulates.qmd
         - part1/quantum-from-classical.qmd
         - part1/1d-wave-mechanics.qmd
+        - part1/harmonic-oscillator.qmd
     - references.qmd
 
   page-footer: "[Home](../)"
@@ -37,7 +38,6 @@ format:
   html:
     theme:
       - cosmo
-      - brand
       - styles.scss
     include-after-body:
       - theorem-collapse.html
@@ -54,16 +54,19 @@ format:
                 }
               }
             };
-            </script>         
+            </script>
           <link rel="stylesheet" type= "text/css" href="https://tikzjax.com/v1/fonts.css">
           <script src="https://tikzjax.com/v1/tikzjax.js"></script>
-    grid:
-      body-width: 1000px
-    fontsize: 12pt
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    body-width: 1000px
+    fontsize: 11pt
+    mainfont: "League Spartan"
 
   pdf:
     documentclass: scrreprt
-    include-in-header: 
+    include-in-header:
       - boxed-theorems.tex
       - macros.tex
     cite-method: biblatex
