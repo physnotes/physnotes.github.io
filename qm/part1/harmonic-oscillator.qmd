@@ -400,6 +400,12 @@ easier, since we can deal with $\hat{a}$ as operators rather than algebraic expr
 all the ugly integral math associated with it. More broadly speaking, the ket notation is also used more
 often since most of the time what $\ket{n}$ *represents* (a vector in Hilbert space) is more important to us
 than the its algebraic definition, and as such we tend to prefer the $\ket{n}$ convention over $\psi_n$.
+ 
+And that's all there is to the harmonic oscillator! We've arrived at a very pretty result, but hopefully this
+also shows the kind of complex behavior we get from quantum mechanics, all of which can be traced back to the
+Schrodinger equation. It also shows us why in the real world we can only hope to approximate quantum
+wavefunctions, as potentials in the real world are way more complicated than a harmonic oscillator, and
+generally have no known closed-form solution.
 
 <!--
 
@@ -410,8 +416,7 @@ not sure if this should be included in this section, will leave commented for no
 
 Another type of state that we tend to care a lot about in quantum mechanics are so-called *coherent states*,
 which are defined as states that minimize the uncertainty product. In this section, we will work with natural
-units $m = \hbar = \omega = 1$ (the constants will only get in the way of our argument, so we'll "drop" them). 
-Coherent states are defined below:
+units $m = \hbar = \omega = 1$ (the constants will only get in the way of our argument, so we'll "drop" them). Coherent states are defined below:
 
 :::{.definition #def-coherent-state}
 # Coherent State
